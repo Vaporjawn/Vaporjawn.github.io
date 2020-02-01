@@ -1191,7 +1191,7 @@ body {
     margin-left: 8.33333%; } }
 /* Basic */
 body {
-  background: #fff; }
+  background: #f7f7f7; }
   body.is-loading *, body.is-loading *:before, body.is-loading *:after {
     -moz-animation: none !important;
     -webkit-animation: none !important;
@@ -2038,7 +2038,7 @@ input[type="button"],
     .poptrox-popup .loader:before {
       content: '\f1ce'; }
   .poptrox-popup .caption {
-    background: #fff;
+    background: #f7f7f7;
     bottom: 0;
     cursor: default;
     font-size: 0.9em;
@@ -2217,7 +2217,7 @@ body.is-touch .poptrox-popup .closer {
   /* Footer */
   #footer {
     background-attachment: scroll;
-    background-color: #1f1815;
+    background-color: #f7f7f7;
     background-image: url("images/overlay.png"), url("../../images/bg.jpg");
     background-position: top left,						bottom center;
     background-repeat: repeat,							no-repeat;
