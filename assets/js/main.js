@@ -3,6 +3,13 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
+DarkReader.enable({
+    brightness: 100,
+    contrast: 90,
+    sepia: 10
+});
+
+DarkReader.disable();
 
 (function($) {
 
