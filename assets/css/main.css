@@ -6,6 +6,17 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 /* Reset */
+body {
+  padding: 25px;
+  background-color: white;
+  color: black;
+  font-size: 25px;
+}
+
+.dark-mode {
+  background-color: black;
+  color: white;
+}
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
@@ -1717,7 +1728,7 @@ table {
     border-left: 0;
     border-right: 0; }
     table tbody tr:nth-child(2n + 1) {
-      background-color: #f7f7f7; }
+      background-color: black; }
   table td {
     padding: 0.75em 0.75em; }
   table th {
@@ -1758,7 +1769,7 @@ input[type="button"],
   -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
   -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-  background-color: #f7f7f7;
+  background-color: #black;
   border-radius: 0.35em;
   border: solid 3px #efefef;
   color: #1A2B4F !important;
@@ -1876,7 +1887,7 @@ input[type="button"],
   -webkit-justify-content: space-between;
   -ms-justify-content: space-between;
   justify-content: space-between;
-  background-color: #1f1815;
+  background-color: black;
   background-attachment: scroll,								fixed;
   background-image: url("../../images/atl.jpg");
   background-repeat: repeat,								no-repeat;
@@ -2217,7 +2228,7 @@ body.is-touch .poptrox-popup .closer {
   /* Footer */
   #footer {
     background-attachment: scroll;
-    background-color: #f7f7f7;
+    background-color: #black;
     background-image: url("images/overlay.png"), url("../../images/bg.jpg");
     background-position: top left,						bottom center;
     background-repeat: repeat,							no-repeat;
