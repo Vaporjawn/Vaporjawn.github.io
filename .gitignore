@@ -1,3 +1,4 @@
 # Ignore docs files
 .sass-cache
 .sass-cache/*
+CNAME
