@@ -247,7 +247,7 @@
 	}
 
 		.image:before {
-			background: url("../images/overlay.png");
+			background: url("images/overlay.png");
 			content: '';
 			height: 100%;
 			left: 0;
@@ -310,49 +310,53 @@
 		}
 
 			.icon.circle:hover {
-				top: -0.5em;
+				top: -0.2em;
 			}
 
 			.icon.circle.fa-twitter {
-				background: #1da1f2;
+				background: #70aecd;
 				color: white;
 			}
 
-				.icon.circle.fa-angellist{
-					background-color: red;
-					color: white;
-				}
-				.icon.circle.fa-linkedin {
-					background: #007bb5;
-					color: white;
-				}
-				.icon.circle.fa-steam {
-					background:#171A21;
-					color: white;
+				.icon.circle.fa-twitter:hover {
+					background: #7fb7d2;
 				}
 
 			.icon.circle.fa-facebook {
-				background: #1877f2;
+				background: #7490c3;
 				color: white;
 			}
+
+				.icon.circle.fa-facebook:hover {
+					background: #829bc9;
+				}
+
+			.icon.circle.fa-google-plus {
+				background: #db6b67;
+				color: white;
+			}
+
+				.icon.circle.fa-google-plus:hover {
+					background: #df7b77;
+				}
 
 			.icon.circle.fa-github {
-				background: #171A21;
+				background: #dcad8b;
 				color: white;
 			}
 
-			.icon.circle.fa-instagram{
-				background: #d6249f;
+				.icon.circle.fa-github:hover {
+					background: #e1b89b;
+				}
+
+			.icon.circle.fa-dribbble {
+				background: #da83ae;
 				color: white;
-				background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
-				box-shadow: 0px 3px 10px rgba(0,0,0,.25);
-
 			}
 
-			.icon.circle.fa-twitch{
-				background: #9146ff;
-				color:white;
-			}
+				.icon.circle.fa-dribbble:hover {
+					background: #df93b8;
+				}
 
 		.icon.featured {
 			cursor: default;
@@ -527,7 +531,7 @@
 		input[type="submit"].special,
 		input[type="reset"].special,
 		.button.special {
-			background: #4c5fd7;
+			background: #83d3c9;
 			border-color: #83d3c9;
 			color: white !important;
 		}
@@ -568,8 +572,8 @@
 		}
 
 		.wrapper.style2 {
-			background-color: #0066ff;
-			background-image: url("../images/light-bl.svg"), url("../images/light-br.svg");
+			background-color: #83d3c9;
+			background-image: url("images/light-bl.svg"), url("images/light-br.svg");
 			background-position: bottom left, bottom right;
 			background-repeat: no-repeat, no-repeat;
 			background-size: 25em, 25em;
@@ -583,7 +587,7 @@
 			.wrapper.style2 .button.special {
 				background: white;
 				border-color: white;
-				color: #0066ff !important;
+				color: #83d3c9 !important;
 			}
 
 				.wrapper.style2 .button.special:hover {
@@ -800,7 +804,7 @@
 	#banner {
 		background-attachment: scroll, scroll, scroll, fixed;
 		background-color: #645862;
-		background-image: url("../images/light-bl.svg"), url("../images/light-br.svg"), url("../images/overlay.png"), url("../images/banner.jpg");
+		background-image: url("images/light-bl.svg"), url("images/light-br.svg"), url("images/overlay.png"), url("../images/banner.jpg");
 		background-position: bottom left, bottom right, top left, top center;
 		background-repeat: no-repeat, no-repeat, repeat, no-repeat;
 		background-size: 25em, 25em, auto, cover;
@@ -868,7 +872,7 @@
 /* Main */
 
 	#main {
-		background-image: url("../images/dark-tl.svg"), url("../images/dark-tr.svg"), url("../images/dark-bl.svg"), url("../images/dark-br.svg");
+		background-image: url("images/dark-tl.svg"), url("images/dark-tr.svg"), url("images/dark-bl.svg"), url("images/dark-br.svg");
 		background-position: top left, top right, bottom left, bottom right;
 		background-repeat: no-repeat;
 		background-size: 25em;
@@ -900,7 +904,7 @@
 	#cta {
 		background-attachment: scroll, scroll, scroll, fixed;
 		background-color: #645862;
-		background-image: url("../images/light-tl.svg"), url("../images/light-tr.svg"), url("../images/overlay.png"), url("../images/banner.jpg");
+		background-image: url("images/light-tl.svg"), url("images/light-tr.svg"), url("images/overlay.png"), url("../images/banner.jpg");
 		background-position: top left, top right, top left, bottom center;
 		background-repeat: no-repeat, no-repeat, repeat, no-repeat;
 		background-size: 25em, 25em, auto, cover;
