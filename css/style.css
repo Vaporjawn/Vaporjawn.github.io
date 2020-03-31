@@ -1106,6 +1106,14 @@
 		  -moz-animation: glow 1s ease-in-out infinite alternate;
 		  animation: glow 1s ease-in-out infinite alternate;
 		}
+		.gloww{
+			font-size: 80px;
+			color: #fff;
+			text-align: center;
+			-webkit-animation: glow 1s ease-in-out infinite alternate;
+			-moz-animation: glow 1s ease-in-out infinite alternate;
+			animation: glow 1s ease-in-out infinite alternate;
+		}
 		.wave{
 			color: #fff;
 			-webkit-animation: glow 1s ease-in-out infinite alternate;
@@ -1121,3 +1129,12 @@
 		    text-shadow: 0 0 20px #fff, 0 0 30px #0066ff, 0 0 40px #0066ff, 0 0 50px #0066ff, 0 0 60px #0066ff, 0 0 70px #0066ff, 0 0 80px #0066ff;
 		  }
 		}
+		/* @-webkit-keyframes glow {
+			from {
+			  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #790604, 0 0 40px #790604, 0 0 50px #790604, 0 0 60px #790604, 0 0 70px #790604;
+			}
+			to {
+			  text-shadow: 0 0 20px #fff, 0 0 30px #790604, 0 0 40px #790604, 0 0 50px #790604, 0 0 60px #790604, 0 0 70px #790604, 0 0 80px #790604;
+			}
+		  } */
+
