@@ -15,273 +15,10 @@
     <meta name="keywords" content="">
     <!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
     <script src="./javascript/jquery.min.js"></script>
-    <style class="darkreader darkreader--override" media="screen">
-        .vimvixen-hint {
-            background-color: #7b5300 !important;
-            border-color: #d8b013 !important;
-            color: #f3e8c8 !important;
-        }
-        
-         ::placeholder {
-            opacity: 0.5 !important;
-        }
-    </style>
     <script src="./javascript/jquery.dropotron.min.js"></script>
     <script src="./javascript/jquery.scrolly.min.js"></script>
     <script src="./javascript/jquery.scrollgress.min.js"></script>
-    <style type="text/css">
-        .\31 2u {
-            width: 100%
-        }
-        
-        .\31 1u {
-            width: 91.6666666667%
-        }
-        
-        .\31 0u {
-            width: 83.3333333333%
-        }
-        
-        .\39 u {
-            width: 75%
-        }
-        
-        .\38 u {
-            width: 66.6666666667%
-        }
-        
-        .\37 u {
-            width: 58.3333333333%
-        }
-        
-        .\36 u {
-            width: 50%
-        }
-        
-        .\35 u {
-            width: 41.6666666667%
-        }
-        
-        .\34 u {
-            width: 33.3333333333%
-        }
-        
-        .\33 u {
-            width: 25%
-        }
-        
-        .\32 u {
-            width: 16.6666666667%
-        }
-        
-        .\31 u {
-            width: 8.3333333333%
-        }
-        
-        .\-11u {
-            margin-left: 91.6666666667%
-        }
-        
-        .\-10u {
-            margin-left: 83.3333333333%
-        }
-        
-        .\-9u {
-            margin-left: 75%
-        }
-        
-        .\-8u {
-            margin-left: 66.6666666667%
-        }
-        
-        .\-7u {
-            margin-left: 58.3333333333%
-        }
-        
-        .\-6u {
-            margin-left: 50%
-        }
-        
-        .\-5u {
-            margin-left: 41.6666666667%
-        }
-        
-        .\-4u {
-            margin-left: 33.3333333333%
-        }
-        
-        .\-3u {
-            margin-left: 25%
-        }
-        
-        .\-2u {
-            margin-left: 16.6666666667%
-        }
-        
-        .\-1u {
-            margin-left: 8.3333333333%
-        }
-    </style>
-    <style class="darkreader darkreader--sync" media="screen"></style>
-    <style type="text/css">
-        .row>* {
-            float: left
-        }
-        
-        .row:after {
-            content: '';
-            display: block;
-            clear: both;
-            height: 0
-        }
-        
-        .row:first-child>* {
-            padding-top: 0!important
-        }
-        
-        .row.uniform>*>:first-child {
-            margin-top: 0
-        }
-        
-        .row.uniform>*>:last-child {
-            margin-bottom: 0
-        }
-    </style>
-    <style class="darkreader darkreader--sync" media="screen"></style>
-    <style type="text/css">
-        body {
-            min-width: 1400px
-        }
-        
-        .container {
-            margin-left: auto;
-            margin-right: auto;
-            width: 1400px
-        }
-        
-        .container.small {
-            width: 1050px
-        }
-        
-        .container.large {
-            width: 100%;
-            max-width: 1750px;
-            min-width: 1400px
-        }
-    </style>
-    <style class="darkreader darkreader--sync" media="screen"></style>
-    <style type="text/css">
-        .row>* {
-            padding-left: 50px
-        }
-        
-        .row+.row>* {
-            padding: 50px 0 0 50px
-        }
-        
-        .row {
-            margin-left: -50px
-        }
-        
-        .row+.row.uniform>* {
-            padding: 50px 0 0 50px
-        }
-        
-        .row.flush>* {
-            padding-left: 0
-        }
-        
-        .row+.row.flush>* {
-            padding: 0
-        }
-        
-        .row.flush {
-            margin-left: 0
-        }
-        
-        .row+.row.uniform.flush>* {
-            padding: 0
-        }
-        
-        .row.half>* {
-            padding-left: 25px
-        }
-        
-        .row+.row.half>* {
-            padding: 25px 0 0 25px
-        }
-        
-        .row.half {
-            margin-left: -25px
-        }
-        
-        .row+.row.uniform.half>* {
-            padding: 25px 0 0 25px
-        }
-        
-        .row.quarter>* {
-            padding-left: 12.5px
-        }
-        
-        .row+.row.quarter>* {
-            padding: 12.5px 0 0 12.5px
-        }
-        
-        .row.quarter {
-            margin-left: -12.5px
-        }
-        
-        .row+.row.uniform.quarter>* {
-            padding: 12.5px 0 0 12.5px
-        }
-        
-        .row.oneandhalf>* {
-            padding-left: 75px
-        }
-        
-        .row+.row.oneandhalf>* {
-            padding: 75px 0 0 75px
-        }
-        
-        .row.oneandhalf {
-            margin-left: -75px
-        }
-        
-        .row+.row.uniform.oneandhalf>* {
-            padding: 75px 0 0 75px
-        }
-        
-        .row.double>* {
-            padding-left: 100px
-        }
-        
-        .row+.row.double>* {
-            padding: 100px 0 0 100px
-        }
-        
-        .row.double {
-            margin-left: -100px
-        }
-        
-        .row+.row.uniform.double>* {
-            padding: 100px 0 0 100px
-        }
-    </style>
-    <style class="darkreader darkreader--sync" media="screen"></style>
-    <style type="text/css">
-        .not-global {
-            display: none!important
-        }
-        
-        .only-wide,
-        .only-normal,
-        .only-narrow,
-        .only-narrower,
-        .only-mobile {
-            display: none!important
-        }
-    </style>
-    <style class="darkreader darkreader--sync" media="screen"></style>
+   
     <link rel="stylesheet" type="text/css" href="./index_files/style.css">
     <script src="./javascript/skel.min.js"></script>
     <script src="./javascript/skel-layers.min.js"></script>
@@ -295,7 +32,7 @@
     <!--[if lte IE 8]><link rel="stylesheet" href="/css/ie/v8.css" /><![endif]-->
     <!--[if lte IE 9]><link rel="stylesheet" href="/css/ie/v9.css" /><![endif]-->
     <meta name="viewport" content="width=device-width">
-    <meta name="keywords" content="Victor Williams,Victor,Williams,web,designer,developer,software,engineer,Temple University,SSBM,Vaporjawn,vaporwave">
+    <meta name="keywords" content="Victor Williams,Victor,Williams,web,designer,developer,software,engineer,Temple University,SSBM,Vaporjawn,vaporglow">
     <link rel="canonical" href="http://locahost:4000/">
 </head>
 
@@ -315,18 +52,12 @@
         <!-- Banner -->
         <section id="banner">
 
-            <!--
-        ".inner" is set up as an inline-block so it automatically expands
-        in both directions to fit whatever's inside it. This means it won't
-        automatically wrap lines, so be sure to use line breaks where
-        appropriate (<br />).
-    -->
             <div class="inner">
 
                 <header>
                     <h2 class="glow">Victor Williams</h2>
                 </header>
-                <p>A graduate of the beloved <strong>Temple University.</strong> <br> I am a 22 year old <strong><b>full stack developer</b></strong> living in <strong> Philadelphia </strong>.
+                <p>A graduate of the beloved <strong>Temple University.</strong> <br> I am a 23 year old <strong><b>full stack developer</b></strong> living in <strong> Philadelphia </strong>.
                     <br></p>
             </div>
 
@@ -511,8 +242,8 @@
                     <section id="cta">
 
                         <header>
-                            <h2 class="wave"><strong> Want to reach me? </strong></h2>
-                            <p class="wave"><b>Here's a few of my contacts and socials so we can be in touch.</b></p>
+                            <h2 class="glow" style="font-size:40px"><strong> Want to reach me? </strong></h2>
+                            <p class="glow" style="font-size:20px"><b>Here's a few of my contacts and socials so we can be in touch.</b></p>
                         </header>
                         <footer>
                             <ul class="buttons">
