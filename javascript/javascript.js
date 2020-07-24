@@ -6,8 +6,8 @@ function selectPicture() {
     }
 //random image selector
 function displayPicture(){
-document.getElementById("img1").src = "./instagram_pictures/" + selectPicture();
-document.getElementById("img2").src = "./instagram_pictures/" + selectPicture();
-document.getElementById("img3").src = "./instagram_pictures/" + selectPicture();
-document.getElementById("img4").src = "./instagram_pictures/" + selectPicture();
+document.getElementById("img1").src = "https://github.com/Vaporjawn/Vaporjawn.github.io/blob/master/instagram_pictures/ + selectPicture();
+document.getElementById("img2").src = "https://github.com/Vaporjawn/Vaporjawn.github.io/blob/master/instagram_pictures/ + selectPicture();
+document.getElementById("img3").src = "https://github.com/Vaporjawn/Vaporjawn.github.io/blob/master/instagram_pictures/ + selectPicture();
+document.getElementById("img4").src = "https://github.com/Vaporjawn/Vaporjawn.github.io/blob/master/instagram_pictures/ + selectPicture();
 }setInterval(displayPicture,5000);
