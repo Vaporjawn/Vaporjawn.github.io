@@ -1,6 +1,6 @@
 function selectPicture() {
     var pictureNumber = "";
-    pictureNumber = Math.floor(Math.random() * 210)+1;
+    pictureNumber = Math.floor(Math.random() * 199)+1;
     pictureNumber = pictureNumber + ".JPG"
      return pictureNumber;
     }
@@ -11,3 +11,4 @@ document.getElementById("img2").src = "https://raw.githubusercontent.com/Vaporja
 document.getElementById("img3").src = "https://raw.githubusercontent.com/Vaporjawn/Vaporjawn.github.io/master/instagram_pictures/" + selectPicture();
 document.getElementById("img4").src = "https://raw.githubusercontent.com/Vaporjawn/Vaporjawn.github.io/master/instagram_pictures/" + selectPicture(); 
 }setInterval(displayPicture,5000);
+
