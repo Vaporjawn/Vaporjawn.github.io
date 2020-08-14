@@ -915,6 +915,75 @@ input[type="reset"].small,
     }
 }
 
+/* alternative banner */
+#vaporwave{
+    background-attachment: scroll, scroll, scroll, fixed;
+    background-color: #645862;
+    background-image: url("../images/light-bl.svg"), url("../images/light-br.svg"), url("../images/overlay.png"), url("../images/vaporwave.jpg");
+    background-position: bottom left, bottom right, top left, top center;
+    background-repeat: no-repeat, no-repeat, repeat, no-repeat;
+    background-size: 25em, 25em, auto, fit;
+    color: white;
+    cursor: default;
+    padding: 6em 0;
+    text-align: center;
+}
+#vaporwave .inner {
+    -moz-animation: reveal-banner 1s 0.25s ease-in-out;
+    -webkit-animation: reveal-banner 1s 0.25s ease-in-out;
+    -o-animation: reveal-banner 1s 0.25s ease-in-out;
+    -ms-animation: reveal-banner 1s 0.25s ease-in-out;
+    animation: reveal-banner 1s 0.25s ease-in-out;
+    -moz-animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+    -o-animation-fill-mode: forwards;
+    -ms-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    background: rgba(52, 27, 43, 0.5);
+    color: white;
+    display: inline-block;
+    opacity: 0;
+    padding: 3em;
+    text-align: center;
+}
+
+#vaporwave .inner header {
+    display: inline-block;
+    border-bottom: solid 2px;
+    border-top: solid 2px;
+    margin: 0 0 2em 0;
+    padding: 3px 0 3px 0;
+}
+
+#vaporwave .inner header h2 {
+    border-bottom: solid 2px;
+    border-top: solid 2px;
+    font-size: 2.5em;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    margin: 0;
+    padding-left: 0.05em;
+    position: relative;
+    text-transform: uppercase;
+}
+
+#vaporwave .inner p {
+    letter-spacing: 0.1em;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+#vaporwave .inner p a {
+    color: inherit;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+#vaporwave .inner footer {
+    margin: 2em 0 0 0;
+}
+
+/* normal banner */
 #banner {
     background-attachment: scroll, scroll, scroll, fixed;
     background-color: #645862;
@@ -926,6 +995,7 @@ input[type="reset"].small,
     cursor: default;
     padding: 6em 0;
     text-align: center;
+
 }
 
 #banner .inner {
@@ -1033,6 +1103,23 @@ body.index #main {
     margin-bottom: 2em;
 }
 
+/* Alternative CTA */
+
+#cta-vaporwave {
+    background-attachment: scroll, scroll, scroll, fixed;
+    background-color: #645862;
+    background-image: url("../images/light-tl.svg"), url("../images/light-tr.svg"), url("../images/overlay.png"), url("../images/vaporwave.jpg");
+    background-position: top left, top right, top left, bottom center;
+    background-repeat: no-repeat, no-repeat, repeat, no-repeat;
+    background-size: 25em, 25em, auto, cover;
+    color: white;
+    padding: 5em;
+    text-align: center;
+}
+
+#cta-vaporwave header {
+    margin-bottom: 2em;
+}
 
 /* Footer */
 
