@@ -12,3 +12,7 @@ document.getElementById("img3").src = "https://raw.githubusercontent.com/Vaporja
 document.getElementById("img4").src = "https://raw.githubusercontent.com/Vaporjawn/Vaporjawn.github.io/master/instagram_pictures/" + selectPicture(); 
 }setInterval(displayPicture,5000);
 
+const navControllerClicked = () => {
+   // document.getElementById("main").style.backgroundColor = "black";
+    document.getElementById("PageBody").style.display = "hidden";
+}

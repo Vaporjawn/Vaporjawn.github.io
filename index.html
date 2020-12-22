@@ -24,32 +24,71 @@
     <script src="./javascript/skel.min.js"></script>
     <script src="./javascript/skel-layers.min.js"></script>
     <script src="./javascript/init.js"></script>
-    <noscript>
+    <link rel="stylesheet" href="./css/navbar.css"/>
         <link rel="stylesheet" href="./index_files/skel.css" />
         <link rel="stylesheet" href="./index_files/style.css" />
         <link rel="stylesheet" href="./index_files/style-wide.css" />
         <link rel="stylesheet" href="./index_files/style-noscript.css" />
-    </noscript>
     <!--[if lte IE 8]><link rel="stylesheet" href="/css/ie/v8.css" /><![endif]-->
     <meta name="viewport" content="width=device-width">
     <meta name="keywords" content="Victor Williams,Victor,Williams,web,designer,developer,software,engineer,Temple University,SSBM,Vaporjawn,vaporglow">
     <link rel="canonical" href="http://locahost:4000/">
 </head>
 
-
-<body class="index" data-gr-c-s-loaded="true">
     <div id="skel-layers-wrapper" style="position: absolute; left: 0px; right: 0px; top: 0px;">
 
         <header id="header">
             <h1 id="logo"><a href="https://vaporjawn.github.io/Resume.html" target="_blank"><u>Victor's <span>Resume</span></u></a></h1>
-            <nav id="nav">
-                <ul>
-                    <li style="white-space: nowrap;"><a href="./Vaporjawn.html"><u>What is <b>Vaporjawn</b>?</u></a></li>
-                    <li style="white-space: nowrap;"><a href="./SSBM.html"><u>What is <b>SSBM</b>?</u></a></li>
-                    <!-- add portfolio link here too -->
-                </ul>
+
+            <input type="checkbox" id="main-navigation-toggle" class="btn btn--close" title="Toggle main navigation" />
+            <label for="main-navigation-toggle">
+              <span onclick="navControllerClicked();"></span>
+            </label>
+        
+            <nav id="main-navigation" class="nav-main">
+              <ul class="menu">
+                <li class="menu__item">
+                  <a class="menu__link" href="#0">Homepage</a>
+                </li>
+                <li class="menu__item">
+                  <a class="menu__link" href="#0">About/Bio</a>
+                </li>
+                <li class="menu__item">
+                  <a class="menu__link" href="#0">Clients</a>
+                  <ul class="submenu">
+                    <li class="menu__item">
+                      <a class="menu__link" href="#0">Burger King</a>
+                    </li>
+                    <li class="menu__item">
+                      <a class="menu__link" href="#0">Southwest Airlines</a>
+                    </li>
+                    <li class="menu__item">
+                      <a class="menu__link" href="#0">Levi Strauss</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu__item">
+                  <a class="menu__link" href="#0">Services</a>
+                  <ul class="submenu">
+                    <li class="menu__item">
+                      <a class="menu__link" href="#0">Print Design</a>
+                    </li>
+                    <li class="menu__item">
+                      <a class="menu__link" href="#0">Web Design</a>
+                    </li>
+                    <li class="menu__item">
+                      <a class="menu__link" href="#0">Games</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu__item">
+                  <a class="menu__link" href="#0">Contact</a>
+                </li>
+              </ul>
             </nav>
         </header>
+
+        <body class="index" id="PageBody" data-gr-c-s-loaded="true">
         <!-- Banner -->
         <section id="banner">
 
