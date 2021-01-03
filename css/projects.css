@@ -6,6 +6,9 @@
 html, body {
   height: 100%;
 }
+a {
+text-align: center;
+}
 section {
   position: relative;
   width: 100%;
@@ -24,6 +27,19 @@ section::after {
 section h1 {
   position: absolute;
   top: 50%;
+  left: 50%;
+  z-index: 2;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font : normal 300 64px/1 'Josefin Sans', sans-serif;
+  text-align: center;
+  white-space: nowrap;
+}
+
+section h3 {
+  position: absolute;
+  top: 70%;
   left: 50%;
   z-index: 2;
   -webkit-transform: translate(-50%, -50%);
@@ -82,7 +98,8 @@ section h1 {
 .demo a {
   position: absolute;
   bottom: 20px;
-  left: 50%;
+  margin-left: 50%;
+  margin-right: 50%;
   z-index: 2;
   display: inline-block;
   -webkit-transform: translate(0, -50%);
