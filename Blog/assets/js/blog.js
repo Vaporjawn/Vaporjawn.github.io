@@ -7,3 +7,25 @@ $(document).ready(function() {
 	 });
 
 });
+
+const BlogPost = () => {
+	this.title = document.title;
+	this.date = document.date;
+	this.keywords = document.keywords;
+	//get the old map
+
+	console.log(directory instanceof Map);
+
+	//creation of new map
+	const newDirectory = new Map();
+	newDirectory.set(title, {date: date, keywords: keywords})
+	
+	console.log(newDirectory);
+
+	//write the new map
+
+
+
+
+	console.log(title);
+}
