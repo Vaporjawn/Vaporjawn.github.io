@@ -51,33 +51,38 @@ const compareMaps = (map1, map2) => {
     return true;
 }
 
+//add singular word year month and day if you want
+
 const dateFormat = () => {
 
-	const hiddenDate = document.getElementById('date');
+	const hiddenDate = document.getElementById('date').textContent;
+	console.log(hiddenDate);
 	let articleDate;
 	const postDate = hiddenDate.split("/");
 	const formattedDate = todaysDate().split("/");
 
-	if(postDate[2] < formattedDate[2]){
+	if(postDate[2] < formattedDate[2] && parseInt(postDate[2]) !== parseInt(formattedDate[2]) - 1){
 		let years = formattedDate[2] - postDate[2];
-		articleDate = "Published" + years + "year(s) ago";		
+		articleDate = "Published " + years + " year(s) ago";		
 	}
-	if(postDate[2] == formattedDate[2]){
+	if(postDate[2] == formattedDate[2] || parseInt(postDate[2]) == parseInt(formattedDate[2]) - 1){
+		let absMonth = Math.abs(parseInt(postDate[0]) - parseInt(formattedDate[0]));
 		if(postDate[0] < formattedDate[0]){
-			let months = formattedDate[0] - postDate[0];
-			articleDate = "Published" + months + "month(s) ago";
+			let months = 12 - absMonth;
+			articleDate = "Published " + months + " month(s) ago";
 		}
 		if(postDate[0] == formattedDate[0]){
 			if(postDate[1] < formattedDate[1]){
 				let days = formattedDate[1] - postDate[1];
-				articleDate = "Published" + days + "day(s) ago";
+				articleDate = "Published " + days + " day(s) ago";
 			}
 			if(postDate[1] == formattedDate[1]){
 				articleDate = "Published Today!"
 			}
 		}
 	}
-	document.getElementById('date') = articleDate;
+	document.getElementById('date').textContent = articleDate;
+	console.log(articleDate);
 }
 
 //today's date but parsed in the MM/DD/YYY format
