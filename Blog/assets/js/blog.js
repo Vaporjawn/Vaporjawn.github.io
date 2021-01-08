@@ -50,3 +50,6 @@ const compareMaps = (map1, map2) => {
     }
     return true;
 }
+
+//date maker
+//assign a number to the blog post, that represents how many days ago it was posted then divide to simplify the date to days months or years depending on time
