@@ -51,5 +51,47 @@ const compareMaps = (map1, map2) => {
     return true;
 }
 
+const dateFormat = () => {
+
+	const hiddenDate = document.getElementById('date');
+	let articleDate;
+	const postDate = hiddenDate.split("/");
+	const formattedDate = todaysDate().split("/");
+
+	if(postDate[2] < formattedDate[2]){
+		let years = formattedDate[2] - postDate[2];
+		articleDate = "Published" + years + "year(s) ago";		
+	}
+	if(postDate[2] == formattedDate[2]){
+		if(postDate[0] < formattedDate[0]){
+			let months = formattedDate[0] - postDate[0];
+			articleDate = "Published" + months + "month(s) ago";
+		}
+		if(postDate[0] == formattedDate[0]){
+			if(postDate[1] < formattedDate[1]){
+				let days = formattedDate[1] - postDate[1];
+				articleDate = "Published" + days + "day(s) ago";
+			}
+			if(postDate[1] == formattedDate[1]){
+				articleDate = "Published Today!"
+			}
+		}
+	}
+	document.getElementById('date') = articleDate;
+}
+
+//today's date but parsed in the MM/DD/YYY format
+const todaysDate = () => {
+	const today = new Date();
+	const dd = String(today.getDate()).padStart(2, '0');
+	const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+	const yyyy = today.getFullYear();
+	
+	const parsedToday = mm + '/' + dd + '/' + yyyy;
+	console.log(parsedToday);
+
+	return parsedToday;
+}
+
 //date maker
 //assign a number to the blog post, that represents how many days ago it was posted then divide to simplify the date to days months or years depending on time
