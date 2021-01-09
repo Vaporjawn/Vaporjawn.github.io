@@ -16,53 +16,61 @@ const convertToJSON = () => {
 	const jsonObject = {
 	  "Title": title,
 	  "Date": date,
-	  "time": time
+	  "Time": time
 	}
-	//writeToFile(jsonObject);
-	writeLibraryFile(jsonObject);
-  
-	// document.getElementById('output').value = JSON.stringify(jsonObject)
-  }
+	readLibraryFile(jsonObject);
+    }
   
 const BlogPost = () => {
-	// dateFormat();
-	//readLibraryFile();
 	convertToJSON();
-
+	dateFormat();
   }
 
-const writeToFile = (jsonObject) => {
-
-    let fso;
-
-	if (window.DOMParser)
-		{ // Firefox, Chrome, Opera, etc.
-			fso = new DOMParser("Scripting.FileSystemObject");
-			//xmlDoc=parser.parseFromString(xml,"text/xml");
-		}
-		else // Internet Explorer
-		{
-			fso = new ActiveXObject("Scripting.FileSystemObject");
-			//xmlDoc.async=false;
-			//xmlDoc.loadXML(xml); 
-		} 
-	let fh = fso.openTextFile("data.txt", 8, false, 0);
-
-    fh.WriteLine(jsonObject);
-    fh.Close();
-}
-
-const readLibraryFile = () => {
-	fetch('https://hook.integromat.com/cn71i0rbo0l0ms6zqxspulbs5z0udpcp')
+const readLibraryFile = (jsonObject) => {
+	let parsedJson;
+	let JSONArray;
+	fetch('https://api.github.com/gists/29e0f6a3d3baaeea9307195ea4d90992')
 	.then(function(response) {
 		return response.text();
 	})
 	.then(function(text) {
-		console.log(text);
+		parsedJson = JSON.parse(text);
+		let array = parsedJson.files.Library.content;
+		JSONArray = JSON.parse(array);
+		compareJsonFiles(JSONArray, jsonObject);
 	});
 }
 
-const writeLibraryFile = (jsonObject) => {
+const compareJsonFiles = (JSONArray, jsonObject) => {
+	let localBool = false;
+	const localTitle = jsonObject.Title;
+	const localDate = jsonObject.Date;
+	const localTime = jsonObject.Time;
+
+	if(Array.isArray(JSONArray) == true){
+		for (var i = 0; i < JSONArray.length; i++){
+		  if (JSONArray[i].Title == localTitle){
+			if(JSONArray[i].Date != localDate || JSONArray[i].Time != localTime){
+				JSONArray[i] = jsonObject;
+				writeLibraryFile(JSONArray);
+				if(JSONArray[i] == jsonObject){
+					console.log(true);
+					localBool = true;
+				}
+			}
+		  }
+		  if(localBool == false && i == JSONArray.length-1){
+			JSONArray[i] = jsonObject;
+			writeLibraryFile(JSONArray);
+			console.log('new item added :)')
+		  }
+		}
+	}else{
+		console.log('ITEM IS NOT AN ARRAY');
+	}	
+}
+
+const writeLibraryFile = (JSONArray) => {
 	const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 	const targetUrl = 'https://hook.integromat.com/ube8bwwmtnxyb94ugxa16tkxvksbt32o';
 	const url = proxyUrl + targetUrl;
@@ -71,7 +79,7 @@ const writeLibraryFile = (jsonObject) => {
 		headers: {
 		  "Content-type": "application/javascript"
 		},
-		body: JSON.stringify(jsonObject)
+		body: JSON.stringify(JSONArray)
 	  })
 	  .then(function (data) {
 		console.log('Request succeeded with JSON response', data);
@@ -80,6 +88,7 @@ const writeLibraryFile = (jsonObject) => {
 		console.log('Request failed', error);
 	  });
 }
+
 
 const dateFormat = () => {
 
