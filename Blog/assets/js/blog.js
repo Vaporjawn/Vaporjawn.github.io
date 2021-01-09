@@ -8,55 +8,83 @@ $(document).ready(function() {
 
 });
 
-const BlogPost = () => {
-	this.title = document.title;
-	this.date = document.date;
-	this.keywords = document.keywords;
-	//get the old map
-
-	console.log(directory instanceof Map);
-
-	//creation of new map
-	const newDirectory = directory;
-	newDirectory.set(title, {date: date, keywords: keywords});
-	const articleEntry = newDirectory.get(title, {date: date, keywords: keywords});
-
-	if (compareMaps(directory, newDirectory) === false){
-		directory = newDirectory;
+const convertToJSON = () => {
+	const title = document.getElementById('title').innerHTML;
+	const date = document.getElementById('date').innerHTML;
+	const time = document.getElementById('time').innerHTML;
+  
+	const jsonObject = {
+	  "Title": title,
+	  "Date": date,
+	  "time": time
 	}
-	
-	console.log(newDirectory);
-	console.log(directory);
-	console.log(newDirectory.title.date);
+	//writeToFile(jsonObject);
+	writeLibraryFile(jsonObject);
+  
+	// document.getElementById('output').value = JSON.stringify(jsonObject)
+  }
+  
+const BlogPost = () => {
+	// dateFormat();
+	//readLibraryFile();
+	convertToJSON();
 
-	//write the new map to the directory file 
+  }
 
+const writeToFile = (jsonObject) => {
 
-	console.log(title);
+    let fso;
+
+	if (window.DOMParser)
+		{ // Firefox, Chrome, Opera, etc.
+			fso = new DOMParser("Scripting.FileSystemObject");
+			//xmlDoc=parser.parseFromString(xml,"text/xml");
+		}
+		else // Internet Explorer
+		{
+			fso = new ActiveXObject("Scripting.FileSystemObject");
+			//xmlDoc.async=false;
+			//xmlDoc.loadXML(xml); 
+		} 
+	let fh = fso.openTextFile("data.txt", 8, false, 0);
+
+    fh.WriteLine(jsonObject);
+    fh.Close();
 }
 
-const compareMaps = (map1, map2) => {
-    var testVal;
-    if (map1.size !== map2.size) {
-        return false;
-    }
-    for (var [key, val] of map1) {
-        testVal = map2.get(key);
-        // in cases of an undefined value, make sure the key
-        // actually exists on the object so there are no false positives
-        if (testVal !== val || (testVal === undefined && !map2.has(key))) {
-            return false;
-        }
-    }
-    return true;
+const readLibraryFile = () => {
+	fetch('https://hook.integromat.com/cn71i0rbo0l0ms6zqxspulbs5z0udpcp')
+	.then(function(response) {
+		return response.text();
+	})
+	.then(function(text) {
+		console.log(text);
+	});
 }
 
-//add singular word year month and day if you want
+const writeLibraryFile = (jsonObject) => {
+	const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+	const targetUrl = 'https://hook.integromat.com/ube8bwwmtnxyb94ugxa16tkxvksbt32o';
+	console.log(jsonObject);
+	const url = proxyUrl + targetUrl;
+	fetch(url, {
+		method: 'post',
+		headers: {
+		  "Content-type": "application/javascript"
+		},
+		body: JSON.stringify(jsonObject)
+	  })
+	  .then(function (data) {
+		console.log('Request succeeded with JSON response', data);
+	  })
+	  .catch(function (error) {
+		console.log('Request failed', error);
+	  });
+}
 
 const dateFormat = () => {
 
 	const hiddenDate = document.getElementById('date').textContent;
-	console.log(hiddenDate);
 	let articleDate;
 	const postDate = hiddenDate.split("/");
 	const formattedDate = todaysDate().split("/");
@@ -67,10 +95,8 @@ const dateFormat = () => {
 	}
 	if(postDate[2] == formattedDate[2] || parseInt(postDate[2]) == parseInt(formattedDate[2]) - 1){
 		let absMonth = Math.abs(parseInt(postDate[0]) - parseInt(formattedDate[0]));
-		if(postDate[0] < formattedDate[0]){
 			let months = 12 - absMonth;
 			articleDate = "Published " + months + " month(s) ago";
-		}
 		if(postDate[0] == formattedDate[0]){
 			if(postDate[1] < formattedDate[1]){
 				let days = formattedDate[1] - postDate[1];
@@ -82,21 +108,14 @@ const dateFormat = () => {
 		}
 	}
 	document.getElementById('date').textContent = articleDate;
-	console.log(articleDate);
 }
-
-//today's date but parsed in the MM/DD/YYY format
 const todaysDate = () => {
 	const today = new Date();
 	const dd = String(today.getDate()).padStart(2, '0');
-	const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+	const mm = String(today.getMonth() + 1).padStart(2, '0');
 	const yyyy = today.getFullYear();
-	
 	const parsedToday = mm + '/' + dd + '/' + yyyy;
-	console.log(parsedToday);
-
 	return parsedToday;
 }
 
-//date maker
-//assign a number to the blog post, that represents how many days ago it was posted then divide to simplify the date to days months or years depending on time
+

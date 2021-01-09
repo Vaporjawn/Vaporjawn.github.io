@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Blog Template">
+    <meta name="description" content="Blog">
     <meta name="author" content="Victor Williams">    
     <link rel="shortcut icon" href="../../favicon.ico"> 
     
@@ -17,13 +17,11 @@
         
     <!-- Theme CSS -->  
 	<link id="theme-style" rel="stylesheet" href="../../assets/css/theme-6.css">
-
 </head> 
 
 <body>
-    
     <header class="header text-center">	    
-	    <h1 class="blog-name pt-lg-4 mb-0"><a href="index.html">Victor's Blog</a></h1>
+	    <h1 class="blog-name pt-lg-4 mb-0"><a href="../../index.html">Victor's Blog</a></h1>
         
 	    <nav class="navbar navbar-expand-lg navbar-dark" >
            
@@ -75,8 +73,8 @@
 	    <article class="blog-post px-3 py-5 p-md-5">
 		    <div class="container">
 			    <header class="blog-post-header">
-				    <h2 class="title mb-2">Benefits of Blogging</h2>
-				    <div class="meta mb-3"><span class="date" id="date">11/25/2020</span><span class="time">5 min read</span><span class="comment"></span></div>
+				    <h2 class="title mb-2" id="title">Benefits of Blogging</h2>
+				    <div class="meta mb-3"><span class="date" id="date">05/27/2020</span><span class="time" id="time">5 min read</span></div>
 			    </header>
 			    
 			    <div class="blog-post-body">
@@ -118,8 +116,9 @@
 	<!-- Custom JS -->
 	<script src="../../assets/js/directory.js"></script>
 	<script src="../../assets/js/blog.js"></script>
+	<script>BlogPost();</script>
 	<script>dateFormat();</script>
-    
+	
     <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
     <script src="../../assets/js/demo/style-switcher.js"></script>     
     
