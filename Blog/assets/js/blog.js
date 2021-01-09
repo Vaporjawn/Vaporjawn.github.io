@@ -23,7 +23,6 @@ const convertToJSON = () => {
   
 const BlogPost = () => {
 	convertToJSON();
-	dateFormat();
   }
 
 const readLibraryFile = (jsonObject) => {
