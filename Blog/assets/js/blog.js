@@ -65,7 +65,6 @@ const readLibraryFile = () => {
 const writeLibraryFile = (jsonObject) => {
 	const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 	const targetUrl = 'https://hook.integromat.com/ube8bwwmtnxyb94ugxa16tkxvksbt32o';
-	console.log(jsonObject);
 	const url = proxyUrl + targetUrl;
 	fetch(url, {
 		method: 'post',
