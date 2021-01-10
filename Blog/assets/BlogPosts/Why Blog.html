@@ -9,7 +9,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Blog">
-    <meta name="author" content="Victor Williams">    
+	<meta name="author" content="Victor Williams">    
+	<meta name="path" id="path" content="./Why Blog.html">
     <link rel="shortcut icon" href="../../favicon.ico"> 
     
     <!-- FontAwesome JS-->
@@ -55,7 +56,7 @@
 					    <a class="nav-link" href="about.html"><i class="fas fa-user fa-fw mr-2"></i>About Me</a>
 					</li>
 					<li class="nav-item">
-					    <a class="nav-link" href="blog-post.html"><i class="fas fa-bookmark fa-fw mr-2"></i>Random Blog Post</a>
+					    <a class="nav-link" onclick="fetchLibraryArray('defined');"><i class="fas fa-bookmark fa-fw mr-2"></i>Random Blog Post</a>
 					</li>
 				</ul>
 				
@@ -78,7 +79,7 @@
 			    
 			    <div class="blog-post-body">
 				    <figure class="blog-banner">
-				        <a href="https://made4dev.com"><img class="img-fluid" src="https://www.clearcom.com/wp-content/uploads/2018/06/CC-Website-ResourcesDetail2-Banner-1920x300.png" alt="image"></a>
+				        <a href=""><img class="img-fluid" id="image" src="https://www.clearcom.com/wp-content/uploads/2018/06/CC-Website-ResourcesDetail2-Banner-1920x300.png" alt="image"></a>
 				    </figure>
 				    
 				    <h3 class="mt-5 mb-3">Why Blog?</h3>
@@ -115,7 +116,9 @@
 	<!-- Custom JS -->
 	<script src="../../assets/js/directory.js"></script>
 	<script src="../../assets/js/blog.js"></script>
-	<script> dateFormat();</script>
+	<!-- <script> dateFormat();</script> -->
+	<!-- <script> fetchLibraryArray();</script> -->
+
 	
     <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
     <script src="../../assets/js/demo/style-switcher.js"></script>     

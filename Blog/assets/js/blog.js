@@ -12,11 +12,17 @@ const convertToJSON = () => {
 	const title = document.getElementById('title').innerHTML;
 	const date = document.getElementById('date').innerHTML;
 	const time = document.getElementById('time').innerHTML;
+	const path = document.getElementById('path').content;
+	const image = document.getElementById('image').src;
+	console.log(image);
+
   
 	const jsonObject = {
 	  "Title": title,
 	  "Date": date,
-	  "Time": time
+	  "Time": time,
+	  "Path": path,
+	  "ImageAddress": image
 	}
 	readLibraryFile(jsonObject);
     }
@@ -45,11 +51,13 @@ const compareJsonFiles = (JSONArray, jsonObject) => {
 	const localTitle = jsonObject.Title;
 	const localDate = jsonObject.Date;
 	const localTime = jsonObject.Time;
+	const localPath = jsonObject.Path;
+	const localImage = jsonObject.ImageAddress;
 
 	if(Array.isArray(JSONArray) == true){
 		for (var i = 0; i < JSONArray.length; i++){
 		  if (JSONArray[i].Title == localTitle){
-			if(JSONArray[i].Date != localDate || JSONArray[i].Time != localTime){
+			if(JSONArray[i].Date != localDate || JSONArray[i].Time != localTime || JSONArray[i].Path != localPath || JSONArray[i].ImageAddress != localImage){
 				JSONArray[i] = jsonObject;
 				writeLibraryFile(JSONArray);
 				if(JSONArray[i] == jsonObject){
@@ -124,5 +132,36 @@ const todaysDate = () => {
 	const parsedToday = mm + '/' + dd + '/' + yyyy;
 	return parsedToday;
 }
+
+
+const randomBlogPost = (libraryArray) => {
+	const fetchedArray = libraryArray;	
+	const randomPost = Math.floor((Math.random() * fetchedArray.length));
+	const postPath = fetchedArray[randomPost];
+	if(postPath != undefined){
+		window.open(postPath.Path);
+	}
+}
+
+const fetchLibraryArray = (secondaryFunction) => {
+	let placeHolder;
+	let libraryArray;
+	fetch('https://api.github.com/gists/29e0f6a3d3baaeea9307195ea4d90992')
+	.then(function(response) {
+		return response.text();
+	})	.then(function(text) {
+		placeHolder = JSON.parse(text);
+		let array = placeHolder.files.Library.content;
+		libraryArray = JSON.parse(array);
+		if(secondaryFunction != undefined && libraryArray != undefined){
+			randomBlogPost(libraryArray);
+		}
+		console.log(libraryArray);
+		return libraryArray;
+	});	
+}
+
+
+
 
 

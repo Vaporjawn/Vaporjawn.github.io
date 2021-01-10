@@ -22,3 +22,8 @@ nice directory btw
 4. HIT SAVE!
 5. Profit by checking your gist.github.com to see if the changes went through to the library file
 
+TODO: Change the pointer CSS so that onclick is matching the href css in blogpost
+
+maybe store a user's post history in local storage
+
+next thing to do is insert the image addresses into the index with javascript
