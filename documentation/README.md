@@ -26,4 +26,4 @@ TODO: Change the pointer CSS so that onclick is matching the href css in blogpos
 
 maybe store a user's post history in local storage
 
-next thing to do is insert the image addresses into the index with javascript
+maybe make a image preview meta like you did with the file path

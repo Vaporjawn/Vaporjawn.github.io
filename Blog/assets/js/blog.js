@@ -153,15 +153,35 @@ const fetchLibraryArray = (secondaryFunction) => {
 		placeHolder = JSON.parse(text);
 		let array = placeHolder.files.Library.content;
 		libraryArray = JSON.parse(array);
-		if(secondaryFunction != undefined && libraryArray != undefined){
+		if(secondaryFunction != undefined && libraryArray != undefined && secondaryFunction == 'randomBlogPost'){
 			randomBlogPost(libraryArray);
+		}
+		if(secondaryFunction != undefined && libraryArray != undefined && secondaryFunction == 'blogList'){
+			blogList(libraryArray);
 		}
 		console.log(libraryArray);
 		return libraryArray;
 	});	
 }
 
+const blogList = (libraryArray) => {
 
+	for(let i=0; i<libraryArray.length; i++){
+	let readMore = document.getElementById('readMore'+i);
+	let redirect = document.getElementById('redirect'+i);
+	let date = document.getElementById('date'+i);
+	let time = document.getElementById('time'+i);
+	let image = document.getElementById('image'+i);
 
+	console.log(libraryArray[i]);
 
+	image.src = libraryArray[i].ImageAddress;
+	image.style = "image-size: 300px, 300px;";
+	readMore.href = libraryArray[i].Path;
+	redirect.href = libraryArray[i].Path;
+	redirect.innerHTML = libraryArray[i].Title;
+	date.innerHTML = libraryArray[i].Date;
+	time.innerHTML = libraryArray[i].Time;
 
+	}
+}
