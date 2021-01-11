@@ -13,7 +13,7 @@ const convertToJSON = () => {
 	const date = document.getElementById('date').innerHTML;
 	const time = document.getElementById('time').innerHTML;
 	const path = document.getElementById('path').content;
-	const image = document.getElementById('image').src;
+	const image = document.getElementById('image').content;
 	console.log(image);
 
   
@@ -172,10 +172,12 @@ const blogList = (libraryArray) => {
 	let date = document.getElementById('date'+i);
 	let time = document.getElementById('time'+i);
 	let image = document.getElementById('image'+i);
+	let preview = document.getElementById('preview'+i);
 
 	console.log(libraryArray[i]);
 
 	image.src = libraryArray[i].ImageAddress;
+	console.log(libraryArray)
 	image.style = "image-size: 300px, 300px;";
 	readMore.href = libraryArray[i].Path;
 	redirect.href = libraryArray[i].Path;
