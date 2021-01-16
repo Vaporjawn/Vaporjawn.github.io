@@ -1,10 +1,10 @@
 # Hey Victor
 
-you're doing good so far keep it up 
+you're doing good so far keep it up
 
 add to this later :)
 
-it's going to be so nice to have a directory where i can randomly access an array and then use it for random blog post 
+it's going to be so nice to have a directory where i can randomly access an array and then use it for random blog post
 
 I will also be able to list the blog posts with the same array from the gist so blog-list.html will be taken care of soon
 
@@ -27,3 +27,5 @@ TODO: Change the pointer CSS so that onclick is matching the href css in blogpos
 maybe store a user's post history in local storage
 
 maybe make a image preview meta like you did with the file path
+
+think about importing the bio the same way, through gist and then manually changing it through gist and have all the page call the same url

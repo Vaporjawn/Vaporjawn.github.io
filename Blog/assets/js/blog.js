@@ -14,6 +14,8 @@ const convertToJSON = () => {
 	const time = document.getElementById('time').innerHTML;
 	const path = document.getElementById('path').content;
 	const image = document.getElementById('image').content;
+	const preview = document.getElementById('preview').content;
+
 	console.log(image);
 
   
@@ -22,7 +24,8 @@ const convertToJSON = () => {
 	  "Date": date,
 	  "Time": time,
 	  "Path": path,
-	  "ImageAddress": image
+	  "ImageAddress": image,
+	  "Preview": preview
 	}
 	readLibraryFile(jsonObject);
     }
@@ -53,11 +56,12 @@ const compareJsonFiles = (JSONArray, jsonObject) => {
 	const localTime = jsonObject.Time;
 	const localPath = jsonObject.Path;
 	const localImage = jsonObject.ImageAddress;
+	const localPreview = jsonObject.localPreview;
 
 	if(Array.isArray(JSONArray) == true){
 		for (var i = 0; i < JSONArray.length; i++){
 		  if (JSONArray[i].Title == localTitle){
-			if(JSONArray[i].Date != localDate || JSONArray[i].Time != localTime || JSONArray[i].Path != localPath || JSONArray[i].ImageAddress != localImage){
+			if(JSONArray[i].Date != localDate || JSONArray[i].Time != localTime || JSONArray[i].Path != localPath || JSONArray[i].ImageAddress != localImage || JSONArray[i].Preview != localPreview){
 				JSONArray[i] = jsonObject;
 				writeLibraryFile(JSONArray);
 				if(JSONArray[i] == jsonObject){
@@ -176,7 +180,7 @@ const blogList = (libraryArray) => {
 
 	console.log(libraryArray[i]);
 
-	image.src = libraryArray[i].ImageAddress;
+	image.src = libraryArray[i].Preview;
 	console.log(libraryArray)
 	image.style = "image-size: 300px, 300px;";
 	readMore.href = libraryArray[i].Path;
