@@ -29,3 +29,4 @@ maybe store a user's post history in local storage
 maybe make a image preview meta like you did with the file path
 
 think about importing the bio the same way, through gist and then manually changing it through gist and have all the page call the same url
+
