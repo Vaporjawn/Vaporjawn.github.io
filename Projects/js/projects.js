@@ -20,10 +20,34 @@ const convertToJSON = () => {
     }
   
 const fetchProjectList = () => {
+	//document.getElementsByClassName("img-fluid tm-img").style.pointerEvents = "none";
 	readLibraryFile();
   }
 
-const readLibraryFile = (jsonObject) => {
+const writeBlogBoxes = (array) => {
+	const title = 'title';
+	const description = 'description';
+	const picture = 'picture';
+	const link = 'link';
+	let placeholderArray = [];
+
+	for(let i=0; i<array.length; i++){
+		let currentIndex = [i+1].toString();
+		let getTitle = title + currentIndex;
+		let getDescription = description + currentIndex;
+		let getPicture = picture + currentIndex;
+		let getLink = link + currentIndex;
+
+		console.log(getTitle);
+
+		document.getElementById(getTitle).innerHTML = array[i].Title;
+		document.getElementById(getDescription).innerHTML = array[i].Description;
+		document.getElementById(getPicture);
+		//document.getElementById(getLink).onclick = window.location='';
+	}
+}
+
+const readLibraryFile = () => {
 	let parsedJson;
 	let JSONArray;
 	fetch('https://api.github.com/gists/19de5b405e110a1a6ebbd16c919c585e')
@@ -32,11 +56,15 @@ const readLibraryFile = (jsonObject) => {
 	})
 	.then(function(text) {
 		parsedJson = JSON.parse(text);
-		let array = parsedJson.files.Library.content;
+		let array = parsedJson.files.ProjectList.content;
 		JSONArray = JSON.parse(array);
-		compareJsonFiles(JSONArray, jsonObject);
+		console.log(array);
+		writeBlogBoxes(JSONArray);
+		//compareJsonFiles(JSONArray, jsonObject);
 	});
 }
+
+
 
 const compareJsonFiles = (JSONArray, jsonObject) => {
 	let localBool = false;
