@@ -1,6 +1,6 @@
 function selectPicture() {
     var pictureNumber = "";
-    pictureNumber = Math.floor(Math.random() * 200)+1;
+    pictureNumber = Math.floor(Math.random() * 203)+1;
     pictureNumber = pictureNumber + ".JPG"
      return pictureNumber;
     }
