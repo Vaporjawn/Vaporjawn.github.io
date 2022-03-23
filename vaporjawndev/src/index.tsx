@@ -5,12 +5,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import HomePage from './Pages/HomePage/homePage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import ErrorPage from './Pages/ErrorPage/errorPage';
 
 const Routing = () => {
   return(
     <Router>
       <Routes>
         <Route path="/" element={HomePage} />
+        <Route path="/404" element={ErrorPage} />
         {/* <Route path="/about" element={About} />
         <Route path="/service" element={Service} /> */}
       </Routes>
