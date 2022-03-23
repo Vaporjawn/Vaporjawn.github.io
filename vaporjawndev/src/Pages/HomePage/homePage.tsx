@@ -1,5 +1,6 @@
 import React from 'react';
 import BioSnippit from '../../Components/BioSnippit/bioSnippit';
+import Footer from '../../Components/Footer/footer';
 import HomeHeader from '../../Components/HomeHeader/homeHeader';
 // import logo from './logo.svg';
 // import './App.css';
@@ -16,6 +17,7 @@ function HomePage() {
       </head>
         <HomeHeader/>
         <BioSnippit/>
+        <Footer/>
 
     </div>
   );
