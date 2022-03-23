@@ -4,10 +4,23 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import HomePage from './Pages/HomePage/homePage';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+const Routing = () => {
+  return(
+    <Router>
+      <Routes>
+        <Route path="/" element={HomePage} />
+        {/* <Route path="/about" element={About} />
+        <Route path="/service" element={Service} /> */}
+      </Routes>
+    </Router>
+  )
+}
 
 ReactDOM.render(
   <React.StrictMode>
-  <HomePage></HomePage>
+  <HomePage/>
     {/* <App /> */}
   </React.StrictMode>,
   document.getElementById('root')

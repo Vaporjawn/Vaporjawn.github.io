@@ -1,5 +1,5 @@
 import React from 'react';
-import BioSnippit from '../../Components/BioSnippit/bioSnippit';
+import BioSnippet from '../../Components/BioSnippet/bioSnippet';
 import Footer from '../../Components/Footer/footer';
 import HomeHeader from '../../Components/HomeHeader/homeHeader';
 // import logo from './logo.svg';
@@ -16,7 +16,7 @@ function HomePage() {
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-48129201-1"></script>
       </head>
         <HomeHeader/>
-        <BioSnippit/>
+        <BioSnippet/>
         <Footer/>
 
     </div>

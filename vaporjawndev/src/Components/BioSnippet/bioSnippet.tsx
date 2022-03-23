@@ -1,6 +1,6 @@
 import React from 'react';
 
-function BioSnippit() {
+function BioSnippet() {
   return (
     <div>
         <p>
@@ -16,4 +16,4 @@ function BioSnippit() {
   );
 }
 
-export default BioSnippit;
+export default BioSnippet;
