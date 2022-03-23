@@ -10,8 +10,9 @@ function ErrorPage() {
       <img src="https://media0.giphy.com/media/12BQY6Nj4ZDAFG/giphy.gif" alt="Crying Pikachu"/>
 
       <p><strong> Page not found :(</strong></p>
-      
+
       <p>The page that you are looking for could not be found.</p>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-48129201-1"/>
     </div>
   );
 }
