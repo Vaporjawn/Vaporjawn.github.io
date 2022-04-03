@@ -1,0 +1,41 @@
+.ButtonCTA {
+    float: left;
+    list-style: none;
+    text-align: center;
+    background-color: #4c5fd7;
+    border-color: #83d3c9;
+    border-style: solid;
+    margin-right: 270px;
+    margin-top: 20px;
+    width: 288px;
+    height: 62;
+    line-height: 70px;
+}
+    
+.ButtonContainer {
+    margin: 0;
+    padding: 0;
+    margin-left: 28.5%;
+}
+
+.ButtonContainer li:hover {
+    background-color: #83d3c9;
+    color: black;
+    
+}
+
+.ButtonCTALink {
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: none;
+    color:white;
+
+}
+
+
+@media only screen and (max-width: 1726px) { 
+    .menuOption { 
+        /* display: none;  */
+        /* MAKE BUTTONS VERTICAL WHEN SCREEN GETS TOO SMALL SO THAT THINGS ARE SYMMETRICAL  */
+    } 
+}
