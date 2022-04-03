@@ -3,3 +3,45 @@ font-size: 14px;
 padding: 13px 20px;
 
 }
+
+.menuList {
+    margin-top: 0;
+/* margin: 0; */
+background-color: black;
+padding: 0;
+margin-left: 28%;
+/* padding-left: 30%; */
+margin-right: 20%;
+}
+
+.menuOption {
+display: inline;
+display: block;
+color: white;
+text-align: center;
+padding: 10px 10px;
+float: left;
+background-color:black;
+margin: 0;
+
+}
+
+.menuOption a:hover {
+    background-color: rgb(91, 12, 12);
+    color: gold;
+    
+}
+
+.menuLink {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+@media only screen and (max-width: 1726px) { 
+    .menuOption { 
+        display: none; 
+    } 
+}
