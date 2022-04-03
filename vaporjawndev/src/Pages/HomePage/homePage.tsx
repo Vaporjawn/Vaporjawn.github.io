@@ -2,6 +2,7 @@ import React from 'react';
 import BioSnippet from '../../Components/BioSnippet/bioSnippet';
 import Footer from '../../Components/Footer/footer';
 import HomeHeader from '../../Components/HomeHeader/homeHeader';
+import MenuBar from '../../Components/MenuBar/menuBar';
 // import logo from './logo.svg';
 // import './App.css';
 
@@ -15,6 +16,7 @@ function HomePage() {
         <meta name="keywords" content="Victor Williams,Victor,Williams,web,designer,developer,software,engineer,Temple University,SSBM,Vaporjawn,vaporglow"/>
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-48129201-1"></script>
       </head>
+        <MenuBar/>
         <HomeHeader/>
         <BioSnippet/>
         <Footer/>
