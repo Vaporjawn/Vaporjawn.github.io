@@ -1,6 +1,7 @@
 import React from 'react';
 import BackgroundBanner from '../../Components/BackgroundBanner/backgroundBanner';
 import BioSnippet from '../../Components/BioSnippet/bioSnippet';
+import CTABanner from '../../Components/CTABanner/cTABanner';
 import Footer from '../../Components/Footer/footer';
 // import logo from './logo.svg';
 // import './App.css';
@@ -17,6 +18,7 @@ function HomePage() {
       </head>
         <BackgroundBanner/>
         <BioSnippet/>
+        <CTABanner/>
         <Footer/>
 
     </div>
