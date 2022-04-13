@@ -8,6 +8,7 @@ import { BrowserRouter, BrowserRouter as Router, Route, Routes} from 'react-rout
 import ErrorPage from './Pages/ErrorPage/errorPage';
 import Temple from './Pages/Temple/temple';
 import Resume from './Pages/Resume/resume';
+import ComingSoon from './Pages/ComingSoon/comingSoon';
 
 
 class Routing extends Component {
@@ -15,7 +16,8 @@ class Routing extends Component {
     return (
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/404" element={<ErrorPage/>} />
+        <Route path="*" element={<ErrorPage/>} />
+        <Route path="/ComingSoon" element={<ComingSoon/>} />
         <Route path="/Resume" element={<Resume />} />
         <Route path="/Temple" element={<Temple />} />
         {/* <Route path="/about" element={About} />
