@@ -1,11 +1,12 @@
 import React from 'react';
+import './errorPage.css';
 
 
 // NEED TO ADD AN AUTOMATIC REDIRECT TO THE HOMEPAGE AFTER 7 SECONDS
 function ErrorPage() {
   return (
-    <div>
-      <h1>404 ERROR</h1>
+    <div className='errorContainer'>
+      <h1 className='errorh1'>404 ERROR</h1>
 
       <img src="https://media0.giphy.com/media/12BQY6Nj4ZDAFG/giphy.gif" alt="Crying Pikachu"/>
 
