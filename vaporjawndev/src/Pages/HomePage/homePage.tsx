@@ -3,6 +3,7 @@ import BackgroundBanner from '../../Components/BackgroundBanner/backgroundBanner
 import BioSnippet from '../../Components/BioSnippet/bioSnippet';
 import CTABanner from '../../Components/CTABanner/cTABanner';
 import Footer from '../../Components/Footer/footer';
+import InfoBox from '../../Components/InfoBox/infoBox';
 // import logo from './logo.svg';
 // import './App.css';
 
@@ -18,6 +19,7 @@ function HomePage() {
       </head>
         <BackgroundBanner/>
         <BioSnippet/>
+        <InfoBox/>
         <CTABanner/>
         <Footer/>
     </div>

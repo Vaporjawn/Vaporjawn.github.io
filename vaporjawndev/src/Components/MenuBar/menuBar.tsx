@@ -12,7 +12,7 @@ function MenuBar() {
         <li className='menuOption'><Link className='menuLink' to="/Resume">Victor's Resume</Link></li>
         <li className='menuOption'><a className='menuLink'>Vaporjawn</a></li>
         <li className='menuOption'><Link className='menuLink' to={{pathname: "/Temple"}}>Temple</Link></li>
-        <li className='menuOption'><a className='menuLink'>Home</a></li>
+        <li className='menuOption'><Link className='menuLink' to={{pathname: "/"}}>Home</Link></li>
         <li className='menuOption'><a className='menuLink'>Projects</a></li>
         <li className='menuOption'><a className='menuLink'>Hackathons</a></li>
         <li className='menuOption'><a className='menuLink'>SSBM</a></li>
