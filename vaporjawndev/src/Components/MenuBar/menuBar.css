@@ -1,39 +1,33 @@
 .MenuBar {
-font-size: 14px;
-padding-top: 13px;
-padding-bottom: 13px;
-
-
+    font-size: 14px;
+    padding-top: 13px;
+    padding-bottom: 13px;
 }
 
 .menuList {
     margin-top: 0;
-/* margin: 0; */
-background-color: black;
-padding: 0;
-/* margin-left: 28%; */
-/* padding-left: 30%; */
-/* margin-right: 20%; */
-margin-left: auto;
-width: 43%;
-margin-right: auto;
+    background-color: black;
+    padding: 0;
+    padding-left: 1%;
+    margin-left: auto;
+    width: 43%;
+    margin-right: auto;
 }
 
 .menuOption {
-display: inline;
-display: block;
-color: white;
-text-align: center;
-padding: 10px 10px;
-float: left;
-background-color:black;
-margin: 0;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 10px 10px;
+    background-color:black;
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .menuOption a:hover {
     background-color: rgb(91, 12, 12);
     color: gold;
-    
 }
 
 .menuLink {
@@ -45,16 +39,12 @@ margin: 0;
 }
 
 @media only screen and (max-width: 1991px) { 
-    /* .menuOption { 
-        display: none; 
-    }  */
     .menuList {
-        /* overflow: hidden; */
-        width: 60%;
+        width: 45%;
     }
 }
 
-@media only screen and (max-width: 1440px) { 
+@media only screen and (max-width: 1000px) { 
     .menuOption { 
         display: none; 
     }  
