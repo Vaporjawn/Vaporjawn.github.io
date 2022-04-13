@@ -1,31 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import HomePage from './Pages/HomePage/homePage';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import ErrorPage from './Pages/ErrorPage/errorPage';
 import Temple from './Pages/Temple/temple';
+import Resume from './Pages/Resume/resume';
 
-const Routing = () => {
-  return(
-    <Router>
+
+class Routing extends Component {
+  render() {
+    return (
       <Routes>
-        <Route path="/" element={HomePage} />
-        <Route path="/404" element={ErrorPage} />
-        <Route path="/Temple" element={Temple} />
-
+        <Route path="/" element={<HomePage />} />
+        <Route path="/404" element={<ErrorPage/>} />
+        <Route path="/Resume" element={<Resume />} />
+        <Route path="/Temple" element={<Temple />} />
         {/* <Route path="/about" element={About} />
         <Route path="/service" element={Service} /> */}
       </Routes>
-    </Router>
-  )
+    );
+  }
 }
 
 ReactDOM.render(
   <React.StrictMode>
-  <HomePage/>
+    <BrowserRouter>
+      <Routing/>
+    </BrowserRouter>
     {/* <App /> */}
   </React.StrictMode>,
   document.getElementById('root')
