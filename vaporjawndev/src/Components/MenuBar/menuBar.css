@@ -1,6 +1,8 @@
 .MenuBar {
 font-size: 14px;
-padding: 13px 20px;
+padding-top: 13px;
+padding-bottom: 13px;
+
 
 }
 
@@ -9,9 +11,12 @@ padding: 13px 20px;
 /* margin: 0; */
 background-color: black;
 padding: 0;
-margin-left: 28%;
+/* margin-left: 28%; */
 /* padding-left: 30%; */
-margin-right: 20%;
+/* margin-right: 20%; */
+margin-left: auto;
+width: 43%;
+margin-right: auto;
 }
 
 .menuOption {
@@ -39,8 +44,18 @@ margin: 0;
     text-decoration: none;
 }
 
-@media only screen and (max-width: 1726px) { 
+@media only screen and (max-width: 1991px) { 
+    /* .menuOption { 
+        display: none; 
+    }  */
+    .menuList {
+        /* overflow: hidden; */
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 1440px) { 
     .menuOption { 
         display: none; 
-    } 
+    }  
 }

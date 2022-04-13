@@ -16,7 +16,6 @@ function MenuBar() {
         <li className='menuOption'><a className='menuLink'>Hackathons</a></li>
         <li className='menuOption'><a className='menuLink'>SSBM</a></li>
         <li className='menuOption'><a className='menuLink'>20XX</a></li>
-
       </ul>
     </div>
   );
