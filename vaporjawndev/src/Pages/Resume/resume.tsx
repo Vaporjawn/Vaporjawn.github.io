@@ -1,0 +1,212 @@
+import React from 'react';
+
+function Resume() {
+  return (
+    <div>
+      <head>
+      <title>Victor Williams - Resume</title>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-48129201-1"></script>
+
+      <meta name="viewport" content="width=device-width"/>
+      <meta name="description" content="The Curriculum Vitae of Victor Williams."/>
+      <meta charSet="UTF-8"/> 
+
+      <link type="text/css" rel="stylesheet" href="./assets/style.css"/>
+      <link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700|Lato:400,300' rel='stylesheet' type='text/css'/>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+
+      </head>
+      <body id="top">
+      <div id="cv" className="instaFade">
+        <div className="mainDetails">
+          <div id="headshot" className="quickFade">
+            <img src="headshot.jpg" alt="Victor Williams" />
+          </div>
+          
+          <div id="name">
+            <h1 className="quickFade delayTwo">Victor Williams </h1>
+            <h2 className="quickFade delayThree">Full Stack Software Engineer</h2>
+          </div>
+          
+          <div id="contactDetails" className="quickFade delayFour">
+            <ul>
+              <li>E-mail: <a href="mailto:vrwilliams719@gmail.com" target="_blank">vrwilliams719@gmail.com</a></li>
+              <li>Website: <a href="http://vaporjawn.dev/" target="_blank">Vaporjawn.github.io/</a></li>
+              <li>Mobile: (484)-895-5489</li>
+              <li>LinkedIn: <a href="https://linkedin.com/in/victorwilliams719/" target="_blank">Victor Williams</a></li>
+            </ul>
+          </div>
+          <div className="clear"></div>
+        </div>
+        
+        <div id="mainArea" className="quickFade delayFive">
+          <section>
+            <article>
+              <div className="sectionTitle">
+                <h1>Personal Profile</h1>
+              </div>
+              
+              <div className="sectionContent">
+                <p>Full stack software developer with strong analytical skills and proficiency in mathematics. Individual with ability to follow established procedures and work under little or no supervision. Bringing expertise in writing full-stack code to support multiple platforms, including web, android, and iOS, and a solid grasp of MVC, data structures, and object-oriented designs.  Full software development life cycle experience and team management experience.</p>
+              </div>
+            </article>
+            <div className="clear"></div>
+          </section>
+          
+          <section>
+            <div className="sectionTitle">
+              <h1>Work Experience</h1>
+            </div>
+            
+            <div className="sectionContent">
+              <article>
+                <h2>Full Stack Software Engineer - <a href="https://context365.com/" target="_blank">Context365</a></h2>
+                <p className="subDetails">June 2020 - Present </p>
+                <p> Involved in writing application level code to interact with Web Services using Ajax, JSON, and XML. Deploying and testing features to the Azure Cloud
+                  Developed and tested a web application with successful production launch
+                  Created and maintained fully automated CI/CD pipelines for code deployment
+                  Assisted in repository management
+                          </p>
+                          <p className="subDetails">Skills: React, Git, TypeScript, Integromat, Azure, SCRUM, JavaScript, C#</p>
+                          <p> </p>
+              </article>
+              <article>
+                <h2>Full Stack Software Engineer - <a href="https://bankmobile.com/" target="_blank">BankMobile</a></h2>
+                <p className="subDetails">January 2020 - June 2020 </p>
+                <p> Architecture and development of REST services powered web-based SaaS application
+                  Web, iOS, and Android applications
+                  Worked in scrum process attending daily stand up and completing tasks in sprints
+                  A hand in both web and mobile development
+                  Collaborated on a large scale of developers based around the globe
+                          </p>
+                          <p className="subDetails">Skills: .NET, Xamarin, Angular.JS, C#, RESTfulAPI, Azure, SCSS, SQL, Swift, JavaScript, JSON, Visual Studio</p>
+                          <p> </p>
+              </article>
+              <article>
+                <h2>IT Manager / Web Developer - <a href="https://utp-philly.org/digital-service-fellows/" target="_blank">AmeriCorps</a></h2>
+                <p className="subDetails">July 2019 - December 2019</p>
+                <p> Refined and improved the existing documentation within the system.
+                  Reduced number of open tickets by 87% by prioritizing all open issues
+                              Updated several School District websites from AngularJS to ReactJS
+                              Managed a tech team and all technology in Taggart John H. School.
+                          </p>
+                          <p className="subDetails">Skills: Angular.JS, API, Cloud, JSON, HTML5, CSS, Vue, MongoDB</p>
+                          <p> </p>
+              </article>
+              
+              <article>
+                <h2>Full Stack Developer / T.O. - <a href="https://www.bitgamer.io" target="_blank">BitGamer</a></h2>
+                <p className="subDetails">November 2018 - November 2019</p>
+                <p>Developed a tournament hosting web application along with a small team.
+                  Lead a geographically distributed team with large and small scale projects
+                  Wrote a series of technical documents to help speed up new engineer onboarding.
+                              Communicated with other companies to increase collaborative business opportunities.
+                              Managed the social media platforms for the company’s likeness.
+                          </p>
+                              <p className="subDetails">Skills: React.js, Node.js, RESTfulAPI, AWS, Android, BlockChain, Java, SQL Python</p>
+                          <p> </p>
+              </article>
+              
+              <article>
+                <h2>Full Stack Developer - <a href="http://crystalfruit.co/" target="_blank" >CrystalFruit</a></h2>
+                <p className="subDetails">December 2016 - March 2019</p>
+                <p> Implemented solutions using Agile (SCRUM) methodology.
+                  Developed full-stack web applications which processed, analyzed, and rendered data.
+                  Learned how to create fully functional web features and collaborate with other developers to meet team engineering goals. 
+                              Maintained and updated websites upon request per client.
+                              Planned, wrote, and debugged web applications and software with complete accuracy.
+                          </p>
+                          <p className="subDetails">Skills: Bootstrap, Vue.js, MongoDB, Git, API, PHP, Ruby, Swift, SQL, HTML5, CSS</p>
+                          <p> </p>
+                      </article>
+            </div>
+            <div className="clear"></div>
+          </section>
+          
+          <section>
+            <div className="sectionTitle">
+              <h1>Key Skills</h1>
+            </div>
+            
+            <div className="sectionContent">
+              <ul className="keySkills">
+                <li>JavaScript</li>
+                <li>ReactJS</li>
+                <li>TypeScript</li>
+                <li>AngularJS</li>
+                <li>Android</li>
+                <li>JSON</li>
+                <li>Rust</li>
+                <li>HTML5</li>
+                <li>Vue.JS</li>
+                          <li>Java</li>
+                <li>NodeJS</li>
+                <li>Electron</li>
+                          <li>RESTfulAPIs</li>
+                          <li>MongoDB</li>
+                          <li>Amazon Web Services (AWS)</li>
+                          <li>Go</li>
+                          <li>Python</li>
+                <li>Unity</li>
+                          <li>CSS</li>
+                          <li>C#</li>
+                          <li>BlockChain</li>
+                          <li>SQL</li>
+                          <li>Swift</li>
+              </ul>
+            </div>
+            <div className="clear"></div>
+          </section>
+              
+          <section>
+            <div className="sectionTitle">
+              <h1>Education</h1>
+            </div>
+            
+            <div className="sectionContent">
+              <article>
+                <h2> <a href="./temple.html" target="_blank">Temple University</a></h2>
+                          <p className="subDetails">Bachelor of Arts: Computer Science and Criminal Justice </p>
+                          <p className="subDetails">Certificate: Computer Security </p>
+                <p>Studied the subjects of Discrete Mathematics, Differential Calculus, Data Structures, Algorithms, and Operating Systems within the Computer Science Curriculum.</p>
+              </article>
+              
+              <article>
+                <h2>Easton Area High School</h2>
+                <p className="subDetails">Diploma</p>
+                <p>President of the Computer Science Club. Took Web Developement and AP Computer Science.</p>
+              </article>
+            </div>
+            <div className="clear"></div>
+              </section>
+              
+              <section>
+                  <div className="sectionTitle">
+                      <h1>Activities</h1>
+                  </div>
+
+                  <div className="sectionContent">
+                      <ul className="Activities">
+                <li><a href="https://vaporjawn.github.io/Hackathons.html/" target="_blank">Numerous Hackathons</a></li>
+                          <li> <a href="https://tudev.org" target="_blank">Temple University Developement Team (TUDEV) - EBoard</a></li>
+                          <li>Computer Science Tutor, Temple University</li>
+                <li> <a href="https://www.acm.org" target="_blank">(ACM) Association for Computing Machinery</a></li>
+                          <li> <a href="https://pennapps.com" target="_blank">PennApps at University of Pennsylvania</a> </li> 
+                          <li>Alliance for Minority Partiicaption in STEM</li>
+                          <li> <a href="https://www.theodysseyonline.com" target="_blank"> The Odyssey Online</a></li>
+                          <li> <a href="https://thetab.com" target="_blank">The Tab Editorial</a></li>
+                          <li> <a href="https://letsgetready.org" target="_blank">Let's Get Ready SAT Prep Program - Teacher</a> </li>
+                          <li> <a href="https://temple.campuslabs.com/engage/organization/owlchestra" target ="_blank">Owlchestra</a> / Temple University Orchestra - Violinist</li>
+                      </ul>
+                  </div>
+                  <div className="clear"></div>
+              </section>
+          
+        </div>
+      </div>
+      </body>
+    </div>
+  );
+}
+
+export default Resume;
