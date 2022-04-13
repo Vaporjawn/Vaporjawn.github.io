@@ -31,4 +31,6 @@
 .blerb{
     font-size: 22px;
     color: white;
+    letter-spacing: 2px;
+    line-height: 1.75em;
 }
