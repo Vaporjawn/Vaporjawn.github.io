@@ -20,7 +20,6 @@ function HomePage() {
         <BioSnippet/>
         <CTABanner/>
         <Footer/>
-
     </div>
   );
 }
