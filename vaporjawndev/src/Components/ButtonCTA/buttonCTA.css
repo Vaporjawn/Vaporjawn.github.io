@@ -5,8 +5,8 @@
     background-color: #4c5fd7;
     border-color: #83d3c9;
     border-style: solid;
-    margin-right: 270px;
     margin-top: 20px;
+    margin-left: 13%;
     width: 288px;
     height: 62;
     line-height: 70px;
@@ -15,12 +15,17 @@
 .ButtonContainer {
     margin: 0;
     padding: 0;
-    margin-left: 28.5%;
+    /* margin-left: 28.5%; */
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
 }
 
 .ButtonContainer li:hover {
     background-color: #83d3c9;
     color: black;
+    
     
 }
 
