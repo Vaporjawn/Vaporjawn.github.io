@@ -16,8 +16,16 @@
 .glow {
     color: #fff;
     text-align: center;
-    text-shadow: 0 0 30px #0066ff;
-    font-size: 53px;
+    text-shadow: 5px 5px 8px #0066ff;
+    font-size: 50px;
+    font-weight: 790;
+    letter-spacing: 0.2em;
+    border-bottom: solid 2px;
+    border-top: solid 3px;
+    text-transform: uppercase;
+    box-shadow: 0 3px 0 darkred;
+    width: 100%;
+
 }
 
 .blerb{
