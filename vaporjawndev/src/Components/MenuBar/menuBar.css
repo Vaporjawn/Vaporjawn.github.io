@@ -41,7 +41,9 @@
 
 @media only screen and (max-width: 1991px) { 
     .menuList {
-        width: 45%;
+        width: 60%;
+        /* display: inline-block; */
+        text-align: center;
     }
 }
 
