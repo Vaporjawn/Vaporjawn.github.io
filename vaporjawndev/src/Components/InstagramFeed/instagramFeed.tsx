@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { setConstantValue } from 'typescript';
 // import '../../assets/instagram_pictures/'
 
 let image1: string;
@@ -36,55 +37,40 @@ let image4: string;
       }
       let check = displayArray;
       displayPicture(displayArray);
+      // checkTimer();
     }
 
+    const itsneither = () => {
+      
+    const [imageTimer, setImageTimer] = useState(false);
+    const checkTimer = () => setImageTimer(true);
+      
+      useEffect(() => {
 
-// useEffect(() => {
-//   const interval = setInterval(() => {
-//     pictureNumber();
-//     // console.log('This will run every second!');
-//   }, 6000);
-//   return clearInterval(interval);
-// }, []);
+        const interval = setInterval(() => {
+          pictureNumber();
+          // console.log('This will run every second!');
+        }, 6000);
+        
+        return clearInterval(interval);
+      
+      }, [imageTimer]);
 
+    }
 
+class InstagramFeed extends React.Component {
 
-const InstagramFeed = () =>{
-
-  const {image} = useSelector(state)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      pictureNumber();
-      // console.log('This will run every second!');
-    }, 6000);
-    let check = image1;
-
-    return clearInterval(interval);
-  }, []);
-
-  return (
-    <div>
-      <img src={image1} />
-      <img src={image2} />
-      <img src={image3} />
-      <img src={image4} />
-    </div>
-  );
+  render() {
+    pictureNumber();
+    return (
+      <div>
+        <img src={image1} />
+        <img src={image2} />
+        <img src={image3} />
+        <img src={image4} />
+      </div>
+    );
+  }
 }
-// class InstagramFeed extends React.Component {
-
-//   render() {
-//     pictureNumber();
-//     return (
-//       <div>
-//         <img src={image1} />
-//         <img src={image2} />
-//         <img src={image3} />
-//         <img src={image4} />
-//       </div>
-//     );
-//   }
-// }
 
 export default InstagramFeed;
