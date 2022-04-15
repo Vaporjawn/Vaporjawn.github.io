@@ -3,6 +3,7 @@ import React from 'react';
 import BackgroundBanner from '../../Components/BackgroundBanner/backgroundBanner';
 import BioSnippet from '../../Components/BioSnippet/bioSnippet';
 import CTABanner from '../../Components/CTABanner/cTABanner';
+import FACode from '../../Components/FontAwesome/Icons/faCode';
 import Footer from '../../Components/Footer/footer';
 import InfoBox from '../../Components/InfoBox/infoBox';
 import Segmenter from '../../Components/Segmenter/segmenter';
@@ -20,7 +21,7 @@ function HomePage() {
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-48129201-1"></script>
       </head>
         <BackgroundBanner/>
-        <Segmenter iconName={faCode}/>
+        <FACode/>
         <BioSnippet/>
         <InfoBox/>
         <CTABanner/>

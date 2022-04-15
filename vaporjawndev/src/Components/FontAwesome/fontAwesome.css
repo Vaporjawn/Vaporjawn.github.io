@@ -1,0 +1,12 @@
+.FontAwesome {
+    cursor: default;
+    /* height: 7em; */
+    left: 0;
+    text-align: center;
+    top: 1em;
+    width: 100%;
+}
+
+.bottomBorder {
+    border-top: 1in;
+}
