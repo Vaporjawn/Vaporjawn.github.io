@@ -6,7 +6,7 @@ import CTABanner from '../../Components/CTABanner/cTABanner';
 import FACode from '../../Components/FontAwesome/Icons/faCode';
 import Footer from '../../Components/Footer/footer';
 import InfoBox from '../../Components/InfoBox/infoBox';
-import Segmenter from '../../Components/Segmenter/segmenter';
+import InstagramFeed from '../../Components/InstagramFeed/instagramFeed';
 // import logo from './logo.svg';
 // import './App.css';
 
@@ -22,6 +22,7 @@ function HomePage() {
       </head>
         <BackgroundBanner/>
         <FACode/>
+        <InstagramFeed/>
         <BioSnippet/>
         <InfoBox/>
         <CTABanner/>
