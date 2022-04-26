@@ -18,8 +18,14 @@ class Routing extends Component {
         <Route path="/" element={<HomePage />} />
         <Route path="*" element={<ErrorPage/>} />
         <Route path="/ComingSoon" element={<ComingSoon/>} />
+        <Route path="/Hackathons" element={<ComingSoon/>} />
+        <Route path="/Projects" element={<ComingSoon/>} />
         <Route path="/Resume" element={<Resume />} />
+        <Route path="/SSBM" element={<ComingSoon/>} />
         <Route path="/Temple" element={<Temple />} />
+        <Route path="/Vaporjawn" element={<ComingSoon/>} />
+        <Route path="/20XX" element={<ComingSoon/>} />
+
         {/* <Route path="/about" element={About} />
         <Route path="/service" element={Service} /> */}
       </Routes>

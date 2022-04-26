@@ -23,7 +23,7 @@ function InfoBox() {
                         <footer>
                             <ul className="infoBoxButtons">
                                 <li className='infoBoxPaddingLeft'><a href="https://vaporjawn.github.io/Resume.html" target="_blank" className="infoBoxButtonSpecial">Check out my Resume</a></li>
-                                <li className='infoBoxPaddingLeft'><Link to="https://github.com/Vaporjawn/" target="_blank" className='infoBoxButtonSpecial'>My Github</Link></li>
+                                <li className='infoBoxPaddingLeft'><a href="https://github.com/Vaporjawn/" target="_blank" className='infoBoxButtonSpecial'>My Github</a></li>
                             </ul>
                         </footer>
                     </div>
