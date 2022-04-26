@@ -5,6 +5,9 @@
     letter-spacing: 2px;
     line-height: 1.75em;
     letter-spacing: 2px;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .large-font{

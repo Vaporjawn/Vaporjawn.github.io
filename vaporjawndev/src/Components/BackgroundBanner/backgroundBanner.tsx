@@ -1,5 +1,5 @@
 import React from 'react';
-import HomeHeader from '../HomeHeader/homeHeader';
+import HomeHeader from '../HomePage/HomeHeader/homeHeader';
 import MenuBar from '../MenuBar/menuBar';
 import './backgroundBanner.css';
 

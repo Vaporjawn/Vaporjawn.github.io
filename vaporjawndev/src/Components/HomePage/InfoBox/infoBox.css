@@ -66,8 +66,12 @@
     line-height: 3.75em;
     text-align: center;
 }
+.infoBoxButtons :hover{
+    background-image: linear-gradient(to top left, rgba(0, 102, 255, .5), rgba(252, 70, 107, 1));
+    text-shadow: 2px 2px 1px white;
+}
 .infoBoxPaddingLeft{
-    padding-left: 20px;
+    margin-left: 20px;
 }
 .infoBoxText {
     letter-spacing: 2px;
@@ -76,13 +80,13 @@
 }
 
 .featuredFAicons{
-    float: right;
     width: 31%;
     display: inline-block;
     margin-top: -8%;
     opacity: .5;
 }
 .featuredFAiconsSection{
+    float: right;
     display:inline-flex;
     gap: 10%;
     font-size: 45px;

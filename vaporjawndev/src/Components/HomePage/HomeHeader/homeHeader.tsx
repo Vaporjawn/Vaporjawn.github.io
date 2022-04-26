@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './homeHeader.css';
 
 function HomeHeader() {
@@ -9,9 +10,8 @@ function HomeHeader() {
                 <header>
                         <h1 className="glow">VICTOR WILLIAMS</h1>
                 </header>
-                <p className='blerb'>A graduate of the beloved <strong><a href="./temple.html" target="_blank" className='temple'>Temple University.</a></strong> <br/> 
+                <p className='blerb'>A graduate of the beloved <strong><Link to="/Temple" className='temple'>Temple University.</Link></strong> <br/> 
                     I am a 24 year old <strong><b>Full Stack Developer</b></strong> living in the heart of<strong> Philadelphia</strong>.
-                    {/* need to change temple university link */}
                 <br/></p>
                 </div>
             </div>

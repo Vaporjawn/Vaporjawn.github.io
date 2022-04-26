@@ -1,10 +1,11 @@
 import React from 'react';
-import FABugSlash from '../FontAwesome/Icons/faBugSlash';
-import FACameraRetro from '../FontAwesome/Icons/faCameraRetro';
-import FACodeCompare from '../FontAwesome/Icons/faCodeCompare';
-import FAFileCode from '../FontAwesome/Icons/faFileCode';
-import FALaptopCode from '../FontAwesome/Icons/faLaptopCode';
-import FAShieldAlt from '../FontAwesome/Icons/faShieldAlt';
+import { Link } from 'react-router-dom';
+import FABugSlash from '../../FontAwesome/Icons/faBugSlash';
+import FACameraRetro from '../../FontAwesome/Icons/faCameraRetro';
+import FACodeCompare from '../../FontAwesome/Icons/faCodeCompare';
+import FAFileCode from '../../FontAwesome/Icons/faFileCode';
+import FALaptopCode from '../../FontAwesome/Icons/faLaptopCode';
+import FAShieldAlt from '../../FontAwesome/Icons/faShieldAlt';
 import './infoBox.css';
 
 function InfoBox() {
@@ -22,7 +23,7 @@ function InfoBox() {
                         <footer>
                             <ul className="infoBoxButtons">
                                 <li className='infoBoxPaddingLeft'><a href="https://vaporjawn.github.io/Resume.html" target="_blank" className="infoBoxButtonSpecial">Check out my Resume</a></li>
-                                <li className='infoBoxPaddingLeft'><a href="https://github.com/Vaporjawn/" target="_blank" className='infoBoxButtonSpecial'>My Github</a></li>
+                                <li className='infoBoxPaddingLeft'><Link to="https://github.com/Vaporjawn/" target="_blank" className='infoBoxButtonSpecial'>My Github</Link></li>
                             </ul>
                         </footer>
                     </div>
