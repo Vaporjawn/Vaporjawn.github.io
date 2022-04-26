@@ -9,6 +9,7 @@ import ErrorPage from './Pages/ErrorPage/errorPage';
 import Temple from './Pages/Temple/temple';
 import Resume from './Pages/Resume/resume';
 import ComingSoon from './Pages/ComingSoon/comingSoon';
+import Hackathons from './Pages/Hackathons/hackathons';
 
 
 class Routing extends Component {
@@ -18,7 +19,7 @@ class Routing extends Component {
         <Route path="/" element={<HomePage />} />
         <Route path="*" element={<ErrorPage/>} />
         <Route path="/ComingSoon" element={<ComingSoon/>} />
-        <Route path="/Hackathons" element={<ComingSoon/>} />
+        <Route path="/Hackathons" element={<Hackathons/>} />
         <Route path="/Projects" element={<ComingSoon/>} />
         <Route path="/Resume" element={<Resume />} />
         <Route path="/SSBM" element={<ComingSoon/>} />

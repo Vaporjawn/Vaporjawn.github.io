@@ -1,0 +1,11 @@
+.HackathonBackgroundBanner{
+    padding: 104px 0px;
+    padding-top: 0;
+    background-attachment: scroll;
+    background-image: url("../../../assets/images/templeBanner.jpg");
+    /* make hackathon banner background */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: auto;
+    background-attachment: fixed;
+}

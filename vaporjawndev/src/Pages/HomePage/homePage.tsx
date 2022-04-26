@@ -23,7 +23,6 @@ function HomePage() {
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-48129201-1"></script>
       </head>
         <BackgroundBanner/>
-        <FACode/>
         <BioSnippet/>
         <InfoBox/>
         <FeaturedProjects/>
