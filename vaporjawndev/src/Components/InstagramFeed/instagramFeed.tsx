@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './instagramFeed.css';
 import { setConstantValue } from 'typescript';
+import { Link } from 'react-router-dom';
 
 let image1: string;
 let image2: string;
@@ -77,6 +78,7 @@ const InstagramFeed = () => {
             <p className='instagramPictureText'>Vaporjawn has now grown into a fully fledged brand that is somewhat commonly known in the vaporwave community. It has music as well. Take a look at the page <a className='redLink' target='_blank' href='https://instagram.com/vaporjawn'>here</a> </p>
           </div>
         </div>
+        <Link to='https:instagram.com/vaporjawn' className='instagramFeedAboutLink'><div className="instagramFeedAboutButton">About Vaporjawn</div></Link>
       </div>
     );
   }

@@ -7,6 +7,7 @@ import FACode from '../../Components/FontAwesome/Icons/faCode';
 import Footer from '../../Components/Footer/footer';
 import InfoBox from '../../Components/InfoBox/infoBox';
 import InstagramFeed from '../../Components/InstagramFeed/instagramFeed';
+import './homePage.css'
 // import logo from './logo.svg';
 // import './App.css';
 
@@ -22,9 +23,9 @@ function HomePage() {
       </head>
         <BackgroundBanner/>
         <FACode/>
-        <InstagramFeed/>
         <BioSnippet/>
         <InfoBox/>
+        <InstagramFeed/>
         <CTABanner/>
         <Footer/>
     </div>
