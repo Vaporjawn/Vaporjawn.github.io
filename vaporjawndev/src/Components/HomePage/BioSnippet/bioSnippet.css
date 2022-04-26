@@ -16,3 +16,19 @@
 .regular-font{
     font-size: 18.66px;
 }
+.bioHeaderGlow {
+        color: #fff;
+        text-align: center;
+        text-shadow: 5px 5px 8px rgba(0, 102, 255, 1);
+        font-size: 45px;
+        font-weight: 790;
+        letter-spacing: 0.2em;
+        border-bottom: solid 2px;
+        border-top: solid 3px;
+        border-color: rgba(0, 102, 255, 1);
+        padding-top: 20px;
+        padding-bottom: 20px;
+        text-transform: uppercase;
+        box-shadow: 0 3px 0 rgba(252, 70, 107, 1);
+        width: 100%;
+}
