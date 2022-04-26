@@ -3,6 +3,7 @@ import React from 'react';
 import BackgroundBanner from '../../Components/BackgroundBanner/backgroundBanner';
 import BioSnippet from '../../Components/BioSnippet/bioSnippet';
 import CTABanner from '../../Components/CTABanner/cTABanner';
+import FeaturedProjects from '../../Components/FeaturedProjects/featuredProjects';
 import FACode from '../../Components/FontAwesome/Icons/faCode';
 import Footer from '../../Components/Footer/footer';
 import InfoBox from '../../Components/InfoBox/infoBox';
@@ -25,6 +26,7 @@ function HomePage() {
         <FACode/>
         <BioSnippet/>
         <InfoBox/>
+        <FeaturedProjects/>
         <InstagramFeed/>
         <CTABanner/>
         <Footer/>
