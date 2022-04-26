@@ -10,3 +10,10 @@
 .bottomBorder {
     border-top: 1in;
 }
+
+.FontAwesomeSpaced {
+    text-align: center;
+    width: 100%;
+    /* margin-left: 20%;
+    padding-left: 20%; */
+}

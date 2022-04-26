@@ -13,6 +13,7 @@
     background-image: linear-gradient(to bottom right, rgba(63, 94, 251, .5), rgba(252, 70, 107, .5));
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 100px;
 }
 
 .rowContainer{

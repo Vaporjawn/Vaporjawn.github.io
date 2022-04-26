@@ -17,11 +17,8 @@
     color: Red;
 }
 .wrapper-style2-container-special-alt{
-    background-color: #0066ff;
-    /* background-image: url(../images/light-bl.svg), url(../images/light-br.svg); */
-    background-position: bottom left, bottom right;
+    background-image: linear-gradient(to bottom right, rgba(0, 102, 255, 1), rgba(252, 70, 107, .5));
     background-repeat: no-repeat, no-repeat;
-    background-size: 25em, 25em;
     color: white;
     padding: 100px;
     margin: 0px 190px 100px;
@@ -67,7 +64,7 @@
     min-width: 18em;
     padding: 0 0.75em;
     line-height: 3.75em;
-    text-align: center
+    text-align: center;
 }
 .infoBoxPaddingLeft{
     padding-left: 20px;
@@ -76,4 +73,19 @@
     letter-spacing: 2px;
     line-height: 1.75em;
     font-family: Lato, sans-serif;
+}
+
+.featuredFAicons{
+    float: right;
+    width: 31%;
+    display: inline-block;
+    margin-top: -8%;
+    opacity: .5;
+}
+.featuredFAiconsSection{
+    display:inline-flex;
+    gap: 10%;
+    font-size: 45px;
+    margin: 5%;
+    padding-left: 10%;
 }
