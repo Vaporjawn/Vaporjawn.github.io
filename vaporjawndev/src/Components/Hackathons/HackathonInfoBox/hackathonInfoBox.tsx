@@ -1,14 +1,14 @@
 import React from 'react';
-import FABugSlash from '../../FontAwesome/Icons/faBugSlash';
 import FACalendarCheck from '../../FontAwesome/Icons/faCalendarCheck';
 import FACameraRetro from '../../FontAwesome/Icons/faCameraRetro';
 import FAChalkboard from '../../FontAwesome/Icons/faChalkboard';
-import FACodeCompare from '../../FontAwesome/Icons/faCodeCompare';
-import FAFileCode from '../../FontAwesome/Icons/faFileCode';
+import FACode from '../../FontAwesome/Icons/faCode';
+import FACubesStacked from '../../FontAwesome/Icons/faCubesStacked';
+import FAGears from '../../FontAwesome/Icons/faGears';
 import FAGraduationCap from '../../FontAwesome/Icons/faGraduationCap';
 import FALaptopCode from '../../FontAwesome/Icons/faLaptopCode';
+import FAMugSaucer from '../../FontAwesome/Icons/faMugSaucer';
 import FASchoolFlag from '../../FontAwesome/Icons/faSchoolFlag';
-import FAShieldAlt from '../../FontAwesome/Icons/faShieldAlt';
 import './hackathonInfoBox.css';
 
 function hackathonInfoBox() {
@@ -33,16 +33,16 @@ function hackathonInfoBox() {
                     <div className="hackathon4u skel-cell-important">
                         <div className="hackathonFeaturedFAicons">
                             <div className='hackathonFeaturedFAiconsSection'>
-                                <FACalendarCheck/>
-                                <FASchoolFlag/>
+                                <FAGears/>
+                                <FACubesStacked/>
                             </div>
                             <div className='hackathonFeaturedFAiconsSection'>
-                                <FAGraduationCap/>
                                 <FACameraRetro/>
+                                <FALaptopCode/>
                             </div>
                             <div className='hackathonFeaturedFAiconsSection'>
-                                <FALaptopCode/>
-                                <FAChalkboard/>
+                                <FAMugSaucer/>
+                                <FACode/>
                             </div>
                         </div>
                     </div>

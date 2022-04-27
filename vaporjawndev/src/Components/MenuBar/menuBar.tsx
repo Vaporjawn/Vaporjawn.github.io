@@ -10,7 +10,7 @@ function MenuBar() {
     <div className='MenuBar'>
       <ul className='menuList'>
         <li className='menuOption'><Link className='menuLink' to="/Resume">Victor's Resume</Link></li>
-        <li className='menuOption'><a className='menuLink'>Vaporjawn</a></li>
+        <li className='menuOption'><Link className='menuLink' to={"/Vaporjawn"}>Vaporjawn</Link></li>
         <li className='menuOption'><Link className='menuLink' to={"/Temple"}>Temple</Link></li>
         <li className='menuOption'><Link className='menuLink' to={"/"}>Home</Link></li>
         <li className='menuOption'><Link className='menuLink' to={"/Projects"}>Projects</Link></li>
