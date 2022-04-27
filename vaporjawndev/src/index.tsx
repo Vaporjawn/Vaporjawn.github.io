@@ -10,6 +10,7 @@ import Temple from './Pages/Temple/temple';
 import Resume from './Pages/Resume/resume';
 import ComingSoon from './Pages/ComingSoon/comingSoon';
 import Hackathons from './Pages/Hackathons/hackathons';
+import BOXX from './Pages/20XX/bOXX';
 
 
 class Routing extends Component {
@@ -25,10 +26,7 @@ class Routing extends Component {
         <Route path="/SSBM" element={<ComingSoon/>} />
         <Route path="/Temple" element={<Temple />} />
         <Route path="/Vaporjawn" element={<ComingSoon/>} />
-        <Route path="/20XX" element={<ComingSoon/>} />
-
-        {/* <Route path="/about" element={About} />
-        <Route path="/service" element={Service} /> */}
+        <Route path="/20XX" element={<BOXX/>} />
       </Routes>
     );
   }
