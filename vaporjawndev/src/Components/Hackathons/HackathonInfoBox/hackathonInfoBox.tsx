@@ -18,13 +18,15 @@ function HackathonInfoBox() {
                 <div className="hackathonrow-half">
                     <div className="hackathoninnerInfoBox">
                         <header>
-                            <h2 className='hackathoninfoBoxTitle'>Events at the University</h2></header>
-                        <p className="hackathoninfoBoxText">One of my other favorite parts about the university is that the students are able to organize so many events that people can't keep track. 
-                            They have ways to get involved and a lot of popularity, which is hard to find at University. Night Owl events are also a treat as well.  </p>
+                            <h2 className='hackathoninfoBoxTitle'>What I love about hackathons</h2></header>
+                        <p className="hackathoninfoBoxText">I am a hackathon addict. For me Hackathons are never about winning, it's about learning. 
+                            Learning ideas that were foreign to you and allow you to dabble outside your comfort zone. 
+                            There are countless technologies that I picked up all because I dipped my toe in at a Hackathon.
+                            I find that people underestimate what can get done once you put your minds together. Below are two extremely popular Hackathon websites.</p>
                         <footer>
                             <ul className="hackathoninfoBoxButtons">
-                                <li className='hackathoninfoBoxPaddingLeft'><a href="https://studentactivities.hackathon.edu/student-organization-events" target="_blank" className="hackathoninfoBoxButtonSpecial">Student Activities</a></li>
-                                <li className='hackathoninfoBoxPaddingLeft'><a href="https://www.temple.edu/" target="_blank" className='hackathoninfoBoxButtonSpecial'>University Site</a></li>
+                                <li className='hackathoninfoBoxPaddingLeft'><a href="https://devpost.com/" target="_blank" className="hackathoninfoBoxButtonSpecial">DevPost</a></li>
+                                <li className='hackathoninfoBoxPaddingLeft'><a href="https://hackerearth.com/" target="_blank" className='hackathoninfoBoxButtonSpecial'>Hacker Earth</a></li>
                             </ul>
                         </footer>
                     </div>
