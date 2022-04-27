@@ -11,36 +11,36 @@ import FASchoolFlag from '../../FontAwesome/Icons/faSchoolFlag';
 import FAShieldAlt from '../../FontAwesome/Icons/faShieldAlt';
 import './hackathonInfoBox.css';
 
-function HackathonInfoBox() {
+function hackathonInfoBox() {
     return (
         <div>
-            <div className="hackathonwrapper-style2-container-special-alt">
-                <div className="hackathonrow-half">
-                    <div className="hackathoninnerInfoBox">
+            <div className="hackathonWrapper-style2-container-special-alt">
+                <div className="hackathonRow-half">
+                    <div className="hackathonInnerInfoBox">
                         <header>
-                            <h2 className='hackathoninfoBoxTitle'>What I love about hackathons</h2></header>
-                        <p className="hackathoninfoBoxText">I am a hackathon addict. For me Hackathons are never about winning, it's about learning. 
+                            <h2 className='hackathonInfoBoxTitle'>What I love about hackathons</h2></header>
+                        <p className="hackathonInfoBoxText">I am a hackathon addict. For me Hackathons are never about winning, it's about learning. 
                             Learning ideas that were foreign to you and allow you to dabble outside your comfort zone. 
                             There are countless technologies that I picked up all because I dipped my toe in at a Hackathon.
                             I find that people underestimate what can get done once you put your minds together. Below are two extremely popular Hackathon websites.</p>
                         <footer>
-                            <ul className="hackathoninfoBoxButtons">
-                                <li className='hackathoninfoBoxPaddingLeft'><a href="https://devpost.com/" target="_blank" className="hackathoninfoBoxButtonSpecial">DevPost</a></li>
-                                <li className='hackathoninfoBoxPaddingLeft'><a href="https://hackerearth.com/" target="_blank" className='hackathoninfoBoxButtonSpecial'>Hacker Earth</a></li>
+                            <ul className="hackathonInfoBoxButtons">
+                                <li className='hackathonInfoBoxPaddingLeft'><a href="https://devpost.com/" target="_blank" className="hackathonInfoBoxButtonSpecial">DevPost</a></li>
+                                <li className='hackathonInfoBoxPaddingLeft'><a href="https://hackerearth.com/" target="_blank" className='hackathonInfoBoxButtonSpecial'>Hacker Earth</a></li>
                             </ul>
                         </footer>
                     </div>
                     <div className="hackathon4u skel-cell-important">
-                        <div className="hackathonfeaturedFAicons">
-                            <div className='hackathonfeaturedFAiconsSection'>
+                        <div className="hackathonFeaturedFAicons">
+                            <div className='hackathonFeaturedFAiconsSection'>
                                 <FACalendarCheck/>
                                 <FASchoolFlag/>
                             </div>
-                            <div className='hackathonfeaturedFAiconsSection'>
+                            <div className='hackathonFeaturedFAiconsSection'>
                                 <FAGraduationCap/>
                                 <FACameraRetro/>
                             </div>
-                            <div className='hackathonfeaturedFAiconsSection'>
+                            <div className='hackathonFeaturedFAiconsSection'>
                                 <FALaptopCode/>
                                 <FAChalkboard/>
                             </div>
@@ -52,4 +52,4 @@ function HackathonInfoBox() {
     );
 }
 
-export default HackathonInfoBox;
+export default hackathonInfoBox;

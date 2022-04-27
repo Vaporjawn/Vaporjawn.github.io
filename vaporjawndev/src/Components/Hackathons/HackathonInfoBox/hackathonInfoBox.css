@@ -16,7 +16,7 @@
 .RubyRed {
     color: Red;
 }
-.hackathonwrapper-style2-container-special-alt{
+.hackathonWrapper-style2-container-special-alt{
     background-image: linear-gradient(to bottom right, rgba(157, 34, 53, 1), rgba(82, 77, 77, 0.5));
     background-repeat: no-repeat, no-repeat;
     color: white;
@@ -26,7 +26,7 @@
     height: 453px;
     font-family: Lato, sans-serif;
 }
-.hackathoninnerInfoBox {
+.hackathonInnerInfoBox {
     margin-left: 25px;
     width: 66.6666666667%;
     float: left;
@@ -34,19 +34,19 @@
     letter-spacing: 0.1em;
 
 }
-.hackathoninfoBoxTitle {
+.hackathonInfoBoxTitle {
     text-transform: uppercase;
     font-weight: 400;
     letter-spacing: 0.1em;
     margin-top: -30px;
 }
-.hackathoninfoBoxButtons {
+.hackathonInfoBoxButtons {
     margin-bottom: 0;
     cursor: default;
     margin-left: -70px;
     margin-top: 65px;
 }
-.hackathoninfoBoxButtonSpecial{
+.hackathonInfoBoxButtonSpecial{
     background: white;
     border-color: white;
     color: rgba(157, 34, 53, 1) !important;
@@ -66,26 +66,26 @@
     line-height: 3.75em;
     text-align: center;
 }
-.hackathoninfoBoxButtons :hover{
+.hackathonInfoBoxButtons :hover{
     background-image: linear-gradient(to top left, rgba(157, 34, 53, .7), rgba(82, 77, 77, 0.5));
     text-shadow: 2px 2px 1px white;
 }
-.hackathoninfoBoxPaddingLeft{
+.hackathonInfoBoxPaddingLeft{
     margin-left: 20px;
 }
-.hackathoninfoBoxText {
+.hackathonInfoBoxText {
     letter-spacing: 2px;
     line-height: 1.75em;
     font-family: Lato, sans-serif;
 }
 
-.hackathonfeaturedFAicons{
+.hackathonFeaturedFAicons{
     width: 31%;
     display: inline-block;
     margin-top: -8%;
     opacity: .5;
 }
-.hackathonfeaturedFAiconsSection{
+.hackathonFeaturedFAiconsSection{
     display:inline-flex;
     gap: 10%;
     font-size: 45px;
