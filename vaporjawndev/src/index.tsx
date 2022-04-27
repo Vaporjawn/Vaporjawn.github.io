@@ -11,6 +11,7 @@ import Resume from './Pages/Resume/resume';
 import ComingSoon from './Pages/ComingSoon/comingSoon';
 import Hackathons from './Pages/Hackathons/hackathons';
 import BOXX from './Pages/20XX/bOXX';
+import Smash from './Pages/Smash/smash';
 
 
 class Routing extends Component {
@@ -23,7 +24,7 @@ class Routing extends Component {
         <Route path="/Hackathons" element={<Hackathons/>} />
         <Route path="/Projects" element={<ComingSoon/>} />
         <Route path="/Resume" element={<Resume />} />
-        <Route path="/SSBM" element={<ComingSoon/>} />
+        <Route path="/SSBM" element={<Smash/>} />
         <Route path="/Temple" element={<Temple />} />
         <Route path="/Vaporjawn" element={<ComingSoon/>} />
         <Route path="/20XX" element={<BOXX/>} />

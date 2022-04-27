@@ -16,12 +16,6 @@ function Temple() {
       <TempleInfoBox/>
       <TempleCTABanner/>
       <Footer/>
-
-                    {/* <ul class="buttons">
-                                <li><a href="https://studentactivities.temple.edu/student-organization-events" target="_blank" class="special button">Student Activities</a></li>
-
-                                <li><a href="https://www.temple.edu/" target="_blank" class="special button">University Site</a></li>
-                            </ul> */}
     </div>
   );
 }

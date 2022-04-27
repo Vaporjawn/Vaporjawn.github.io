@@ -10,18 +10,18 @@
     margin-right: auto;
 }
 
-.hackathon {
+.smash {
     color: #9D2235;
 }
-.hackathon2 {
+.smash2 {
     color: white;
 }
-.hackathon2:hover {
+.smash2:hover {
     color: #9D2235;
     text-shadow: 2px 2px 1px white;
 
 }
-.hackathonGlow {
+.smashGlow {
     color: #fff;
     text-align: center;
     text-shadow: 5px 5px 8px #9D2235;
@@ -36,7 +36,7 @@
 
 }
 
-.hackathonBlerb{
+.smashBlerb{
     font-size: 22px;
     color: white;
     letter-spacing: 2px;

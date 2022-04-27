@@ -1,10 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Footer from '../../Components/Footer/footer';
-import HackathonBackgroundBanner from '../../Components/Hackathons/HackathonBackgroundBanner/hackathonBackgroundBanner';
-import HackathonBioSnippet from '../../Components/Hackathons/HackathonBioSnippet/hackathonBioSnippet';
-import HackathonCTABanner from '../../Components/Hackathons/HackathonCTABanner/hackathonCTABanner';
-import HackathonInfoBox from '../../Components/Hackathons/HackathonInfoBox/hackathonInfoBox';
 import './bOXX.css'
 
 

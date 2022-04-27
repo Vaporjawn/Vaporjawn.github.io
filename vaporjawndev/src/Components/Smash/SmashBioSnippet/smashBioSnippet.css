@@ -1,4 +1,4 @@
-.hackathonBio {
+.smashBio {
     text-align: center;
     margin: 100px;
     font-family: Lato, sans-serif;
@@ -25,7 +25,7 @@
     margin-right: auto;
 }
 
-.hackathonBioGlow{
+.smashBioGlow{
     color: #fff;
     text-align: center;
     text-shadow: 5px 5px 8px skyblue;
@@ -54,4 +54,7 @@
 .mlhh{
     color: yellow;
 
+}
+.shinePng{
+    height: 10%;
 }
