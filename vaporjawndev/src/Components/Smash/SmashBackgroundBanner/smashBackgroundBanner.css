@@ -2,9 +2,20 @@
     padding: 104px 0px;
     padding-top: 0;
     background-attachment: scroll;
-    background-image: url("../../../assets/images/hackathonBanner.jpg");
+    background-image: url("../../../assets/images/ssbm.jpg");
     background-repeat: no-repeat;
-    background-size: cover;
-    background-position: auto;
+    background-size: 71%;
+    background-position: center;
+    background-position-y: 0%;
+    background-attachment: fixed;
+}
+.PurpleDrops {
+    background-image: url("../../../assets/images/purpleDrops.gif");
+    padding-top: 0;
+    background-attachment: scroll;
+    background-repeat: repeat;
+    background-size: 40%;
+    background-position: center;
+    background-position-y: -35%;
     background-attachment: fixed;
 }

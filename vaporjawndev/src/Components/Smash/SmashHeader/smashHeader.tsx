@@ -8,8 +8,8 @@ function SmashHeader() {
         <header>
             <h2 className="smashGlow">Super Smash Brothers Melee</h2>
         </header>
-        <p className='smashBlerb'>Nostalgic party game turned competitive masterpiece <br/> <a href="https://www.youtube.com/watch?v=NSf2mgkRm7Q&list=PLoUHkRwnRH-IXbZfwlgiEN8eXmoj6DtKM&index=1" target="_blank">Melee</a> 
-                    is a game I've been playing at a competitive level for 5 years</p>
+        <p className='smashBlerb'>Nostalgic party game turned competitive masterpiece <br/> <a href="https://www.youtube.com/watch?v=NSf2mgkRm7Q&list=PLoUHkRwnRH-IXbZfwlgiEN8eXmoj6DtKM&index=1" target="_blank">Melee</a>  is
+            a game I've been playing at a competitive level for 5 years</p>
             </div>
         </div>
 

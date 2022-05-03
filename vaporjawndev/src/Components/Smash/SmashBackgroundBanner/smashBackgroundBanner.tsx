@@ -6,9 +6,11 @@ import './smashBackgroundBanner.css';
 
 function SmashBackgroundBanner() {
     return (
-        <div className="SmashBackgroundBanner">
-            <MenuBar/>
-            <SmashHeader/>
+        <div className='PurpleDrops'>
+            <div className="SmashBackgroundBanner">
+                <MenuBar/>
+                <SmashHeader/>
+            </div>
         </div>
     );
 }

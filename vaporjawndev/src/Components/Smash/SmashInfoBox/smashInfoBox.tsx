@@ -22,8 +22,8 @@ function SmashInfoBox() {
                         </p>
                         <footer>
                             <ul className="smashInfoBoxButtons">
-                                <li className='smashInfoBoxPaddingLeft'><a href="https://devpost.com/" target="_blank" className="smashInfoBoxButtonSpecial">DevPost</a></li>
-                                <li className='smashInfoBoxPaddingLeft'><a href="https://hackerearth.com/" target="_blank" className='smashInfoBoxButtonSpecial'>Hacker Earth</a></li>
+                                <li className='smashInfoBoxPaddingLeft'><a href="https://www.youtube.com/channel/UCxLMGK3eXwgXm5rYdx0n4HQ" target="_blank" className="smashInfoBoxButtonSpecial">My Combo Videos</a></li>
+                                <li className='smashInfoBoxPaddingLeft'><a href="https://www.youtube.com/channel/UCOpDWnskqNixG6sZsT9Bbzw" target="_blank" className='smashInfoBoxButtonSpecial'>My Clips</a></li>
                             </ul>
                         </footer>
                     </div>
