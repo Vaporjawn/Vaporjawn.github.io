@@ -1,0 +1,57 @@
+li {
+    display: inline;
+    font-size: 300;
+    text-align: center;
+    margin: 5px;
+
+}
+
+.Github{
+    color:#333;
+}
+
+.Twitter{
+    color:#1da1f2;
+}
+
+.Instagram{
+    color:#f77737;
+}
+
+.Facebook{
+    color:#1877f2;
+}
+
+.Twitch{
+    color:#9146ff;
+}
+
+.Steam{
+    color:#000000;
+}
+
+.AngelList{
+    color:#ec2c22;
+}
+
+.LinkedIn{
+    color:#0077b5;
+}
+.footer{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    position: center;
+
+    /* padding: 12px;
+    width: 40%; */
+
+}
+.icons{
+    text-align: center;
+}
+.copyright{
+    font-size: 15px;
+    color: #7C8081;
+    text-align: center;
+}

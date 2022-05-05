@@ -1,0 +1,11 @@
+.smashCTABanner {
+    padding: 104px 0px;
+    padding-top: 0;
+    background-attachment: scroll;
+    background-image: url("../../../assets/images/ssbm.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-position-y: -50%;
+    background-attachment: fixed;
+}

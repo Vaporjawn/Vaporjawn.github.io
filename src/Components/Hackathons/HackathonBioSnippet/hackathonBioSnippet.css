@@ -1,0 +1,57 @@
+.hackathonBio {
+    text-align: center;
+    margin: 100px;
+    font-family: Lato, sans-serif;
+    letter-spacing: 2px;
+    line-height: 1.75em;
+    letter-spacing: 2px;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.large-font{
+    font-size: 28px;
+    font-weight: normal;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.regular-font{
+    font-size: 22px;
+    font-weight: normal;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hackathonBioGlow{
+    color: #fff;
+    text-align: center;
+    text-shadow: 5px 5px 8px skyblue;
+    font-size: 45px;
+    font-weight: 790;
+    letter-spacing: 0.2em;
+    border-bottom: solid 2px;
+    border-top: solid 3px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-transform: uppercase;
+    box-shadow: 0 3px 0 skyblue;
+    width: 100%;
+}
+
+.tudev {
+    color: #9D2235;
+}
+
+.mlhm{
+    color: rgb(193, 7, 7);
+}
+.mlhl{
+    color: blue;
+}
+.mlhh{
+    color: yellow;
+
+}

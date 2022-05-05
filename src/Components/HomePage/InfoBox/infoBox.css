@@ -1,0 +1,95 @@
+.TypeScriptBlue {
+    color: lightblue;
+}
+.NodeJSGreen {
+    color: darkgreen;
+}
+.NETBlue {
+    color: darkblue
+}
+.ReactBlue {
+    color: #61DBFB;
+}
+.VueGreen {
+    color: #42b883;
+}
+.RubyRed {
+    color: Red;
+}
+.wrapper-style2-container-special-alt{
+    background-image: linear-gradient(to bottom right, rgba(0, 102, 255, .7), rgba(252, 70, 107, .5));
+    background-repeat: no-repeat, no-repeat;
+    color: white;
+    padding: 100px;
+    margin: 0px 190px 100px;
+    font-size: 20px;
+    height: 453px;
+    font-family: Lato, sans-serif;
+}
+.innerInfoBox {
+    margin-left: 25px;
+    width: 66.6666666667%;
+    float: left;
+    padding-top: 0!important;
+    letter-spacing: 0.1em;
+
+}
+.infoBoxTitle {
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    margin-top: -30px;
+}
+.infoBoxButtons {
+    margin-bottom: 0;
+    cursor: default;
+    margin-left: -70px;
+    margin-top: 65px;
+}
+.infoBoxButtonSpecial{
+    background: white;
+    border-color: white;
+    color: #0066ff !important;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding: 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 0.8em;
+    letter-spacing: 2px;
+    min-width: 18em;
+    padding: 0 0.75em;
+    line-height: 3.75em;
+    text-align: center;
+}
+.infoBoxButtons :hover{
+    background-image: linear-gradient(to top left, rgba(0, 102, 255, .5), rgba(252, 70, 107, 1));
+    text-shadow: 2px 2px 1px white;
+}
+.infoBoxPaddingLeft{
+    margin-left: 20px;
+}
+.infoBoxText {
+    letter-spacing: 2px;
+    line-height: 1.75em;
+    font-family: Lato, sans-serif;
+}
+
+.featuredFAicons{
+    width: 31%;
+    display: inline-block;
+    margin-top: -8%;
+    opacity: .5;
+}
+.featuredFAiconsSection{
+    float: right;
+    display:inline-flex;
+    gap: 10%;
+    font-size: 45px;
+    margin: 5%;
+    padding-left: 10%;
+}
