@@ -36,6 +36,7 @@ Your app is ready to be deployed!
 Deploy your react application to GitHub Pages. This deploys a build to a branch called `gh-pages`.
 That should directly deploy to the production version of the website.
 [Extra Info Here](https://www.c-sharpcorner.com/article/how-to-deploy-react-application-on-github-pages/)
+
 ### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
