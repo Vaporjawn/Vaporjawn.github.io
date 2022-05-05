@@ -1,5 +1,5 @@
 .VaporjawnWrapper-style2-container-special-alt{
-    background-image: linear-gradient(to bottom right, rgba(157, 34, 53, 1), rgba(82, 77, 77, 0.5));
+    background-image: linear-gradient(to bottom right, #3f5efb, #fc466b);
     background-repeat: no-repeat, no-repeat;
     color: white;
     padding: 100px;
@@ -49,8 +49,11 @@
     text-align: center;
 }
 .VaporjawnInfoBoxButtons :hover{
-    background-image: linear-gradient(to top left, rgba(157, 34, 53, .7), rgba(82, 77, 77, 0.5));
-    text-shadow: 2px 2px 1px white;
+    background-image: linear-gradient(to top left, #3f5efb, #fc466b);
+    text-shadow: 2px 2px 1px grey;
+}
+.VaporjawnInfoBoxButtonSpecial :hover{
+    color: white;
 }
 .VaporjawnInfoBoxPaddingLeft{
     margin-left: 20px;

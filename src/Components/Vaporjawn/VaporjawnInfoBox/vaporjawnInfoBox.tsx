@@ -14,16 +14,14 @@ function VaporjawnInfoBox() {
                 <div className="VaporjawnRow-half">
                     <div className="VaporjawnInnerInfoBox">
                         <header>
-                            <h2 className='VaporjawnInfoBoxTitle'>For the Love of the Game</h2></header>
-                        <p className="VaporjawnInfoBoxText">I've had a love for Super Vaporjawn Bros. Melee ever since it first released in 2001 and I got to play it casually. 
-                            Of course being the best of my friends pushed me to pursue an upper echelon of play.  
-                            This all started when I encountered <a href="https://www.youtube.com/watch?v=NSf2mgkRm7Q&list=PLoUHkRwnRH-IXbZfwlgiEN8eXmoj6DtKM&index=1" target="_blank" className="orangeRed">The Vaporjawn Brothers Documentary Series</a> in late 2015. 
-                            Now I am able to contribute to my community by creating content based around competitive play. 
+                            <h2 className='VaporjawnInfoBoxTitle'>Vaporwave and Beyond</h2></header>
+                        <p className="VaporjawnInfoBoxText">
+                            While my instagram account may be mostly inactive at the moment, there are still plenty of ways I contribute to the vaporwave community in my day to day life. 
+                            One of the other artistic mediums that has a strong vaporwave fanbase is the musical side to the genre.  Below is a link to some of my vaporwave music. 
                         </p>
                         <footer>
                             <ul className="VaporjawnInfoBoxButtons">
-                                <li className='VaporjawnInfoBoxPaddingLeft'><a href="https://www.youtube.com/channel/UCxLMGK3eXwgXm5rYdx0n4HQ" target="_blank" className="VaporjawnInfoBoxButtonSpecial">My Combo Videos</a></li>
-                                <li className='VaporjawnInfoBoxPaddingLeft'><a href="https://www.youtube.com/channel/UCOpDWnskqNixG6sZsT9Bbzw" target="_blank" className='VaporjawnInfoBoxButtonSpecial'>My Clips</a></li>
+                                <li className='VaporjawnInfoBoxPaddingLeft'><a href="https:vaporjawn.bandcamp.com/" target="_blank" className="VaporjawnInfoBoxButtonSpecial">My Bandcamp</a></li>
                             </ul>
                         </footer>
                     </div>

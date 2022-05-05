@@ -9,7 +9,6 @@ let image3: string;
 let image4: string;
 
   const displayPicture = (selectedImages: string[]) => {
-    // const doubleShuffle = shuffleArray(selectedImages);
     const doubleShuffle = selectedImages;
     image1 = doubleShuffle[0];
     image2 = doubleShuffle[1];
