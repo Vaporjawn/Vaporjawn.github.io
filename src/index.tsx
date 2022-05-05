@@ -11,6 +11,7 @@ import ComingSoon from './Pages/ComingSoon/comingSoon';
 import Hackathons from './Pages/Hackathons/hackathons';
 import BOXX from './Pages/20XX/bOXX';
 import Smash from './Pages/Smash/smash';
+import Vaporjawn from './Pages/Vaporjawn/vaporjawn';
 
 
 class Routing extends Component {
@@ -24,7 +25,7 @@ class Routing extends Component {
         <Route path="/Projects" element={<ComingSoon/>} />
         <Route path="/SSBM" element={<Smash/>} />
         <Route path="/Temple" element={<Temple />} />
-        <Route path="/Vaporjawn" element={<ComingSoon/>} />
+        <Route path="/Vaporjawn" element={<Vaporjawn/>} />
         <Route path="/20XX" element={<BOXX/>} />
       </Routes>
     );

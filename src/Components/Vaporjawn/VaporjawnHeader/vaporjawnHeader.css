@@ -1,0 +1,44 @@
+.App-header {
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    padding: 52px;
+    margin: 90px;
+    background: rgba(52, 27, 43, 0.5);
+    width: 50%;
+    height: 220px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.Vaporjawn {
+    color: #9D2235;
+}
+.Vaporjawn2 {
+    color: white;
+}
+.Vaporjawn2:hover {
+    color: #9D2235;
+    text-shadow: 2px 2px 1px white;
+
+}
+.VaporjawnGlow {
+    color: #fff;
+    text-align: center;
+    text-shadow: 5px 5px 8px #9D2235;
+    font-size: 50px;
+    font-weight: 790;
+    letter-spacing: 0.2em;
+    border-bottom: solid 2px;
+    border-top: solid 3px;
+    text-transform: uppercase;
+    box-shadow: 0 3px 0 darkred;
+    width: 100%;
+
+}
+
+.VaporjawnBlerb{
+    font-size: 22px;
+    color: white;
+    letter-spacing: 2px;
+    line-height: 1.75em;
+}
