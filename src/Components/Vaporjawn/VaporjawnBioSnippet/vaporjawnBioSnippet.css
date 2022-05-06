@@ -28,7 +28,7 @@
 .VaporjawnBioGlow{
     color: #fff;
     text-align: center;
-    text-shadow: 5px 5px 8px #9D2235;
+    text-shadow: 5px 5px 8px #fc466b;
     font-size: 45px;
     font-weight: 790;
     letter-spacing: 0.2em;
@@ -37,6 +37,6 @@
     padding-top: 20px;
     padding-bottom: 20px;
     text-transform: uppercase;
-    box-shadow: 0 3px 0 darkred;
+    box-shadow: 0 3px 0 #3f5efb;
     width: 100%;
 }
