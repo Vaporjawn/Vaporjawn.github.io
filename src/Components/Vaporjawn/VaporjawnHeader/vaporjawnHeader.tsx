@@ -8,8 +8,8 @@ function VaporjawnHeader() {
         <header>
             <h2 className="VaporjawnGlow">Vaporjawn</h2>
         </header>
-        <p className='VaporjawnBlerb'>This is one of my favorite side project to talk about.<br/> <a href="https://instagram.com/vaporjawn" target="_blank">Vaporjawn</a> 
-                    is my former "<a href="https://www.dictionary.com/e/slang/finsta/#:~:text=A%20finsta%20is%20a%20secondary,have%20more%20heavily%20curated%20content." target="_blank">Finsta</a>"
+        <p className='VaporjawnBlerb'>This is one of my favorite side project to talk about.<br/> <a className='VaporjawnLink' href="https://instagram.com/vaporjawn" target="_blank">Vaporjawn</a> 
+                    is my former "<a className='VaporjawnLink' href="https://www.dictionary.com/e/slang/finsta/#:~:text=A%20finsta%20is%20a%20secondary,have%20more%20heavily%20curated%20content." target="_blank">Finsta</a>"
                     that I turned business.</p>
             </div>
         </div>

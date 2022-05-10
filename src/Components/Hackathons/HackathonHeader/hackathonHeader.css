@@ -42,3 +42,13 @@
     letter-spacing: 2px;
     line-height: 1.75em;
 }
+
+.HackathonHeaderLink{
+    color: #9D2235;
+    text-shadow: 2px 2px 1px white;
+}
+
+.HackathonHeaderLink:hover {
+    color: white;
+    text-shadow: 2px 2px 1px #9D2235;
+}

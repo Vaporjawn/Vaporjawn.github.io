@@ -43,3 +43,13 @@
     letter-spacing: 2px;
     line-height: 1.75em;
 }
+
+.SmashHeaderLink{
+    color: red;
+    text-shadow: 2px 2px 1px black;
+}
+
+.SmashHeaderLink:hover{
+    color: red;
+    text-shadow: 2px 2px 1px white;
+}
