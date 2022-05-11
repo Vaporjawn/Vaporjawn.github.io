@@ -1,10 +1,11 @@
 import React from 'react';
 import FACameraRetro from '../../FontAwesome/Icons/faCameraRetro';
-import FACode from '../../FontAwesome/Icons/faCode';
-import FACubesStacked from '../../FontAwesome/Icons/faCubesStacked';
-import FAGears from '../../FontAwesome/Icons/faGears';
+import FAHashtag from '../../FontAwesome/Icons/faGears copy';
+import FAInstagram from '../../FontAwesome/Icons/faInstagram';
 import FALaptopCode from '../../FontAwesome/Icons/faLaptopCode';
 import FAMugSaucer from '../../FontAwesome/Icons/faMugSaucer';
+import FATwitch from '../../FontAwesome/Icons/faTwitch';
+import FATwitter from '../../FontAwesome/Icons/faTwitter';
 import './vaporjawnInfoBox.css';
 
 function VaporjawnInfoBox() {
@@ -28,16 +29,16 @@ function VaporjawnInfoBox() {
                     <div className="Vaporjawn4u skel-cell-important">
                         <div className="VaporjawnFeaturedFAicons">
                             <div className='VaporjawnFeaturedFAiconsSection'>
-                                <FAGears/>
-                                <FACubesStacked/>
+                                <FAInstagram/>
+                                <FATwitter/>
                             </div>
                             <div className='VaporjawnFeaturedFAiconsSection'>
-                                <FACameraRetro/>
+                                <FATwitch/>
                                 <FALaptopCode/>
                             </div>
                             <div className='VaporjawnFeaturedFAiconsSection'>
-                                <FAMugSaucer/>
-                                <FACode/>
+                                <FAHashtag/>
+                                <FACameraRetro/>
                             </div>
                         </div>
                     </div>
