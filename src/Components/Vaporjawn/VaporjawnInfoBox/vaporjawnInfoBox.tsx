@@ -3,7 +3,6 @@ import FACameraRetro from '../../FontAwesome/Icons/faCameraRetro';
 import FAHashtag from '../../FontAwesome/Icons/faGears copy';
 import FAInstagram from '../../FontAwesome/Icons/faInstagram';
 import FALaptopCode from '../../FontAwesome/Icons/faLaptopCode';
-import FAMugSaucer from '../../FontAwesome/Icons/faMugSaucer';
 import FATwitch from '../../FontAwesome/Icons/faTwitch';
 import FATwitter from '../../FontAwesome/Icons/faTwitter';
 import './vaporjawnInfoBox.css';

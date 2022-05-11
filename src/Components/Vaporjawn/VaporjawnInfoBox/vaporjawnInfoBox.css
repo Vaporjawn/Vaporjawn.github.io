@@ -59,7 +59,8 @@
 .VaporjawnInfoBoxText {
     letter-spacing: 2px;
     line-height: 1.75em;
-    font-family: Lato, sans-serif;
+    font-family: Lato, Serif;
+    font-size: 26px;
 }
 
 .VaporjawnFeaturedFAicons{

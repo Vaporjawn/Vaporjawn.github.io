@@ -1,9 +1,9 @@
 .hackathonBio {
     text-align: center;
     margin: 100px;
-    font-family: Lato, sans-serif;
+    font-family: Lato, Serif;
     letter-spacing: 2px;
-    line-height: 1.75em;
+    line-height: 2.15em;
     letter-spacing: 2px;
     width: 85%;
     margin-left: auto;
@@ -19,8 +19,6 @@
 }
 .regular-font{
     font-size: 22px;
-    font-weight: normal;
-    width: 85%;
     margin-left: auto;
     margin-right: auto;
 }
