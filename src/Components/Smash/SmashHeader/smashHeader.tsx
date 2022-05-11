@@ -4,7 +4,7 @@ import './smashHeader.css';
 function SmashHeader() {
     return (
         <div>
-            <div className="App-header">
+            <div className="Smash-App-header">
         <header>
             <h2 className="smashGlow">Super Smash Brothers Melee</h2>
         </header>
