@@ -1,1 +1,0 @@
-const directory = new Map();
