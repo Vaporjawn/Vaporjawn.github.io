@@ -12,6 +12,7 @@ import Hackathons from './Pages/Hackathons/hackathons';
 import BOXX from './Pages/20XX/bOXX';
 import Smash from './Pages/Smash/smash';
 import Vaporjawn from './Pages/Vaporjawn/vaporjawn';
+import Projects from './Pages/Projects/projects';
 
 
 class Routing extends Component {
@@ -22,7 +23,7 @@ class Routing extends Component {
         <Route path="*" element={<ErrorPage/>} />
         <Route path="/ComingSoon" element={<ComingSoon/>} />
         <Route path="/Hackathons" element={<Hackathons/>} />
-        <Route path="/Projects" element={<ComingSoon/>} />
+        <Route path="/Projects" element={<Projects/>} />
         <Route path="/SSBM" element={<Smash/>} />
         <Route path="/Temple" element={<Temple />} />
         <Route path="/Vaporjawn" element={<Vaporjawn/>} />

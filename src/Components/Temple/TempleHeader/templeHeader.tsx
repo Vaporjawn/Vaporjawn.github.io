@@ -4,7 +4,7 @@ import './templeHeader.css';
 function TempleHeader() {
     return (
         <div>
-            <div className="App-header">
+            <div className="Temple-App-header">
         <header>
             <h2 className="templeGlow">Temple University</h2>
         </header>

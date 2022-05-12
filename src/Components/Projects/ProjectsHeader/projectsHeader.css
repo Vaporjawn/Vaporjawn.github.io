@@ -1,4 +1,4 @@
-.Temple-App-header {
+.Projects-header {
     text-align: center;
     font-family: 'Lato', sans-serif;
     padding: 52px;
@@ -21,7 +21,7 @@
     text-shadow: 2px 2px 1px white;
 
 }
-.templeGlow {
+.ProjectsGlow {
     color: #fff;
     text-align: center;
     text-shadow: 5px 5px 8px #9D2235;
@@ -36,7 +36,7 @@
 
 }
 
-.templeBlerb{
+.ProjectsBlerb{
     font-size: 22px;
     color: white;
     letter-spacing: 2px;
