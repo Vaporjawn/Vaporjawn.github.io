@@ -268,7 +268,7 @@ const ProjectsFeed = () => {
                   <div className='ProjectsSectionCoverText'>
                     Languages: {projectObject1.Languages.toString()}<br/>
                     Frameworks: {projectObject1.Frameworks.toString()}<br/>
-                    Tags: {projectObject1.Tags.toString()}<br/>
+                    {/* Tags: {projectObject1.Tags.toString()}<br/> */}
                   </div>
                   <a className='ProjectViewButton' href={projectObject1.Link} target='_blank'>View Project</a>
                 </div>
@@ -285,7 +285,7 @@ const ProjectsFeed = () => {
                   <div className='ProjectsSectionCoverText'>
                     Languages: {projectObject2.Languages.toString()}<br/>
                     Frameworks: {projectObject2.Frameworks.toString()}<br/>
-                    Tags: {projectObject2.Tags.toString()}<br/>
+                    {/* Tags: {projectObject2.Tags.toString()}<br/> */}
                   </div>
                   <a className='ProjectViewButton' href={projectObject2.Link} target='_blank'>View Project</a>
                 </div>
@@ -302,7 +302,7 @@ const ProjectsFeed = () => {
                   <div className='ProjectsSectionCoverText'>
                     Languages: {projectObject3.Languages.toString()}<br/>
                     Frameworks: {projectObject3.Frameworks.toString()}<br/>
-                    Tags: {projectObject3.Tags.toString()}<br/>
+                    {/* Tags: {projectObject3.Tags.toString()}<br/> */}
                   </div>
                   <a className='ProjectViewButton' href={projectObject3.Link} target='_blank'>View Project</a>
                 </div>
@@ -319,7 +319,7 @@ const ProjectsFeed = () => {
                   <div className='ProjectsSectionCoverText'>
                     Languages: {projectObject4.Languages.toString()}<br/>
                     Frameworks: {projectObject4.Frameworks.toString()}<br/>
-                    Tags: {projectObject4.Tags.toString()}<br/>
+                    {/* Tags: {projectObject4.Tags.toString()}<br/> */}
                   </div>
                   <a className='ProjectViewButton' href={projectObject4.Link} target='_blank'>View Project</a>
                 </div>
@@ -338,7 +338,7 @@ const ProjectsFeed = () => {
                   <div className='ProjectsSectionCoverText'>
                     Languages: {projectObject5.Languages.toString()}<br/>
                     Frameworks: {projectObject5.Frameworks.toString()}<br/>
-                    Tags: {projectObject5.Tags.toString()}<br/>
+                    {/* Tags: {projectObject5.Tags.toString()}<br/> */}
                   </div>
                   <a className='ProjectViewButton' href={projectObject5.Link} target='_blank'>View Project</a>
                 </div>
@@ -355,7 +355,7 @@ const ProjectsFeed = () => {
                   <div className='ProjectsSectionCoverText'>
                     Languages: {projectObject6.Languages.toString()}<br/>
                     Frameworks: {projectObject6.Frameworks.toString()}<br/>
-                    Tags: {projectObject6.Tags.toString()}<br/>
+                    {/* Tags: {projectObject6.Tags.toString()}<br/> */}
                   </div>
                   <a className='ProjectViewButton' href={projectObject6.Link} target='_blank'>View Project</a>
                 </div>
@@ -372,7 +372,7 @@ const ProjectsFeed = () => {
                   <div className='ProjectsSectionCoverText'>
                     Languages: {projectObject7.Languages.toString()}<br/>
                     Frameworks: {projectObject7.Frameworks.toString()}<br/>
-                    Tags: {projectObject7.Tags.toString()}<br/>
+                    {/* Tags: {projectObject7.Tags.toString()}<br/> */}
                   </div>
                   <a className='ProjectViewButton' href={projectObject7.Link} target='_blank'>View Project</a>
                 </div>
@@ -389,7 +389,7 @@ const ProjectsFeed = () => {
                   <div className='ProjectsSectionCoverText'>
                     Languages: {projectObject8.Languages.toString()}<br/>
                     Frameworks: {projectObject8.Frameworks.toString()}<br/>
-                    Tags: {projectObject8.Tags.toString()}<br/>
+                    {/* Tags: {projectObject8.Tags.toString()}<br/> */}
                   </div>
                   <a className='ProjectViewButton' href={projectObject8.Link} target='_blank'>View Project</a>
                 </div>
@@ -408,7 +408,7 @@ const ProjectsFeed = () => {
                   <div className='ProjectsSectionCoverText'>
                     Languages: {projectObject9.Languages.toString()}<br/>
                     Frameworks: {projectObject9.Frameworks.toString()}<br/>
-                    Tags: {projectObject9.Tags.toString()}<br/>
+                    {/* Tags: {projectObject9.Tags.toString()}<br/> */}
                   </div>
                   <a className='ProjectViewButton' href={projectObject9.Link} target='_blank'>View Project</a>
                 </div>
@@ -425,7 +425,7 @@ const ProjectsFeed = () => {
                   <div className='ProjectsSectionCoverText'>
                     Languages: {projectObject10.Languages.toString()}<br/>
                     Frameworks: {projectObject10.Frameworks.toString()}<br/>
-                    Tags: {projectObject10.Tags.toString()}<br/>
+                    {/* Tags: {projectObject10.Tags.toString()}<br/> */}
                   </div>
                   <a className='ProjectViewButton' href={projectObject10.Link} target='_blank'>View Project</a>
                 </div>
@@ -442,7 +442,7 @@ const ProjectsFeed = () => {
                   <div className='ProjectsSectionCoverText'>
                     Languages: {projectObject11.Languages.toString()}<br/>
                     Frameworks: {projectObject11.Frameworks.toString()}<br/>
-                    Tags: {projectObject11.Tags.toString()}<br/>
+                    {/* Tags: {projectObject11.Tags.toString()}<br/> */}
                   </div>
                   <a className='ProjectViewButton' href={projectObject11.Link} target='_blank'>View Project</a>
                 </div>
@@ -459,7 +459,7 @@ const ProjectsFeed = () => {
                   <div className='ProjectsSectionCoverText'>
                     Languages: {projectObject12.Languages.toString()}<br/>
                     Frameworks: {projectObject12.Frameworks.toString()}<br/>
-                    Tags: {projectObject12.Tags.toString()}<br/>
+                    {/* Tags: {projectObject12.Tags.toString()}<br/> */}
                   </div>
                   <a className='ProjectViewButton' href={projectObject12.Link} target='_blank'>View Project</a>
                 </div>
