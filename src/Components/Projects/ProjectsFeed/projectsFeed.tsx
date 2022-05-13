@@ -189,58 +189,58 @@ const ProjectsFeed = () => {
       //@ts-ignore
       case 2: {
         console.log(dropdownVisibility2);
-        if(dropdownVisibility2 == 'ProjectButtonDeactivated' || dropdownVisibility2 == ''){dropdownVisibility2 = 'ProjectButtonActivated'; dropdownVisibility1Under = 'ProjectButtonDeactivated'; break;}
-        if(dropdownVisibility2 == 'ProjectButtonActivated'){dropdownVisibility2 = 'ProjectButtonDeactivated'; dropdownVisibility1Under = 'ProjectButtonActivated'; break;}
+        if(dropdownVisibility2 == 'ProjectButtonDeactivated' || dropdownVisibility2 == ''){dropdownVisibility2 = 'ProjectButtonActivated'; dropdownVisibility2Under = 'ProjectButtonDeactivated'; break;}
+        if(dropdownVisibility2 == 'ProjectButtonActivated'){dropdownVisibility2 = 'ProjectButtonDeactivated'; dropdownVisibility2Under = 'ProjectButtonActivated'; break;}
       }
       //@ts-ignore
       case 3: {
-        if(dropdownVisibility3 == 'ProjectButtonDeactivated' || dropdownVisibility3 == ''){dropdownVisibility3 = 'ProjectButtonActivated'; dropdownVisibility1Under = 'ProjectButtonDeactivated'; break;}
-        if(dropdownVisibility3 == 'ProjectButtonActivated'){dropdownVisibility3 = 'ProjectButtonDeactivated'; dropdownVisibility1Under = 'ProjectButtonActivated'; break;}
+        if(dropdownVisibility3 == 'ProjectButtonDeactivated' || dropdownVisibility3 == ''){dropdownVisibility3 = 'ProjectButtonActivated'; dropdownVisibility3Under = 'ProjectButtonDeactivated'; break;}
+        if(dropdownVisibility3 == 'ProjectButtonActivated'){dropdownVisibility3 = 'ProjectButtonDeactivated'; dropdownVisibility3Under = 'ProjectButtonActivated'; break;}
       }
       //@ts-ignore
       case 4: {
-        if(dropdownVisibility4 == 'ProjectButtonDeactivated' || dropdownVisibility4 == ''){dropdownVisibility4 = 'ProjectButtonActivated'; dropdownVisibility1Under = 'ProjectButtonDeactivated'; break;}
-        if(dropdownVisibility4 == 'ProjectButtonActivated'){dropdownVisibility4 = 'ProjectButtonDeactivated'; dropdownVisibility1Under = 'ProjectButtonActivated'; break;}
+        if(dropdownVisibility4 == 'ProjectButtonDeactivated' || dropdownVisibility4 == ''){dropdownVisibility4 = 'ProjectButtonActivated'; dropdownVisibility4Under = 'ProjectButtonDeactivated'; break;}
+        if(dropdownVisibility4 == 'ProjectButtonActivated'){dropdownVisibility4 = 'ProjectButtonDeactivated'; dropdownVisibility4Under = 'ProjectButtonActivated'; break;}
       }
       //@ts-ignore
       case 5: {
-        if(dropdownVisibility5 == 'ProjectButtonDeactivated' || dropdownVisibility5 == ''){dropdownVisibility5 = 'ProjectButtonActivated'; dropdownVisibility1Under = 'ProjectButtonDeactivated'; break;}
-        if(dropdownVisibility5 == 'ProjectButtonActivated'){dropdownVisibility5 = 'ProjectButtonDeactivated'; dropdownVisibility1Under = 'ProjectButtonActivated'; break;}
+        if(dropdownVisibility5 == 'ProjectButtonDeactivated' || dropdownVisibility5 == ''){dropdownVisibility5 = 'ProjectButtonActivated'; dropdownVisibility5Under = 'ProjectButtonDeactivated'; break;}
+        if(dropdownVisibility5 == 'ProjectButtonActivated'){dropdownVisibility5 = 'ProjectButtonDeactivated'; dropdownVisibility5Under = 'ProjectButtonActivated'; break;}
       }
       //@ts-ignore
       case 6: {
-        if(dropdownVisibility6 == 'ProjectButtonDeactivated' || dropdownVisibility6 == ''){dropdownVisibility6 = 'ProjectButtonActivated'; dropdownVisibility1Under = 'ProjectButtonDeactivated'; break;}
-        if(dropdownVisibility6 == 'ProjectButtonActivated'){dropdownVisibility6 = 'ProjectButtonDeactivated'; dropdownVisibility1Under = 'ProjectButtonActivated'; break;}
+        if(dropdownVisibility6 == 'ProjectButtonDeactivated' || dropdownVisibility6 == ''){dropdownVisibility6 = 'ProjectButtonActivated'; dropdownVisibility6Under = 'ProjectButtonDeactivated'; break;}
+        if(dropdownVisibility6 == 'ProjectButtonActivated'){dropdownVisibility6 = 'ProjectButtonDeactivated'; dropdownVisibility6Under = 'ProjectButtonActivated'; break;}
       }
       //@ts-ignore
       case 7: {
-        if(dropdownVisibility7 == 'ProjectButtonDeactivated' || dropdownVisibility7 == ''){dropdownVisibility7 = 'ProjectButtonActivated'; dropdownVisibility1Under = 'ProjectButtonDeactivated'; break;}
-        if(dropdownVisibility7 == 'ProjectButtonActivated'){dropdownVisibility7 = 'ProjectButtonDeactivated'; dropdownVisibility1Under = 'ProjectButtonActivated'; break;}
+        if(dropdownVisibility7 == 'ProjectButtonDeactivated' || dropdownVisibility7 == ''){dropdownVisibility7 = 'ProjectButtonActivated'; dropdownVisibility7Under = 'ProjectButtonDeactivated'; break;}
+        if(dropdownVisibility7 == 'ProjectButtonActivated'){dropdownVisibility7 = 'ProjectButtonDeactivated'; dropdownVisibility7Under = 'ProjectButtonActivated'; break;}
       }
       //@ts-ignore
       case 8: {
-        if(dropdownVisibility8 == 'ProjectButtonDeactivated' || dropdownVisibility8 == ''){dropdownVisibility8 = 'ProjectButtonActivated'; dropdownVisibility1Under = 'ProjectButtonDeactivated'; break;}
-        if(dropdownVisibility8 == 'ProjectButtonActivated'){dropdownVisibility8 = 'ProjectButtonDeactivated'; dropdownVisibility1Under = 'ProjectButtonActivated'; break;}
+        if(dropdownVisibility8 == 'ProjectButtonDeactivated' || dropdownVisibility8 == ''){dropdownVisibility8 = 'ProjectButtonActivated'; dropdownVisibility8Under = 'ProjectButtonDeactivated'; break;}
+        if(dropdownVisibility8 == 'ProjectButtonActivated'){dropdownVisibility8 = 'ProjectButtonDeactivated'; dropdownVisibility8Under = 'ProjectButtonActivated'; break;}
       }
       //@ts-ignore
       case 9: {
-        if(dropdownVisibility9 == 'ProjectButtonDeactivated' || dropdownVisibility9 == ''){dropdownVisibility9 = 'ProjectButtonActivated'; dropdownVisibility1Under = 'ProjectButtonDeactivated'; break;}
-        if(dropdownVisibility9 == 'ProjectButtonActivated'){dropdownVisibility9 = 'ProjectButtonDeactivated'; dropdownVisibility1Under = 'ProjectButtonActivated'; break;}
+        if(dropdownVisibility9 == 'ProjectButtonDeactivated' || dropdownVisibility9 == ''){dropdownVisibility9 = 'ProjectButtonActivated'; dropdownVisibility9Under = 'ProjectButtonDeactivated'; break;}
+        if(dropdownVisibility9 == 'ProjectButtonActivated'){dropdownVisibility9 = 'ProjectButtonDeactivated'; dropdownVisibility9Under = 'ProjectButtonActivated'; break;}
       }
       //@ts-ignore
       case 10: {
-        if(dropdownVisibility10 == 'ProjectButtonDeactivated' || dropdownVisibility10 == ''){dropdownVisibility10 = 'ProjectButtonActivated'; break;}
-        if(dropdownVisibility10 == 'ProjectButtonActivated'){dropdownVisibility10 = 'ProjectButtonDeactivated'; dropdownVisibility1Under = 'ProjectButtonActivated'; break;}
+        if(dropdownVisibility10 == 'ProjectButtonDeactivated' || dropdownVisibility10 == ''){dropdownVisibility10 = 'ProjectButtonActivated'; dropdownVisibility10Under = 'ProjectButtonDeactivated'; break;}
+        if(dropdownVisibility10 == 'ProjectButtonActivated'){dropdownVisibility10 = 'ProjectButtonDeactivated'; dropdownVisibility10Under = 'ProjectButtonActivated'; break;}
       }
       //@ts-ignore
       case 11: {
-        if(dropdownVisibility11 == 'ProjectButtonDeactivated' || dropdownVisibility11 == ''){dropdownVisibility11 = 'ProjectButtonActivated'; break;}
-        if(dropdownVisibility11 == 'ProjectButtonActivated'){dropdownVisibility11 = 'ProjectButtonDeactivated'; dropdownVisibility1Under = 'ProjectButtonActivated'; break;}
+        if(dropdownVisibility11 == 'ProjectButtonDeactivated' || dropdownVisibility11 == ''){dropdownVisibility11 = 'ProjectButtonActivated'; dropdownVisibility11Under = 'ProjectButtonDeactivated'; break;}
+        if(dropdownVisibility11 == 'ProjectButtonActivated'){dropdownVisibility11 = 'ProjectButtonDeactivated'; dropdownVisibility11Under = 'ProjectButtonActivated'; break;}
       }
       //@ts-ignore
       case 12: {
-        if(dropdownVisibility12 == 'ProjectButtonDeactivated' || dropdownVisibility12 == ''){dropdownVisibility12 = 'ProjectButtonActivated'; break;}
-        if(dropdownVisibility12 == 'ProjectButtonActivated'){dropdownVisibility12 = 'ProjectButtonDeactivated'; dropdownVisibility1Under = 'ProjectButtonActivated'; break;}
+        if(dropdownVisibility12 == 'ProjectButtonDeactivated' || dropdownVisibility12 == ''){dropdownVisibility12 = 'ProjectButtonActivated'; dropdownVisibility12Under = 'ProjectButtonDeactivated'; break;}
+        if(dropdownVisibility12 == 'ProjectButtonActivated'){dropdownVisibility12 = 'ProjectButtonDeactivated'; dropdownVisibility12Under = 'ProjectButtonActivated'; break;}
       }
       
     }
@@ -270,89 +270,199 @@ const ProjectsFeed = () => {
                     Frameworks: {projectObject1.Frameworks.toString()}<br/>
                     Tags: {projectObject1.Tags.toString()}<br/>
                   </div>
-                  <button className='ProjectViewButton' onClick={() => changeVisibility(1)}>View Project</button>
+                  <a className='ProjectViewButton' href={projectObject1.Link} target='_blank'>View Project</a>
                 </div>
               </div>
             </div>
             <div className='ProjectsSectionContainer'>
               <div>
-                <a href={projectObject2.Link} target='_blank'><img src={projectObject2.Image} className='ProjectsPicture'/></a>
+                <a onClick = {() => changeVisibility(2)}><img src={projectObject2.Image} className={dropdownVisibility2Under + ' ProjectsPicture'}/></a>
                 <div className='ProjectsPictureTitle'><h3>{projectObject2.Title}</h3></div>
-                <p className='ProjectsPictureText'>{projectObject2.Description}</p>
+                <p className='ProjectsPictureText'>{projectObject2.Description}
+                </p>
+                  <button className='ProjectClickButton' onClick={() => changeVisibility(2)}>Info</button>
+                <div className={dropdownVisibility2 + ' ProjectsSectionCover'}>
+                  <div className='ProjectsSectionCoverText'>
+                    Languages: {projectObject2.Languages.toString()}<br/>
+                    Frameworks: {projectObject2.Frameworks.toString()}<br/>
+                    Tags: {projectObject2.Tags.toString()}<br/>
+                  </div>
+                  <a className='ProjectViewButton' href={projectObject2.Link} target='_blank'>View Project</a>
+                </div>
               </div>
             </div>
             <div className='ProjectsSectionContainer'>
               <div>
-                <a href={projectObject3.Link} target='_blank'><img src={projectObject3.Image} className='ProjectsPicture'/></a>
+                <a onClick = {() => changeVisibility(3)}><img src={projectObject3.Image} className={dropdownVisibility3Under + ' ProjectsPicture'}/></a>
                 <div className='ProjectsPictureTitle'><h3>{projectObject3.Title}</h3></div>
-                <p className='ProjectsPictureText'>{projectObject3.Description}</p>
+                <p className='ProjectsPictureText'>{projectObject3.Description}
+                </p>
+                  <button className='ProjectClickButton' onClick={() => changeVisibility(3)}>Info</button>
+                <div className={dropdownVisibility3 + ' ProjectsSectionCover'}>
+                  <div className='ProjectsSectionCoverText'>
+                    Languages: {projectObject3.Languages.toString()}<br/>
+                    Frameworks: {projectObject3.Frameworks.toString()}<br/>
+                    Tags: {projectObject3.Tags.toString()}<br/>
+                  </div>
+                  <a className='ProjectViewButton' href={projectObject3.Link} target='_blank'>View Project</a>
+                </div>
               </div>
             </div>
             <div className='ProjectsSectionContainer'>
               <div>
-                <a href={projectObject4.Link} target='_blank'><img src={projectObject4.Image} className='ProjectsPicture'/></a>
+                <a onClick = {() => changeVisibility(4)}><img src={projectObject4.Image} className={dropdownVisibility4Under + ' ProjectsPicture'}/></a>
                 <div className='ProjectsPictureTitle'><h3>{projectObject4.Title}</h3></div>
-                <p className='ProjectsPictureText'>{projectObject4.Description}</p>
+                <p className='ProjectsPictureText'>{projectObject4.Description}
+                </p>
+                  <button className='ProjectClickButton' onClick={() => changeVisibility(4)}>Info</button>
+                <div className={dropdownVisibility4 + ' ProjectsSectionCover'}>
+                  <div className='ProjectsSectionCoverText'>
+                    Languages: {projectObject4.Languages.toString()}<br/>
+                    Frameworks: {projectObject4.Frameworks.toString()}<br/>
+                    Tags: {projectObject4.Tags.toString()}<br/>
+                  </div>
+                  <a className='ProjectViewButton' href={projectObject4.Link} target='_blank'>View Project</a>
+                </div>
               </div>
             </div>
           </div>
           <div className='ProjectsRowContainer'>
-            <div className='ProjectsSectionContainer'>
+          <div className='ProjectsSectionContainer'>
               <div>
-                <a href={projectObject5.Link} target='_blank'><img src={projectObject5.Image} className='ProjectsPicture'/></a>
+                <a onClick = {() => changeVisibility(5)}><img src={projectObject5.Image} className={dropdownVisibility5Under + ' ProjectsPicture'}/></a>
                 <div className='ProjectsPictureTitle'><h3>{projectObject5.Title}</h3></div>
-                <p className='ProjectsPictureText'>{projectObject5.Description}</p>
+                <p className='ProjectsPictureText'>{projectObject5.Description}
+                </p>
+                  <button className='ProjectClickButton' onClick={() => changeVisibility(5)}>Info</button>
+                <div className={dropdownVisibility5 + ' ProjectsSectionCover'}>
+                  <div className='ProjectsSectionCoverText'>
+                    Languages: {projectObject5.Languages.toString()}<br/>
+                    Frameworks: {projectObject5.Frameworks.toString()}<br/>
+                    Tags: {projectObject5.Tags.toString()}<br/>
+                  </div>
+                  <a className='ProjectViewButton' href={projectObject5.Link} target='_blank'>View Project</a>
+                </div>
               </div>
             </div>
             <div className='ProjectsSectionContainer'>
               <div>
-                <a href={projectObject6.Link} target='_blank'><img src={projectObject6.Image} className='ProjectsPicture'/></a>
+                <a onClick = {() => changeVisibility(6)}><img src={projectObject6.Image} className={dropdownVisibility6Under + ' ProjectsPicture'}/></a>
                 <div className='ProjectsPictureTitle'><h3>{projectObject6.Title}</h3></div>
-                <p className='ProjectsPictureText'>{projectObject6.Description}</p>
+                <p className='ProjectsPictureText'>{projectObject6.Description}
+                </p>
+                  <button className='ProjectClickButton' onClick={() => changeVisibility(6)}>Info</button>
+                <div className={dropdownVisibility6 + ' ProjectsSectionCover'}>
+                  <div className='ProjectsSectionCoverText'>
+                    Languages: {projectObject6.Languages.toString()}<br/>
+                    Frameworks: {projectObject6.Frameworks.toString()}<br/>
+                    Tags: {projectObject6.Tags.toString()}<br/>
+                  </div>
+                  <a className='ProjectViewButton' href={projectObject6.Link} target='_blank'>View Project</a>
+                </div>
               </div>
             </div>
             <div className='ProjectsSectionContainer'>
               <div>
-                <a href={projectObject7.Link} target='_blank'><img src={projectObject7.Image} className='ProjectsPicture'/></a>
+                <a onClick = {() => changeVisibility(7)}><img src={projectObject7.Image} className={dropdownVisibility7Under + ' ProjectsPicture'}/></a>
                 <div className='ProjectsPictureTitle'><h3>{projectObject7.Title}</h3></div>
-                <p className='ProjectsPictureText'>{projectObject7.Description}</p>
+                <p className='ProjectsPictureText'>{projectObject7.Description}
+                </p>
+                  <button className='ProjectClickButton' onClick={() => changeVisibility(7)}>Info</button>
+                <div className={dropdownVisibility7 + ' ProjectsSectionCover'}>
+                  <div className='ProjectsSectionCoverText'>
+                    Languages: {projectObject7.Languages.toString()}<br/>
+                    Frameworks: {projectObject7.Frameworks.toString()}<br/>
+                    Tags: {projectObject7.Tags.toString()}<br/>
+                  </div>
+                  <a className='ProjectViewButton' href={projectObject7.Link} target='_blank'>View Project</a>
+                </div>
               </div>
             </div>
             <div className='ProjectsSectionContainer'>
               <div>
-                <a href={projectObject8.Link} target='_blank'><img src={projectObject8.Image} className='ProjectsPicture'/></a>
+                <a onClick = {() => changeVisibility(8)}><img src={projectObject8.Image} className={dropdownVisibility8Under + ' ProjectsPicture'}/></a>
                 <div className='ProjectsPictureTitle'><h3>{projectObject8.Title}</h3></div>
-                <p className='ProjectsPictureText'>{projectObject8.Description}</p>
+                <p className='ProjectsPictureText'>{projectObject8.Description}
+                </p>
+                  <button className='ProjectClickButton' onClick={() => changeVisibility(8)}>Info</button>
+                <div className={dropdownVisibility8 + ' ProjectsSectionCover'}>
+                  <div className='ProjectsSectionCoverText'>
+                    Languages: {projectObject8.Languages.toString()}<br/>
+                    Frameworks: {projectObject8.Frameworks.toString()}<br/>
+                    Tags: {projectObject8.Tags.toString()}<br/>
+                  </div>
+                  <a className='ProjectViewButton' href={projectObject8.Link} target='_blank'>View Project</a>
+                </div>
               </div>
             </div>
           </div>
           <div className='ProjectsRowContainer'>
-            <div className='ProjectsSectionContainer'>
+          <div className='ProjectsSectionContainer'>
               <div>
-                <a href={projectObject9.Link} target='_blank'><img src={projectObject9.Image} className='ProjectsPicture'/></a>
+                <a onClick = {() => changeVisibility(9)}><img src={projectObject9.Image} className={dropdownVisibility9Under + ' ProjectsPicture'}/></a>
                 <div className='ProjectsPictureTitle'><h3>{projectObject9.Title}</h3></div>
-                <p className='ProjectsPictureText'>{projectObject9.Description}</p>
+                <p className='ProjectsPictureText'>{projectObject9.Description}
+                </p>
+                  <button className='ProjectClickButton' onClick={() => changeVisibility(9)}>Info</button>
+                <div className={dropdownVisibility9 + ' ProjectsSectionCover'}>
+                  <div className='ProjectsSectionCoverText'>
+                    Languages: {projectObject9.Languages.toString()}<br/>
+                    Frameworks: {projectObject9.Frameworks.toString()}<br/>
+                    Tags: {projectObject9.Tags.toString()}<br/>
+                  </div>
+                  <a className='ProjectViewButton' href={projectObject9.Link} target='_blank'>View Project</a>
+                </div>
               </div>
             </div>
             <div className='ProjectsSectionContainer'>
               <div>
-                <a href={projectObject10.Link} target='_blank'><img src={projectObject10.Image} className='ProjectsPicture'/></a>
+                <a onClick = {() => changeVisibility(10)}><img src={projectObject10.Image} className={dropdownVisibility10Under + ' ProjectsPicture'}/></a>
                 <div className='ProjectsPictureTitle'><h3>{projectObject10.Title}</h3></div>
-                <p className='ProjectsPictureText'>{projectObject10.Description}</p>
+                <p className='ProjectsPictureText'>{projectObject10.Description}
+                </p>
+                  <button className='ProjectClickButton' onClick={() => changeVisibility(10)}>Info</button>
+                <div className={dropdownVisibility10 + ' ProjectsSectionCover'}>
+                  <div className='ProjectsSectionCoverText'>
+                    Languages: {projectObject10.Languages.toString()}<br/>
+                    Frameworks: {projectObject10.Frameworks.toString()}<br/>
+                    Tags: {projectObject10.Tags.toString()}<br/>
+                  </div>
+                  <a className='ProjectViewButton' href={projectObject10.Link} target='_blank'>View Project</a>
+                </div>
               </div>
             </div>
             <div className='ProjectsSectionContainer'>
               <div>
-                <a href={projectObject11.Link} target='_blank'><img src={projectObject11.Image} className='ProjectsPicture'/></a>
+                <a onClick = {() => changeVisibility(11)}><img src={projectObject10.Image} className={dropdownVisibility11Under + ' ProjectsPicture'}/></a>
                 <div className='ProjectsPictureTitle'><h3>{projectObject11.Title}</h3></div>
-                <p className='ProjectsPictureText'>{projectObject11.Description}</p>
+                <p className='ProjectsPictureText'>{projectObject11.Description}
+                </p>
+                  <button className='ProjectClickButton' onClick={() => changeVisibility(11)}>Info</button>
+                <div className={dropdownVisibility11 + ' ProjectsSectionCover'}>
+                  <div className='ProjectsSectionCoverText'>
+                    Languages: {projectObject11.Languages.toString()}<br/>
+                    Frameworks: {projectObject11.Frameworks.toString()}<br/>
+                    Tags: {projectObject11.Tags.toString()}<br/>
+                  </div>
+                  <a className='ProjectViewButton' href={projectObject11.Link} target='_blank'>View Project</a>
+                </div>
               </div>
             </div>
             <div className='ProjectsSectionContainer'>
               <div>
-                <a href={projectObject12.Link} target='_blank'><img src={projectObject12.Image} className='ProjectsPicture'/></a>
+                <a onClick = {() => changeVisibility(12)}><img src={projectObject12.Image} className={dropdownVisibility12Under + ' ProjectsPicture'}/></a>
                 <div className='ProjectsPictureTitle'><h3>{projectObject12.Title}</h3></div>
-                <p className='ProjectsPictureText'>{projectObject12.Description}</p>
+                <p className='ProjectsPictureText'>{projectObject12.Description}
+                </p>
+                  <button className='ProjectClickButton' onClick={() => changeVisibility(12)}>Info</button>
+                <div className={dropdownVisibility12 + ' ProjectsSectionCover'}>
+                  <div className='ProjectsSectionCoverText'>
+                    Languages: {projectObject12.Languages.toString()}<br/>
+                    Frameworks: {projectObject12.Frameworks.toString()}<br/>
+                    Tags: {projectObject12.Tags.toString()}<br/>
+                  </div>
+                  <a className='ProjectViewButton' href={projectObject12.Link} target='_blank'>View Project</a>
+                </div>
               </div>
             </div>
           </div>
