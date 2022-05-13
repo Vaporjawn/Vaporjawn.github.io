@@ -51,6 +51,51 @@
     float: left;
 }
 
+.ProjectsSectionCover{
+    padding-left: 0.5%;
+    padding-right: 0.5%;
+    margin: 0;
+    background-image: linear-gradient(to bottom right, rgba(63, 94, 251, .5), rgba(252, 70, 107, .5));
+    /* background-color: white; */
+    top: 0;
+    margin-top: -36.5%;
+    margin-left: -.5%;
+    width: 400px;
+    height: 400px;
+    float: left;
+    z-index: -100;
+}
+
+.ProjectsSectionCoverText{
+    text-align: center;
+    margin-top: 50%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.ProjectClickButton{
+    background-color: #fc466b; /* Green */
+    border:5px solid #3f5efb;
+    padding: 10px 35px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 37%;
+    margin-top: -5%;
+}
+.ProjectViewButton{
+    background-color: #fc466b; /* Green */
+    border:5px solid #3f5efb;
+    padding: 10px 35px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 29%;
+    margin-top: 10%;
+}
+
 .ProjectsContainerHeader{
     text-align: center;
     font-size: 28px;
@@ -66,6 +111,9 @@
     letter-spacing: 0.466667px;
     line-height: 32.6667px;
     font-size: 18.6px;
+    max-height: 31px;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .redLink{
