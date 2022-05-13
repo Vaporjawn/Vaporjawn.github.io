@@ -94,3 +94,11 @@
 .ProjectsFeedAboutLink :hover{
     color: white;
 }
+
+.ProjectButtonDeactivated {
+    display: none;
+}
+
+.ProjectButtonActivated {
+    display: block;
+}

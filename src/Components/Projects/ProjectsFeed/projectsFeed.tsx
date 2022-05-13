@@ -22,6 +22,20 @@ let projectObject9: {Title: string, Description: string, Link: string, Image: st
 let projectObject10: {Title: string, Description: string, Link: string, Image: string, Languages: string[], Frameworks: string[], Tags: string[], Year: number, Index: number};
 let projectObject11: {Title: string, Description: string, Link: string, Image: string, Languages: string[], Frameworks: string[], Tags: string[], Year: number, Index: number};
 let projectObject12: {Title: string, Description: string, Link: string, Image: string, Languages: string[], Frameworks: string[], Tags: string[], Year: number, Index: number};
+let dropdownVisibility1: string;
+let dropdownVisibility2: string = '';
+let dropdownVisibility3: string = '';
+let dropdownVisibility4: string = '';
+let dropdownVisibility5: string = '';
+let dropdownVisibility6: string = '';
+let dropdownVisibility7: string = '';
+let dropdownVisibility8: string = '';
+let dropdownVisibility9: string = '';
+let dropdownVisibility10: string = '';
+let dropdownVisibility11: string = '';
+let dropdownVisibility12: string = '';
+
+
 
 const numberGenerator = () => {
   let num = Math.floor(Math.random() * ProjectsList.length);
@@ -39,39 +53,32 @@ const instantiateObjects = () => {
   const duplicateChecker = () => {
     let requestedNumber: number = numberGenerator();
     
-    while(duplicates.find(n => n == requestedNumber)){
+    if(duplicates.find(n => n == requestedNumber)){
       requestedNumber = numberGenerator();
-      if(true) break;
-      // if(duplicates.find(n => n == requestedNumber)) break;
+      if(duplicates.find(n => n == requestedNumber)){
+        duplicateChecker();
+      }else{
+        return requestedNumber;
+      }
     }
-      duplicates.push(requestedNumber);
+    duplicates.push(requestedNumber);
     return requestedNumber;
   }
-//need to change back to duplicatecheck
-  projectObject1 = ProjectsList[numberGenerator()];
-  projectObject2 = ProjectsList[numberGenerator()];
-  projectObject3 = ProjectsList[numberGenerator()];
-  projectObject4 = ProjectsList[numberGenerator()];
-  projectObject5 = ProjectsList[numberGenerator()];
-  projectObject6 = ProjectsList[numberGenerator()];
-  projectObject7 = ProjectsList[numberGenerator()];
-  projectObject8 = ProjectsList[numberGenerator()];
-  projectObject9 = ProjectsList[numberGenerator()];
-  projectObject10 = ProjectsList[numberGenerator()];
-  projectObject11 = ProjectsList[numberGenerator()];
-  projectObject12 = ProjectsList[numberGenerator()];
-  console.log(projectObject1);
-  console.log(projectObject2);
-  console.log(projectObject3);
-  console.log(projectObject4);
-  console.log(projectObject5);
-  console.log(projectObject6);
-  console.log(projectObject7);
-  console.log(projectObject8);
-  console.log(projectObject9);
-  console.log(projectObject10);
-  console.log(projectObject11);
-  console.log(projectObject12);
+
+  if(!projectObject1){
+    projectObject1 = ProjectsList[duplicateChecker()];
+    projectObject2 = ProjectsList[duplicateChecker()];
+    projectObject3 = ProjectsList[duplicateChecker()];
+    projectObject4 = ProjectsList[duplicateChecker()];
+    projectObject5 = ProjectsList[duplicateChecker()];
+    projectObject6 = ProjectsList[duplicateChecker()];
+    projectObject7 = ProjectsList[duplicateChecker()];
+    projectObject8 = ProjectsList[duplicateChecker()];
+    projectObject9 = ProjectsList[duplicateChecker()];
+    projectObject10 = ProjectsList[duplicateChecker()];
+    projectObject11 = ProjectsList[duplicateChecker()];
+    projectObject12 = ProjectsList[duplicateChecker()];
+  }
 }
 
 const initializeResults = (results: typeof Project) => {
@@ -129,8 +136,6 @@ const totalSearch = (userEntry: string) => {
   const searchArray: RegExpMatchArray | null = userEntry.match(/\b(\w+)\b/g);
     if(searchArray){
       for (let i=0; i<searchArray.length; i++){
-        //search everywhere 
-        //add the filtered Project[] to the bottom array so that you can return all of the search results
         const title = titleSearch(searchArray[i]);
         const description = titleSearch(searchArray[i]);
         const language = languageFilter(searchArray[i]);
@@ -153,7 +158,81 @@ const yearFilter = (year: number | string) => {
 
 const ProjectsFeed = () => {
   const [time, setTime] = useState(Date.now());
+  const [visibility, setVisibility] = useState(false);
   instantiateObjects();
+  const changeVisibility = (cardNumber: number) => {
+    if(visibility == false){
+      setVisibility(true);
+    };
+    if(visibility == true){
+      setVisibility(false);
+    };
+
+    switch(cardNumber){
+      //@ts-ignore
+      case 1: {
+        if(dropdownVisibility1 == 'ProjectButtonDeactivated' || ''){dropdownVisibility1 = 'ProjectButtonActivated'; break;}
+        if(dropdownVisibility1 == 'ProjectButtonActivated'){dropdownVisibility1 = 'ProjectButtonDeactivated'; break;}
+      }
+      //@ts-ignore
+      case 2: {
+        console.log(dropdownVisibility2);
+        if(dropdownVisibility2 == 'ProjectButtonDeactivated' || dropdownVisibility2 == ''){dropdownVisibility2 = 'ProjectButtonActivated'; break;}
+        if(dropdownVisibility2 == 'ProjectButtonActivated'){dropdownVisibility2 = 'ProjectButtonDeactivated'; break;}
+      }
+      //@ts-ignore
+      case 3: {
+        if(dropdownVisibility3 == 'ProjectButtonDeactivated' || dropdownVisibility3 == ''){dropdownVisibility3 = 'ProjectButtonActivated'; break;}
+        if(dropdownVisibility3 == 'ProjectButtonActivated'){dropdownVisibility3 = 'ProjectButtonDeactivated'; break;}
+      }
+      //@ts-ignore
+      case 4: {
+        if(dropdownVisibility4 == 'ProjectButtonDeactivated' || dropdownVisibility4 == ''){dropdownVisibility4 = 'ProjectButtonActivated'; break;}
+        if(dropdownVisibility4 == 'ProjectButtonActivated'){dropdownVisibility4 = 'ProjectButtonDeactivated'; break;}
+      }
+      //@ts-ignore
+      case 5: {
+        if(dropdownVisibility5 == 'ProjectButtonDeactivated' || dropdownVisibility5 == ''){dropdownVisibility5 = 'ProjectButtonActivated'; break;}
+        if(dropdownVisibility5 == 'ProjectButtonActivated'){dropdownVisibility5 = 'ProjectButtonDeactivated'; break;}
+      }
+      //@ts-ignore
+      case 6: {
+        if(dropdownVisibility6 == 'ProjectButtonDeactivated' || dropdownVisibility6 == ''){dropdownVisibility6 = 'ProjectButtonActivated'; break;}
+        if(dropdownVisibility6 == 'ProjectButtonActivated'){dropdownVisibility6 = 'ProjectButtonDeactivated'; break;}
+      }
+      //@ts-ignore
+      case 7: {
+        if(dropdownVisibility7 == 'ProjectButtonDeactivated' || dropdownVisibility7 == ''){dropdownVisibility7 = 'ProjectButtonActivated'; break;}
+        if(dropdownVisibility7 == 'ProjectButtonActivated'){dropdownVisibility7 = 'ProjectButtonDeactivated'; break;}
+      }
+      //@ts-ignore
+      case 8: {
+        if(dropdownVisibility8 == 'ProjectButtonDeactivated' || dropdownVisibility8 == ''){dropdownVisibility8 = 'ProjectButtonActivated'; break;}
+        if(dropdownVisibility8 == 'ProjectButtonActivated'){dropdownVisibility8 = 'ProjectButtonDeactivated'; break;}
+      }
+      //@ts-ignore
+      case 9: {
+        if(dropdownVisibility9 == 'ProjectButtonDeactivated' || dropdownVisibility9 == ''){dropdownVisibility9 = 'ProjectButtonActivated'; break;}
+        if(dropdownVisibility9 == 'ProjectButtonActivated'){dropdownVisibility9 = 'ProjectButtonDeactivated'; break;}
+      }
+      //@ts-ignore
+      case 10: {
+        if(dropdownVisibility10 == 'ProjectButtonDeactivated' || dropdownVisibility10 == ''){dropdownVisibility10 = 'ProjectButtonActivated'; break;}
+        if(dropdownVisibility10 == 'ProjectButtonActivated'){dropdownVisibility10 = 'ProjectButtonDeactivated'; break;}
+      }
+      //@ts-ignore
+      case 11: {
+        if(dropdownVisibility11 == 'ProjectButtonDeactivated' || dropdownVisibility11 == ''){dropdownVisibility11 = 'ProjectButtonActivated'; break;}
+        if(dropdownVisibility11 == 'ProjectButtonActivated'){dropdownVisibility11 = 'ProjectButtonDeactivated'; break;}
+      }
+      //@ts-ignore
+      case 12: {
+        if(dropdownVisibility12 == 'ProjectButtonDeactivated' || dropdownVisibility12 == ''){dropdownVisibility12 = 'ProjectButtonActivated'; break;}
+        if(dropdownVisibility12 == 'ProjectButtonActivated'){dropdownVisibility12 = 'ProjectButtonDeactivated'; break;}
+      }
+      
+    }
+  }
   // useEffect(() => {
   //   const interval = setInterval(() => setTime(Date.now()), 6000);
   //   return () => {
@@ -170,7 +249,10 @@ const ProjectsFeed = () => {
               <div>
                 <a href={projectObject1.Link} target='_blank'><img src={projectObject1.Image} className='ProjectsPicture'/></a>
                 <div className='ProjectsPictureTitle'><h3>{projectObject1.Title}</h3></div>
-                <p className='ProjectsPictureText'>{projectObject1.Description}</p>
+                <p className='ProjectsPictureText'>{projectObject1.Description}<br/>
+                  <button className={dropdownVisibility1} onClick={() => changeVisibility(2)}></button>
+                  <input className={dropdownVisibility2} />
+                </p>
               </div>
             </div>
             <div className='ProjectsSectionContainer'>
