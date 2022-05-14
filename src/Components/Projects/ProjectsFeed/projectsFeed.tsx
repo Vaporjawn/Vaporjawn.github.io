@@ -4,10 +4,6 @@ import { ProjectReference, setConstantValue } from 'typescript';
 import { Link } from 'react-router-dom';
 import ProjectsList from './projectsList'
 import Project from './projectsList'
-
-//LOOKS FOR 12 RANDOM PROJECTS THAT FIT THE CATEGORY OR TOPIC RESTRICTOR
-//THAT WAY I WON'T HAVE TO WORRY ABOUT HOW MANY PROJECTS TO LOAD IN OR WHETHER TO REMOVE THEM OR NOT MANUALLY
-
 //NEED TO MAKE A FUNCTION THAT ASSISGNS THE SEARCH RESULTS TO THE 12 OBJECTS SO THAT I CAN LIMIT THE RESULTS
 
 let projectObject1: {Title: string, Description: string, Link: string, Image: string, Languages: string[], Frameworks: string[], Tags: string[], Year: number, Index: number};

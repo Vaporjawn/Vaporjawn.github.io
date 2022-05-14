@@ -3,10 +3,8 @@
     padding: 93px;
     display: grid;
     grid-template-columns: 500px 500px 500px;
-    /* grid-template-rows: auto auto auto;  */
     column-gap: 100px;
     row-gap: 150px;    /* background-color: #181A1B; */
-    /* background-color:rgb(251, 245, 237); */
     background-image: linear-gradient(to bottom right, rgba(63, 94, 251, .5), rgba(252, 70, 107, .5));
     margin-left: auto;
     margin-right: auto;
@@ -17,15 +15,11 @@
     max-height: 250px;
     margin-left: auto;
     margin-right: auto;
-    /* left: 0;
-    top: 0; */
 }
 
 .ProjectsPictureContainer{
     width: 85%;
     padding: 93px;
-    /* background-color: #181A1B; */
-    /* background-color:rgb(251, 245, 237); */
     background-image: linear-gradient(to bottom right, rgba(63, 94, 251, .5), rgba(252, 70, 107, .5));
     margin-left: auto;
     margin-right: auto;
@@ -44,8 +38,8 @@
     margin: 0;
     background-image: linear-gradient(to bottom right, rgba(63, 94, 251, .5), rgba(252, 70, 107, .5));
     margin-top: 20px;
-    margin-left: 10%;
-    margin-bottom: 20px;
+    margin-left: 30%;
+    margin-bottom: 50px;
     width: 400px;
     height: 400px;
     float: left;
@@ -56,9 +50,8 @@
     padding-right: 0.5%;
     margin: 0;
     background-image: linear-gradient(to bottom right, rgba(63, 94, 251, .5), rgba(252, 70, 107, .5));
-    /* background-color: white; */
     top: 0;
-    margin-top: -36.5%;
+    margin-top: -33.5%;
     margin-left: -.5%;
     width: 400px;
     height: 400px;
@@ -78,7 +71,7 @@
 }
 
 .ProjectClickButton{
-    background-color: #fc466b; /* Green */
+    background-color: #fc466b; 
     border:5px solid #3f5efb;
     padding: 10px 35px;
     text-align: center;
@@ -86,11 +79,10 @@
     display: inline-block;
     font-size: 16px;
     margin-left: 37%;
-    margin-top: -5%;
     cursor: pointer;
 }
 .ProjectViewButton{
-    background-color: #fc466b; /* Green */
+    background-color: #fc466b;
     border:5px solid #3f5efb;
     padding: 10px 35px;
     text-align: center;
@@ -110,6 +102,7 @@
 
 .ProjectsPictureTitle {
     text-align: center;
+    margin-top: -2%;
 
 }
 
@@ -119,6 +112,7 @@
     line-height: 32.6667px;
     font-size: 18.6px;
     max-height: 31px;
+    margin-top: -4%;
     text-overflow: ellipsis;
     overflow: hidden;
 }

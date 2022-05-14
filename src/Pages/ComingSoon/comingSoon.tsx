@@ -2,7 +2,7 @@ import React from 'react';
 import './comingSoon.css';
 
 
-function ComingSoon() {
+const ComingSoon = () => {
   return (
     <div className='soonbody'>
       <div className='landing-page'>

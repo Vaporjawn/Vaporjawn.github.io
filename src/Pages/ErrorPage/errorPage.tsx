@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { BrowserRouter, Route, Router, useNavigate } from 'react-router-dom';
 import './errorPage.css';
 
+const ErrorPage = () => {
+  const navigate = useNavigate();
 
-// NEED TO ADD AN AUTOMATIC REDIRECT TO THE HOMEPAGE AFTER 7 SECONDS
-function ErrorPage() {
+  useEffect(() => {
+    setTimeout(() => {
+      navigate('/')
+    }, 7000)
+  }, [])
+  
   return (
     <div className='errorContainer'>
       <h1 className='errorh1'>404 ERROR</h1>
