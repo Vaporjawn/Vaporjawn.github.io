@@ -51,3 +51,23 @@
     color: white;
     text-shadow: 2px 2px 3px #3f5efb;
 }
+
+@media screen and (max-width: 768px) {
+    .App-header {
+        width: 100%;
+    }
+
+    .VaporjawnGlow {
+        font-size: 40px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .App-header {
+        width: 100%;
+    }
+
+    .VaporjawnGlow {
+        font-size: 40px;
+    }
+}

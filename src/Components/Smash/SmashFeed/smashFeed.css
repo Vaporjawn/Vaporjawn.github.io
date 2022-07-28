@@ -1,15 +1,11 @@
 .SmashPicture{
     width: 100%;
     height: 100%;
-    /* left: 0;
-    top: 0; */
 }
 
 .SmashPictureContainer{
     width: 85%;
     padding: 93px;
-    /* background-color: #181A1B; */
-    /* background-color:rgb(251, 245, 237); */
     background-image: linear-gradient(to bottom right, rgba(63, 94, 251, .5), rgba(252, 70, 107, .5));
     margin-left: auto;
     margin-right: auto;
@@ -20,15 +16,12 @@
     margin-left: -40px;
     padding-top: 5%;
     display: inline-block;
-    /* display: block; */
 }
 
 .sectionContainer{
-    /* padding-left: 150px; */
     padding-left: 10.7%;
     width: 35%;
     margin: 0;
-    /* margin-right: -1920px; */
     float: left;
 }
 
@@ -39,7 +32,6 @@
 
 .SmashPictureTitle {
     text-align: center;
-
 }
 
 .SmashPictureText{
@@ -73,4 +65,32 @@
 }
 .SmashFeedAboutLink :hover{
     color: white;
+}
+
+@media screen and (max-width: 768px) {
+    .SmashPictureContainer{
+        width: 100%;
+        padding: 0;
+    }
+    .sectionContainer{
+        width: 100%;
+        padding-left: 0;
+    }
+    .rowContainer{
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .SmashPictureContainer{
+        width: 100%;
+        padding: 0;
+    }
+    .sectionContainer{
+        width: 100%;
+        padding-left: 0;
+    }
+    .rowContainer{
+        margin-left: 0;
+    }
 }

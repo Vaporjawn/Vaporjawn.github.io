@@ -40,3 +40,31 @@
     letter-spacing: 2px;
     line-height: 1.75em;
 }
+
+@media screen and (max-width: 768px) {
+    .App-header {
+        width: 100%;
+    }
+
+    .glow {
+        font-size: 40px;
+    }
+
+    .blerb{
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .App-header {
+        width: 100%;
+    }
+
+    .glow {
+        font-size: 40px;
+    }
+
+    .blerb{
+        font-size: 16px;
+    }
+}

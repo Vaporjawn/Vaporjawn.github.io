@@ -75,3 +75,119 @@
     margin: 5%;
     padding-left: 10%;
 }
+
+@media screen and (max-width: 768px) {
+    .hackathonWrapper-style2-container-special-alt{
+        margin: 0px;
+        padding: 0px;
+        height: auto;
+    }
+    .hackathonInnerInfoBox {
+        margin-left: 0px;
+        width: 100%;
+        float: left;
+        padding-top: 0!important;
+        letter-spacing: 0.1em;
+    }
+    .hackathonInfoBoxTitle {
+        text-transform: uppercase;
+        font-weight: 400;
+        letter-spacing: 0.1em;
+        margin-top: -30px;
+    }
+    .hackathonInfoBoxButtons {
+        margin-bottom: 0;
+        cursor: default;
+        margin-left: -70px;
+        margin-top: 65px;
+    }
+    .hackathonInfoBoxButtonSpecial{
+        background: white;
+        border-color: white;
+        color: rgba(157, 34, 53, 1) !important;
+        padding-left: 12px;
+        padding-right: 12px;
+        padding: 10px;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 16px;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 0.8em;
+        letter-spacing: 2px;
+        min-width: 18em;
+        padding: 0 0.75em;
+        line-height: 3.75em;
+        text-align: center;
+    }
+    .hackathonInfoBoxButtons :hover{
+        background-image: linear-gradient(to top left, rgba(157, 34, 53, .7), rgba(82, 77, 77, 0.5));
+        text-shadow: 2px 2px 1px white;
+    }
+    .hackathonInfoBoxPaddingLeft{
+        margin-left: 0px;
+    }
+    .hackathonInfoBoxText {
+        letter-spacing: 2px;
+        line-height: 1
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .hackathonWrapper-style2-container-special-alt{
+        margin: 0px;
+        padding: 0px;
+        height: auto;
+    }
+    .hackathonInnerInfoBox {
+        margin-left: 0px;
+        width: 100%;
+        float: left;
+        padding-top: 0!important;
+        letter-spacing: 0.1em;
+    }
+    .hackathonInfoBoxTitle {
+        text-transform: uppercase;
+        font-weight: 400;
+        letter-spacing: 0.1em;
+        margin-top: -30px;
+    }
+    .hackathonInfoBoxButtons {
+        margin-bottom: 0;
+        cursor: default;
+        margin-left: -70px;
+        margin-top: 65px;
+    }
+    .hackathonInfoBoxButtonSpecial{
+        background: white;
+        border-color: white;
+        color: rgba(157, 34, 53, 1) !important;
+        padding-left: 12px;
+        padding-right: 12px;
+        padding: 10px;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 16px;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 0.8em;
+        letter-spacing: 2px;
+        min-width: 18em;
+        padding: 0 0.75em;
+        line-height: 3.75em;
+        text-align: center;
+    }
+    .hackathonInfoBoxButtons :hover{
+        background-image: linear-gradient(to top left, rgba(157, 34, 53, .7), rgba(82, 77, 77, 0.5));
+        text-shadow: 2px 2px 1px white;
+    }
+    .hackathonInfoBoxPaddingLeft{
+        margin-left: 0px;
+    }
+    .hackathonInfoBoxText {
+        letter-spacing: 2px;
+        line-height: 1
+    }
+}

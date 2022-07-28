@@ -32,3 +32,38 @@
         box-shadow: 0 3px 0 rgba(252, 70, 107, 1);
         width: 100%;
 }
+
+@media screen and (max-width: 768px) {
+    .Bio {
+        font-size: 18.66px;
+    }
+
+    .large-font{
+        font-size: 18.66px;
+    }
+
+    .regular-font{
+        font-size: 18.66px;
+    }
+
+    .bioHeaderGlow {
+        font-size: 35px;
+    }
+}
+@media screen and (max-width: 640px) {
+    .Bio {
+        font-size: 18.66px;
+    }
+
+    .large-font{
+        font-size: 18.66px;
+    }
+
+    .regular-font{
+        font-size: 18.66px;
+    }
+
+    .bioHeaderGlow {
+        font-size: 35px;
+    }
+}

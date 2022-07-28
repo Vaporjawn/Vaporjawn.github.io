@@ -2,19 +2,19 @@
 .text-center {
     text-align: center;
 }
-.soonbody{
+.soonBody{
     margin: 0;
     background:#eee;
     height:auto;
   }
-  .Soonh1 {
+  .SoonH1 {
     font-weight: 400;
     font-size: 2.5rem;
     text-transform: uppercase;
     margin: 0;
   }
   
-  .Soonh3 {
+  .SoonH3 {
     font-weight: 400;
     font-size: 1.2rem;
     text-transform: capitalize;
@@ -34,7 +34,7 @@
     justify-content:center;
     align-items:center;
     text-align:center;
-   background:url('https://wallpaperaccess.com/full/1671088.jpg');
+    background:url('https://wallpaperaccess.com/full/1671088.jpg');
     background-size:cover;
     background-repeat:no-repeat;
     background-position:center;
@@ -60,4 +60,54 @@
   .btn:hover{
     background:#ccc;
     color:#000;
+  }
+
+  @media screen and (max-width: 768px) {
+    .landing-text-inner{
+      width:100%;
+    }
+    
+    .btn{
+      padding:1rem 1rem;
+    }
+
+    .landing-page{
+      background:url('https://wallpaperaccess.com/full/1671088.jpg');
+      background-size:cover;
+      background-repeat:no-repeat;
+      background-position:center;
+    }
+
+    .landing-text-inner{
+      background:rgba(0,0,0,0.6);
+      padding:5rem 1rem;
+      color:#fff;
+      display:block;
+      width:100%
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .landing-text-inner{
+      width:100%;
+    }
+    
+    .btn{
+      padding:1rem 1rem;
+    }
+
+    .landing-page{
+      background:url('https://wallpaperaccess.com/full/1671088.jpg');
+      background-size:cover;
+      background-repeat:no-repeat;
+      background-position:center;
+    }
+
+    .landing-text-inner{
+      background:rgba(0,0,0,0.6);
+      padding:5rem 1rem;
+      color:#fff;
+      display:block;
+      width:100%
+    }
   }
