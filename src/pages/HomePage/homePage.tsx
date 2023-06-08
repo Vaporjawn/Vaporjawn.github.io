@@ -1,12 +1,10 @@
-import React from 'react';
-import BackgroundBanner from '../../../../src/components/BackgroundBanner/backgroundBanner';
-import BioSnippet from '../../../../src/components/HomePage/BioSnippet/bioSnippet';
-import CTABanner from '../../../../src/components/CTABanner/cTABanner';
-import Footer from '../../../../src/components/Footer/footer';
-import InstagramFeed from '../../../../src/components/InstagramFeed/instagramFeed';
+import BackgroundBanner from "../../components/BackgroundBanner/backgroundBanner";
+import CTABanner from "../../components/CTABanner/cTABanner";
+import Footer from "../../components/Footer/footer";
+import BioSnippet from "../../components/HomePage/BioSnippet/bioSnippet";
+import InfoBox from "../../components/HomePage/InfoBox/infoBox";
+import InstagramFeed from "../../components/InstagramFeed/instagramFeed";
 import './homePage.css'
-import InfoBox from '../../../../src/components/HomePage/InfoBox/infoBox';
-// import logo from './logo.svg';
 
 function HomePage() {
   return (

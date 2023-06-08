@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import './App.css'
+import BOXX from "./pages/20XX/bOXX";
+import ComingSoon from "./pages/ComingSoon/comingSoon";
+import ErrorPage from "./pages/ErrorPage/errorPage";
+import Hackathons from "./pages/Hackathons/hackathons";
+import HomePage from "./pages/HomePage/homePage";
+import Projects from "./pages/Projects/projects";
+import Smash from "./pages/Smash/smash";
+import Temple from "./pages/Temple/temple";
+import Vaporjawn from "./pages/Vaporjawn/vaporjawn";
+import React from "react";
+import ReactDOM from "react-dom";
+import reportWebVitals from "./reportWebVitals";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    ReactDOM.render(
+      <React.StrictMode>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="*" element={<ErrorPage/>} />
+            <Route path="/ComingSoon" element={<ComingSoon/>} />
+            <Route path="/Hackathons" element={<Hackathons/>} />
+            <Route path="/Projects" element={<Projects/>} />
+            <Route path="/SSBM" element={<Smash/>} />
+            <Route path="/Temple" element={<Temple />} />
+            <Route path="/Vaporjawn" element={<Vaporjawn/>} />
+            <Route path="/20XX" element={<BOXX/>} />
+          </Routes>
+        </BrowserRouter>
+      </React.StrictMode>,
+      document.getElementById('root')
+    )
+  );
+
 }
 
-export default App
+reportWebVitals();
+
+export default App;

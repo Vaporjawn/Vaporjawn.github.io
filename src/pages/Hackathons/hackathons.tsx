@@ -1,11 +1,8 @@
-import React from 'react';
-import Footer from '../../../../src/components/Footer/footer';
-import HackathonBackgroundBanner from '../../../../src/components/Hackathons/HackathonBackgroundBanner/hackathonBackgroundBanner';
-import HackathonBioSnippet from '../../../../src/components/Hackathons/HackathonBioSnippet/hackathonBioSnippet';
-import HackathonCTABanner from '../../../../src/components/Hackathons/HackathonCTABanner/hackathonCTABanner';
-import HackathonInfoBox from '../../../../src/components/Hackathons/HackathonInfoBox/hackathonInfoBox';
-
-
+import Footer from "../../components/Footer/footer";
+import HackathonBackgroundBanner from "../../components/Hackathons/HackathonBackgroundBanner/hackathonBackgroundBanner";
+import HackathonBioSnippet from "../../components/Hackathons/HackathonBioSnippet/hackathonBioSnippet";
+import HackathonCTABanner from "../../components/Hackathons/HackathonCTABanner/hackathonCTABanner";
+import HackathonInfoBox from "../../components/Hackathons/HackathonInfoBox/hackathonInfoBox";
 
 const Hackathons = () => {
   return (
