@@ -7,13 +7,13 @@ import HackathonInfoBox from "../../components/Hackathons/HackathonInfoBox/hacka
 const Hackathons = () => {
   return (
     <div>
-      <HackathonBackgroundBanner/>
-      <HackathonBioSnippet/>
-      <HackathonInfoBox/>
-      <HackathonCTABanner/>
-      <Footer/>
+      <HackathonBackgroundBanner />
+      <HackathonBioSnippet />
+      <HackathonInfoBox />
+      <HackathonCTABanner />
+      <Footer />
     </div>
   );
-}
+};
 
 export default Hackathons;

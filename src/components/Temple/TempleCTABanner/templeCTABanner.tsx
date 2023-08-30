@@ -1,11 +1,11 @@
-import React from 'react';
-import CTA from '../../CTA/cTA';
-import './templeCTABanner.css';
+import React from "react";
+import CTA from "../../CTA/cTA";
+import "./templeCTABanner.css";
 
 function TempleCTABanner() {
   return (
-    <div className="templeCTABanner"> 
-    <CTA/>
+    <div className="templeCTABanner">
+      <CTA />
     </div>
   );
 }

@@ -3,14 +3,13 @@ import ProjectsBackgroundBanner from "../../components/Projects/ProjectsBackgrou
 import ProjectsCTABanner from "../../components/Projects/ProjectsCTABanner/projectsCTABanner";
 import ProjectsFeed from "../../components/Projects/ProjectsFeed/projectsFeed";
 
-
 function Projects() {
   return (
     <div>
-      <ProjectsBackgroundBanner/>
-      <ProjectsFeed/>
-      <ProjectsCTABanner/>
-      <Footer/>
+      <ProjectsBackgroundBanner />
+      <ProjectsFeed />
+      <ProjectsCTABanner />
+      <Footer />
     </div>
   );
 }

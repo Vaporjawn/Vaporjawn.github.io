@@ -8,12 +8,12 @@ import SmashInfoBox from "../../components/Smash/SmashInfoBox/smashInfoBox";
 function Smash() {
   return (
     <div>
-      <SmashBackgroundBanner/>
-      <SmashBioSnippet/>
-      <SmashInfoBox/>
-      <SmashFeed/>
-      <SmashCTABanner/>
-      <Footer/>
+      <SmashBackgroundBanner />
+      <SmashBioSnippet />
+      <SmashInfoBox />
+      <SmashFeed />
+      <SmashCTABanner />
+      <Footer />
     </div>
   );
 }

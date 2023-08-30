@@ -4,15 +4,14 @@ import TempleBioSnippet from "../../components/Temple/TempleBioSnippet/templeBio
 import TempleCTABanner from "../../components/Temple/TempleCTABanner/templeCTABanner";
 import TempleInfoBox from "../../components/Temple/TempleInfoBox/templeInfoBox";
 
-
 function Temple() {
   return (
     <div>
-      <TempleBackgroundBanner/>
-      <TempleBioSnippet/>
-      <TempleInfoBox/>
-      <TempleCTABanner/>
-      <Footer/>
+      <TempleBackgroundBanner />
+      <TempleBioSnippet />
+      <TempleInfoBox />
+      <TempleCTABanner />
+      <Footer />
     </div>
   );
 }

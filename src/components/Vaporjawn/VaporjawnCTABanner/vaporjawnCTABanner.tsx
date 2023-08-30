@@ -1,11 +1,11 @@
-import React from 'react';
-import CTA from '../../CTA/cTA';
-import './vaporjawnCTABanner.css';
+import React from "react";
+import CTA from "../../CTA/cTA";
+import "./vaporjawnCTABanner.css";
 
 function VaporjawnCTABanner() {
   return (
-    <div className="VaporjawnCTABanner"> 
-    <CTA/>
+    <div className="VaporjawnCTABanner">
+      <CTA />
     </div>
   );
 }

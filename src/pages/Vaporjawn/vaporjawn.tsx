@@ -8,12 +8,12 @@ import VaporjawnInfoBox from "../../components/Vaporjawn/VaporjawnInfoBox/vaporj
 function Vaporjawn() {
   return (
     <div>
-      <VaporjawnBackgroundBanner/>
-      <VaporjawnBioSnippet/>
-      <VaporjawnInfoBox/>
-      <VaporjawnFeed/>
-      <VaporjawnCTABanner/>
-      <Footer/>
+      <VaporjawnBackgroundBanner />
+      <VaporjawnBioSnippet />
+      <VaporjawnInfoBox />
+      <VaporjawnFeed />
+      <VaporjawnCTABanner />
+      <Footer />
     </div>
   );
 }

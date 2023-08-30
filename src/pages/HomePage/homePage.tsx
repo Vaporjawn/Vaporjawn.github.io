@@ -4,18 +4,17 @@ import Footer from "../../components/Footer/footer";
 import BioSnippet from "../../components/HomePage/BioSnippet/bioSnippet";
 import InfoBox from "../../components/HomePage/InfoBox/infoBox";
 import InstagramFeed from "../../components/InstagramFeed/instagramFeed";
-import './homePage.css'
+import "./homePage.css";
 
 function HomePage() {
   return (
-
     <div className="App">
-        <BackgroundBanner/>
-        <BioSnippet/>
-        <InfoBox/>
-        <InstagramFeed/>
-        <CTABanner/>
-        <Footer/>
+      <BackgroundBanner />
+      <BioSnippet />
+      <InfoBox />
+      <InstagramFeed />
+      <CTABanner />
+      <Footer />
     </div>
   );
 }
