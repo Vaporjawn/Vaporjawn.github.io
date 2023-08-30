@@ -1,13 +1,13 @@
-import React from "react";
-import FACameraRetro from "../../FontAwesome/Icons/faCameraRetro";
-import FAHashtag from "../../FontAwesome/Icons/faGears copy";
-import FAInstagram from "../../FontAwesome/Icons/faInstagram";
-import FALaptopCode from "../../FontAwesome/Icons/faLaptopCode";
-import FATwitch from "../../FontAwesome/Icons/faTwitch";
-import FATwitter from "../../FontAwesome/Icons/faTwitter";
-import "./vaporjawnInfoBox.css";
+import React from 'react';
+import FACameraRetro from '../../FontAwesome/Icons/faCameraRetro';
+import FAHashtag from '../../FontAwesome/Icons/faGears copy';
+import FAInstagram from '../../FontAwesome/Icons/faInstagram';
+import FALaptopCode from '../../FontAwesome/Icons/faLaptopCode';
+import FATwitch from '../../FontAwesome/Icons/faTwitch';
+import FATwitter from '../../FontAwesome/Icons/faTwitter';
+import './vaporjawnInfoBox.css';
 
-function VaporjawnInfoBox() {
+const VaporjawnInfoBox = () => {
   return (
     <div>
       <div className="VaporjawnWrapper-style2-container-special-alt">
@@ -29,7 +29,7 @@ function VaporjawnInfoBox() {
                   <a
                     href="https:vaporjawn.bandcamp.com/"
                     target="_blank"
-                    className="VaporjawnInfoBoxButtonSpecial"
+                    className="VaporjawnInfoBoxButtonSpecial" rel="noreferrer"
                   >
                     My Bandcamp
                   </a>

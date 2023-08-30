@@ -1,7 +1,6 @@
-import React from "react";
-import "./vaporjawnBioSnippet.css";
+import './vaporjawnBioSnippet.css';
 
-function VaporjawnBioSnippet() {
+const VaporjawnBioSnippet = () => {
   return (
     <div className="VaporjawnBio">
       <h1 className="VaporjawnBioGlow">

@@ -1,17 +1,17 @@
-import { Routes, Route, BrowserRouter } from "react-router-dom";
-import "./App.css";
-import BOXX from "./pages/20XX/bOXX";
-import ComingSoon from "./pages/ComingSoon/comingSoon";
-import ErrorPage from "./pages/ErrorPage/errorPage";
-import Hackathons from "./pages/Hackathons/hackathons";
-import HomePage from "./pages/HomePage/homePage";
-import Projects from "./pages/Projects/projects";
-import Smash from "./pages/Smash/smash";
-import Temple from "./pages/Temple/temple";
-import Vaporjawn from "./pages/Vaporjawn/vaporjawn";
-import React from "react";
-import ReactDOM from "react-dom";
-import reportWebVitals from "./reportWebVitals";
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import './App.css';
+import BOXX from './pages/20XX/bOXX';
+import ComingSoon from './pages/ComingSoon/comingSoon';
+import ErrorPage from './pages/ErrorPage/errorPage';
+import Hackathons from './pages/Hackathons/hackathons';
+import HomePage from './pages/HomePage/homePage';
+import Projects from './pages/Projects/projects';
+import Smash from './pages/Smash/smash';
+import Temple from './pages/Temple/temple';
+import Vaporjawn from './pages/Vaporjawn/vaporjawn';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import reportWebVitals from './reportWebVitals';
 
 const App = () => {
   return ReactDOM.render(
@@ -30,7 +30,7 @@ const App = () => {
         </Routes>
       </BrowserRouter>
     </React.StrictMode>,
-    document.getElementById("root"),
+    document.getElementById('root'),
   );
 };
 

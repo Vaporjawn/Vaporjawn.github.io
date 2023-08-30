@@ -1,9 +1,8 @@
-import React from "react";
-import MenuBar from "../../MenuBar/menuBar";
-import VaporjawnHeader from "../VaporjawnHeader/vaporjawnHeader";
-import "./vaporjawnBackgroundBanner.css";
+import MenuBar from '../../MenuBar/menuBar';
+import VaporjawnHeader from '../VaporjawnHeader/vaporjawnHeader';
+import './vaporjawnBackgroundBanner.css';
 
-function VaporjawnBackgroundBanner() {
+const VaporjawnBackgroundBanner = () => {
   return (
     <div className="VaporjawnBackgroundBanner">
       <MenuBar />

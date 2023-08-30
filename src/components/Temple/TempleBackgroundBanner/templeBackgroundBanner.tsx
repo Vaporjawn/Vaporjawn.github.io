@@ -1,9 +1,8 @@
-import React from "react";
-import MenuBar from "../../MenuBar/menuBar";
-import TempleHeader from "../TempleHeader/templeHeader";
-import "./templeBackgroundBanner.css";
+import MenuBar from '../../MenuBar/menuBar';
+import TempleHeader from '../TempleHeader/templeHeader';
+import './templeBackgroundBanner.css';
 
-function TempleBackgroundBanner() {
+const TempleBackgroundBanner = () => {
   return (
     <div className="TempleBackgroundBanner">
       <MenuBar />

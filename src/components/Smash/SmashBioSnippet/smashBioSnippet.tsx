@@ -1,7 +1,6 @@
-import React from "react";
-import "./smashBioSnippet.css";
+import './smashBioSnippet.css';
 
-function SmashBioSnippet() {
+const SmashBioSnippet = () => {
   return (
     <div className="smashBio">
       <span className="shinePng">

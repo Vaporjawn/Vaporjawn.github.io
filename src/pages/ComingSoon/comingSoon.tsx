@@ -1,5 +1,4 @@
-import React from "react";
-import "./comingSoon.css";
+import './comingSoon.css';
 
 const ComingSoon = () => {
   return (
@@ -8,7 +7,7 @@ const ComingSoon = () => {
         <div className="landing-text-inner">
           <h1 className="SoonH1">COMING SOON!</h1>
           <h3 className="sub-title text-center SoonH3">
-            I'm still working on this page right now.{" "}
+            I'm still working on this page right now.{' '}
           </h3>
           <h3 className="sub-title text-center SoonH3">
             Check back in a little bit and maybe I'll actually have it done

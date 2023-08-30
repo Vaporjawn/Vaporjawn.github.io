@@ -1,8 +1,7 @@
-import React from "react";
-import CTA from "../../CTA/cTA";
-import "./vaporjawnCTABanner.css";
+import CTA from '../../CTA/cTA';
+import './vaporjawnCTABanner.css';
 
-function VaporjawnCTABanner() {
+const VaporjawnCTABanner = () => {
   return (
     <div className="VaporjawnCTABanner">
       <CTA />

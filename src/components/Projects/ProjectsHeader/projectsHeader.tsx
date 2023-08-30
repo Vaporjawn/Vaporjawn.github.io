@@ -1,7 +1,6 @@
-import React from "react";
-import "./projectsHeader.css";
+import './projectsHeader.css';
 
-function ProjectsHeader() {
+const ProjectsHeader = () => {
   return (
     <div>
       <div className="Projects-header">
@@ -9,7 +8,7 @@ function ProjectsHeader() {
           <h2 className="ProjectsGlow">Projects</h2>
         </header>
         <p className="ProjectsBlerb">
-          Here are some of the projects that I have been working on{" "}
+          Here are some of the projects that I have been working on{' '}
         </p>
       </div>
     </div>

@@ -1,13 +1,12 @@
-import React from "react";
-import FACalendarCheck from "../../FontAwesome/Icons/faCalendarCheck";
-import FACameraRetro from "../../FontAwesome/Icons/faCameraRetro";
-import FAChalkboard from "../../FontAwesome/Icons/faChalkboard";
-import FAGraduationCap from "../../FontAwesome/Icons/faGraduationCap";
-import FALaptopCode from "../../FontAwesome/Icons/faLaptopCode";
-import FASchoolFlag from "../../FontAwesome/Icons/faSchoolFlag";
-import "./templeInfoBox.css";
+import FACalendarCheck from '../../FontAwesome/Icons/faCalendarCheck';
+import FACameraRetro from '../../FontAwesome/Icons/faCameraRetro';
+import FAChalkboard from '../../FontAwesome/Icons/faChalkboard';
+import FAGraduationCap from '../../FontAwesome/Icons/faGraduationCap';
+import FALaptopCode from '../../FontAwesome/Icons/faLaptopCode';
+import FASchoolFlag from '../../FontAwesome/Icons/faSchoolFlag';
+import './templeInfoBox.css';
 
-function TempleInfoBox() {
+const TempleInfoBox = () => {
   return (
     <div>
       <div className="templeWrapper-style2-container-special-alt">
@@ -21,7 +20,7 @@ function TempleInfoBox() {
               students are able to organize so many events that people can't
               keep track. They have ways to get involved and a lot of
               popularity, which is hard to find at University. Night Owl events
-              are also a treat as well.{" "}
+              are also a treat as well.{' '}
             </p>
             <footer>
               <ul className="templeInfoBoxButtons">
@@ -29,7 +28,7 @@ function TempleInfoBox() {
                   <a
                     href="https://studentactivities.temple.edu/student-organization-events"
                     target="_blank"
-                    className="templeInfoBoxButtonSpecial"
+                    className="templeInfoBoxButtonSpecial" rel="noreferrer"
                   >
                     Student Activities
                   </a>
@@ -38,7 +37,7 @@ function TempleInfoBox() {
                   <a
                     href="https://www.temple.edu/"
                     target="_blank"
-                    className="templeInfoBoxButtonSpecial"
+                    className="templeInfoBoxButtonSpecial" rel="noreferrer"
                   >
                     University Site
                   </a>

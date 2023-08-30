@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
-import { BrowserRouter, Route, Router, useNavigate } from "react-router-dom";
-import "./errorPage.css";
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './errorPage.css';
 
 const ErrorPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
-      navigate("/");
+      navigate('/');
     }, 7000);
   }, []);
 

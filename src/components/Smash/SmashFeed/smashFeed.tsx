@@ -1,6 +1,5 @@
-import React from "react";
-import "./smashFeed.css";
-import { Link } from "react-router-dom";
+import './smashFeed.css';
+import { Link } from 'react-router-dom';
 
 const SmashFeed = () => {
   {
@@ -8,18 +7,18 @@ const SmashFeed = () => {
       <div className="SmashPictureContainer">
         <div className="SmashContainerHeader">
           <h2>
-            MY FAVORITE <strong>MELEE</strong> CONTENT FROM THE COMMUNITY{" "}
+            MY FAVORITE <strong>MELEE</strong> CONTENT FROM THE COMMUNITY{' '}
           </h2>
         </div>
         <div className="rowContainer">
           <div className="sectionContainer">
             <a
               href="https://www.youtube.com/watch?v=NSf2mgkRm7Q&list=PLoUHkRwnRH-IXbZfwlgiEN8eXmoj6DtKM&index=1"
-              target="_blank"
+              target="_blank" rel="noreferrer"
             >
               <img
                 src={
-                  "https://raw.githubusercontent.com/Vapor-jawn/Instagram-Pictures/main/images/THE SMASH BROTHERS DOCUMENTARY SERIES.jpg"
+                  'https://raw.githubusercontent.com/Vapor-jawn/Instagram-Pictures/main/images/THE SMASH BROTHERS DOCUMENTARY SERIES.jpg'
                 }
                 className="SmashPicture"
               />
@@ -36,11 +35,11 @@ const SmashFeed = () => {
           <div className="sectionContainer">
             <a
               href="https://www.youtube.com/watch?v=ESJOMtWx6nI"
-              target="_blank"
+              target="_blank" rel="noreferrer"
             >
               <img
                 src={
-                  "https://raw.githubusercontent.com/Vapor-jawn/Instagram-Pictures/main/images/NO LS IN ART - A PGH CARROLL COMBO VIDEO.jpg"
+                  'https://raw.githubusercontent.com/Vapor-jawn/Instagram-Pictures/main/images/NO LS IN ART - A PGH CARROLL COMBO VIDEO.jpg'
                 }
                 className="SmashPicture"
               />
@@ -58,11 +57,11 @@ const SmashFeed = () => {
           <div className="sectionContainer">
             <a
               href="https://www.youtube.com/watch?v=LKuD2a4yRcE&feature=youtu.be"
-              target="_blank"
+              target="_blank" rel="noreferrer"
             >
               <img
                 src={
-                  "https://raw.githubusercontent.com/Vapor-jawn/Instagram-Pictures/main/images/THE ULTIMATE SHOWDOWN.jpg"
+                  'https://raw.githubusercontent.com/Vapor-jawn/Instagram-Pictures/main/images/THE ULTIMATE SHOWDOWN.jpg'
                 }
                 className="SmashPicture"
               />
@@ -79,11 +78,11 @@ const SmashFeed = () => {
           <div className="sectionContainer">
             <a
               href="https://www.youtube.com/watch?v=1ME6xFkGUfs"
-              target="_blank"
+              target="_blank" rel="noreferrer"
             >
               <img
                 src={
-                  "https://raw.githubusercontent.com/Vapor-jawn/Instagram-Pictures/main/images/THERE IS SO MUCH MORE MELEE (TO BE PLAYED).jpg"
+                  'https://raw.githubusercontent.com/Vapor-jawn/Instagram-Pictures/main/images/THERE IS SO MUCH MORE MELEE (TO BE PLAYED).jpg'
                 }
                 className="SmashPicture"
               />
@@ -93,7 +92,7 @@ const SmashFeed = () => {
             </div>
             <p className="SmashPictureText">
               Despite being a rushed project released in 2001. The community has
-              come so far and isn't showing signed of slowing down.{" "}
+              come so far and isn't showing signed of slowing down.{' '}
             </p>
           </div>
         </div>

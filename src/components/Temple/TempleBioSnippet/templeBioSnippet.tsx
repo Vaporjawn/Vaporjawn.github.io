@@ -1,14 +1,13 @@
-import React from "react";
-import "./templeBioSnippet.css";
+import './templeBioSnippet.css';
 
-function TempleBioSnippet() {
+const TempleBioSnippet = () => {
   return (
     <div className="TempleBio">
       <h1 className="TempleBioGlow">
         <strong>The University</strong>
       </h1>
       <h4 className="large-font">
-        Temple University is a community of{" "}
+        Temple University is a community of{' '}
         <strong>individuals who truly show up everyday to learn. </strong> It's
         one of the reasons that I was so interested in the field I'm in now.
         Everyone at Temple is there to help and I'm no better example of that. I
@@ -20,7 +19,7 @@ function TempleBioSnippet() {
         Every year that I was at this University I felt like I was a completely
         different person. This allowed me to get my feet wet into server's
         different fields before even completing my 4-year degree.
-        <br /> The school was everything that I could have ever wanted from{" "}
+        <br /> The school was everything that I could have ever wanted from{' '}
         <strong>'the college experience'.</strong> A truly diverse student body,
         along with dedicated professors to guide you into the real world as a
         professional in your major.

@@ -1,13 +1,13 @@
-import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import "./bOXX.css";
+import { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import './bOXX.css';
 
 const BOXX = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
-      navigate("/SSBM");
+      navigate('/SSBM');
     }, 30000);
   }, []);
   return (

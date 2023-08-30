@@ -1,8 +1,7 @@
-import React from "react";
-import CTA from "../../CTA/cTA";
-import "./smashCTABanner.css";
+import CTA from '../../CTA/cTA';
+import './smashCTABanner.css';
 
-function SmashCTABanner() {
+const SmashCTABanner = () => {
   return (
     <div className="smashCTABanner">
       <CTA />
