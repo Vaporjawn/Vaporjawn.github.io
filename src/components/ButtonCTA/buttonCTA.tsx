@@ -1,7 +1,6 @@
-import React from "react";
-import "./buttonCTA.css";
+import './buttonCTA.css';
 
-function ButtonCTA() {
+const ButtonCTA = () => {
   return (
     <div>
       <ul className="ButtonContainer">
@@ -9,7 +8,7 @@ function ButtonCTA() {
           <a
             href="mailto:victorwilliams719@gmail.com#"
             target="_blank"
-            className="ButtonCTALink"
+            className="ButtonCTALink" rel="noreferrer"
           >
             CONTACT ME
           </a>
@@ -18,7 +17,7 @@ function ButtonCTA() {
           <a
             href="mailto:Vaporjawn@gmail.com#"
             target="_blank"
-            className="ButtonCTALink"
+            className="ButtonCTALink" rel="noreferrer"
           >
             VAPORJAWN CONTACT
           </a>

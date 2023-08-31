@@ -1,20 +1,19 @@
-import React from "react";
-import "./hackathonBioSnippet.css";
+import './hackathonBioSnippet.css';
 
-function HackathonBioSnippet() {
+const HackathonBioSnippet = () => {
   return (
     <div className="hackathonBio">
       <h1 className="hackathonBioGlow tudev">
         <strong>TUDev</strong>
       </h1>
       <h4 className="large-font">
-        TUDev is a community of{" "}
+        TUDev is a community of{' '}
         <strong>designers, develoeprs, and hackers.</strong> We attend tons of
         hackathons throughout the year. We were ranked by
         <a href="https://mlh.io">
-          {" "}
+          {' '}
           <strong> Major League Hacking </strong>
-        </a>{" "}
+        </a>{' '}
         as the 14th most active hacking community in North America for the
         Spring 2016 season.
       </h4>

@@ -1,9 +1,8 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "../fontAwesome.css";
-import { faChalkboard, faSchoolFlag } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import '../fontAwesome.css';
+import { faChalkboard, faSchoolFlag } from '@fortawesome/free-solid-svg-icons';
 
-function FAChalkboard() {
+const FAChalkboard = () => {
   return (
     <div>
       <FontAwesomeIcon

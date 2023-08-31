@@ -1,9 +1,8 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "../fontAwesome.css";
-import { faHashtag } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import '../fontAwesome.css';
+import { faHashtag } from '@fortawesome/free-solid-svg-icons';
 
-function FAHashtag() {
+const FAHashtag = () => {
   return (
     <div>
       <FontAwesomeIcon

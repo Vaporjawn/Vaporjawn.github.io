@@ -1,9 +1,8 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "../fontAwesome.css";
-import { faTwitch } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import '../fontAwesome.css';
+import { faTwitch } from '@fortawesome/free-brands-svg-icons';
 
-function FATwitch() {
+const FATwitch = () => {
   return (
     <div>
       <FontAwesomeIcon

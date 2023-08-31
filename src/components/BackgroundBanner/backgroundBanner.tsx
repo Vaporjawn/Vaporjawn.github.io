@@ -1,9 +1,8 @@
-import React from "react";
-import HomeHeader from "../HomePage/HomeHeader/homeHeader";
-import MenuBar from "../MenuBar/menuBar";
-import "./backgroundBanner.css";
+import HomeHeader from '../HomePage/HomeHeader/homeHeader';
+import MenuBar from '../MenuBar/menuBar';
+import './backgroundBanner.css';
 
-function BackgroundBanner() {
+const BackgroundBanner = () => {
   return (
     <div className="BackgroundBanner">
       <MenuBar />

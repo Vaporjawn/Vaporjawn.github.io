@@ -1,9 +1,8 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "../fontAwesome.css";
-import { faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import '../fontAwesome.css';
+import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 
-function FATwitter() {
+const FATwitter = () => {
   return (
     <div>
       <FontAwesomeIcon

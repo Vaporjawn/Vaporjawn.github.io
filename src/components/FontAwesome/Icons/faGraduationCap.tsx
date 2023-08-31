@@ -1,12 +1,10 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "../fontAwesome.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import '../fontAwesome.css';
 import {
-  faGraduationCap,
-  faSchoolFlag,
-} from "@fortawesome/free-solid-svg-icons";
+  faGraduationCap
+} from '@fortawesome/free-solid-svg-icons';
 
-function FAGraduationCap() {
+const FAGraduationCap = () => {
   return (
     <div>
       <FontAwesomeIcon

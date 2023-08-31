@@ -1,9 +1,8 @@
-import React from "react";
-import MenuBar from "../../MenuBar/menuBar";
-import ProjectsHeader from "../ProjectsHeader/projectsHeader";
-import "./projectsBackgroundBanner.css";
+import MenuBar from '../../MenuBar/menuBar';
+import ProjectsHeader from '../ProjectsHeader/projectsHeader';
+import './projectsBackgroundBanner.css';
 
-function ProjectsBackgroundBanner() {
+const ProjectsBackgroundBanner = () => {
   return (
     <div className="ProjectsBackgroundBanner">
       <MenuBar />

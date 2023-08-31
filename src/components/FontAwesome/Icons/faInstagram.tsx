@@ -1,9 +1,8 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "../fontAwesome.css";
-import { faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import '../fontAwesome.css';
+import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 
-function FAInstagram() {
+const FAInstagram = () => {
   return (
     <div>
       <FontAwesomeIcon

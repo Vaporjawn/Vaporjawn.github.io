@@ -1,9 +1,8 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "../fontAwesome.css";
-import { faLaptopCode } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import '../fontAwesome.css';
+import { faLaptopCode } from '@fortawesome/free-solid-svg-icons';
 
-function FALaptopCode() {
+const FALaptopCode = () => {
   return (
     <div>
       <FontAwesomeIcon

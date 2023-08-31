@@ -1,4 +1,4 @@
-import React from "react";
+import  from "react";
 import "./hackathonHeader.css";
 
 function HackathonHeader() {

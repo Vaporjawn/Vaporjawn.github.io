@@ -1,8 +1,7 @@
-import React from "react";
-import CTA from "../CTA/cTA";
-import "./cTABanner.css";
+import CTA from '../CTA/cTA';
+import './cTABanner.css';
 
-function CTABanner() {
+const CTABanner = () => {
   return (
     <div className="CTABanner">
       <CTA />

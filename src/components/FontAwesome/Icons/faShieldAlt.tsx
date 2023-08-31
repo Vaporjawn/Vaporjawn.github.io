@@ -1,9 +1,8 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "../fontAwesome.css";
-import { faShieldAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import '../fontAwesome.css';
+import { faShieldAlt } from '@fortawesome/free-solid-svg-icons';
 
-function FAShieldAlt() {
+const FAShieldAlt = () => {
   return (
     <div>
       <FontAwesomeIcon

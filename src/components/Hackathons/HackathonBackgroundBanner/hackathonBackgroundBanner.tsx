@@ -1,9 +1,8 @@
-import React from "react";
-import MenuBar from "../../MenuBar/menuBar";
-import HackathonHeader from "../HackathonHeader/hackathonHeader";
-import "./hackathonBackgroundBanner.css";
+import MenuBar from '../../MenuBar/menuBar';
+import HackathonHeader from '../HackathonHeader/hackathonHeader';
+import './hackathonBackgroundBanner.css';
 
-function HackathonBackgroundBanner() {
+const HackathonBackgroundBanner = () => {
   return (
     <div className="HackathonBackgroundBanner">
       <MenuBar />

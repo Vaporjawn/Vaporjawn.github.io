@@ -1,8 +1,9 @@
-import React from "react";
-import ButtonCTA from "../ButtonCTA/buttonCTA";
-import "./cTA.css";
+import ButtonCTA from '../ButtonCTA/buttonCTA';
+import './cTA.css';
 
-function CTA() {
+
+
+const CTA = () => {
   return (
     <div className="CTA">
       <header>
