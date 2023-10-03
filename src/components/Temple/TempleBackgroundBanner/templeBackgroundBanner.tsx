@@ -1,6 +1,6 @@
-import MenuBar from '../../MenuBar/menuBar';
-import TempleHeader from '../TempleHeader/templeHeader';
-import './templeBackgroundBanner.css';
+import MenuBar from "../../MenuBar/menuBar";
+import TempleHeader from "../TempleHeader/templeHeader";
+import "./templeBackgroundBanner.css";
 
 const TempleBackgroundBanner = () => {
   return (
@@ -9,6 +9,6 @@ const TempleBackgroundBanner = () => {
       <TempleHeader />
     </div>
   );
-}
+};
 
 export default TempleBackgroundBanner;

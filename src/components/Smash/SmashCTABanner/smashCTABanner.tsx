@@ -1,5 +1,5 @@
-import CTA from '../../CTA/cTA';
-import './smashCTABanner.css';
+import CTA from "../../CTA/cTA";
+import "./smashCTABanner.css";
 
 const SmashCTABanner = () => {
   return (
@@ -7,6 +7,6 @@ const SmashCTABanner = () => {
       <CTA />
     </div>
   );
-}
+};
 
 export default SmashCTABanner;

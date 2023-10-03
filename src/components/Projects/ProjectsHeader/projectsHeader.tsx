@@ -1,4 +1,4 @@
-import './projectsHeader.css';
+import "./projectsHeader.css";
 
 const ProjectsHeader = () => {
   return (
@@ -8,11 +8,11 @@ const ProjectsHeader = () => {
           <h2 className="ProjectsGlow">Projects</h2>
         </header>
         <p className="ProjectsBlerb">
-          Here are some of the projects that I have been working on{' '}
+          Here are some of the projects that I have been working on{" "}
         </p>
       </div>
     </div>
   );
-}
+};
 
 export default ProjectsHeader;

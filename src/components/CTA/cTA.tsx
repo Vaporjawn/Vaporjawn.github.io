@@ -1,22 +1,17 @@
-import ButtonCTA from '../ButtonCTA/buttonCTA';
-import './cTA.css';
-
-
+import ButtonCTA from "../ButtonCTA/buttonCTA";
+import "./cTA.css";
+import CTAHeaderTitle from "./components/cTaHeaderTitle";
 
 const CTA = () => {
   return (
     <div className="CTA">
       <header>
-        <h2 className="CTAGlow">
-          <strong> Want to reach me? </strong>
-        </h2>
-        <p className="CTAGlow-small">
-          <b>Here's a few of my contacts and socials so we can be in touch.</b>
-        </p>
+        <CTAHeaderTitle />
+        <CTAHeaderTitle />
         <ButtonCTA />
       </header>
     </div>
   );
-}
+};
 
 export default CTA;

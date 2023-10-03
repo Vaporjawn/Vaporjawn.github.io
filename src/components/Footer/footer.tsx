@@ -1,5 +1,5 @@
-import './footer.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import "./footer.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngellist,
   faFacebook,
@@ -9,7 +9,7 @@ import {
   faSteam,
   faTwitch,
   faTwitter,
-} from '@fortawesome/free-brands-svg-icons';
+} from "@fortawesome/free-brands-svg-icons";
 
 const Footer = () => {
   return (
@@ -17,17 +17,29 @@ const Footer = () => {
       <footer className="footer">
         <ul className="icons">
           <li>
-            <a href="https://github.com/vaporjawn" target="_blank" rel="noreferrer">
+            <a
+              href="https://github.com/vaporjawn"
+              target="_blank"
+              rel="noreferrer"
+            >
               <FontAwesomeIcon icon={faGithub} size="3x" className="Github" />
             </a>
           </li>
           <li>
-            <a href="https://twitter.com/vaporjawn" target="_blank" rel="noreferrer">
+            <a
+              href="https://twitter.com/vaporjawn"
+              target="_blank"
+              rel="noreferrer"
+            >
               <FontAwesomeIcon icon={faTwitter} size="3x" className="Twitter" />
             </a>
           </li>
           <li>
-            <a href="https://instagram.com/vaporjawn" target="_blank" rel="noreferrer">
+            <a
+              href="https://instagram.com/vaporjawn"
+              target="_blank"
+              rel="noreferrer"
+            >
               <FontAwesomeIcon
                 icon={faInstagram}
                 size="3x"
@@ -38,7 +50,8 @@ const Footer = () => {
           <li>
             <a
               href="https://www.facebook.com/victor.williams.jr"
-              target="_blank" rel="noreferrer"
+              target="_blank"
+              rel="noreferrer"
             >
               <FontAwesomeIcon
                 icon={faFacebook}
@@ -48,17 +61,29 @@ const Footer = () => {
             </a>
           </li>
           <li>
-            <a href="https://twitch.com/vaporjawn" target="_blank" rel="noreferrer">
+            <a
+              href="https://twitch.com/vaporjawn"
+              target="_blank"
+              rel="noreferrer"
+            >
               <FontAwesomeIcon icon={faTwitch} size="3x" className="Twitch" />
             </a>
           </li>
           <li>
-            <a href="https://steamcommunity.com/id/vaporjawn" target="_blank" rel="noreferrer">
+            <a
+              href="https://steamcommunity.com/id/vaporjawn"
+              target="_blank"
+              rel="noreferrer"
+            >
               <FontAwesomeIcon icon={faSteam} size="3x" className="Steam" />
             </a>
           </li>
           <li>
-            <a href="https://angel.co/victor-wiliams" target="_blank" rel="noreferrer">
+            <a
+              href="https://angel.co/victor-wiliams"
+              target="_blank"
+              rel="noreferrer"
+            >
               <FontAwesomeIcon
                 icon={faAngellist}
                 size="3x"
@@ -67,7 +92,11 @@ const Footer = () => {
             </a>
           </li>
           <li>
-            <a href="https://linkedin.com/victorwilliams719" target="_blank" rel="noreferrer">
+            <a
+              href="https://linkedin.com/victorwilliams719"
+              target="_blank"
+              rel="noreferrer"
+            >
               <FontAwesomeIcon
                 icon={faLinkedin}
                 size="3x"
@@ -85,6 +114,6 @@ const Footer = () => {
       </footer>
     </div>
   );
-}
+};
 
 export default Footer;

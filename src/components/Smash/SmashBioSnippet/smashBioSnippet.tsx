@@ -1,4 +1,4 @@
-import './smashBioSnippet.css';
+import "./smashBioSnippet.css";
 
 const SmashBioSnippet = () => {
   return (
@@ -22,6 +22,6 @@ const SmashBioSnippet = () => {
       />
     </div>
   );
-}
+};
 
 export default SmashBioSnippet;

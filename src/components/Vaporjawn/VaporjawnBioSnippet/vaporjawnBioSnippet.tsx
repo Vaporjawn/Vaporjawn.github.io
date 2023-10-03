@@ -1,4 +1,4 @@
-import './vaporjawnBioSnippet.css';
+import "./vaporjawnBioSnippet.css";
 
 const VaporjawnBioSnippet = () => {
   return (
@@ -25,6 +25,6 @@ const VaporjawnBioSnippet = () => {
       </h4>
     </div>
   );
-}
+};
 
 export default VaporjawnBioSnippet;

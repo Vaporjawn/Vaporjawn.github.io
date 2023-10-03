@@ -1,6 +1,6 @@
-import MenuBar from '../../MenuBar/menuBar';
-import HackathonHeader from '../HackathonHeader/hackathonHeader';
-import './hackathonBackgroundBanner.css';
+import MenuBar from "../../MenuBar/menuBar";
+import HackathonHeader from "../HackathonHeader/hackathonHeader";
+import "./hackathonBackgroundBanner.css";
 
 const HackathonBackgroundBanner = () => {
   return (
@@ -9,6 +9,6 @@ const HackathonBackgroundBanner = () => {
       <HackathonHeader />
     </div>
   );
-}
+};
 
 export default HackathonBackgroundBanner;

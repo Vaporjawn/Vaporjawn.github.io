@@ -1,6 +1,6 @@
-import MenuBar from '../../MenuBar/menuBar';
-import VaporjawnHeader from '../VaporjawnHeader/vaporjawnHeader';
-import './vaporjawnBackgroundBanner.css';
+import MenuBar from "../../MenuBar/menuBar";
+import VaporjawnHeader from "../VaporjawnHeader/vaporjawnHeader";
+import "./vaporjawnBackgroundBanner.css";
 
 const VaporjawnBackgroundBanner = () => {
   return (
@@ -9,6 +9,6 @@ const VaporjawnBackgroundBanner = () => {
       <VaporjawnHeader />
     </div>
   );
-}
+};
 
 export default VaporjawnBackgroundBanner;

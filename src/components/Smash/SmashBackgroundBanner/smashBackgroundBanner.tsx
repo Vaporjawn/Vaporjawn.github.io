@@ -1,6 +1,6 @@
-import MenuBar from '../../MenuBar/menuBar';
-import SmashHeader from '../SmashHeader/smashHeader';
-import './smashBackgroundBanner.css';
+import MenuBar from "../../MenuBar/menuBar";
+import SmashHeader from "../SmashHeader/smashHeader";
+import "./smashBackgroundBanner.css";
 
 const SmashBackgroundBanner = () => {
   return (
@@ -11,6 +11,6 @@ const SmashBackgroundBanner = () => {
       </div>
     </div>
   );
-}
+};
 
 export default SmashBackgroundBanner;

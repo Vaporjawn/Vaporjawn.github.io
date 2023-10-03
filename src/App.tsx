@@ -1,9 +1,9 @@
-import { BrowserRouter } from 'react-router-dom';
-import './App.css';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import reportWebVitals from './reportWebVitals';
-import Router from './routes/router';
+import { BrowserRouter } from "react-router-dom";
+import "./App.css";
+import React from "react";
+import ReactDOM from "react-dom";
+import reportWebVitals from "./reportWebVitals";
+import Router from "./routes/router";
 
 const App = () => {
   return ReactDOM.render(
@@ -12,7 +12,7 @@ const App = () => {
         <Router />
       </BrowserRouter>
     </React.StrictMode>,
-    document.getElementById('root'),
+    document.getElementById("root"),
   );
 };
 

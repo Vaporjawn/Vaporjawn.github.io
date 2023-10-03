@@ -1,4 +1,4 @@
-import './buttonCTA.css';
+import "./buttonCTA.css";
 
 const ButtonCTA = () => {
   return (
@@ -8,7 +8,8 @@ const ButtonCTA = () => {
           <a
             href="mailto:victorwilliams719@gmail.com#"
             target="_blank"
-            className="ButtonCTALink" rel="noreferrer"
+            className="ButtonCTALink"
+            rel="noreferrer"
           >
             CONTACT ME
           </a>
@@ -17,7 +18,8 @@ const ButtonCTA = () => {
           <a
             href="mailto:Vaporjawn@gmail.com#"
             target="_blank"
-            className="ButtonCTALink" rel="noreferrer"
+            className="ButtonCTALink"
+            rel="noreferrer"
           >
             VAPORJAWN CONTACT
           </a>
@@ -25,6 +27,6 @@ const ButtonCTA = () => {
       </ul>
     </div>
   );
-}
+};
 
 export default ButtonCTA;

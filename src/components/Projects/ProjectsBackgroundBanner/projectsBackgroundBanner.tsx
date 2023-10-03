@@ -1,6 +1,6 @@
-import MenuBar from '../../MenuBar/menuBar';
-import ProjectsHeader from '../ProjectsHeader/projectsHeader';
-import './projectsBackgroundBanner.css';
+import MenuBar from "../../MenuBar/menuBar";
+import ProjectsHeader from "../ProjectsHeader/projectsHeader";
+import "./projectsBackgroundBanner.css";
 
 const ProjectsBackgroundBanner = () => {
   return (
@@ -9,6 +9,6 @@ const ProjectsBackgroundBanner = () => {
       <ProjectsHeader />
     </div>
   );
-}
+};
 
 export default ProjectsBackgroundBanner;

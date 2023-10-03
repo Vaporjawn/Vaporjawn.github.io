@@ -1,6 +1,6 @@
-import HomeHeader from '../HomePage/HomeHeader/homeHeader';
-import MenuBar from '../MenuBar/menuBar';
-import './backgroundBanner.css';
+import HomeHeader from "../HomePage/HomeHeader/homeHeader";
+import MenuBar from "../MenuBar/menuBar";
+import "./backgroundBanner.css";
 
 const BackgroundBanner = () => {
   return (
@@ -9,6 +9,6 @@ const BackgroundBanner = () => {
       <HomeHeader />
     </div>
   );
-}
+};
 
 export default BackgroundBanner;

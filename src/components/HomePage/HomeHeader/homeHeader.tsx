@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import './homeHeader.css';
+import { Link } from "react-router-dom";
+import "./homeHeader.css";
 
 const HomeHeader = () => {
   return (
@@ -10,16 +10,16 @@ const HomeHeader = () => {
             <h1 className="glow">VICTOR WILLIAMS</h1>
           </header>
           <p className="blerb">
-            A graduate of the beloved{' '}
+            A graduate of the beloved{" "}
             <strong>
               <Link to="/Temple" className="temple">
                 Temple University.
               </Link>
-            </strong>{' '}
-            <br />I am a 24 year old{' '}
+            </strong>{" "}
+            <br />I am a 24 year old{" "}
             <strong>
               <b>Full Stack Software Engineer</b>
-            </strong>{' '}
+            </strong>{" "}
             living in the heart of<strong> Philadelphia</strong>.
             <br />
           </p>
@@ -27,6 +27,6 @@ const HomeHeader = () => {
       </div>
     </div>
   );
-}
+};
 
 export default HomeHeader;

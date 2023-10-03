@@ -1,6 +1,6 @@
-import  { useEffect, useState } from 'react';
-import './vaporjawnFeed.css';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import "./vaporjawnFeed.css";
+import { Link } from "react-router-dom";
 
 let image1: string;
 let image2: string;
@@ -27,9 +27,9 @@ const pictureNumber = () => {
     const rng = numberGenerator();
     pictureNumber = rng.toString();
     pictureNumber =
-      'https://raw.githubusercontent.com/Vapor-jawn/Instagram-Pictures/main/' +
+      "https://raw.githubusercontent.com/Vapor-jawn/Instagram-Pictures/main/" +
       pictureNumber +
-      '.JPG';
+      ".JPG";
     if (displayArray.find((c) => c == pictureNumber)) {
       numberGenerator();
     }
@@ -59,7 +59,11 @@ const VaporjawnFeed = () => {
         </div>
         <div className="rowContainer">
           <div className="sectionContainer">
-            <a href="https://instagram.com/vaporjawn" target="_blank" rel="noreferrer">
+            <a
+              href="https://instagram.com/vaporjawn"
+              target="_blank"
+              rel="noreferrer"
+            >
               <img src={image1} className="VaporjawnPicture" />
             </a>
             <div className="VaporjawnPictureTitle">
@@ -72,7 +76,11 @@ const VaporjawnFeed = () => {
             </p>
           </div>
           <div className="sectionContainer">
-            <a href="https://instagram.com/vaporjawn" target="_blank" rel="noreferrer">
+            <a
+              href="https://instagram.com/vaporjawn"
+              target="_blank"
+              rel="noreferrer"
+            >
               <img src={image2} className="VaporjawnPicture" />
             </a>
             <div className="VaporjawnPictureTitle">
@@ -88,7 +96,11 @@ const VaporjawnFeed = () => {
         </div>
         <div className="rowContainer">
           <div className="sectionContainer">
-            <a href="https://instagram.com/vaporjawn" target="_blank" rel="noreferrer">
+            <a
+              href="https://instagram.com/vaporjawn"
+              target="_blank"
+              rel="noreferrer"
+            >
               <img src={image3} className="VaporjawnPicture" />
             </a>
             <div className="VaporjawnPictureTitle">
@@ -102,7 +114,11 @@ const VaporjawnFeed = () => {
             </p>
           </div>
           <div className="sectionContainer">
-            <a href="https://instagram.com/vaporjawn" target="_blank" rel="noreferrer">
+            <a
+              href="https://instagram.com/vaporjawn"
+              target="_blank"
+              rel="noreferrer"
+            >
               <img src={image4} className="VaporjawnPicture" />
             </a>
             <div className="VaporjawnPictureTitle">
@@ -111,14 +127,15 @@ const VaporjawnFeed = () => {
             <p className="VaporjawnPictureText">
               Vaporjawn has now grown into a fully fledged brand that is
               somewhat commonly known in the vaporwave community. It has music
-              as well. Take a look at the page{' '}
+              as well. Take a look at the page{" "}
               <a
                 className="redLink"
                 target="_blank"
-                href="https://instagram.com/vaporjawn" rel="noreferrer"
+                href="https://instagram.com/vaporjawn"
+                rel="noreferrer"
               >
                 here
-              </a>{' '}
+              </a>{" "}
             </p>
           </div>
         </div>

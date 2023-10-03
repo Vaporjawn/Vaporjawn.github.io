@@ -1,4 +1,4 @@
-import './vaporjawnHeader.css';
+import "./vaporjawnHeader.css";
 
 const VaporjawnHeader = () => {
   return (
@@ -9,19 +9,21 @@ const VaporjawnHeader = () => {
         </header>
         <p className="VaporjawnBlerb">
           Vaporjawn is a multi-medium collective inspired by the spectrum of art
-          that exists in the vaporwave community.{' '}
+          that exists in the vaporwave community.{" "}
           <a
             className="VaporjawnLink"
             href="https://instagram.com/vaporjawn"
-            target="_blank" rel="noreferrer"
+            target="_blank"
+            rel="noreferrer"
           >
-            Vaporjawn{' '}
+            Vaporjawn{" "}
           </a>
           is my former "
           <a
             className="VaporjawnLink"
             href="https://www.dictionary.com/e/slang/finsta/#:~:text=A%20finsta%20is%20a%20secondary,have%20more%20heavily%20curated%20content."
-            target="_blank" rel="noreferrer"
+            target="_blank"
+            rel="noreferrer"
           >
             Finsta
           </a>
@@ -30,6 +32,6 @@ const VaporjawnHeader = () => {
       </div>
     </div>
   );
-}
+};
 
 export default VaporjawnHeader;

@@ -1,5 +1,5 @@
-import CTA from '../../CTA/cTA';
-import './projectsCTABanner.css';
+import CTA from "../../CTA/cTA";
+import "./projectsCTABanner.css";
 
 const ProjectsCTABanner = () => {
   return (
@@ -7,6 +7,6 @@ const ProjectsCTABanner = () => {
       <CTA />
     </div>
   );
-}
+};
 
 export default ProjectsCTABanner;

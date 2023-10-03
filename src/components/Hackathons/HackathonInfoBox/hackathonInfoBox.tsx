@@ -1,10 +1,10 @@
-import FACameraRetro from '../../FontAwesome/Icons/faCameraRetro';
-import FACode from '../../FontAwesome/Icons/faCode';
-import FACubesStacked from '../../FontAwesome/Icons/faCubesStacked';
-import FAGears from '../../FontAwesome/Icons/faGears';
-import FALaptopCode from '../../FontAwesome/Icons/faLaptopCode';
-import FAMugSaucer from '../../FontAwesome/Icons/faMugSaucer';
-import './hackathonInfoBox.css';
+import FACameraRetro from "../../FontAwesome/Icons/faCameraRetro";
+import FACode from "../../FontAwesome/Icons/faCode";
+import FACubesStacked from "../../FontAwesome/Icons/faCubesStacked";
+import FAGears from "../../FontAwesome/Icons/faGears";
+import FALaptopCode from "../../FontAwesome/Icons/faLaptopCode";
+import FAMugSaucer from "../../FontAwesome/Icons/faMugSaucer";
+import "./hackathonInfoBox.css";
 
 function hackathonInfoBox() {
   return (
@@ -32,7 +32,8 @@ function hackathonInfoBox() {
                   <a
                     href="https://devpost.com/"
                     target="_blank"
-                    className="hackathonInfoBoxButtonSpecial" rel="noreferrer"
+                    className="hackathonInfoBoxButtonSpecial"
+                    rel="noreferrer"
                   >
                     DevPost
                   </a>
@@ -41,7 +42,8 @@ function hackathonInfoBox() {
                   <a
                     href="https://hackerearth.com/"
                     target="_blank"
-                    className="hackathonInfoBoxButtonSpecial" rel="noreferrer"
+                    className="hackathonInfoBoxButtonSpecial"
+                    rel="noreferrer"
                   >
                     Hacker Earth
                   </a>

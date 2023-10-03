@@ -1,4 +1,4 @@
-import './hackathonBioSnippet.css';
+import "./hackathonBioSnippet.css";
 
 const HackathonBioSnippet = () => {
   return (
@@ -7,13 +7,13 @@ const HackathonBioSnippet = () => {
         <strong>TUDev</strong>
       </h1>
       <h4 className="large-font">
-        TUDev is a community of{' '}
+        TUDev is a community of{" "}
         <strong>designers, develoeprs, and hackers.</strong> We attend tons of
         hackathons throughout the year. We were ranked by
         <a href="https://mlh.io">
-          {' '}
+          {" "}
           <strong> Major League Hacking </strong>
-        </a>{' '}
+        </a>{" "}
         as the 14th most active hacking community in North America for the
         Spring 2016 season.
       </h4>
@@ -45,6 +45,6 @@ const HackathonBioSnippet = () => {
       </p>
     </div>
   );
-}
+};
 
 export default HackathonBioSnippet;

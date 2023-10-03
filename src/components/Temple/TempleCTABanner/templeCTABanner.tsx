@@ -1,5 +1,5 @@
-import CTA from '../../CTA/cTA';
-import './templeCTABanner.css';
+import CTA from "../../CTA/cTA";
+import "./templeCTABanner.css";
 
 const TempleCTABanner = () => {
   return (
@@ -7,6 +7,6 @@ const TempleCTABanner = () => {
       <CTA />
     </div>
   );
-}
+};
 
 export default TempleCTABanner;
