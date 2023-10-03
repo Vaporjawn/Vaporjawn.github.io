@@ -27,7 +27,7 @@ module.exports = {
       'no-case-declarations': 'off',
       'promise/always-return': 'off',
       'jsx-a11y/interactive-supports-focus': 'off',
-      'quotes': ['error', 'single'],
+      'quotes': ['error', 'double'],
       'react/function-component-definition': [
         2,
         {
