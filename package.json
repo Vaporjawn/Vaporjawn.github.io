@@ -1,6 +1,7 @@
 {
   "name": "vaporjawndev",
   "version": "0.1.0",
+  "homepage": "https://vaporjawn.dev",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
@@ -15,6 +16,7 @@
     "@types/react": "^17.0.41",
     "@types/react-dom": "^17.0.14",
     "font-awesome": "^4.7.0",
+    "gh-pages": "^3.2.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-pdf": "^5.7.2",
@@ -30,7 +32,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {},
   "browserslist": {

@@ -52,3 +52,41 @@
         display: none; 
     }  
 }
+
+@media screen and (max-width: 768px) {
+    .menuList {
+        width: 100%;
+        text-align: center;
+    }
+
+    .menuOption {
+        display: none;
+    }
+
+    .menuLink {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .menuList {
+        width: 100%;
+        text-align: center;
+    }
+
+    .menuOption {
+        display: none;
+    }
+
+    .menuLink {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+}

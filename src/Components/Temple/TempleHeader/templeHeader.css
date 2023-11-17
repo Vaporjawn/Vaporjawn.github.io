@@ -1,4 +1,4 @@
-.App-header {
+.Temple-App-header {
     text-align: center;
     font-family: 'Lato', sans-serif;
     padding: 52px;
@@ -41,4 +41,30 @@
     color: white;
     letter-spacing: 2px;
     line-height: 1.75em;
+}
+
+@media screen and (max-width: 768px) {
+    .Temple-App-header {
+        width: 100%;
+        height: 220px;
+    }
+    .templeGlow {
+        font-size: 35px;
+    }
+    .templeBlerb{
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .Temple-App-header {
+        width: 100%;
+        height: 220px;
+    }
+    .templeGlow {
+        font-size: 35px;
+    }
+    .templeBlerb{
+        font-size: 18px;
+    }
 }

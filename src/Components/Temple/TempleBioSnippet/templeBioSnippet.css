@@ -3,7 +3,7 @@
     margin: 100px;
     font-family: Lato, sans-serif;
     letter-spacing: 2px;
-    line-height: 1.75em;
+    line-height: 2.15em;
     letter-spacing: 2px;
     width: 85%;
     margin-left: auto;
@@ -39,4 +39,39 @@
     text-transform: uppercase;
     box-shadow: 0 3px 0 darkred;
     width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .TempleBio {
+        font-size: 18px;
+    }
+
+    .large-font{
+        font-size: 18px;
+    }
+
+    .regular-font{
+        font-size: 18px;
+    }
+
+    .TempleBioGlow{
+        font-size: 30px;
+    }
+}
+@media screen and (max-width: 640px) {
+    .TempleBio {
+        font-size: 18px;
+    }
+
+    .large-font{
+        font-size: 18px;
+    }
+
+    .regular-font{
+        font-size: 18px;
+    }
+
+    .TempleBioGlow{
+        font-size: 30px;
+    }
 }

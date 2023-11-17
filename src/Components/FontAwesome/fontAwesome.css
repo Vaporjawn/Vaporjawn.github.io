@@ -1,6 +1,5 @@
 .FontAwesome {
     cursor: default;
-    /* height: 7em; */
     left: 0;
     text-align: center;
     top: 1em;
@@ -14,6 +13,18 @@
 .FontAwesomeSpaced {
     text-align: center;
     width: 100%;
-    /* margin-left: 20%;
-    padding-left: 20%; */
+}
+
+@media screen and (max-width: 768px) {
+    .FontAwesomeSpaced {
+        text-align: center;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .FontAwesomeSpaced {
+        text-align: center;
+        width: 100%;
+    }
 }

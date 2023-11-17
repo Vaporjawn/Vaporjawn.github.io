@@ -18,7 +18,7 @@ function SmashInfoBox() {
                         <p className="smashInfoBoxText">I've had a love for Super Smash Bros. Melee ever since it first released in 2001 and I got to play it casually. 
                             Of course being the best of my friends pushed me to pursue an upper echelon of play.  
                             This all started when I encountered <a href="https://www.youtube.com/watch?v=NSf2mgkRm7Q&list=PLoUHkRwnRH-IXbZfwlgiEN8eXmoj6DtKM&index=1" target="_blank" className="orangeRed">The Smash Brothers Documentary Series</a> in late 2015. 
-                            Now I am able to contribute to my community by creating content based around competitive play. 
+                            Now I am able to contribute to my community by creating content based around the interest of competitive play. 
                         </p>
                         <footer>
                             <ul className="smashInfoBoxButtons">

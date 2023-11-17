@@ -1,4 +1,4 @@
-.App-header {
+.Smash-App-header {
     text-align: center;
     font-family: 'Lato', sans-serif;
     padding: 52px;
@@ -42,4 +42,42 @@
     color: white;
     letter-spacing: 2px;
     line-height: 1.75em;
+}
+
+.SmashHeaderLink{
+    color: red;
+    text-shadow: 2px 2px 1px black;
+}
+
+.SmashHeaderLink:hover{
+    color: red;
+    text-shadow: 2px 2px 1px white;
+}
+
+@media screen and (max-width: 768px) {
+    .Smash-App-header {
+        width: 100%;
+    }
+
+    .smashGlow {
+        font-size: 40px;
+    }
+
+    .smashBlerb{
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .Smash-App-header {
+        width: 100%;
+    }
+
+    .smashGlow {
+        font-size: 40px;
+    }
+
+    .smashBlerb{
+        font-size: 16px;
+    }
 }

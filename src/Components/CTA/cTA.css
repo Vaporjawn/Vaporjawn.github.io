@@ -12,5 +12,36 @@
 }
 
 .CTA {
-    padding: 70px;
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+@media screen and (max-width: 768px) {
+    .CTA {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .CTAGlow {
+        font-size: 30px;
+    }
+
+    .CTAGlow-small {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .CTA {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .CTAGlow {
+        font-size: 30px;
+    }
+
+    .CTAGlow-small {
+        font-size: 15px;
+    }
 }

@@ -1,11 +1,22 @@
 .errorContainer {
     text-align: center;
-    /* background-color:darkgrey; */
+}
 
-  }
+.Errorh1 {
+  margin: 30px 0;
+  font-size: 4em;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+@media screen and (max-width: 768px) {
   .Errorh1 {
-    margin: 30px 0;
-    font-size: 4em;
-    line-height: 1;
-    letter-spacing: -1px;
+    font-size: 3em;
   }
+}
+
+@media screen and (max-width: 640px) {
+  .Errorh1 {
+    font-size: 2em;
+  }
+}

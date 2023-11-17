@@ -42,3 +42,57 @@
     letter-spacing: 2px;
     line-height: 1.75em;
 }
+
+.HackathonHeaderLink{
+    color: #9D2235;
+    text-shadow: 2px 2px 1px white;
+}
+
+.HackathonHeaderLink:hover {
+    color: white;
+    text-shadow: 2px 2px 1px #9D2235;
+}
+
+@media screen and (max-width: 768px) {
+    .App-header {
+        width: 100%;
+    }
+
+    .hackathonGlow {
+        font-size: 40px;
+    }
+
+    .hackathonBlerb {
+        font-size: 16px;
+    }
+
+    .HackathonHeaderLink {
+        font-size: 16px;
+    }
+
+    .hackathon {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .App-header {
+        width: 100%;
+    }
+
+    .hackathonGlow {
+        font-size: 40px;
+    }
+
+    .hackathonBlerb {
+        font-size: 16px;
+    }
+
+    .HackathonHeaderLink {
+        font-size: 16px;
+    }
+
+    .hackathon {
+        font-size: 16px;
+    }
+}

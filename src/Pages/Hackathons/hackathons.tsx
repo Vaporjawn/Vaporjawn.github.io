@@ -7,7 +7,7 @@ import HackathonInfoBox from '../../Components/Hackathons/HackathonInfoBox/hacka
 
 
 
-function Hackathons() {
+const Hackathons = () => {
   return (
     <div>
       <HackathonBackgroundBanner/>

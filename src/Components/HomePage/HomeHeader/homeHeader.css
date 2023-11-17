@@ -1,6 +1,6 @@
 .App-header {
     text-align: center;
-    font-family: 'Lato', sans-serif;
+    font-family: Lato, Serif;
     padding: 52px;
     margin: 90px;
     background: rgba(52, 27, 43, 0.5);
@@ -39,4 +39,32 @@
     color: white;
     letter-spacing: 2px;
     line-height: 1.75em;
+}
+
+@media screen and (max-width: 768px) {
+    .App-header {
+        width: 100%;
+    }
+
+    .glow {
+        font-size: 40px;
+    }
+
+    .blerb{
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .App-header {
+        width: 100%;
+    }
+
+    .glow {
+        font-size: 40px;
+    }
+
+    .blerb{
+        font-size: 16px;
+    }
 }
