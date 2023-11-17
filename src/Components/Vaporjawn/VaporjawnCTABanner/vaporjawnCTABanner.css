@@ -7,3 +7,27 @@
     background-position: center;
     background-attachment: fixed;
 }
+
+@media screen and (max-width: 768px) {
+    .VaporjawnCTABanner {
+        padding: 104px 0px;
+        background-attachment: scroll;
+        background-image: url("../../../assets/images/VaporjawnBanner.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .VaporjawnCTABanner {
+        padding: 104px 0px;
+        background-attachment: scroll;
+        background-image: url("../../../assets/images/VaporjawnBanner.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+}

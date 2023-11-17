@@ -19,3 +19,21 @@
     background-position-y: -35%;
     background-attachment: fixed;
 }
+
+@media screen and (max-width: 768px) {
+    .SmashBackgroundBanner{
+        background-size: 100%;
+    }
+    .PurpleDrops {
+        background-size: 100%;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .SmashBackgroundBanner{
+        background-size: 100%;
+    }
+    .PurpleDrops {
+        background-size: 100%;
+    }
+}

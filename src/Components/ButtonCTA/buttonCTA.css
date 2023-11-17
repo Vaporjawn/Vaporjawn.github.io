@@ -37,10 +37,38 @@
 
 }
 
+@media screen and (max-width: 768px) {
+    .ButtonCTALink {
+        font-size: 14px;
+    }
 
-@media only screen and (max-width: 1726px) { 
-    .menuOption { 
-        /* display: none;  */
-        /* MAKE BUTTONS VERTICAL WHEN SCREEN GETS TOO SMALL SO THAT THINGS ARE SYMMETRICAL  */
-    } 
+    .ButtonCTA {
+        width: 100%;
+    }
+
+    .ButtonContainer {
+        width: 100%;
+    }
+
+    .ButtonCTALink {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .ButtonCTALink {
+        font-size: 12px;
+    }
+
+    .ButtonCTA {
+        width: 100%;
+    }
+
+    .ButtonContainer {
+        width: 100%;
+    }
+
+    .ButtonCTALink {
+        font-size: 12px;
+    }
 }

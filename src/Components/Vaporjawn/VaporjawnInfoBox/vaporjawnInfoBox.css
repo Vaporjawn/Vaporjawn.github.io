@@ -79,3 +79,151 @@
 .orangeRed {
     color: orangered;
 }
+
+@media screen and (max-width: 768px) {
+    .VaporjawnFeaturedFAiconsSection{
+        display: block;
+    }
+
+    .VaporjawnFeaturedFAicons{
+        width: 100%;
+        margin-top: -10%;
+    }
+
+    .VaporjawnInnerInfoBox {
+        margin-left: 0;
+        width: 100%;
+        float: none;
+        padding-top: 0!important;
+    }
+
+    .VaporjawnInfoBoxTitle {
+        text-transform: uppercase;
+        font-weight: 400;
+        letter-spacing: 0.1em;
+        margin-top: -30px;
+    }
+
+    .VaporjawnInfoBoxButtons {
+        margin-bottom: 0;
+        cursor: default;
+        margin-left: -70px;
+        margin-top: 65px;
+    }
+
+    .VaporjawnInfoBoxButtonSpecial{
+        background: white;
+        border-color: white;
+        color: #0066ff !important;
+        padding-left: 12px;
+        padding-right: 12px;
+        padding: 10px;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 16px;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 0.8em;
+        letter-spacing: 2px;
+        min-width: 18em;
+        padding: 0 0.75em;
+        line-height: 3.75em;
+        text-align: center;
+    }
+
+    .VaporjawnInfoBoxButtons :hover{
+        background-image: linear-gradient(to top left, #3f5efb, #fc466b);
+        text-shadow: 2px 2px 1px white;
+    }
+
+    .VaporjawnInfoBoxPaddingLeft{
+        margin-left: 0;
+    }
+
+    .VaporjawnInfoBoxText {
+        letter-spacing: 2px;
+        line-height: 1.75em;
+        font-family: Lato, Serif;
+        font-size: 26px;
+    }
+
+    .VaporjawnFeaturedFAicons{
+        width: 100%;
+        margin-top: -10%;
+    }
+
+    .VaporjawnFeaturedFAiconsSection{
+        display: block;
+        font-size: 45px;
+        margin: 5%;
+        padding-left: 10%;
+    }
+}
+@media screen and (max-width: 640px) {
+    .VaporjawnFeaturedFAiconsSection{
+        display: block;
+    }
+
+    .VaporjawnFeaturedFAicons{
+        width: 100%;
+        margin-top: -10%;
+    }
+
+    .VaporjawnInnerInfoBox {
+        margin-left: 0;
+        width: 100%;
+        float: none;
+        padding-top: 0!important;
+    }
+
+    .VaporjawnInfoBoxTitle {
+        text-transform: uppercase;
+        font-weight: 400;
+        letter-spacing: 0.1em;
+        margin-top: -30px;
+    }
+
+    .VaporjawnInfoBoxButtons {
+        margin-bottom: 0;
+        cursor: default;
+        margin-left: -70px;
+        margin-top: 65px;
+    }
+
+    .VaporjawnInfoBoxButtonSpecial{
+        background: white;
+        border-color: white;
+        color: #0066ff !important;
+        padding-left: 12px;
+        padding-right: 12px;
+        padding: 10px;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 16px;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 0.8em;
+        letter-spacing: 2px;
+        min-width: 18em;
+        padding: 0 0.75em;
+        line-height: 3.75em;
+        text-align: center;
+    }
+
+    .VaporjawnInfoBoxButtons :hover{
+        background-image: linear-gradient(to top left, #3f5efb, #fc466b);
+        text-shadow: 2px 2px 1px white;
+    }
+
+    .VaporjawnInfoBoxPaddingLeft{
+        margin-left: 0;
+    }
+
+    .VaporjawnInfoBoxText {
+        letter-spacing: 2px;
+        line-height: 1.75em;
+        font-family: Lato, Serif;
+    }   
+}

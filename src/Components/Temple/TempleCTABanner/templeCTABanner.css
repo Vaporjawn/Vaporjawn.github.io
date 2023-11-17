@@ -8,3 +8,29 @@
     background-position: center;
     background-attachment: fixed;
 }
+
+@media screen and (max-width: 768px) {
+    .templeCTABanner {
+        padding: 104px 0px;
+        padding-top: 0;
+        background-attachment: scroll;
+        background-image: url("../../../assets/images/templeBanner.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .templeCTABanner {
+        padding: 104px 0px;
+        padding-top: 0;
+        background-attachment: scroll;
+        background-image: url("../../../assets/images/templeBanner.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+}
