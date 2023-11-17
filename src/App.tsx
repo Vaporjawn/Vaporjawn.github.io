@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/* eslint-disable react/no-deprecated */
+/* eslint-disable react/no-render-return-value */
+import { BrowserRouter } from "react-router-dom";
+import "./App.css";
+import React from "react";
+import ReactDOM from "react-dom";
+import reportWebVitals from "./reportWebVitals";
+import Router from "./routes/router";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+const App = () => {
+  return ReactDOM.render(
+    <React.StrictMode>
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
+    </React.StrictMode>,
+    document.getElementById("root"),
   );
-}
+};
+
+reportWebVitals();
 
 export default App;
