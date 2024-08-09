@@ -5,6 +5,8 @@ import Header from "./components/header/header";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Theme, ThemeProvider, createTheme } from "@mui/material/styles";
 import { useState } from "react";
+import HomePath from "./routes/homePath";
+import ProjectsPage from "./pages/projects/projectsPage";
 
 const Router = () => {
   const [darkMode, setDarkMode] = useState<boolean>(true);
@@ -20,7 +22,8 @@ const Router = () => {
       <CssBaseline />
       <Header darkMode={darkMode} setDarkMode={setDarkMode} />
       <Routes>
-        <Route path="/" element={<HomePage darkMode={darkMode} />} />
+        <Route path={HomePath} element={<HomePage darkMode={darkMode} />} />
+        <Route path="/projects" element={<ProjectsPage />} />
       </Routes>
       <Footer />
     </ThemeProvider>

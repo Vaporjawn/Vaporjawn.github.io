@@ -1,3 +1,4 @@
+import HomePath from "../../routes/homePath";
 import DarkModeToggle from "./components/darkModeToggle";
 import "./styles/header.css";
 import { NavigateFunction, useNavigate } from "react-router-dom";
@@ -28,6 +29,14 @@ const Header = (args: {
         <ul style={{ display: "flex", listStyle: "none" }}>
           <li style={{ marginRight: "1rem" }}>
             <a
+              onClick={() => navigate(HomePath)}
+              className="header-link"
+            >
+              Home
+            </a>
+          </li>
+          <li style={{ marginRight: "1rem" }}>
+            <a
               onClick={() => navigate("/about")}
               className="header-link"
             >
@@ -44,10 +53,10 @@ const Header = (args: {
           </li>
           <li style={{ marginRight: "1rem" }}>
             <a
-              onClick={() => navigate("/contact")}
+              onClick={() => navigate("/Resume")}
               className="header-link"
             >
-              Option 3
+              Resume
             </a>
           </li>
         </ul>
