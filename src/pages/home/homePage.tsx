@@ -6,7 +6,7 @@ const HomePage = () => {
       <h1>Victor Williams</h1>
       <div className="card">
         <p>
-          I am a 26-year-old Temple University graduate and a seasoned Senior
+          I am a 27-year-old Temple University graduate and a seasoned Senior
           Full Stack Software Engineer with a wealth of technical prowess. I
           possess strong analytical skills, a proven track record in
           orchestrating and leading engineering teams, and extensive hands-on
