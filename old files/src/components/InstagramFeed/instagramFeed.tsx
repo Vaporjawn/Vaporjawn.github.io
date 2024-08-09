@@ -21,10 +21,10 @@ const numberGenerator = () => {
 
 const pictureNumber = () => {
   let pictureNumber: string;
-  let displayArray: string[] = [];
+  const displayArray: string[] = [];
 
   for (let i = 0; i < 4; i++) {
-    let rng = numberGenerator();
+    const rng = numberGenerator();
     pictureNumber = rng.toString();
     pictureNumber =
       "https://raw.githubusercontent.com/Vapor-jawn/Instagram-Pictures/main/" +

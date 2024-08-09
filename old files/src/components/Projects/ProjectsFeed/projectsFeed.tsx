@@ -164,7 +164,7 @@ let dropdownVisibility12: string = "ProjectButtonDeactivated";
 let dropdownVisibility12Under: string = "ProjectButtonActivated";
 
 const numberGenerator = () => {
-  let num = Math.floor(Math.random() * ProjectsList.length);
+  const num = Math.floor(Math.random() * ProjectsList.length);
   return num;
 };
 
@@ -174,7 +174,7 @@ const indexer = (index: number) => {
 };
 
 const instantiateObjects = () => {
-  let duplicates: number[] = [];
+  const duplicates: number[] = [];
 
   const duplicateChecker = () => {
     let requestedNumber: number = numberGenerator();
@@ -251,7 +251,7 @@ const titleSearch = (title: string) => {
 };
 
 const totalSearchIndexer = (searchResults: (typeof Project)[]) => {
-  let resultsArray: typeof Project = [];
+  const resultsArray: typeof Project = [];
   while (resultsArray.length < 12) {
     for (let i = 0; i < searchResults.length; i++) {
       for (let j = 0; j < searchResults.length; j++) {
@@ -264,7 +264,7 @@ const totalSearchIndexer = (searchResults: (typeof Project)[]) => {
 };
 
 const totalSearch = (userEntry: string) => {
-  let totalResult: (typeof Project)[] = [];
+  const totalResult: (typeof Project)[] = [];
 
   const searchArray: RegExpMatchArray | null = userEntry.match(/\b(\w+)\b/g);
   if (searchArray) {

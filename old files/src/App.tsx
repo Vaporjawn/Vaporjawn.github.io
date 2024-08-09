@@ -1,5 +1,5 @@
-/* eslint-disable react/no-deprecated */
-/* eslint-disable react/no-render-return-value */
+ 
+ 
 import { BrowserRouter } from "react-router-dom";
 import "./App.css";
 import React from "react";
