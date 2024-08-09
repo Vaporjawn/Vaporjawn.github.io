@@ -1,10 +1,27 @@
-import Footer from "../../components/footer/footer";
+import SocialMedia from "../../components/socials/socialMedia";
 
-const HomePage = () => {
+const HomePage = (args: {darkMode: boolean}) => {
+  const { darkMode } = args;
   return (
-    <>
-      <h1>Victor Williams</h1>
-      <div className="card">
+    <div>
+      <p
+        style={{
+          fontSize: "60px",
+          fontWeight: "bold",
+          marginLeft: "auto",
+          marginRight: "auto",
+          color: "rgb(71, 144, 241)",
+        }}
+      >
+        Victor Williams
+      </p>
+      <div
+        style={{
+          width: "60%",
+          margin: "auto",
+          fontSize: "22px",
+        }}
+      >
         <p>
           I am a 27-year-old Temple University graduate and a seasoned Senior
           Full Stack Software Engineer with a wealth of technical prowess. I
@@ -22,8 +39,8 @@ const HomePage = () => {
           deliver top-notch solutions with precision and expertise.
         </p>
       </div>
-      <Footer />
-    </>
+      <SocialMedia darkMode={darkMode}/>
+    </div>
   );
 };
 
