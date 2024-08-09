@@ -1,45 +1,14 @@
-import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
-import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import DarkModeToggle from "./components/darkModeToggle";
 import "./styles/header.css";
-
-const DarkModeToggle = (args: {
-  darkMode: boolean;
-  setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
-  const { darkMode, setDarkMode } = args;
-  return (
-    <button
-      onClick={() => setDarkMode(!darkMode)}
-      style={{
-        backgroundColor: "transparent",
-        border: "none",
-        cursor: "pointer",
-      }}
-    >
-      {darkMode ? (
-        <LightModeOutlinedIcon
-          style={{
-            fontSize: "2.5rem",
-            color: "white",
-          }}
-        />
-      ) : (
-        <DarkModeOutlinedIcon
-          style={{
-            fontSize: "2.5rem",
-            color: "black",
-          }}
-        />
-      )}
-    </button>
-  );
-};
+import { NavigateFunction, useNavigate } from "react-router-dom";
 
 const Header = (args: {
   darkMode: boolean;
   setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const { darkMode, setDarkMode } = args;
+  const navigate: NavigateFunction = useNavigate();
+
   return (
     <header
       style={{
@@ -59,24 +28,23 @@ const Header = (args: {
         <ul style={{ display: "flex", listStyle: "none" }}>
           <li style={{ marginRight: "1rem" }}>
             <a
-              href="#"
+              onClick={() => navigate("/about")}
               className="header-link"
-
             >
-              Option 1
+              About
             </a>
           </li>
           <li style={{ marginRight: "1rem" }}>
             <a
-              href="#"
+              onClick={() => navigate("/projects")}
               className="header-link"
             >
-              Option 2
+              Projects
             </a>
           </li>
           <li style={{ marginRight: "1rem" }}>
             <a
-              href="#"
+              onClick={() => navigate("/contact")}
               className="header-link"
             >
               Option 3

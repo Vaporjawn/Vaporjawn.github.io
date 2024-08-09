@@ -12,7 +12,6 @@ const HomePage = (args: { darkMode: boolean }) => {
           marginRight: "auto",
           color: "#9600FF",
           textAlign: "center",
-          // add text glow effect
           textShadow: `2px 2px 4px ${darkMode ? "#4900ff" : "#000000"}`,
         }}
       >
