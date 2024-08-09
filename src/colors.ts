@@ -1,3 +1,4 @@
+// https://www.color-hex.com/color-palette/57915
 const VaporwavePink = "#FF00C1"; //rgb(255, 0, 193)
 const VaporwavePurple = "#9600FF"; //rgb(150, 0, 255)
 const VaporwaveBlue = "#4900FF"; //rgb(73, 0, 255)

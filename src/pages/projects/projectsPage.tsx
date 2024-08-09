@@ -1,33 +1,19 @@
-export enum ProjectCategoryEnum {
-  React = "React",
-  Node = "Node.js",
-  Python = "Python",
-  Java = "Java",
-}
-export type ProjectCategory = keyof typeof ProjectCategoryEnum;
+import { useState } from "react";
+import "./styles/projectPage.css";
+import ProjectCategoryButtons from "./category/projectCategoryButtons";
+import { ProjectCategory } from "./category/types/ProjectCategory";
 
-const ProjectCategoryButtons = () => {
-  return (
-    <div style={{
-      display: "flex",
-      gap: "1rem",
-      justifyContent: "center",
-      marginTop: "20px",
-    }}>
-      <button>{ProjectCategoryEnum.React}</button>
-      <button>{ProjectCategoryEnum.Node}</button>
-      <button>{ProjectCategoryEnum.Python}</button>
-      <button>{ProjectCategoryEnum.Java}</button>
-    </div>
-  );
-};
 
 const ProjectsPage = () => {
+  const [selectedCategory, setSelectedCategory] = useState<ProjectCategory[]>([]);
   return (
     <div>
       <h1 style={{ textDecoration: "underline", textAlign: "left"}}>Projects</h1>
       <p>A curated collection of projects showcasing my engineering journey.</p>
-      <ProjectCategoryButtons />
+      <ProjectCategoryButtons
+      selectedCategory={selectedCategory}
+      setSelectedCategory={setSelectedCategory}
+      />
     </div>
   );
 };
