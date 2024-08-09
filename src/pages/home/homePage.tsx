@@ -1,6 +1,6 @@
 import SocialMedia from "../../components/socials/socialMedia";
 
-const HomePage = (args: {darkMode: boolean}) => {
+const HomePage = (args: { darkMode: boolean }) => {
   const { darkMode } = args;
   return (
     <div>
@@ -10,7 +10,10 @@ const HomePage = (args: {darkMode: boolean}) => {
           fontWeight: "bold",
           marginLeft: "auto",
           marginRight: "auto",
-          color: "rgb(71, 144, 241)",
+          color: "#9600FF",
+          textAlign: "center",
+          // add text glow effect
+          textShadow: `2px 2px 4px ${darkMode ? "#4900ff" : "#000000"}`,
         }}
       >
         Victor Williams
@@ -39,7 +42,7 @@ const HomePage = (args: {darkMode: boolean}) => {
           deliver top-notch solutions with precision and expertise.
         </p>
       </div>
-      <SocialMedia darkMode={darkMode}/>
+      <SocialMedia darkMode={darkMode} />
     </div>
   );
 };

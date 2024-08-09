@@ -18,9 +18,9 @@ const Router = () => {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <Header darkMode={darkMode} setDarkMode={setDarkMode}/>
+      <Header darkMode={darkMode} setDarkMode={setDarkMode} />
       <Routes>
-        <Route path="/" element={<HomePage darkMode={darkMode}/>} />
+        <Route path="/" element={<HomePage darkMode={darkMode} />} />
       </Routes>
       <Footer />
     </ThemeProvider>

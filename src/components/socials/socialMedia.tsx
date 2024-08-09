@@ -17,7 +17,7 @@ const Twitter = () => {
   );
 };
 
-const Resume = (args: {darkMode: boolean}) => {
+const Resume = (args: { darkMode: boolean }) => {
   const { darkMode } = args;
   return (
     // TODO: Add internal link to resume
@@ -36,7 +36,7 @@ const Resume = (args: {darkMode: boolean}) => {
   );
 };
 
-const EmailLink = (args: {darkMode: boolean}) => {
+const EmailLink = (args: { darkMode: boolean }) => {
   const { darkMode } = args;
   return (
     <a title="Email" href="mailto:victor.williams.dev@gmail.com">
@@ -67,7 +67,7 @@ const LinkedIn = () => {
   );
 };
 
-const GitHub = (args: {darkMode: boolean}) => {
+const GitHub = (args: { darkMode: boolean }) => {
   const { darkMode } = args;
   return (
     <a title="GitHub" href="https://github.com/vaporjawn" target="_blank">
@@ -81,7 +81,7 @@ const GitHub = (args: {darkMode: boolean}) => {
   );
 };
 
-const SocialMedia = (args: {darkMode: boolean}) => {
+const SocialMedia = (args: { darkMode: boolean }) => {
   const { darkMode } = args;
   return (
     <div

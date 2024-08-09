@@ -1,5 +1,6 @@
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import "./styles/header.css";
 
 const DarkModeToggle = (args: {
   darkMode: boolean;
@@ -51,18 +52,35 @@ const Header = (args: {
         right: "0",
         marginRight: "auto",
         marginLeft: "auto",
+        backgroundColor: "#4900ff",
       }}
     >
       <nav>
         <ul style={{ display: "flex", listStyle: "none" }}>
           <li style={{ marginRight: "1rem" }}>
-            <a href="#">Option 1</a>
+            <a
+              href="#"
+              className="header-link"
+
+            >
+              Option 1
+            </a>
           </li>
           <li style={{ marginRight: "1rem" }}>
-            <a href="#">Option 2</a>
+            <a
+              href="#"
+              className="header-link"
+            >
+              Option 2
+            </a>
           </li>
           <li style={{ marginRight: "1rem" }}>
-            <a href="#">Option 3</a>
+            <a
+              href="#"
+              className="header-link"
+            >
+              Option 3
+            </a>
           </li>
         </ul>
       </nav>
