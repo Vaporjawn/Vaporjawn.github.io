@@ -23,6 +23,7 @@ const Header = (args: {
         marginRight: "auto",
         marginLeft: "auto",
         backgroundColor: "#4900ff",
+        borderBottom: "2px solid rgba(26, 32, 44, 0.8)",
       }}
     >
       <nav>
