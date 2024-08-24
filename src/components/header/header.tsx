@@ -54,7 +54,7 @@ const Header = (args: {
           </li>
           <li style={{ marginRight: "1rem" }}>
             <a
-              onClick={() => navigate("/Resume")}
+              onClick={() => navigate("/resume")}
               className="header-link"
             >
               Resume
