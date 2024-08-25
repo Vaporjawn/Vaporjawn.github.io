@@ -3,6 +3,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import ArticleIcon from "@mui/icons-material/Article";
 import XIcon from "@mui/icons-material/X";
+import { Link } from "react-router-dom";
 
 const Twitter = () => {
   return (
@@ -20,11 +21,9 @@ const Twitter = () => {
 const Resume = (args: { darkMode: boolean }) => {
   const { darkMode } = args;
   return (
-    // TODO: Add internal link to resume
-    <a
+    <Link
       title="Resume"
-      href="https://drive.google.com/file/d/1B5MqGKb4m3jvZz4MjQ5V6v9Zn1yH0YvD/view?usp=sharing"
-      target="_blank"
+      to={"/resume"}
     >
       <ArticleIcon
         style={{
@@ -32,7 +31,7 @@ const Resume = (args: { darkMode: boolean }) => {
           color: darkMode ? "white" : "black",
         }}
       />
-    </a>
+    </Link>
   );
 };
 
