@@ -1,8 +1,19 @@
+body {
+  overflow-x: hidden; /* Prevent horizontal scroll from full-width footer */
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  padding-top: 120px; /* Add space for fixed header */
+}
+
+/* Main content container to ensure proper spacing */
+.main-content {
+  padding-top: 20px;
+  min-height: calc(100vh - 120px);
 }
 
 .logo {
@@ -30,5 +41,16 @@
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
+  }
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  #root {
+    padding-top: 80px; /* Smaller spacing on mobile */
+  }
+
+  .main-content {
+    min-height: calc(100vh - 80px);
   }
 }

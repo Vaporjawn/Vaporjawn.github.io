@@ -5,4 +5,10 @@ const VaporwaveBlue = "#4900FF"; //rgb(73, 0, 255)
 const VaporwaveBlueGreen = "#00b8ff"; //rgb(0, 184, 255)
 const VaporwaveGreen = "#00fff9"; //rgb(0, 255, 249)
 
-export { VaporwavePink, VaporwavePurple, VaporwaveBlue, VaporwaveBlueGreen, VaporwaveGreen };
+export {
+  VaporwavePink,
+  VaporwavePurple,
+  VaporwaveBlue,
+  VaporwaveBlueGreen,
+  VaporwaveGreen,
+};

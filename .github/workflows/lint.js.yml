@@ -15,7 +15,11 @@ jobs:
 
     strategy:
       matrix:
+<<<<<<< Updated upstream
         node-version: [16.x, 18.x, 20.x]
+=======
+        node-version: [18.x, 20.x]
+>>>>>>> Stashed changes
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:

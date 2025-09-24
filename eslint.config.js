@@ -38,6 +38,8 @@ export default tseslint.config({
     'setupTests.ts',
     './ios',
     './android',
+    'old_files_backup/**',
+    'vite.config.ts',
   ],
   languageOptions: {
     ecmaVersion: 2020,
@@ -68,6 +70,11 @@ export default tseslint.config({
     'import/no-import-module-exports': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     'no-unused-vars': 'warn',
+    '@typescript-eslint/no-unused-vars': ['warn', {
+      'argsIgnorePattern': '^_',
+      'varsIgnorePattern': '^_',
+      'ignoreRestSiblings': true
+    }],
     'prefer-const': 'warn',
     'prefer-destructuring': 'warn',
     'no-console': 'off',

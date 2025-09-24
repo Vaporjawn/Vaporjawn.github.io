@@ -15,16 +15,20 @@ const ProjectCategoryButton = (args: {
     <button
       className="category-button"
       onClick={() => {
-        AddOrRemoveCategory({ category, selectedCategory, setSelectedCategory });
+        AddOrRemoveCategory({
+          category,
+          selectedCategory,
+          setSelectedCategory,
+        });
       }}
       style={{
-        backgroundColor: selectedCategory.includes(category) ? VaporwaveBlue : "",
+        backgroundColor: selectedCategory.includes(category)
+          ? VaporwaveBlue
+          : "",
         borderColor: selectedCategory.includes(category) ? VaporwavePurple : "",
       }}
     >
-      <FontAwesomeIcon icon={icon} />
-      {" "}
-      {category}
+      <FontAwesomeIcon icon={icon} /> {category}
     </button>
   );
 };

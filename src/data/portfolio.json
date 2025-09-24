@@ -1,0 +1,129 @@
+{
+  "personalInfo": {
+    "name": "Victor Williams",
+    "title": "Software Developer & Digital Creative",
+    "email": "victor.williams.dev@gmail.com",
+    "location": "Philadelphia, PA",
+    "bio": "Passionate developer creating innovative digital experiences with modern web technologies.",
+    "avatar": "/assets/profile.jpg"
+  },
+  "skills": {
+    "frontend": [
+      { "name": "React", "level": 90, "category": "framework" },
+      { "name": "TypeScript", "level": 85, "category": "language" },
+      { "name": "Material-UI", "level": 80, "category": "ui" },
+      { "name": "JavaScript", "level": 90, "category": "language" },
+      { "name": "HTML5", "level": 95, "category": "markup" },
+      { "name": "CSS3", "level": 85, "category": "styling" }
+    ],
+    "backend": [
+      { "name": "Node.js", "level": 75, "category": "runtime" },
+      { "name": "Python", "level": 70, "category": "language" },
+      { "name": "REST APIs", "level": 80, "category": "api" }
+    ],
+    "tools": [
+      { "name": "Git", "level": 85, "category": "version-control" },
+      { "name": "Vite", "level": 80, "category": "build-tool" },
+      { "name": "Jest", "level": 75, "category": "testing" }
+    ]
+  },
+  "projects": [
+    {
+      "id": "vaporjawn-portfolio",
+      "title": "Personal Portfolio",
+      "description": "Modern React portfolio showcasing projects and skills with vaporwave aesthetic",
+      "longDescription": "A fully responsive portfolio website built with React, TypeScript, and Material-UI. Features dark/light theme switching, responsive design, and modern web practices.",
+      "image": "/assets/images/portfolio-preview.jpg",
+      "technologies": ["React", "TypeScript", "Material-UI", "Vite"],
+      "liveUrl": "https://vaporjawn.github.io",
+      "githubUrl": "https://github.com/Vaporjawn/Vaporjawn.github.io",
+      "featured": true,
+      "status": "completed",
+      "category": "web"
+    },
+    {
+      "id": "20xx-project",
+      "title": "20XX Gaming Project",
+      "description": "Interactive gaming experience with retro aesthetics",
+      "longDescription": "A gaming-focused project that explores retro gaming aesthetics and interactive experiences.",
+      "image": "/assets/images/20xx-preview.jpg",
+      "technologies": ["React", "JavaScript", "CSS3"],
+      "liveUrl": "https://vaporjawn.github.io/20XX",
+      "githubUrl": "https://github.com/Vaporjawn/20XX",
+      "featured": false,
+      "status": "in-progress",
+      "category": "gaming"
+    },
+    {
+      "id": "esperanto-analyzer",
+      "title": "Esperanto Analyzer",
+      "description": "Linguistic analysis tool exploring Esperanto vocabulary, morphology, and usage patterns.",
+      "longDescription": "A language processing and analysis project focusing on Esperanto. Provides parsing, frequency statistics, and morphological breakdowns to support linguistic exploration and learning. Built with a focus on clean modular architecture and potential future integration with interactive visualizations.",
+      "image": "/assets/images/esperanto-analyzer-preview.jpg",
+      "technologies": ["TypeScript", "Node.js", "Parsing", "CLI"],
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Vaporjawn/esperanto-analyzer",
+      "featured": false,
+      "status": "in-progress",
+      "category": "tool"
+    }
+  ],
+  "experience": [
+    {
+      "id": "current-role",
+      "company": "Freelance Developer",
+      "position": "Full Stack Developer",
+      "location": "Remote",
+      "startDate": "2023-01",
+      "endDate": null,
+      "description": "Developing modern web applications using React, TypeScript, and Node.js for various clients.",
+      "technologies": ["React", "TypeScript", "Node.js", "Material-UI"],
+      "current": true
+    }
+  ],
+  "social": [
+    {
+      "platform": "GitHub",
+      "url": "https://github.com/Vaporjawn",
+      "icon": "github",
+      "primary": true
+    },
+    {
+      "platform": "LinkedIn",
+      "url": "https://linkedin.com/in/victorwilliams",
+      "icon": "linkedin",
+      "primary": true
+    },
+    {
+      "platform": "Twitter",
+      "url": "https://twitter.com/vaporjawn",
+      "icon": "twitter",
+      "primary": false
+    },
+    {
+      "platform": "Bluesky",
+      "url": "https://bsky.app/profile/vaporjawn.bsky.social",
+      "icon": "bluesky",
+      "primary": false
+    },
+    {
+      "platform": "NPM",
+      "url": "https://www.npmjs.com/~vaporjawn",
+      "icon": "npm",
+      "primary": false
+    },
+    {
+      "platform": "Devpost",
+      "url": "https://devpost.com/Vaporjawn?ref_content=user-portfolio&ref_feature=portfolio&ref_medium=global-nav",
+      "icon": "devpost",
+      "primary": false
+    }
+    ,
+    {
+      "platform": "GitLab",
+      "url": "https://gitlab.com/vaporjawn",
+      "icon": "gitlab",
+      "primary": false
+    }
+  ]
+}

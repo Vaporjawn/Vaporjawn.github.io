@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.app.json",
+  "include": ["src", "src/test-types.d.ts", "src/types/assets.d.ts", "src/global-assets.d.ts", "assets-global.d.ts"],
+  "compilerOptions": {
+    "types": ["node", "jest", "@testing-library/jest-dom"],
+    "jsx": "react-jsx",
+    "module": "ES2022",
+    "moduleResolution": "node",
+    "typeRoots": ["./src", "./node_modules/@types", "./"],
+    "baseUrl": ".",
+    "paths": {
+      "@assets/*": ["src/assets/*"]
+    }
+  }
+}

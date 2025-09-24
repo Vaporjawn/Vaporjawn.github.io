@@ -1,0 +1,92 @@
+.MenuBar {
+    font-size: 14px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    font-family: Lato, sans-serif;
+}
+
+.menuList {
+    margin-top: 0;
+    background-color: black;
+    padding: 0;
+    padding-left: 1%;
+    margin-left: auto;
+    width: 43%;
+    margin-right: auto;
+}
+
+.menuOption {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 10px 10px;
+    background-color:black;
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.menuOption a:hover {
+    background-color: rgb(91, 12, 12);
+    color: gold;
+}
+
+.menuLink {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+@media only screen and (max-width: 1991px) { 
+    .menuList {
+        width: 60%;
+        /* display: inline-block; */
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 1000px) { 
+    .menuOption { 
+        display: none; 
+    }  
+}
+
+@media screen and (max-width: 768px) {
+    .menuList {
+        width: 100%;
+        text-align: center;
+    }
+
+    .menuOption {
+        display: none;
+    }
+
+    .menuLink {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .menuList {
+        width: 100%;
+        text-align: center;
+    }
+
+    .menuOption {
+        display: none;
+    }
+
+    .menuLink {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+}

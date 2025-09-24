@@ -1,0 +1,39 @@
+.SmashBackgroundBanner{
+    padding: 104px 0px;
+    padding-top: 0;
+    background-attachment: scroll;
+    background-image: url("../../../assets/images/ssbm.jpg");
+    background-repeat: no-repeat;
+    background-size: 71%;
+    background-position: center;
+    background-position-y: 0%;
+    background-attachment: fixed;
+}
+.PurpleDrops {
+    background-image: url("../../../assets/images/purpleDrops.gif");
+    padding-top: 0;
+    background-attachment: scroll;
+    background-repeat: repeat;
+    background-size: 40%;
+    background-position: center;
+    background-position-y: -35%;
+    background-attachment: fixed;
+}
+
+@media screen and (max-width: 768px) {
+    .SmashBackgroundBanner{
+        background-size: 100%;
+    }
+    .PurpleDrops {
+        background-size: 100%;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .SmashBackgroundBanner{
+        background-size: 100%;
+    }
+    .PurpleDrops {
+        background-size: 100%;
+    }
+}

@@ -1,0 +1,10 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Coffee cup -->
+  <rect x="64" y="96" width="128" height="96" rx="8" fill="#FFDD00"/>
+  <!-- Coffee cup handle -->
+  <path d="M192 120 C208 120, 216 128, 216 144 C216 160, 208 168, 192 168" stroke="#FFDD00" stroke-width="8" fill="none"/>
+  <!-- Coffee steam -->
+  <path d="M88 80 C88 72, 96 64, 104 72 C104 64, 112 56, 120 64 C120 56, 128 48, 136 56" stroke="#FFDD00" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <!-- Heart -->
+  <path d="M112 144 C108 140, 100 140, 100 148 C100 156, 112 168, 112 168 C112 168, 124 156, 124 148 C124 140, 116 140, 112 144 Z" fill="#FF6B6B"/>
+</svg>

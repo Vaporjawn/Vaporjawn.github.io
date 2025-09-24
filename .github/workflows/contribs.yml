@@ -1,0 +1,62 @@
+﻿name: Update Contributions Calendar
+
+on:
+  # Manual run
+  workflow_dispatch: {}
+  # Run on every push to keep data immediately fresh after commits
+  push:
+    branches: [ V3, main, master ]
+    paths-ignore:
+      - 'README.md'
+      - 'README_NEW.md'
+      - 'README_OLD.md'
+      - 'docs/**'
+      - '.github/**'
+      - '!.github/workflows/contribs.yml'
+  # Ensure at least once per day (03:17 UTC)
+  schedule:
+    - cron: '17 3 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install deps (if needed)
+        run: |
+          if [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; then
+            npm ci --ignore-scripts --no-audit --no-fund
+          elif [ -f package.json ]; then
+            npm install --ignore-scripts --no-audit --no-fund
+          fi
+
+      - name: Fetch contributions JSON
+        env:
+          # Script prefers CONTRIB_GRAPHQL_TOKEN; falls back to CONTRIB_TOKEN or GITHUB_TOKEN
+          CONTRIB_GRAPHQL_TOKEN: ${{ secrets.CONTRIB_GRAPHQL_TOKEN }}
+          GITHUB_LOGIN: vaporjawn
+        run: node scripts/fetch-contribs.mjs
+
+      - name: Commit & push if changed
+        run: |
+          if git diff --quiet public/data/contributions.json; then
+            echo "No changes to contributions.json"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/contributions.json
+          git commit -m "chore(contrib): update contributions.json [skip ci]"
+          git push
