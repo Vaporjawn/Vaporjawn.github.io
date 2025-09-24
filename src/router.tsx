@@ -9,6 +9,8 @@ import HomePath from "./routes/homePath";
 import ProjectsPage from "./pages/projects/projectsPage";
 import ResumePage from "./pages/resume/resumePage";
 
+const NotFoundPage = () => <h1>404 - Page Not Found</h1>;
+
 const Router = () => {
   const [darkMode, setDarkMode] = useState<boolean>(true);
 
@@ -26,6 +28,7 @@ const Router = () => {
         <Route path={HomePath} element={<HomePage darkMode={darkMode} />} />
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/resume" element={<ResumePage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
     </ThemeProvider>

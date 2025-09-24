@@ -14,51 +14,85 @@ In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Runs the app in development mode using Vite.\
+Open [http://localhost:5173](http://localhost:5173) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Builds the app for production to the `dist` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance using Vite.
 
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
+### `npm run preview`
+
+Locally preview the production build.\
+Serves the content from the `dist` folder.
+
+### `npm test`
+
+Launches Jest test runner.\
+Run `npm run test:watch` for interactive watch mode.\
+Run `npm run test:cov` for coverage reports.
+
+### `npm run lint`
+
+Runs ESLint to check for code quality and style issues.\
+Automatically fixes issues where possible.
+
+### `npm run format`
+
+Runs Prettier to format code consistently.
+
 ### `npm run deploy`
 
-Deploy your react application to GitHub Pages. This deploys a build to a branch called `gh-pages`.
-That should directly deploy to the production version of the website.
-[Extra Info Here](https://www.c-sharpcorner.com/article/how-to-deploy-react-application-on-github-pages/)
+Deploy your React application to GitHub Pages.\
+This builds the app and deploys it to the `gh-pages` branch.
 
-### `npm run eject`
+### `npm run check`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Runs the full quality check pipeline: build, format, lint, and test with coverage.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Development Setup
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc.) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Vaporjawn/Vaporjawn.github.io.git
+   cd Vaporjawn.github.io
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start development server**
+   ```bash
+   npm start
+   ```
+
+4. **Run tests**
+   ```bash
+   npm test
+   ```
+
+## Tech Stack
+
+- **Framework**: React 18 with TypeScript
+- **Build Tool**: Vite
+- **UI Libraries**: Material-UI (MUI), FontAwesome
+- **Routing**: React Router DOM
+- **Testing**: Jest + React Testing Library
+- **Linting**: ESLint + Prettier
+- **Deployment**: GitHub Pages
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- [Vite Documentation](https://vitejs.dev/)
+- [React Documentation](https://reactjs.org/)
+- [TypeScript Documentation](https://www.typescriptlang.org/)
+- [Material-UI Documentation](https://mui.com/)

@@ -1,14 +1,13 @@
 import HomePath from "../../routes/homePath";
 import DarkModeToggle from "./components/darkModeToggle";
 import "./styles/header.css";
-import { NavigateFunction, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Header = (args: {
   darkMode: boolean;
   setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const { darkMode, setDarkMode } = args;
-  const navigate: NavigateFunction = useNavigate();
 
   return (
     <header
@@ -29,36 +28,19 @@ const Header = (args: {
       <nav>
         <ul style={{ display: "flex", listStyle: "none" }}>
           <li style={{ marginRight: "1rem" }}>
-            <a
-              onClick={() => navigate(HomePath)}
-              className="header-link"
-            >
+            <Link to={HomePath} className="header-link">
               Home
-            </a>
+            </Link>
           </li>
           <li style={{ marginRight: "1rem" }}>
-            <a
-              onClick={() => navigate("/about")}
-              className="header-link"
-            >
-              About
-            </a>
-          </li>
-          <li style={{ marginRight: "1rem" }}>
-            <a
-              onClick={() => navigate("/projects")}
-              className="header-link"
-            >
+            <Link to="/projects" className="header-link">
               Projects
-            </a>
+            </Link>
           </li>
           <li style={{ marginRight: "1rem" }}>
-            <a
-              onClick={() => navigate("/resume")}
-              className="header-link"
-            >
+            <Link to="/resume" className="header-link">
               Resume
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
