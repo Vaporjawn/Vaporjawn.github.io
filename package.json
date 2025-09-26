@@ -17,13 +17,9 @@
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-<<<<<<< Updated upstream
-    "prepare": "husky && husky install"
-=======
     "verify-sign": "git log -1 --show-signature",
     "fetch:contribs": "node scripts/fetch-contribs.mjs",
     "fetch:contribs:local": "GITHUB_LOGIN=vaporjawn node scripts/fetch-contribs.mjs"
->>>>>>> Stashed changes
   },
   "dependencies": {
     "@emotion/react": "^11.13.0",
@@ -33,11 +29,6 @@
     "@fortawesome/free-regular-svg-icons": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
-<<<<<<< Updated upstream
-    "@material/web": "^2.4.0",
-    "@mui/icons-material": "^5.16.7",
-    "@mui/material": "^5.16.7",
-=======
     "@hookform/resolvers": "^5.2.2",
     "@material/web": "^2.0.0",
     "@mui/icons-material": "^5.16.7",
@@ -45,7 +36,6 @@
     "@tanstack/react-query": "^5.90.1",
     "font-awesome": "^4.7.0",
     "framer-motion": "^12.23.18",
->>>>>>> Stashed changes
     "gh-pages": "^6.1.1",
     "jest": "^29.7.0",
     "react": "^18.3.1",
@@ -59,15 +49,9 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
-<<<<<<< Updated upstream
-    "@testing-library/jest-dom": "^6.4.8",
-    "@testing-library/react": "^16.0.0",
-    "@testing-library/user-event": "^14.5.2",
-=======
     "@testing-library/jest-dom": "^6.6.4",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
->>>>>>> Stashed changes
     "@types/eslint": "^9.6.0",
     "@types/eslint__js": "^8.42.3",
     "@types/eslint-config-prettier": "^6.11.3",
@@ -84,19 +68,12 @@
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
     "identity-obj-proxy": "^3.0.0",
-<<<<<<< Updated upstream
-    "jsdom": "^24.1.1",
-    "prettier": "^3.3.3",
-    "ts-jest": "^29.2.4",
-    "typescript": "^5.5.4",
-=======
     "jest-environment-jsdom": "^30.0.5",
     "jest-transform-stub": "^2.0.0",
     "prettier": "^3.3.3",
     "ts-jest": "^29.4.0",
-  "typescript": "^5.5.4",
-  "dotenv": "^16.4.5",
->>>>>>> Stashed changes
+    "typescript": "^5.5.4",
+    "dotenv": "^16.4.5",
     "typescript-eslint": "^8.0.1",
     "vite": "^5.4.0"
   }
