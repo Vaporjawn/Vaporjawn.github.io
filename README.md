@@ -20,21 +20,10 @@ I am a 27-year-old Temple University graduate and a seasoned Senior Full Stack S
 - **Testing**: Jest
 - **Code Quality**: ESLint, Prettier
 
-<<<<<<< Updated upstream
-Runs the app in development mode using Vite.\
-Open [http://localhost:5173](http://localhost:5173) to view it in your browser.
-=======
 ## 🛠️ Development
->>>>>>> Stashed changes
 
 ### Prerequisites
 
-<<<<<<< Updated upstream
-### `npm run build`
-
-Builds the app for production to the `dist` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance using Vite.
-=======
 - Node.js (v18+ recommended)
 - npm or yarn
 
@@ -46,17 +35,10 @@ git clone https://github.com/Vaporjawn/Vaporjawn.github.io.git
 
 # Navigate to the project directory
 cd Vaporjawn.github.io
->>>>>>> Stashed changes
 
 # Install dependencies
 npm install
 ```
-
-<<<<<<< Updated upstream
-### `npm run preview`
-
-Locally preview the production build.\
-Serves the content from the `dist` folder.
 
 ### `npm test`
 
@@ -114,7 +96,7 @@ Runs the full quality check pipeline: build, format, lint, and test with coverag
 - **Testing**: Jest + React Testing Library
 - **Linting**: ESLint + Prettier
 - **Deployment**: GitHub Pages
-=======
+
 ### Available Scripts
 
 #### `npm start`
@@ -131,16 +113,9 @@ Builds the app for production to the `dist` folder.
 The build is optimized for best performance with minified files and hashed filenames.
 
 #### `npm run preview`
->>>>>>> Stashed changes
 
 Locally preview the production build to test before deployment.
 
-<<<<<<< Updated upstream
-- [Vite Documentation](https://vitejs.dev/)
-- [React Documentation](https://reactjs.org/)
-- [TypeScript Documentation](https://www.typescriptlang.org/)
-- [Material-UI Documentation](https://mui.com/)
-=======
 #### `npm test`
 
 Launches the test runner.
@@ -151,6 +126,71 @@ Run `npm run test:cov` for coverage reports.
 
 Runs ESLint to check for code quality issues and automatically fixes what it can.
 The build will fail if there are linting errors.
+
+#### `npm run fetch:contribs`
+
+Fetches GitHub contribution data and updates the portfolio.
+This updates the contribution visualization data.
+
+#### `npm run verify-sign`
+
+Verifies GPG commit signature configuration for secure contributions.
+
+#### `npm run deploy`
+
+Builds and deploys the application to GitHub Pages.
+Only maintainers with push access can deploy.
+
+## Development Setup
+
+### Prerequisites
+
+- Node.js 18 or higher
+- npm or yarn package manager
+- Git with GPG signing configured (recommended)
+
+### Local Development
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Vaporjawn/Vaporjawn.github.io.git
+   cd Vaporjawn.github.io
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment**
+   ```bash
+   # Copy environment template (if exists)
+   cp .env.example .env.local
+   ```
+
+4. **Start development server**
+   ```bash
+   npm start
+   ```
+
+5. **Run tests**
+   ```bash
+   npm test
+   ```
+
+### Code Quality
+
+- **Linting**: ESLint with TypeScript support
+- **Formatting**: Prettier with automatic formatting
+- **Testing**: Jest + React Testing Library
+- **Type Safety**: Strict TypeScript configuration
+
+## Resources
+
+- [Vite Documentation](https://vitejs.dev/)
+- [React Documentation](https://reactjs.org/)
+- [TypeScript Documentation](https://www.typescriptlang.org/)
+- [Material-UI Documentation](https://mui.com/)
 
 #### `npm run format`
 
@@ -347,4 +387,3 @@ This project is open source and available under the [MIT License](LICENSE).
 - **GitHub**: [@Vaporjawn](https://github.com/Vaporjawn)
 - **Devpost**: [Vaporjawn](https://devpost.com/Vaporjawn?ref_content=user-portfolio&ref_feature=portfolio&ref_medium=global-nav)
 - **Twitter**: [@vaporjawn](https://twitter.com/vaporjawn)
->>>>>>> Stashed changes

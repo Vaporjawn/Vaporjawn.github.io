@@ -26,10 +26,6 @@ import {
 import { NavigateFunction, useNavigate, useLocation } from "react-router-dom";
 import HomePath from "../../routes/homePath";
 import DarkModeToggle from "./components/darkModeToggle";
-<<<<<<< Updated upstream
-import "./styles/header.css";
-import { Link } from "react-router-dom";
-=======
 import {
   VaporwavePink,
   VaporwavePurple,
@@ -37,21 +33,17 @@ import {
   VaporwaveBlueGreen,
   VaporwaveGreen,
 } from "../../colors";
->>>>>>> Stashed changes
 
 const Header = (args: {
   darkMode: boolean;
   setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const { darkMode, setDarkMode } = args;
-<<<<<<< Updated upstream
-=======
   const navigate: NavigateFunction = useNavigate();
   const location = useLocation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [mobileOpen, setMobileOpen] = useState(false);
->>>>>>> Stashed changes
 
   const navItems = [
     { label: "Home", path: HomePath, icon: <HomeIcon /> },
@@ -89,29 +81,6 @@ const Header = (args: {
         borderRight: `1px solid ${darkMode ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)"}`,
       }}
     >
-<<<<<<< Updated upstream
-      <nav>
-        <ul style={{ display: "flex", listStyle: "none" }}>
-          <li style={{ marginRight: "1rem" }}>
-            <Link to={HomePath} className="header-link">
-              Home
-            </Link>
-          </li>
-          <li style={{ marginRight: "1rem" }}>
-            <Link to="/projects" className="header-link">
-              Projects
-            </Link>
-          </li>
-          <li style={{ marginRight: "1rem" }}>
-            <Link to="/resume" className="header-link">
-              Resume
-            </Link>
-          </li>
-        </ul>
-      </nav>
-      <DarkModeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
-    </header>
-=======
       <Box
         sx={{
           display: "flex",
@@ -356,7 +325,6 @@ const Header = (args: {
         {drawer}
       </Drawer>
     </>
->>>>>>> Stashed changes
   );
 };
 

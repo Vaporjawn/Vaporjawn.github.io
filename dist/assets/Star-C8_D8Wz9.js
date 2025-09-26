@@ -1,0 +1,2 @@
+import{a as e,g as l,V as t,j as s}from"./index-DYFHCmBT.js";function i(a){return l("MuiListItemIcon",a)}const n=e("MuiListItemIcon",["root","alignItemsFlexStart"]),r=t(s.jsx("path",{d:"M9.4 16.6 4.8 12l4.6-4.6L8 6l-6 6 6 6zm5.2 0 4.6-4.6-4.6-4.6L16 6l6 6-6 6z"}),"Code"),c=t(s.jsx("path",{d:"M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"}),"Star");export{r as C,c as S,i as g,n as l};
+//# sourceMappingURL=Star-C8_D8Wz9.js.map

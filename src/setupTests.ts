@@ -1,6 +1,3 @@
-<<<<<<< Updated upstream
-import '@testing-library/jest-dom';
-=======
 import "@testing-library/jest-dom";
 
 // Polyfill / mock for IntersectionObserver in jsdom test environment
@@ -22,5 +19,3 @@ if (typeof window !== "undefined" && !("IntersectionObserver" in window)) {
 		// @ts-expect-error propagate to global scope
 	global.IntersectionObserver = window.IntersectionObserver;
 }
-
->>>>>>> Stashed changes

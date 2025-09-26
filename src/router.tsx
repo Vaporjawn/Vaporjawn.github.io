@@ -24,7 +24,7 @@ const ContactPage = lazy(() => import("./pages/contact/contactPage"));
 const PrivacyPage = lazy(() => import("./pages/privacy/PrivacyPolicy"));
 const TermsPage = lazy(() => import("./pages/terms/TermsOfService"));
 
-const NotFoundPage = () => <h1>404 - Page Not Found</h1>;
+
 
 const Router = () => {
   const [darkMode, setDarkMode] = useState<boolean>(true);
@@ -43,19 +43,6 @@ const Router = () => {
   );
 
   return (
-<<<<<<< Updated upstream
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
-      <Header darkMode={darkMode} setDarkMode={setDarkMode} />
-      <Routes>
-        <Route path={HomePath} element={<HomePage darkMode={darkMode} />} />
-        <Route path="/projects" element={<ProjectsPage />} />
-        <Route path="/resume" element={<ResumePage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-      <Footer />
-    </ThemeProvider>
-=======
     <PortfolioProvider>
       <ErrorBoundary>
         <ThemeProvider theme={theme}>
@@ -89,7 +76,6 @@ const Router = () => {
         </ThemeProvider>
       </ErrorBoundary>
     </PortfolioProvider>
->>>>>>> Stashed changes
   );
 };
 
