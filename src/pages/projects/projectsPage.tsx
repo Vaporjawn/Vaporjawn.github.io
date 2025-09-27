@@ -18,7 +18,17 @@ import {
   Fade,
   IconButton,
   Tooltip,
-  Collapse,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TableSortLabel,
+  Paper,
+  ToggleButton,
+  ToggleButtonGroup,
+  Link,
 } from "@mui/material";
 import {
   Search,
@@ -26,10 +36,10 @@ import {
   Launch,
   Star,
   Code,
-  ExpandMore,
-  ExpandLess,
-  Refresh,
-  Download,
+  ViewList,
+  ViewModule,
+  ArrowUpward,
+  ArrowDownward,
 } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 import SEO from "../../components/SEO/SEO";
@@ -37,29 +47,32 @@ import { useProjects } from "../../hooks/usePortfolioData";
 import { useNpmPackages } from "../../hooks/useNpmPackages";
 import { useDevpostProjects } from "../../hooks/useDevpostProjects";
 import { useGithubRepos } from "../../hooks/useGithubRepos";
+import { useStarredProjects } from "../../hooks/useStarredProjects";
 // Devpost standalone section removed per consolidation requirement. Devpost data will be merged into unified list in a later step.
 // Removed image rendering per request (no project thumbnails displayed)
 
 const ProjectsPage: React.FC = () => {
   const theme = useTheme();
   // Correctly destructure the custom hook which returns an object, not an array
-  const { projects, featuredProjects } = useProjects();
-  const {
-    packages: npmPackages,
-    loading: npmLoading,
-    error: npmError,
-    refresh: refreshNpm,
-  } = useNpmPackages({ fetchDownloads: true });
-  const [showNpm, setShowNpm] = useState(false); // default collapsed per requirement
+  const { projects } = useProjects();
+
   const { repos: githubRepos } = useGithubRepos();
   const { packages: npmPkgs } = useNpmPackages();
   const { projects: devpostProjects } = useDevpostProjects();
+  const { toggleStar, isStarred } = useStarredProjects();
   const [searchQuery, setSearchQuery] = useState("");
   // Devpost state
   // Devpost hook removed here; data aggregation will occur in unified pipeline (future step)
   const [statusFilter, setStatusFilter] = useState("all");
   const [categoryFilter, setCategoryFilter] = useState("all");
-  const [showFeatured, setShowFeatured] = useState(false); // Initially collapsed
+  const [showOnlyNpm, setShowOnlyNpm] = useState(false); // NPM packages filter
+  const [showOnlyFeatured, setShowOnlyFeatured] = useState(false); // Featured projects filter
+  const [showOnlyDevpost, setShowOnlyDevpost] = useState(false); // Devpost projects filter
+
+  // Sorting and view controls
+  const [viewMode, setViewMode] = useState<"cards" | "table">("cards");
+  const [sortBy, setSortBy] = useState<"activity" | "name" | "stars" | "downloads" | "featured">("activity");
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
 
   // Unified aggregation model (initial): portfolio + github repos (npm & devpost to be merged subsequently)
   /**
@@ -75,6 +88,7 @@ const ProjectsPage: React.FC = () => {
     category?: string;
     technologies?: string[];
     featured?: boolean;
+
     // Platform facets
     github?: {
       url: string;
@@ -129,6 +143,14 @@ const ProjectsPage: React.FC = () => {
     if (n < 1000) return String(n);
     if (n < 1000 * 1000) return (Math.round((n / 1000) * 10) / 10) + "k";
     return (Math.round((n / 1000_000) * 10) / 10) + "M";
+  };
+
+  // Handle table header clicks for sorting
+  const handleHeaderSort = (property: typeof sortBy) => {
+    const isCurrentSort = sortBy === property;
+    const newOrder = isCurrentSort && sortOrder === "desc" ? "asc" : "desc";
+    setSortBy(property);
+    setSortOrder(newOrder);
   };
 
   // Centralized tooltip copy for metrics (concise, accessible). Keep < 110 chars for readability.
@@ -300,13 +322,30 @@ const ProjectsPage: React.FC = () => {
       }
     }
 
-    // Final array
     return Array.from(map.values());
   }, [projects, githubRepos, npmPkgs, devpostProjects]);
 
-  // Filtering currently applies to portfolio subset only (will adapt for multi-source next step)
+  // Filtering now includes NPM packages, Featured projects, Devpost, and Starred filters
   const filteredProjects = useMemo(() => {
     let list = unifiedProjects;
+
+    // NPM packages filter
+    if (showOnlyNpm) {
+      list = list.filter(p => p.npm && p.sources.includes("npm"));
+    }
+
+    // Featured projects filter (uses overridden featured status)
+    if (showOnlyFeatured) {
+      list = list.filter(p => isStarred(p.id, p.featured));
+    }
+
+    // Devpost projects filter
+    if (showOnlyDevpost) {
+      list = list.filter(p => p.devpost && p.sources.includes("devpost"));
+    }
+
+
+
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
       list = list.filter(p =>
@@ -322,15 +361,47 @@ const ProjectsPage: React.FC = () => {
     if (categoryFilter !== "all") {
       list = list.filter(p => !p.category || p.category === categoryFilter);
     }
+    // Apply sorting
     return list.sort((a, b) => {
-      if (a.featured && !b.featured) return -1;
-      if (!a.featured && b.featured) return 1;
-      const at = a.lastActivityAt ? new Date(a.lastActivityAt).getTime() : 0;
-      const bt = b.lastActivityAt ? new Date(b.lastActivityAt).getTime() : 0;
-      if (bt !== at) return bt - at;
-      return a.title.localeCompare(b.title);
+      let result = 0;
+
+      switch (sortBy) {
+        case "name":
+          result = a.title.localeCompare(b.title);
+          break;
+        case "stars":
+          result = (b.stars || 0) - (a.stars || 0);
+          break;
+        case "downloads":
+          result = (b.downloadsPerWeek || 0) - (a.downloadsPerWeek || 0);
+          break;
+        case "featured":
+          // Sort starred/featured projects first
+          const aFeatured = isStarred(a.id, a.featured || false);
+          const bFeatured = isStarred(b.id, b.featured || false);
+          if (aFeatured && !bFeatured) result = -1;
+          else if (!aFeatured && bFeatured) result = 1;
+          else result = 0;
+          break;
+        case "activity":
+        default:
+          const at = a.lastActivityAt ? new Date(a.lastActivityAt).getTime() : 0;
+          const bt = b.lastActivityAt ? new Date(b.lastActivityAt).getTime() : 0;
+          result = bt - at;
+          break;
+      }
+
+      // Apply sort order (reverse for ascending)
+      if (sortOrder === "asc") result = -result;
+
+      // Secondary sort by title for consistency
+      if (result === 0) {
+        result = a.title.localeCompare(b.title);
+      }
+
+      return result;
     });
-  }, [unifiedProjects, searchQuery, statusFilter, categoryFilter]);
+  }, [unifiedProjects, searchQuery, statusFilter, categoryFilter, showOnlyNpm, showOnlyFeatured, showOnlyDevpost, isStarred, sortBy, sortOrder]);
 
   const categories = [...new Set((projects || []).map((p) => p.category))];
   const statuses = [...new Set((projects || []).map((p) => p.status))];
@@ -370,7 +441,7 @@ const ProjectsPage: React.FC = () => {
         url="https://vaporjawn.github.io/projects"
       />
 
-      <Container maxWidth="lg" sx={{ py: 4 }}>
+      <Container maxWidth="xl" sx={{ py: 4, px: { xs: 2, sm: 3, md: 4 } }}>
         <Fade in timeout={1000}>
           <Box>
             {/* Header Section */}
@@ -402,313 +473,6 @@ const ProjectsPage: React.FC = () => {
 
             {/* Devpost section removed; content will be included in unified All Projects list */}
 
-            {/* NPM Packages Section */}
-            <Box
-              sx={{ mb: 6 }}
-              component="section"
-              role="region"
-              aria-labelledby="npm-packages-heading"
-            >
-              <Box
-                display="flex"
-                alignItems="center"
-                justifyContent="space-between"
-                sx={{ mb: 1 }}
-              >
-                <Typography
-                  variant="h4"
-                  component="h2"
-                  id="npm-packages-heading"
-                  sx={{ fontWeight: 600 }}
-                >
-                  📦 NPM Packages
-                </Typography>
-                <Box>
-                  <Button
-                    size="small"
-                    variant="text"
-                    onClick={() => setShowNpm((o) => !o)}
-                    startIcon={showNpm ? <ExpandLess /> : <ExpandMore />}
-                    aria-expanded={showNpm}
-                    aria-controls="npm-packages-panel"
-                    aria-label={showNpm ? "Hide NPM packages list" : "Show NPM packages list"}
-                    sx={{ mr: 1 }}
-                  >
-                    {showNpm ? "Hide" : "Show"}
-                  </Button>
-                  <Tooltip title="Refresh packages (ignore cache)">
-                    <span>
-                      <IconButton
-                        onClick={refreshNpm}
-                        disabled={npmLoading}
-                        aria-label={npmLoading ? "Refreshing NPM packages" : "Refresh NPM packages"}
-                        aria-describedby="npm-packages-status"
-                      >
-                        <Refresh />
-                      </IconButton>
-                    </span>
-                  </Tooltip>
-                </Box>
-              </Box>
-              <Collapse in={showNpm} timeout="auto" unmountOnExit>
-                {/* Status / live region */}
-                <Box id="npm-packages-status" aria-live="polite" sx={{ position: "relative" }}>
-                  {npmLoading && !npmPackages.length && (
-                    <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
-                      Loading packages...
-                    </Typography>
-                  )}
-                  {npmError && !npmPackages.length && (
-                    <Typography variant="body2" color="error" sx={{ mt: 2 }}>
-                      {npmError}
-                    </Typography>
-                  )}
-                  {!npmLoading && !npmError && npmPackages.length === 0 && (
-                    <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
-                      No packages found.
-                    </Typography>
-                  )}
-                  {!npmLoading && !npmError && npmPackages.length > 0 && (
-                    <Typography variant="caption" color="text.secondary" sx={{ mt: 1, display: "block" }}>
-                      Showing {npmPackages.length} package{npmPackages.length === 1 ? "" : "s"}
-                    </Typography>
-                  )}
-                </Box>
-                <Grid id="npm-packages-panel" container spacing={3} sx={{ mt: 1 }}>
-                  {npmPackages.map((pkg) => (
-                    <Grid item xs={12} sm={6} lg={4} key={pkg.name}>
-                      <Card
-                        elevation={2}
-                        sx={{
-                          height: "100%",
-                          display: "flex",
-                          flexDirection: "column",
-                          transition: "transform 0.2s, box-shadow 0.2s",
-                          "&:hover": { transform: "translateY(-2px)", boxShadow: 4 },
-                        }}
-                      >
-                        <CardContent sx={{ flexGrow: 1 }}>
-                          <Box display="flex" justifyContent="space-between" alignItems="flex-start" mb={1}>
-                            <Typography variant="h6" component="h3" gutterBottom>
-                              {pkg.name}
-                            </Typography>
-                            <Chip label={`v${pkg.version}`} size="small" color="primary" />
-                          </Box>
-                          <Typography
-                            variant="body2"
-                            color="text.secondary"
-                            paragraph
-                            sx={{
-                              display: "-webkit-box",
-                              WebkitLineClamp: 3,
-                              WebkitBoxOrient: "vertical",
-                              overflow: "hidden",
-                            }}
-                          >
-                            {pkg.description || "No description provided."}
-                          </Typography>
-                          <Box display="flex" flexWrap="wrap" gap={0.5} mb={2}>
-                            {pkg.keywords.slice(0, 4).map((k) => (
-                              <Chip key={k} label={k} variant="outlined" size="small" sx={{ fontSize: "0.65rem" }} />
-                            ))}
-                            {pkg.weeklyDownloads !== undefined && (
-                              <Tooltip title={metricTooltips.weeklyDownloads} arrow>
-                                <Chip
-                                  icon={<Download sx={{ fontSize: "0.9rem" }} />}
-                                  label={`${pkg.weeklyDownloads.toLocaleString()} / wk`}
-                                  size="small"
-                                  color="secondary"
-                                  aria-label={`${pkg.weeklyDownloads.toLocaleString()} weekly downloads (npm)`}
-                                />
-                              </Tooltip>
-                            )}
-                          </Box>
-                          {pkg.publishedAt && (
-                            <Typography variant="caption" color="text.secondary">
-                              Updated {new Date(pkg.publishedAt).toLocaleDateString()}
-                            </Typography>
-                          )}
-                        </CardContent>
-                        <CardActions sx={{ p: 2, pt: 0 }}>
-                          {pkg.repository && (
-                            <Button
-                              size="small"
-                              variant="outlined"
-                              startIcon={<GitHub />}
-                              href={pkg.repository}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              Repo
-                            </Button>
-                          )}
-                          {pkg.npmUrl && (
-                            <Button
-                              size="small"
-                              variant="text"
-                              startIcon={<Code />}
-                              href={pkg.npmUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              NPM
-                            </Button>
-                          )}
-                          {pkg.homepage && (
-                            <Button
-                              size="small"
-                              variant="text"
-                              startIcon={<Launch />}
-                              href={pkg.homepage}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              Site
-                            </Button>
-                          )}
-                        </CardActions>
-                      </Card>
-                    </Grid>
-                  ))}
-                </Grid>
-              </Collapse>
-            </Box>
-
-            {/* Featured Projects */}
-            {featuredProjects.length > 0 && (
-              <Box sx={{ mb: 6 }}>
-                <Box
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="space-between"
-                  sx={{ mb: 1 }}
-                >
-                  <Typography
-                    variant="h4"
-                    component="h2"
-                    sx={{ fontWeight: 600 }}
-                  >
-                    ⭐ Featured Projects
-                  </Typography>
-                  <Button
-                    size="small"
-                    variant="text"
-                    onClick={() => setShowFeatured((o) => !o)}
-                    startIcon={showFeatured ? <ExpandLess /> : <ExpandMore />}
-                    aria-expanded={showFeatured}
-                    aria-controls="featured-projects-panel"
-                  >
-                    {showFeatured ? "Hide" : "Show"}
-                  </Button>
-                </Box>
-                <Collapse in={showFeatured} timeout="auto" unmountOnExit>
-                  <Grid
-                    id="featured-projects-panel"
-                    container
-                    spacing={3}
-                    sx={{ mt: 2 }}
-                  >
-                    {featuredProjects.map((project) => (
-                      <Grid item xs={12} md={6} key={project.id}>
-                        <Card
-                          elevation={4}
-                          sx={{
-                            height: "100%",
-                            display: "flex",
-                            flexDirection: "column",
-                            transition: "transform 0.2s, box-shadow 0.2s",
-                            "&:hover": {
-                              transform: "translateY(-4px)",
-                              boxShadow: 8,
-                            },
-                          }}
-                        >
-                          {/* Image removed */}
-                          <CardContent sx={{ flexGrow: 1 }}>
-                            <Box
-                              display="flex"
-                              justifyContent="space-between"
-                              alignItems="flex-start"
-                              mb={2}
-                            >
-                              <Typography
-                                variant="h5"
-                                component="h3"
-                                gutterBottom
-                              >
-                                {project.title}
-                              </Typography>
-                              <Chip
-                                label={getStatusLabel(project.status)}
-                                color={getStatusColor(project.status)}
-                                size="small"
-                              />
-                            </Box>
-
-                            <Typography
-                              variant="body1"
-                              color="text.secondary"
-                              paragraph
-                            >
-                              {project.description}
-                            </Typography>
-
-                            <Box display="flex" gap={1} flexWrap="wrap" mb={2}>
-                              {project.technologies.slice(0, 4).map((tech) => (
-                                <Chip
-                                  key={tech}
-                                  label={tech}
-                                  variant="outlined"
-                                  size="small"
-                                  sx={{ fontSize: "0.75rem" }}
-                                />
-                              ))}
-                              {project.technologies.length > 4 && (
-                                <Chip
-                                  label={`+${project.technologies.length - 4} more`}
-                                  variant="outlined"
-                                  size="small"
-                                  sx={{ fontSize: "0.75rem" }}
-                                />
-                              )}
-                            </Box>
-                          </CardContent>
-
-                          <CardActions sx={{ p: 2, pt: 0 }}>
-                            {project.githubUrl && (
-                              <Button
-                                size="small"
-                                variant="contained"
-                                startIcon={<GitHub />}
-                                href={project.githubUrl}
-                                component="a"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                View Code
-                              </Button>
-                            )}
-                            {project.liveUrl && (
-                              <Button
-                                size="small"
-                                variant="outlined"
-                                startIcon={<Launch />}
-                                href={project.liveUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                Live Demo
-                              </Button>
-                            )}
-                          </CardActions>
-                        </Card>
-                      </Grid>
-                    ))}
-                  </Grid>
-                </Collapse>
-              </Box>
-            )}
-
             {/* Search and Filters */}
             <Box sx={{ mb: 4 }}>
               <Typography
@@ -719,6 +483,56 @@ const ProjectsPage: React.FC = () => {
                 All Projects ({filteredProjects.length})
               </Typography>
 
+              {/* Quick Filter Buttons */}
+              <Grid container spacing={2} sx={{ mb: 3, justifyContent: "center" }}>
+                <Grid item xs={12} sm={4} md={2}>
+                  <Button
+                    fullWidth
+                    variant={showOnlyNpm ? "contained" : "outlined"}
+                    onClick={() => setShowOnlyNpm(!showOnlyNpm)}
+                    startIcon={<Code />}
+                    sx={{
+                      height: "56px",
+                      textTransform: "none",
+                      fontSize: "0.875rem"
+                    }}
+                  >
+                    {showOnlyNpm ? "All" : "📦 NPM"}
+                  </Button>
+                </Grid>
+                <Grid item xs={12} sm={4} md={2}>
+                  <Button
+                    fullWidth
+                    variant={showOnlyFeatured ? "contained" : "outlined"}
+                    onClick={() => setShowOnlyFeatured(!showOnlyFeatured)}
+                    startIcon={<Star />}
+                    sx={{
+                      height: "56px",
+                      textTransform: "none",
+                      fontSize: "0.875rem"
+                    }}
+                  >
+                    {showOnlyFeatured ? "All" : "⭐ Featured"}
+                  </Button>
+                </Grid>
+                <Grid item xs={12} sm={4} md={2}>
+                  <Button
+                    fullWidth
+                    variant={showOnlyDevpost ? "contained" : "outlined"}
+                    onClick={() => setShowOnlyDevpost(!showOnlyDevpost)}
+                    startIcon={<Launch />}
+                    sx={{
+                      height: "56px",
+                      textTransform: "none",
+                      fontSize: "0.875rem"
+                    }}
+                  >
+                    {showOnlyDevpost ? "All" : "🏆 Devpost"}
+                  </Button>
+                </Grid>
+              </Grid>
+
+              {/* Search and Dropdown Filters */}
               <Grid container spacing={2} sx={{ mb: 3 }}>
                 <Grid item xs={12} md={6}>
                   <TextField
@@ -772,10 +586,78 @@ const ProjectsPage: React.FC = () => {
                   </FormControl>
                 </Grid>
               </Grid>
+
+              {/* Sorting and View Controls */}
+              <Grid container spacing={2} sx={{ mt: 2 }}>
+                <Grid item xs={12} sm={6} md={3}>
+                  <FormControl fullWidth size="small">
+                    <InputLabel>Sort By</InputLabel>
+                    <Select
+                      value={sortBy}
+                      onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
+                      label="Sort By"
+                    >
+                      <MenuItem value="activity">Last Activity</MenuItem>
+                      <MenuItem value="name">Name</MenuItem>
+                      <MenuItem value="stars">GitHub Stars</MenuItem>
+                      <MenuItem value="downloads">NPM Downloads</MenuItem>
+                      <MenuItem value="featured">Featured First</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
+
+                <Grid item xs={12} sm={6} md={2}>
+                  <ToggleButtonGroup
+                    value={sortOrder}
+                    exclusive
+                    onChange={(_, newOrder) => {
+                      if (newOrder !== null) {
+                        setSortOrder(newOrder);
+                      }
+                    }}
+                    size="small"
+                    fullWidth
+                  >
+                    <ToggleButton value="desc" aria-label="Descending">
+                      <ArrowDownward fontSize="small" />
+                      Desc
+                    </ToggleButton>
+                    <ToggleButton value="asc" aria-label="Ascending">
+                      <ArrowUpward fontSize="small" />
+                      Asc
+                    </ToggleButton>
+                  </ToggleButtonGroup>
+                </Grid>
+
+                <Grid item xs={12} sm={12} md={2}>
+                  <ToggleButtonGroup
+                    value={viewMode}
+                    exclusive
+                    onChange={(_, newView) => {
+                      if (newView !== null) {
+                        setViewMode(newView);
+                      }
+                    }}
+                    size="small"
+                    fullWidth
+                  >
+                    <ToggleButton value="cards" aria-label="Card View">
+                      <ViewModule fontSize="small" />
+                      Cards
+                    </ToggleButton>
+                    <ToggleButton value="table" aria-label="Table View">
+                      <ViewList fontSize="small" />
+                      Table
+                    </ToggleButton>
+                  </ToggleButtonGroup>
+                </Grid>
+              </Grid>
             </Box>
 
-            {/* All Projects Grid */}
-            <Grid container spacing={3}>
+            {/* Conditional View: Cards or Table */}
+            {viewMode === "cards" ? (
+              /* Card View */
+              <Grid container spacing={3}>
               {filteredProjects.map((project) => (
                 <Grid item xs={12} sm={6} lg={4} key={project.id}>
                   <Card
@@ -848,13 +730,6 @@ const ProjectsPage: React.FC = () => {
                               )}
                             </Box>
                           )}
-                          {project.featured && (
-                            <Tooltip title="Featured Project">
-                              <IconButton size="small" color="primary">
-                                <Star />
-                              </IconButton>
-                            </Tooltip>
-                          )}
                           {project.npm?.version && (
                             <Tooltip title={metricTooltips.version} arrow>
                               <Chip
@@ -865,6 +740,19 @@ const ProjectsPage: React.FC = () => {
                               />
                             </Tooltip>
                           )}
+                          <IconButton
+                            onClick={() => toggleStar(project.id, project.featured)}
+                            size="small"
+                            sx={{
+                              color: isStarred(project.id, project.featured) ? "gold" : "action.disabled",
+                              "&:hover": {
+                                color: isStarred(project.id, project.featured) ? "orange" : "gold"
+                              }
+                            }}
+                            aria-label={isStarred(project.id, project.featured) ? "Remove from featured" : "Add to featured"}
+                          >
+                            <Star />
+                          </IconButton>
                         </Box>
                       </Box>
 
@@ -933,7 +821,272 @@ const ProjectsPage: React.FC = () => {
                   </Card>
                 </Grid>
               ))}
-            </Grid>
+              </Grid>
+            ) : (
+              /* Table View */
+              <TableContainer component={Paper} sx={{ mt: 2, width: "100%", overflowX: "auto" }}>
+                <Table stickyHeader sx={{ minWidth: 800 }}>
+                  <TableHead
+                    sx={{
+                      background: (theme) => theme.palette.mode === "dark"
+                        ? theme.palette.vaporwave.gradient.primary
+                        : "linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(255, 20, 147, 0.1))",
+                      "& .MuiTableCell-root": {
+                        color: (theme) => theme.palette.mode === "dark" ? "white" : theme.palette.text.primary,
+                        fontWeight: "bold",
+                        fontSize: "1rem",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.1em",
+                        borderBottom: (theme) => theme.palette.mode === "dark" ? "none" : `2px solid ${theme.palette.vaporwave.purple}`,
+                        padding: "20px 16px",
+                        position: "relative",
+                        "&:before": {
+                          content: "\"\"",
+                          position: "absolute",
+                          bottom: 0,
+                          left: 0,
+                          right: 0,
+                          height: "2px",
+                          background: (theme) => theme.palette.mode === "dark"
+                            ? theme.palette.vaporwave.gradient.secondary
+                            : theme.palette.vaporwave.gradient.accent,
+                        }
+                      }
+                    }}
+                  >
+                    <TableRow>
+                      <TableCell sx={{ minWidth: 200, width: "20%" }}>
+                        <TableSortLabel
+                          active={sortBy === "name"}
+                          direction={sortBy === "name" ? sortOrder : "desc"}
+                          onClick={() => handleHeaderSort("name")}
+                          sx={{
+                            color: (theme) => theme.palette.mode === "dark" ? "white !important" : `${theme.palette.text.primary} !important`,
+                            "& .MuiTableSortLabel-icon": {
+                              color: (theme) => theme.palette.mode === "dark" ? "white !important" : `${theme.palette.text.primary} !important`,
+                            },
+                            "&:hover": {
+                              color: (theme) => `${theme.palette.vaporwave.green} !important`,
+                              textShadow: (theme) => theme.palette.mode === "dark"
+                                ? `0 0 10px ${theme.palette.vaporwave.green}`
+                                : `0 0 5px ${theme.palette.vaporwave.green}`,
+                            },
+                            "&.Mui-active": {
+                              color: (theme) => `${theme.palette.vaporwave.green} !important`,
+                              textShadow: (theme) => theme.palette.mode === "dark"
+                                ? `0 0 15px ${theme.palette.vaporwave.green}`
+                                : `0 0 8px ${theme.palette.vaporwave.green}`,
+                              "& .MuiTableSortLabel-icon": {
+                                color: (theme) => `${theme.palette.vaporwave.green} !important`,
+                              }
+                            }
+                          }}
+                        >
+                          Project
+                        </TableSortLabel>
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          minWidth: 250,
+                          width: "35%",
+                          "&:hover": {
+                            color: (theme) => theme.palette.vaporwave.blueGreen,
+                            textShadow: (theme) => theme.palette.mode === "dark"
+                              ? `0 0 8px ${theme.palette.vaporwave.blueGreen}`
+                              : `0 0 4px ${theme.palette.vaporwave.blueGreen}`,
+                          }
+                        }}
+                      >
+                        Description
+                      </TableCell>
+                      <TableCell align="center" sx={{ minWidth: 100, width: "10%" }}>
+                        <TableSortLabel
+                          active={sortBy === "stars"}
+                          direction={sortBy === "stars" ? sortOrder : "desc"}
+                          onClick={() => handleHeaderSort("stars")}
+                          sx={{
+                            color: (theme) => theme.palette.mode === "dark" ? "white !important" : `${theme.palette.text.primary} !important`,
+                            "& .MuiTableSortLabel-icon": {
+                              color: (theme) => theme.palette.mode === "dark" ? "white !important" : `${theme.palette.text.primary} !important`,
+                            },
+                            "&:hover": {
+                              color: (theme) => `${theme.palette.vaporwave.pink} !important`,
+                              textShadow: (theme) => theme.palette.mode === "dark"
+                                ? `0 0 10px ${theme.palette.vaporwave.pink}`
+                                : `0 0 5px ${theme.palette.vaporwave.pink}`,
+                            },
+                            "&.Mui-active": {
+                              color: (theme) => `${theme.palette.vaporwave.pink} !important`,
+                              textShadow: (theme) => theme.palette.mode === "dark"
+                                ? `0 0 15px ${theme.palette.vaporwave.pink}`
+                                : `0 0 8px ${theme.palette.vaporwave.pink}`,
+                              "& .MuiTableSortLabel-icon": {
+                                color: (theme) => `${theme.palette.vaporwave.pink} !important`,
+                              }
+                            }
+                          }}
+                        >
+                          Stars
+                        </TableSortLabel>
+                      </TableCell>
+                      <TableCell align="center" sx={{ minWidth: 120, width: "12%" }}>
+                        <TableSortLabel
+                          active={sortBy === "downloads"}
+                          direction={sortBy === "downloads" ? sortOrder : "desc"}
+                          onClick={() => handleHeaderSort("downloads")}
+                          sx={{
+                            color: (theme) => theme.palette.mode === "dark" ? "white !important" : `${theme.palette.text.primary} !important`,
+                            "& .MuiTableSortLabel-icon": {
+                              color: (theme) => theme.palette.mode === "dark" ? "white !important" : `${theme.palette.text.primary} !important`,
+                            },
+                            "&:hover": {
+                              color: (theme) => `${theme.palette.vaporwave.blueGreen} !important`,
+                              textShadow: (theme) => theme.palette.mode === "dark"
+                                ? `0 0 10px ${theme.palette.vaporwave.blueGreen}`
+                                : `0 0 5px ${theme.palette.vaporwave.blueGreen}`,
+                            },
+                            "&.Mui-active": {
+                              color: (theme) => `${theme.palette.vaporwave.blueGreen} !important`,
+                              textShadow: (theme) => theme.palette.mode === "dark"
+                                ? `0 0 15px ${theme.palette.vaporwave.blueGreen}`
+                                : `0 0 8px ${theme.palette.vaporwave.blueGreen}`,
+                              "& .MuiTableSortLabel-icon": {
+                                color: (theme) => `${theme.palette.vaporwave.blueGreen} !important`,
+                              }
+                            }
+                          }}
+                        >
+                          Downloads/Week
+                        </TableSortLabel>
+                      </TableCell>
+                      <TableCell
+                        align="center"
+                        sx={{
+                          minWidth: 150,
+                          width: "15%",
+                          "&:hover": {
+                            color: (theme) => theme.palette.vaporwave.purple,
+                            textShadow: (theme) => theme.palette.mode === "dark"
+                              ? `0 0 8px ${theme.palette.vaporwave.purple}`
+                              : `0 0 4px ${theme.palette.vaporwave.purple}`,
+                          }
+                        }}
+                      >
+                        Technologies
+                      </TableCell>
+                      <TableCell
+                        align="center"
+                        sx={{
+                          minWidth: 120,
+                          width: "8%",
+                          "&:hover": {
+                            color: (theme) => theme.palette.vaporwave.green,
+                            textShadow: (theme) => theme.palette.mode === "dark"
+                              ? `0 0 8px ${theme.palette.vaporwave.green}`
+                              : `0 0 4px ${theme.palette.vaporwave.green}`,
+                          }
+                        }}
+                      >
+                        Links
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {filteredProjects.map((project) => (
+                      <TableRow key={project.id} hover>
+                        <TableCell>
+                          <Box display="flex" alignItems="center" gap={1}>
+                            <IconButton
+                              onClick={() => toggleStar(project.id, project.featured)}
+                              size="small"
+                              sx={{
+                                color: isStarred(project.id, project.featured) ? "gold" : "action.disabled",
+                              }}
+                            >
+                              <Star fontSize="small" />
+                            </IconButton>
+                            <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
+                              {project.title}
+                            </Typography>
+                          </Box>
+                        </TableCell>
+                        <TableCell sx={{ minWidth: 250, maxWidth: 400 }}>
+                          <Typography variant="body2" color="text.secondary" sx={{
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            display: "-webkit-box",
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: "vertical",
+                            lineHeight: 1.4
+                          }}>
+                            {project.description}
+                          </Typography>
+                        </TableCell>
+                        <TableCell align="center">
+                          {project.stars ? (
+                            <Chip
+                              icon={<Star sx={{ fontSize: "0.8rem" }} />}
+                              label={project.stars}
+                              size="small"
+                              color="warning"
+                            />
+                          ) : (
+                            <Typography variant="body2" color="text.disabled">-</Typography>
+                          )}
+                        </TableCell>
+                        <TableCell align="center">
+                          {project.downloadsPerWeek ? (
+                            <Chip
+                              label={`${shortNumber(project.downloadsPerWeek)}/wk`}
+                              size="small"
+                              color="primary"
+                            />
+                          ) : (
+                            <Typography variant="body2" color="text.disabled">-</Typography>
+                          )}
+                        </TableCell>
+                        <TableCell align="center">
+                          <Box display="flex" flexWrap="wrap" gap={0.5} justifyContent="center">
+                            {(project.technologies || []).slice(0, 3).map((tech, i) => (
+                              <Chip key={i} label={tech} size="small" variant="outlined" />
+                            ))}
+                            {(project.technologies || []).length > 3 && (
+                              <Chip label={`+${(project.technologies || []).length - 3}`} size="small" variant="outlined" />
+                            )}
+                          </Box>
+                        </TableCell>
+                        <TableCell align="center">
+                          <Box display="flex" gap={0.5} justifyContent="center">
+                            {project.github?.url && (
+                              <IconButton
+                                component={Link}
+                                href={project.github.url}
+                                target="_blank"
+                                size="small"
+                                aria-label={`View ${project.title} on GitHub`}
+                              >
+                                <GitHub fontSize="small" />
+                              </IconButton>
+                            )}
+                            {(project.liveUrl || project.homepage) && (
+                              <IconButton
+                                component={Link}
+                                href={project.liveUrl || project.homepage}
+                                target="_blank"
+                                size="small"
+                                aria-label={`Visit ${project.title} live site`}
+                              >
+                                <Launch fontSize="small" />
+                              </IconButton>
+                            )}
+                          </Box>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            )}
 
             {/* No Results */}
             {filteredProjects.length === 0 && (

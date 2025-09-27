@@ -12,7 +12,7 @@ import React from "react";
 import NpmLogo from "../../assets/logos/Npm-logo.svg.png";
 import DevpostLogo from "../../assets/logos/devpost_logo_icon_169279.svg";
 import BuyMeACoffeeLogo from "../../assets/logos/buymeacoffee_logo.svg";
-import { socialLinks } from "../../data/socialLinks";
+import { socialLinks, UnifiedSocialLink } from "../../data/socialLinks";
 import { getBrandColor, SocialBrandKey } from "../../data/socialBrandColors";
 import { useTheme } from "@mui/material/styles";
 
@@ -133,44 +133,69 @@ const SocialMedia: React.FC<SocialMediaProps> = ({ onlyPrimary }) => {
     }
   };
 
+  // Split icons into two rows: 6 on top, remaining on bottom
+  const topRowLinks = links.slice(0, 6);
+  const bottomRowLinks = links.slice(6);
+
+  const renderLinkElement = (link: UnifiedSocialLink) => {
+    const iconNode = renderIcon(link.key, link.label);
+    if (!iconNode) return null;
+    if (link.kind === "internal") {
+      return (
+        <InternalIconLink
+          key={link.key}
+          aria-label={link.label}
+          title={link.label}
+          to={link.href}
+        >
+          {iconNode}
+        </InternalIconLink>
+      );
+    }
+    return (
+      <IconLink
+        key={link.key}
+        aria-label={link.label}
+        title={link.label}
+        href={link.href}
+        target={link.kind === "external" ? "_blank" : undefined}
+        rel={link.kind === "external" ? "noopener noreferrer" : undefined}
+      >
+        {iconNode}
+      </IconLink>
+    );
+  };
+
   return (
     <div
       style={{
-        display: "flex",
-        justifyContent: "flex-start",
-        gap: "1.1rem",
         marginTop: "2rem",
-        flexWrap: "wrap",
       }}
     >
-      {links.map((link) => {
-        const iconNode = renderIcon(link.key, link.label);
-        if (!iconNode) return null;
-        if (link.kind === "internal") {
-          return (
-            <InternalIconLink
-              key={link.key}
-              aria-label={link.label}
-              title={link.label}
-              to={link.href}
-            >
-              {iconNode}
-            </InternalIconLink>
-          );
-        }
-        return (
-          <IconLink
-            key={link.key}
-            aria-label={link.label}
-            title={link.label}
-            href={link.href}
-            target={link.kind === "external" ? "_blank" : undefined}
-            rel={link.kind === "external" ? "noopener noreferrer" : undefined}
-          >
-            {iconNode}
-          </IconLink>
-        );
-      })}
+      {/* Top Row - 6 icons */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-start",
+          gap: "1.1rem",
+          marginBottom: "1.1rem",
+        }}
+      >
+        {topRowLinks.map((link) => renderLinkElement(link))}
+      </div>
+
+      {/* Bottom Row - remaining icons */}
+      {bottomRowLinks.length > 0 && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-start",
+            gap: "1.1rem",
+          }}
+        >
+          {bottomRowLinks.map((link) => renderLinkElement(link))}
+        </div>
+      )}
     </div>
   );
 };

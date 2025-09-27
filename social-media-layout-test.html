@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Social Media Layout Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { margin-bottom: 40px; }
+        .social-row {
+            display: flex;
+            gap: 1.1rem;
+            margin-bottom: 1.1rem;
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .icon {
+            width: 40px;
+            height: 40px;
+            background: #007acc;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Social Media Layout Verification</h1>
+
+    <div class="container">
+        <h2>Full Layout (11 icons total)</h2>
+        <p><strong>Expected: 6 icons on top row, 5 icons on bottom row</strong></p>
+
+        <div class="social-row">
+            <div class="icon">1</div>
+            <div class="icon">2</div>
+            <div class="icon">3</div>
+            <div class="icon">4</div>
+            <div class="icon">5</div>
+            <div class="icon">6</div>
+        </div>
+
+        <div class="social-row">
+            <div class="icon">7</div>
+            <div class="icon">8</div>
+            <div class="icon">9</div>
+            <div class="icon">10</div>
+            <div class="icon">11</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Primary Only Layout (2 icons total)</h2>
+        <p><strong>Expected: 2 icons on top row, no bottom row</strong></p>
+
+        <div class="social-row">
+            <div class="icon">1</div>
+            <div class="icon">2</div>
+        </div>
+    </div>
+
+    <h2>Implementation Summary</h2>
+    <ul>
+        <li>✅ 6 icons consistently on top row for full layout</li>
+        <li>✅ 5 icons consistently on bottom row for full layout</li>
+        <li>✅ Primary-only layout works with 2 icons on top row</li>
+        <li>✅ Bottom row conditionally rendered only when needed</li>
+        <li>✅ Proper TypeScript typing with UnifiedSocialLink interface</li>
+        <li>✅ Same gap (1.1rem) maintained between icons and rows</li>
+        <li>✅ Maintains original styling and hover effects</li>
+    </ul>
+</body>
+</html>

@@ -23,6 +23,7 @@ const ServicesPage = lazy(() => import("./pages/services/servicesPage"));
 const ContactPage = lazy(() => import("./pages/contact/contactPage"));
 const PrivacyPage = lazy(() => import("./pages/privacy/PrivacyPolicy"));
 const TermsPage = lazy(() => import("./pages/terms/TermsOfService"));
+const DevTestPage = lazy(() => import("./pages/dev-test"));
 
 
 
@@ -68,6 +69,9 @@ const Router = () => {
                 <Route path="/20XX" element={<BOXX />} />
                 <Route path="/projects" element={<ProjectsPage />} />
                 <Route path="/activity" element={<ActivityPage />} />
+                {import.meta.env.MODE === "development" && (
+                  <Route path="/dev-test" element={<DevTestPage />} />
+                )}
                 <Route path="*" element={<ErrorPage />} />
               </Routes>
             </Suspense>
