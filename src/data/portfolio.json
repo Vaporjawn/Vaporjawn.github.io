@@ -1,0 +1,248 @@
+{
+  "personalInfo": {
+    "name": "Victor Williams",
+    "title": "Chief Technology Officer & Senior Software Engineer",
+    "email": "victor.williams.dev@gmail.com",
+    "location": "Philadelphia, PA",
+    "bio": "Experienced technology leader and full-stack engineer with expertise in scalable architecture, team leadership, and innovative product development. Proven track record of leading engineering teams and delivering enterprise-grade solutions across multiple industries.",
+    "avatar": "/assets/profile.jpg"
+  },
+  "skills": {
+    "leadership": [
+      { "name": "Technical Leadership", "level": 95, "category": "management" },
+      { "name": "Project Management", "level": 90, "category": "management" },
+      { "name": "Team Management", "level": 88, "category": "management" },
+      { "name": "Agile Methodologies", "level": 85, "category": "process" },
+      { "name": "Strategic Planning", "level": 85, "category": "strategy" }
+    ],
+    "frontend": [
+      { "name": "React.js", "level": 95, "category": "framework" },
+      { "name": "TypeScript", "level": 92, "category": "language" },
+      { "name": "JavaScript", "level": 95, "category": "language" },
+      { "name": "HTML5", "level": 95, "category": "markup" },
+      { "name": "CSS3", "level": 90, "category": "styling" },
+      { "name": "AngularJS", "level": 80, "category": "framework" },
+      { "name": "jQuery", "level": 85, "category": "library" },
+      { "name": "Electron", "level": 80, "category": "framework" }
+    ],
+    "backend": [
+      { "name": "Node.js", "level": 90, "category": "runtime" },
+      { "name": "Python", "level": 88, "category": "language" },
+      { "name": "Java", "level": 85, "category": "language" },
+      { "name": "C#", "level": 85, "category": "language" },
+      { "name": "Go", "level": 75, "category": "language" },
+      { "name": "Ruby", "level": 75, "category": "language" },
+      { "name": "Spring Boot", "level": 80, "category": "framework" },
+      { "name": ".NET Framework", "level": 85, "category": "framework" },
+      { "name": "ASP.NET", "level": 80, "category": "framework" }
+    ],
+    "database": [
+      { "name": "PostgreSQL", "level": 85, "category": "relational" },
+      { "name": "SQL", "level": 90, "category": "query" },
+      { "name": "MongoDB", "level": 80, "category": "nosql" }
+    ],
+    "cloud": [
+      { "name": "Microsoft Azure", "level": 88, "category": "platform" },
+      { "name": "Amazon Web Services", "level": 85, "category": "platform" },
+      { "name": "Docker", "level": 85, "category": "containerization" },
+      { "name": "Kubernetes", "level": 78, "category": "orchestration" },
+      { "name": "CI/CD", "level": 88, "category": "deployment" }
+    ],
+    "mobile": [
+      { "name": "Mobile Applications", "level": 80, "category": "development" },
+      { "name": "Xamarin", "level": 75, "category": "framework" },
+      { "name": "React Native", "level": 80, "category": "framework" }
+    ],
+    "architecture": [
+      { "name": "REST APIs", "level": 92, "category": "api" },
+      { "name": "Microservices", "level": 85, "category": "pattern" },
+      { "name": "MVC Architecture", "level": 90, "category": "pattern" },
+      { "name": "System Design", "level": 88, "category": "design" },
+      { "name": "Scalable Architecture", "level": 85, "category": "design" }
+    ],
+    "tools": [
+      { "name": "Git", "level": 92, "category": "version-control" },
+      { "name": "Vite", "level": 85, "category": "build-tool" },
+      { "name": "Jest", "level": 80, "category": "testing" },
+      { "name": "Visual Studio", "level": 85, "category": "ide" },
+      { "name": "Linux", "level": 82, "category": "os" }
+    ],
+    "business": [
+      { "name": "User Experience (UX)", "level": 85, "category": "design" },
+      { "name": "SEO", "level": 78, "category": "marketing" },
+      { "name": "Customer Service", "level": 88, "category": "service" },
+      { "name": "Business Development", "level": 80, "category": "strategy" },
+      { "name": "Restaurant Management", "level": 75, "category": "industry" }
+    ],
+    "security": [
+      { "name": "Cybersecurity", "level": 80, "category": "security" },
+      { "name": "Data Protection", "level": 82, "category": "security" },
+      { "name": "Security Best Practices", "level": 85, "category": "security" }
+    ]
+  },
+  "projects": [
+    {
+      "id": "vaporjawn-portfolio",
+      "title": "Personal Portfolio",
+      "description": "Modern React portfolio showcasing projects and skills with vaporwave aesthetic",
+      "longDescription": "A fully responsive portfolio website built with React, TypeScript, and Material-UI. Features dark/light theme switching, responsive design, and modern web practices.",
+      "image": "/assets/images/portfolio-preview.jpg",
+      "technologies": ["React", "TypeScript", "Material-UI", "Vite"],
+      "liveUrl": "https://vaporjawn.github.io",
+      "githubUrl": "https://github.com/Vaporjawn/Vaporjawn.github.io",
+      "featured": true,
+      "status": "completed",
+      "category": "web"
+    },
+    {
+      "id": "20xx-project",
+      "title": "20XX Gaming Project",
+      "description": "Interactive gaming experience with retro aesthetics",
+      "longDescription": "A gaming-focused project that explores retro gaming aesthetics and interactive experiences.",
+      "image": "/assets/images/20xx-preview.jpg",
+      "technologies": ["React", "JavaScript", "CSS3"],
+      "liveUrl": "https://vaporjawn.github.io/20XX",
+      "githubUrl": "https://github.com/Vaporjawn/20XX",
+      "featured": false,
+      "status": "in-progress",
+      "category": "gaming"
+    },
+    {
+      "id": "esperanto-analyzer",
+      "title": "Esperanto Analyzer",
+      "description": "Linguistic analysis tool exploring Esperanto vocabulary, morphology, and usage patterns.",
+      "longDescription": "A language processing and analysis project focusing on Esperanto. Provides parsing, frequency statistics, and morphological breakdowns to support linguistic exploration and learning. Built with a focus on clean modular architecture and potential future integration with interactive visualizations.",
+      "image": "/assets/images/esperanto-analyzer-preview.jpg",
+      "technologies": ["TypeScript", "Node.js", "Parsing", "CLI"],
+      "liveUrl": null,
+      "githubUrl": "https://github.com/Vaporjawn/esperanto-analyzer",
+      "featured": false,
+      "status": "in-progress",
+      "category": "tool"
+    }
+  ],
+  "experience": [
+    {
+      "id": "kids-care-finder-cto",
+      "company": "Kids Care Finder",
+      "position": "Chief Technology Officer",
+      "location": "Remote",
+      "startDate": "2024-07",
+      "endDate": null,
+      "description": "Leading technology strategy and development for a comprehensive childcare platform, overseeing technical architecture and innovation initiatives.",
+      "technologies": ["TypeScript", "React.js", "Node.js", "Cloud Architecture", "Team Leadership"],
+      "current": true
+    },
+    {
+      "id": "feedplan-lead",
+      "company": "Feedplan",
+      "position": "Technical Lead",
+      "location": "Boston, MA (Remote)",
+      "startDate": "2023-12",
+      "endDate": "2024-07",
+      "description": "Created a marketplace platform connecting customers with discounted, prepaid meal plans from restaurants. Managed database entities, integrated POS systems, and developed Fortune 500 food testing platforms.",
+      "technologies": ["TypeScript", "JavaScript", "React.js", "Java", "Spring Boot", "Python", ".NET", "SQL", "SEO"],
+      "current": false
+    },
+    {
+      "id": "upright-senior",
+      "company": "Upright",
+      "position": "Senior Fullstack Software Engineer",
+      "location": "Cleveland, OH (Remote)",
+      "startDate": "2022-01",
+      "endDate": "2023-12",
+      "description": "Built platform integrations, banking services, automated support systems, and handled tech debt resolution for a loan origination platform. Rewrote company documentation and created executive R&D proof of concepts.",
+      "technologies": ["TypeScript", "React.js", "Python", "Azure", "AWS", "Ruby", "Docker", "PostgreSQL", "CI/CD", "jQuery"],
+      "current": false
+    },
+    {
+      "id": "racing-unleashed",
+      "company": "Racing Unleashed",
+      "position": "Senior Software Engineer / Project Manager",
+      "location": "Zurich, Switzerland (Remote)",
+      "startDate": "2021-01",
+      "endDate": "2022-01",
+      "description": "Designed and developed a 10-application ecosystem from scratch, including coaching systems and Electron launcher. Reduced open tickets by 87% and maintained full-stack website operations.",
+      "technologies": ["TypeScript", "React.js", "Node.js", "Go", "Electron", "Docker", "Python", "CI/CD", "C#", "Java", "Kubernetes", "Spring Boot"],
+      "current": false
+    },
+    {
+      "id": "context-summits",
+      "company": "Context Summits",
+      "position": "Senior Full Stack Application Engineer",
+      "location": "Bala-Cynwyd, PA (Remote)",
+      "startDate": "2020-06",
+      "endDate": "2021-01",
+      "description": "Managed 2 outsourced tech teams across 2 countries, deployed features to Azure Cloud, and created fully automated CI/CD pipelines for successful production launches.",
+      "technologies": ["JavaScript", "TypeScript", "React.js", "Python", "HTML", "CSS", "Node.js", "REST APIs", "Azure", "Git", "Agile"],
+      "current": false
+    },
+    {
+      "id": "bankmobile",
+      "company": "BankMobile (BM Technologies)",
+      "position": "Full Stack Software Engineer",
+      "location": "Radnor, PA (Remote)",
+      "startDate": "2020-01",
+      "endDate": "2020-06",
+      "description": "Architected REST services for web-based SaaS applications covering web, iOS, and Android platforms. Collaborated globally using Scrum processes in a large-scale banking environment.",
+      "technologies": ["JavaScript", "C#", "React.js", "Python", ".NET", "REST APIs", "ASP.NET", "Xamarin", "AngularJS", "JSON", "XML", "SQL"],
+      "current": false
+    },
+    {
+      "id": "crystalfruit",
+      "company": "CrystalFruit LLC",
+      "position": "Full Stack Software Engineer",
+      "location": "Paoli, PA",
+      "startDate": "2016-12",
+      "endDate": "2019-03",
+      "description": "Led software engineering teams, established best practices, and developed full-stack web applications. Implemented Agile SCRUM methodology and mentored team members while managing client relationships.",
+      "technologies": ["Java", "JavaScript", "TypeScript", "React.js", "C#", "Python", ".NET", "REST APIs", "SQL", "HTML", "CSS", "Git"],
+      "current": false
+    }
+  ],
+  "social": [
+    {
+      "platform": "GitHub",
+      "url": "https://github.com/Vaporjawn",
+      "icon": "github",
+      "primary": true
+    },
+    {
+      "platform": "LinkedIn",
+      "url": "https://linkedin.com/in/victorwilliams",
+      "icon": "linkedin",
+      "primary": true
+    },
+    {
+      "platform": "Twitter",
+      "url": "https://twitter.com/vaporjawn",
+      "icon": "twitter",
+      "primary": false
+    },
+    {
+      "platform": "Bluesky",
+      "url": "https://bsky.app/profile/vaporjawn.bsky.social",
+      "icon": "bluesky",
+      "primary": false
+    },
+    {
+      "platform": "NPM",
+      "url": "https://www.npmjs.com/~vaporjawn",
+      "icon": "npm",
+      "primary": false
+    },
+    {
+      "platform": "Devpost",
+      "url": "https://devpost.com/Vaporjawn?ref_content=user-portfolio&ref_feature=portfolio&ref_medium=global-nav",
+      "icon": "devpost",
+      "primary": false
+    }
+    ,
+    {
+      "platform": "GitLab",
+      "url": "https://gitlab.com/vaporjawn",
+      "icon": "gitlab",
+      "primary": false
+    }
+  ]
+}

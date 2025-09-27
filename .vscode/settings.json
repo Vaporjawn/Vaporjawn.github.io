@@ -10,21 +10,22 @@
         "css"
     ],
     "workbench.colorCustomizations": {
-        "activityBar.activeBackground": "#061fae",
-        "activityBar.background": "#061fae",
-        "editorGroup.border": "#061fae",
-        "panel.border": "#061fae",
-        "sash.hoverBorder": "#061fae",
-        "sideBar.border": "#061fae",
-        "statusBar.background": "#04167d",
-        "statusBar.border": "#04167d",
-        "statusBar.debuggingBackground": "#7d6b04",
-        "statusBar.debuggingBorder": "#7d6b04",
-        "statusBarItem.hoverBackground": "#061fae",
-        "statusBarItem.remoteBackground": "#04167d",
-        "tab.activeBorder": "#061fae",
-        "titleBar.activeBackground": "#04167d",
-        "titleBar.border": "#04167d",
-        "titleBar.inactiveBackground": "#04167d99"
-    }
+        "activityBar.activeBackground": "#4d004a",
+        "activityBar.background": "#4d004a",
+        "sash.hoverBorder": "#4d004a",
+        "statusBar.background": "#1a0019",
+        "statusBarItem.hoverBackground": "#4d004a",
+        "statusBarItem.remoteBackground": "#1a0019",
+        "titleBar.activeBackground": "#1a0019",
+        "titleBar.inactiveBackground": "#1a001999",
+        "editorGroup.border": "#4d004a",
+        "panel.border": "#4d004a",
+        "sideBar.border": "#4d004a",
+        "statusBar.border": "#1a0019",
+        "statusBar.debuggingBackground": "#001a01",
+        "statusBar.debuggingBorder": "#001a01",
+        "tab.activeBorder": "#4d004a",
+        "titleBar.border": "#1a0019"
+    },
+    "peacock.color": "#1a0019"
 }

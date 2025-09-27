@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+# pre-push hook (example)
+# Enforces that all commits about to be pushed are signed (have a 'gpg' or 'ssh' good signature)
+# Usage:
+#   cp docs/hooks/pre-push.example .git/hooks/pre-push && chmod +x .git/hooks/pre-push
+#   (Do NOT commit .git/hooks/pre-push; hooks live only locally.)
+#
+# You can scope the range checked by comparing the remote tracking ref if available.
+# This script checks all commits that are going to be pushed (from local ref range passed by Git).
+#
+# Git passes lines: <local_ref> <local_sha> <remote_ref> <remote_sha>
+# We parse each and validate commit signatures.
+
+set -euo pipefail
+
+color_red='\033[0;31m'
+color_green='\033[0;32m'
+color_yellow='\033[0;33m'
+color_reset='\033[0m'
+
+fail=false
+
+while read -r local_ref local_sha remote_ref remote_sha; do
+  # Deleted branch (pushing a delete): skip
+  if [[ "$local_sha" == 0000000000000000000000000000000000000000 ]]; then
+    continue
+  fi
+
+  # Determine commit range:
+  if [[ "$remote_sha" == 0000000000000000000000000000000000000000 ]]; then
+    # New branch push: check all commits reachable from local_sha (limit to 200 to avoid huge walks)
+    range=$(git rev-list --max-count=200 "$local_sha")
+  else
+    range=$(git rev-list "$remote_sha".."$local_sha")
+  fi
+
+  for c in $range; do
+    # --pretty format: we use git verify-commit which prints signature details for signed commits
+    if git verify-commit -v "$c" >/dev/null 2>&1; then
+      echo -e "${color_green}✔ Signed:${color_reset} $(git log -1 --pretty=format:'%h %s' "$c")"
+    else
+      echo -e "${color_red}✖ UNSIGNED COMMIT DETECTED:${color_reset} $(git log -1 --pretty=format:'%h %s' "$c")"
+      fail=true
+    fi
+  done
+
+done
+
+if $fail; then
+  echo -e "${color_red}Push rejected:${color_reset} One or more commits are not signed."
+  echo -e "See COMMIT_SIGNING.md for setup instructions. After configuring signing, amend each unsigned commit, e.g.:"
+  echo -e "  git rebase -i origin/main  # mark commits for 'reword' or 'edit' and recommit with signing"
+  echo -e "Or for the latest commit:"
+  echo -e "  git commit --amend --no-edit -S"
+  exit 1
+fi
+
+echo -e "${color_green}All commits signed. Proceeding with push.${color_reset}"
+exit 0
