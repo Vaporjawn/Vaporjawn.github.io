@@ -5,9 +5,10 @@ import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import Router from "./router.tsx";
-import "@material/web/button/filled-button.js";
-import "@material/web/button/outlined-button.js";
-import "@material/web/checkbox/checkbox.js";
+// Material Web Components imports removed - not currently used in the application
+// import "@material/web/button/filled-button.js";
+// import "@material/web/button/outlined-button.js";
+// import "@material/web/checkbox/checkbox.js";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
