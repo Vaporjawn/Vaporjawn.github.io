@@ -54,9 +54,16 @@ export interface PersonalInfo {
 export interface PortfolioData {
   personalInfo: PersonalInfo;
   skills: {
-    frontend: Skill[];
-    backend: Skill[];
-    tools: Skill[];
+    leadership?: Skill[];
+    frontend?: Skill[];
+    backend?: Skill[];
+    database?: Skill[];
+    cloud?: Skill[];
+    mobile?: Skill[];
+    architecture?: Skill[];
+    tools?: Skill[];
+    business?: Skill[];
+    security?: Skill[];
   };
   projects: Project[];
   experience: Experience[];

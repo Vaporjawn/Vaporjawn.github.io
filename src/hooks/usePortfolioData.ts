@@ -25,10 +25,19 @@ export const useProjects = () => {
 export const useSkills = () => {
   const { skills } = usePortfolio();
   return {
-    ...skills,
-    allSkills: [...skills.frontend, ...skills.backend, ...skills.tools],
+    frontend: skills?.frontend || [],
+    backend: skills?.backend || [],
+    tools: skills?.tools || [],
+    database: skills?.database || [],
+    cloud: skills?.cloud || [],
+    mobile: skills?.mobile || [],
+    architecture: skills?.architecture || [],
+    business: skills?.business || [],
+    security: skills?.security || [],
+    leadership: skills?.leadership || [],
+    allSkills: Object.values(skills || {}).flat().filter(Boolean),
     getSkillsByCategory: (category: string) =>
-      [...skills.frontend, ...skills.backend, ...skills.tools].filter(
+      Object.values(skills || {}).flat().filter(Boolean).filter(
         (skill) => skill.category === category
       ),
   };
