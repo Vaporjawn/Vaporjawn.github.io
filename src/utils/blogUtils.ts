@@ -1,5 +1,5 @@
-import matter from 'gray-matter';
-import { BlogPost, BlogFrontmatter, BlogFilter } from '../types/blog';
+import matter from "gray-matter";
+import { BlogPost, BlogFrontmatter, BlogFilter } from "../types/blog";
 
 /**
  * Parse MDX/Markdown content with frontmatter
@@ -10,10 +10,10 @@ export const parseBlogPost = (slug: string, rawContent: string): BlogPost => {
 
   // Generate excerpt from content (first 160 characters)
   const excerpt = content
-    .replace(/^#+\s+.*$/gm, '') // Remove headings
-    .replace(/[*_`]/g, '') // Remove markdown formatting
+    .replace(/^#+\s+.*$/gm, "") // Remove headings
+    .replace(/[*_`]/g, "") // Remove markdown formatting
     .trim()
-    .substring(0, 160) + '...';
+    .substring(0, 160) + "...";
 
   return {
     ...frontmatter,
@@ -49,23 +49,23 @@ export const filterBlogPosts = (
   }
 
   // Sort posts
-  const sortBy = filter.sortBy || 'date';
-  const sortOrder = filter.sortOrder || 'desc';
+  const sortBy = filter.sortBy || "date";
+  const sortOrder = filter.sortOrder || "desc";
 
   filtered.sort((a, b) => {
     let comparison = 0;
     switch (sortBy) {
-      case 'date':
+      case "date":
         comparison = new Date(a.date).getTime() - new Date(b.date).getTime();
         break;
-      case 'title':
+      case "title":
         comparison = a.title.localeCompare(b.title);
         break;
-      case 'readTime':
+      case "readTime":
         comparison = a.readTime - b.readTime;
         break;
     }
-    return sortOrder === 'asc' ? comparison : -comparison;
+    return sortOrder === "asc" ? comparison : -comparison;
   });
 
   return filtered;
@@ -87,9 +87,9 @@ export const getAllTags = (posts: BlogPost[]): string[] => {
  */
 export const formatDate = (dateString: string): string => {
   const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 };

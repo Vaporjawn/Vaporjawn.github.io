@@ -27,7 +27,7 @@ if (import.meta.env.PROD) {
 }
 
 // Analytics wrapper to track page views
-function AnalyticsWrapper({ children }: { children: React.ReactNode }) {
+const AnalyticsWrapper = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
 
   useEffect(() => {
@@ -53,7 +53,7 @@ function AnalyticsWrapper({ children }: { children: React.ReactNode }) {
   }, [location]);
 
   return <>{children}</>;
-}
+};
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

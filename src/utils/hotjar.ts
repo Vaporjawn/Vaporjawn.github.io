@@ -3,7 +3,7 @@
 
 declare global {
   interface Window {
-    hj?: (command: string, ...args: unknown[]) => void;
+    hj?: (_command: string, ..._args: unknown[]) => void;
     _hjSettings?: {
       hjid: number;
       hjsv: number;
@@ -28,7 +28,7 @@ export const initHotjar = (): void => {
         (h.hj.q = h.hj.q || []).push(args);
       };
     h._hjSettings = { hjid: parseInt(HOTJAR_SITE_ID), hjsv: parseInt(HOTJAR_VERSION) };
-    a = o.getElementsByTagName("head")[0];
+    [a] = o.getElementsByTagName("head");
     r = o.createElement("script");
     r.async = true;
     r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;

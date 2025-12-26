@@ -28,9 +28,8 @@ const buildChartUrl = (hexColor: string) => `https://ghchart.rshah.org/${hexColo
 const LOCAL_DARK = "/contributions-dark.png";
 const LOCAL_LIGHT = "/contributions-light.png";
 
-// Staleness threshold and polling interval
+// Staleness threshold
 const STALE_HOURS = 48;
-const POLL_INTERVAL_MS = 5 * 60 * 1000; // Check every 5 minutes
 
 const GitHubContributions: React.FC = () => {
   const theme = useTheme();
@@ -43,7 +42,6 @@ const GitHubContributions: React.FC = () => {
   const [meta, setMeta] = useState<ContributionMetadata | null>(null);
   const [refreshKey, setRefreshKey] = useState(0);
   const [isRefreshing, setIsRefreshing] = useState(false);
-  const [hasAutoRefreshed, setHasAutoRefreshed] = useState(false);
 
   // Compute staleness ( > 48h )
   const isStale = (() => {
@@ -285,14 +283,14 @@ const GitHubContributions: React.FC = () => {
                 onClick={handleManualRefresh}
                 startIcon={isRefreshing ? <CircularProgress size={16} /> : <RefreshIcon />}
                 sx={{
-                  minWidth: 'auto',
+                  minWidth: "auto",
                   px: 1.5,
                   py: 0.5,
-                  fontSize: '0.75rem',
-                  textTransform: 'none',
+                  fontSize: "0.75rem",
+                  textTransform: "none",
                 }}
               >
-                {isRefreshing ? 'Refreshing...' : 'Refresh'}
+                {isRefreshing ? "Refreshing..." : "Refresh"}
               </Button>
             </Tooltip>
           </Box>

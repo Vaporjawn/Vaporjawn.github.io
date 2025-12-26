@@ -18,6 +18,6 @@ export interface BlogPost extends BlogFrontmatter {
 export interface BlogFilter {
   tag?: string;
   searchQuery?: string;
-  sortBy?: 'date' | 'title' | 'readTime';
-  sortOrder?: 'asc' | 'desc';
+  sortBy?: "date" | "title" | "readTime";
+  sortOrder?: "asc" | "desc";
 }

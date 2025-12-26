@@ -44,7 +44,6 @@ const Header = (args: {
   const location = useLocation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
-  const isSmallDesktop = useMediaQuery(theme.breakpoints.between("md", "lg"));
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const navItems = [

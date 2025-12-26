@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Box,
   TextField,
@@ -10,13 +10,13 @@ import {
   FormControl,
   InputLabel,
   Grid,
-} from '@mui/material';
-import { useForm, Controller } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import SendIcon from '@mui/icons-material/Send';
-import toast, { Toaster } from 'react-hot-toast';
-import { trackContactFormSubmit } from '../../utils/analytics';
+} from "@mui/material";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import SendIcon from "@mui/icons-material/Send";
+import toast, { Toaster } from "react-hot-toast";
+import { trackContactFormSubmit } from "../../utils/analytics";
 
 interface ContactFormData {
   name: string;
@@ -29,13 +29,13 @@ interface ContactFormData {
 }
 
 const schema = yup.object().shape({
-  name: yup.string().required('Name is required').min(2, 'Name must be at least 2 characters'),
-  email: yup.string().required('Email is required').email('Invalid email address'),
-  subject: yup.string().required('Subject is required').min(5, 'Subject must be at least 5 characters'),
-  projectType: yup.string().required('Project type is required'),
+  name: yup.string().required("Name is required").min(2, "Name must be at least 2 characters"),
+  email: yup.string().required("Email is required").email("Invalid email address"),
+  subject: yup.string().required("Subject is required").min(5, "Subject must be at least 5 characters"),
+  projectType: yup.string().required("Project type is required"),
   budget: yup.string(),
   timeline: yup.string(),
-  message: yup.string().required('Message is required').min(20, 'Message must be at least 20 characters'),
+  message: yup.string().required("Message is required").min(20, "Message must be at least 20 characters"),
 });
 
 const ContactForm: React.FC = () => {
@@ -49,13 +49,13 @@ const ContactForm: React.FC = () => {
   } = useForm<ContactFormData>({
     resolver: yupResolver(schema),
     defaultValues: {
-      name: '',
-      email: '',
-      subject: '',
-      projectType: '',
-      budget: '',
-      timeline: '',
-      message: '',
+      name: "",
+      email: "",
+      subject: "",
+      projectType: "",
+      budget: "",
+      timeline: "",
+      message: "",
     },
   });
 
@@ -64,39 +64,39 @@ const ContactForm: React.FC = () => {
 
     try {
       // Replace with your form submission endpoint (Formspree, EmailJS, or custom backend)
-      const formEndpoint = import.meta.env.VITE_FORM_ENDPOINT || 'https://formspree.io/f/your-form-id';
+      const formEndpoint = import.meta.env.VITE_FORM_ENDPOINT || "https://formspree.io/f/your-form-id";
 
       const response = await fetch(formEndpoint, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
 
       if (response.ok) {
-        toast.success('Thank you! I\'ll get back to you within 24-48 hours.', {
+        toast.success("Thank you! I'll get back to you within 24-48 hours.", {
           duration: 4000,
-          position: 'top-center',
+          position: "top-center",
           style: {
-            background: '#10b981',
-            color: '#fff',
+            background: "#10b981",
+            color: "#fff",
             fontWeight: 600,
           },
         });
         trackContactFormSubmit(true);
         reset();
       } else {
-        throw new Error('Form submission failed');
+        throw new Error("Form submission failed");
       }
     } catch (error) {
-      console.error('Contact form error:', error);
-      toast.error('Something went wrong. Please try again or email me directly.', {
+      console.error("Contact form error:", error);
+      toast.error("Something went wrong. Please try again or email me directly.", {
         duration: 5000,
-        position: 'top-center',
+        position: "top-center",
         style: {
-          background: '#ef4444',
-          color: '#fff',
+          background: "#ef4444",
+          color: "#fff",
           fontWeight: 600,
         },
       });
@@ -239,7 +239,7 @@ const ContactForm: React.FC = () => {
                 multiline
                 rows={6}
                 error={!!errors.message}
-                helperText={errors.message?.message || 'Please provide details about your project'}
+                helperText={errors.message?.message || "Please provide details about your project"}
                 variant="outlined"
               />
             )}
@@ -256,19 +256,19 @@ const ContactForm: React.FC = () => {
             fullWidth
             sx={{
               py: 1.5,
-              fontSize: '1.1rem',
+              fontSize: "1.1rem",
               fontWeight: 600,
             }}
           >
-            {submitting ? 'Sending...' : 'Send Message'}
+            {submitting ? "Sending..." : "Send Message"}
           </Button>
         </Grid>
       </Grid>
 
-      <Box sx={{ mt: 4, textAlign: 'center' }}>
+      <Box sx={{ mt: 4, textAlign: "center" }}>
         <Typography variant="body2" color="text.secondary">
-          Or email me directly at{' '}
-          <a href="mailto:victor.williams.dev@gmail.com" style={{ color: 'inherit', fontWeight: 600 }}>
+          Or email me directly at{" "}
+          <a href="mailto:victor.williams.dev@gmail.com" style={{ color: "inherit", fontWeight: 600 }}>
             victor.williams.dev@gmail.com
           </a>
         </Typography>

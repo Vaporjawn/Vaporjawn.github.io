@@ -116,7 +116,7 @@ const ActivityPage: React.FC = () => {
     try {
       await Promise.all([refreshGithub(), refreshNpm()]);
       toast.success("Activity refreshed successfully!");
-    } catch (error) {
+    } catch (_error) {
       toast.error("Failed to refresh activity");
     }
   }, [refreshGithub, refreshNpm]);

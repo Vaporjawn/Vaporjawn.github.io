@@ -49,7 +49,6 @@ import { useNpmPackages } from "../../hooks/useNpmPackages";
 import { useDevpostProjects } from "../../hooks/useDevpostProjects";
 import { useGithubRepos } from "../../hooks/useGithubRepos";
 import { useStarredProjects } from "../../hooks/useStarredProjects";
-import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 // Devpost standalone section removed per consolidation requirement. Devpost data will be merged into unified list in a later step.
 // Removed image rendering per request (no project thumbnails displayed)
 

@@ -33,7 +33,7 @@ export type ContributionMetadata = {
 };
 
 // underscore param name to avoid unused-var lint complaints in parent implementations
-// eslint-disable-next-line no-unused-vars
+ 
 export type ContributionMetadataHandler = (meta: ContributionMetadata) => void; // parent may ignore param
 
 interface HeatmapProps {

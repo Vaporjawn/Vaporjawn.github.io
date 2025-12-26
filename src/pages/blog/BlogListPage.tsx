@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo } from "react";
 import {
   Box,
   Container,
@@ -18,55 +18,55 @@ import {
   Stack,
   useTheme,
   alpha,
-} from '@mui/material';
-import { Search as SearchIcon, CalendarToday, AccessTime } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import SEO from '../../components/SEO/SEO';
-import { BlogPost, BlogFilter } from '../../types/blog';
-import { filterBlogPosts, getAllTags, formatDate } from '../../utils/blogUtils';
+} from "@mui/material";
+import { Search as SearchIcon, CalendarToday, AccessTime } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import SEO from "../../components/SEO/SEO";
+import { BlogPost, BlogFilter } from "../../types/blog";
+import { filterBlogPosts, getAllTags, formatDate } from "../../utils/blogUtils";
 
 // Import blog posts - in a real app, these would be loaded dynamically
 // For now, we'll use placeholder data until actual .mdx files are created
 const PLACEHOLDER_POSTS: BlogPost[] = [
   {
-    title: 'Building a Modern Portfolio with React + TypeScript',
-    description: 'A comprehensive guide to creating a professional portfolio website using React, TypeScript, and modern web technologies.',
-    date: '2025-12-25',
-    author: 'Victor Williams',
-    tags: ['React', 'TypeScript', 'Web Development', 'Portfolio'],
-    image: '/assets/blog/portfolio-hero.jpg',
+    title: "Building a Modern Portfolio with React + TypeScript",
+    description: "A comprehensive guide to creating a professional portfolio website using React, TypeScript, and modern web technologies.",
+    date: "2025-12-25",
+    author: "Victor Williams",
+    tags: ["React", "TypeScript", "Web Development", "Portfolio"],
+    image: "/assets/blog/portfolio-hero.jpg",
     readTime: 8,
     published: true,
-    slug: 'building-modern-portfolio',
-    content: '',
-    excerpt: 'Creating a standout portfolio is essential for any developer looking to showcase their skills and attract opportunities...',
+    slug: "building-modern-portfolio",
+    content: "",
+    excerpt: "Creating a standout portfolio is essential for any developer looking to showcase their skills and attract opportunities...",
   },
   {
-    title: 'Mastering Core Web Vitals for Peak Performance',
-    description: 'Learn how to optimize your website for Google\'s Core Web Vitals metrics - FCP, LCP, FID, CLS, and TTFB.',
-    date: '2025-12-20',
-    author: 'Victor Williams',
-    tags: ['Performance', 'Web Vitals', 'Optimization', 'SEO'],
-    image: '/assets/blog/web-vitals-hero.jpg',
+    title: "Mastering Core Web Vitals for Peak Performance",
+    description: "Learn how to optimize your website for Google's Core Web Vitals metrics - FCP, LCP, FID, CLS, and TTFB.",
+    date: "2025-12-20",
+    author: "Victor Williams",
+    tags: ["Performance", "Web Vitals", "Optimization", "SEO"],
+    image: "/assets/blog/web-vitals-hero.jpg",
     readTime: 10,
     published: true,
-    slug: 'mastering-core-web-vitals',
-    content: '',
-    excerpt: 'In 2021, Google made Core Web Vitals a ranking factor for search results. If you want your website to rank well...',
+    slug: "mastering-core-web-vitals",
+    content: "",
+    excerpt: "In 2021, Google made Core Web Vitals a ranking factor for search results. If you want your website to rank well...",
   },
   {
-    title: 'Integrating Sentry and Analytics in Production React Apps',
-    description: 'Complete guide to implementing Sentry error tracking, performance monitoring, and Google Analytics 4.',
-    date: '2025-12-18',
-    author: 'Victor Williams',
-    tags: ['Sentry', 'Analytics', 'Monitoring', 'React', 'Production'],
-    image: '/assets/blog/sentry-analytics-hero.jpg',
+    title: "Integrating Sentry and Analytics in Production React Apps",
+    description: "Complete guide to implementing Sentry error tracking, performance monitoring, and Google Analytics 4.",
+    date: "2025-12-18",
+    author: "Victor Williams",
+    tags: ["Sentry", "Analytics", "Monitoring", "React", "Production"],
+    image: "/assets/blog/sentry-analytics-hero.jpg",
     readTime: 12,
     published: true,
-    slug: 'sentry-analytics-production',
-    content: '',
-    excerpt: 'You\'ve built an amazing React application, but how do you know if it\'s working correctly for all your users?...',
+    slug: "sentry-analytics-production",
+    content: "",
+    excerpt: "You've built an amazing React application, but how do you know if it's working correctly for all your users?...",
   },
 ];
 
@@ -75,9 +75,9 @@ const BlogListPage: React.FC = () => {
   const navigate = useNavigate();
 
   const [filter, setFilter] = useState<BlogFilter>({
-    searchQuery: '',
-    sortBy: 'date',
-    sortOrder: 'desc',
+    searchQuery: "",
+    sortBy: "date",
+    sortOrder: "desc",
   });
 
   // Get all unique tags from posts
@@ -100,7 +100,7 @@ const BlogListPage: React.FC = () => {
     }));
   };
 
-  const handleSortChange = (event: any) => {
+  const handleSortChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFilter(prev => ({ ...prev, sortBy: event.target.value }));
   };
 
@@ -120,7 +120,7 @@ const BlogListPage: React.FC = () => {
       <Box
         component="main"
         sx={{
-          minHeight: '100vh',
+          minHeight: "100vh",
           pt: { xs: 12, md: 16 },
           pb: 8,
           background: `linear-gradient(180deg, ${alpha(theme.palette.primary.main, 0.05)} 0%, ${theme.palette.background.default} 100%)`,
@@ -137,13 +137,13 @@ const BlogListPage: React.FC = () => {
               <Typography
                 variant="h1"
                 sx={{
-                  fontSize: { xs: '2.5rem', md: '3.5rem' },
+                  fontSize: { xs: "2.5rem", md: "3.5rem" },
                   fontWeight: 800,
                   mb: 2,
                   background: `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
-                  backgroundClip: 'text',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: "text",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
                 }}
               >
                 Technical Blog
@@ -151,7 +151,7 @@ const BlogListPage: React.FC = () => {
               <Typography
                 variant="h5"
                 color="text.secondary"
-                sx={{ maxWidth: 600, mx: 'auto' }}
+                sx={{ maxWidth: 600, mx: "auto" }}
               >
                 Insights on web development, performance optimization, and software engineering best practices
               </Typography>
@@ -180,7 +180,7 @@ const BlogListPage: React.FC = () => {
                       ),
                     }}
                     sx={{
-                      '& .MuiOutlinedInput-root': {
+                      "& .MuiOutlinedInput-root": {
                         borderRadius: 2,
                       },
                     }}
@@ -215,13 +215,13 @@ const BlogListPage: React.FC = () => {
                         key={tag}
                         label={tag}
                         onClick={() => handleTagClick(tag)}
-                        color={filter.tag === tag ? 'primary' : 'default'}
-                        variant={filter.tag === tag ? 'filled' : 'outlined'}
+                        color={filter.tag === tag ? "primary" : "default"}
+                        variant={filter.tag === tag ? "filled" : "outlined"}
                         sx={{
                           mb: 1,
-                          transition: 'all 0.2s',
-                          '&:hover': {
-                            transform: 'translateY(-2px)',
+                          transition: "all 0.2s",
+                          "&:hover": {
+                            transform: "translateY(-2px)",
                           },
                         }}
                       />
@@ -253,13 +253,13 @@ const BlogListPage: React.FC = () => {
                   >
                     <Card
                       sx={{
-                        height: '100%',
-                        display: 'flex',
-                        flexDirection: 'column',
+                        height: "100%",
+                        display: "flex",
+                        flexDirection: "column",
                         borderRadius: 3,
-                        transition: 'all 0.3s',
-                        '&:hover': {
-                          transform: 'translateY(-8px)',
+                        transition: "all 0.3s",
+                        "&:hover": {
+                          transform: "translateY(-8px)",
                           boxShadow: theme.shadows[12],
                         },
                       }}
@@ -272,7 +272,7 @@ const BlogListPage: React.FC = () => {
                             image={post.image}
                             alt={post.title}
                             sx={{
-                              objectFit: 'cover',
+                              objectFit: "cover",
                             }}
                           />
                         )}
@@ -301,10 +301,10 @@ const BlogListPage: React.FC = () => {
                             sx={{
                               fontWeight: 700,
                               mb: 1.5,
-                              display: '-webkit-box',
+                              display: "-webkit-box",
                               WebkitLineClamp: 2,
-                              WebkitBoxOrient: 'vertical',
-                              overflow: 'hidden',
+                              WebkitBoxOrient: "vertical",
+                              overflow: "hidden",
                             }}
                           >
                             {post.title}
@@ -315,10 +315,10 @@ const BlogListPage: React.FC = () => {
                             color="text.secondary"
                             sx={{
                               mb: 2,
-                              display: '-webkit-box',
+                              display: "-webkit-box",
                               WebkitLineClamp: 3,
-                              WebkitBoxOrient: 'vertical',
-                              overflow: 'hidden',
+                              WebkitBoxOrient: "vertical",
+                              overflow: "hidden",
                             }}
                           >
                             {post.excerpt || post.description}
@@ -328,16 +328,16 @@ const BlogListPage: React.FC = () => {
                             direction="row"
                             spacing={2}
                             alignItems="center"
-                            sx={{ mt: 'auto' }}
+                            sx={{ mt: "auto" }}
                           >
                             <Stack direction="row" spacing={0.5} alignItems="center">
-                              <CalendarToday sx={{ fontSize: 16, color: 'text.secondary' }} />
+                              <CalendarToday sx={{ fontSize: 16, color: "text.secondary" }} />
                               <Typography variant="caption" color="text.secondary">
                                 {formatDate(post.date)}
                               </Typography>
                             </Stack>
                             <Stack direction="row" spacing={0.5} alignItems="center">
-                              <AccessTime sx={{ fontSize: 16, color: 'text.secondary' }} />
+                              <AccessTime sx={{ fontSize: 16, color: "text.secondary" }} />
                               <Typography variant="caption" color="text.secondary">
                                 {post.readTime} min read
                               </Typography>

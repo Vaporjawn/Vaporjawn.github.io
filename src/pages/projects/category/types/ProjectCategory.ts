@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+ 
 
 // Project categories enum - values accessed via ProjectCategoryEnum.Value syntax
 export enum ProjectCategoryEnum {

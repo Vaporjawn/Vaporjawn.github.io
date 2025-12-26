@@ -115,9 +115,9 @@ interface StyledIconButtonProps {
 
 const StyledIconButton = styled(IconButton, {
   shouldForwardProp: (prop) =>
-    prop !== '$brandcolor' &&
-    prop !== '$hovercolor' &&
-    prop !== '$preserve'
+    prop !== "$brandcolor" &&
+    prop !== "$hovercolor" &&
+    prop !== "$preserve"
 })<StyledIconButtonProps>(
   ({ theme, $brandcolor, $hovercolor, $preserve }) => ({
     color: $preserve ? theme.palette.text.secondary : $brandcolor || theme.palette.text.secondary,

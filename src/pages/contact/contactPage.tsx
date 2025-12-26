@@ -15,7 +15,7 @@ import {
   useTheme,
   useMediaQuery,
 } from "@mui/material";
-import { PopupModal } from 'react-calendly';
+import { PopupModal } from "react-calendly";
 import {
   Email as EmailIcon,
   LinkedIn as LinkedInIcon,
@@ -57,7 +57,7 @@ const ContactPage: React.FC = () => {
 
   // Handle scroll to FAQ section when hash is present
   useEffect(() => {
-    const hash = window.location.hash;
+    const {hash} = window.location;
     if (hash === "#faq") {
       // Small delay to ensure the page is fully rendered
       setTimeout(() => {
@@ -274,7 +274,7 @@ const ContactPage: React.FC = () => {
                       overflow: "hidden",
                       boxShadow: `0 8px 32px ${method.color}15`,
                       "&::before": {
-                        content: '""',
+                        content: "\"\"",
                         position: "absolute",
                         top: 0,
                         left: 0,
@@ -637,7 +637,7 @@ const ContactPage: React.FC = () => {
         url="https://cal.com/vaporjawn"
         onModalClose={() => setIsCalendlyOpen(false)}
         open={isCalendlyOpen}
-        rootElement={document.getElementById('root') as HTMLElement}
+        rootElement={document.getElementById("root") as HTMLElement}
       />
     </>
   );
