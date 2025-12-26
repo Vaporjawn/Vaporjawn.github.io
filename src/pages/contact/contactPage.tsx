@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   Container,
@@ -52,6 +52,22 @@ const ContactPage: React.FC = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const { personalInfo } = usePortfolio();
 
+  // Handle scroll to FAQ section when hash is present
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash === "#faq") {
+      // Small delay to ensure the page is fully rendered
+      setTimeout(() => {
+        const element = document.getElementById("faq");
+        if (element) {
+          const yOffset = -100; // Offset for fixed header or spacing
+          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
+      }, 100);
+    }
+  }, []);
+
   const contactMethods: ContactMethod[] = [
     {
       title: "Email",
@@ -81,59 +97,54 @@ const ContactPage: React.FC = () => {
 
   const faqs: FAQ[] = [
     {
-      question: "What services do you offer?",
-      answer: "I offer comprehensive web development services including Full-Stack Development (React, TypeScript, Node.js), Technical Consulting for architecture and performance optimization, and Code Review services to ensure quality and best practices. I specialize in modern web technologies and can help with everything from MVP development to scaling existing applications.",
-      category: "services",
+      question: "What do you actually do as a software engineer?",
+      answer: "I build full-stack systems end to end—frontend, backend, infra, and the glue in between. Web, mobile, cloud, APIs, CI/CD. If it ships, scales, and survives production, I've probably touched it.",
+      category: "role",
     },
     {
-      question: "What is your typical development process and how are clients involved?",
-      answer: "My development process follows four key phases: Discovery (understanding requirements and technical scope), Planning (architecture design and timeline estimation), Development (iterative development with regular check-ins), and Delivery (testing, deployment, and handover). Clients are involved throughout with regular updates, demo sessions, and feedback incorporation.",
-      category: "process",
+      question: "What level are you operating at right now?",
+      answer: "Senior+ territory. I've led teams, owned architectures, mentored engineers, and stepped into roles like Tech Lead, Project Manager, Solutions Architect, and DevOps when the situation demanded it. Titles flex; responsibility doesn't.",
+      category: "experience",
     },
     {
-      question: "What are your pricing models and payment terms?",
-      answer: "I offer three main pricing tiers: Consultation ($500) for technical advice and code reviews, Development ($2000) for feature development and bug fixes, and Project Leadership ($5000) for comprehensive project management and architecture. Payment terms are typically 50% upfront and 50% on completion, with flexible arrangements for longer projects.",
-      category: "pricing",
+      question: "What kind of problems do you like solving?",
+      answer: "Messy ones. Legacy systems, tech debt, scaling bottlenecks, unclear requirements, and \"this needs to work yesterday.\" I specialize in turning chaos into systems that people can actually rely on.",
+      category: "expertise",
     },
     {
-      question: "Which technologies do you specialize in for Full-Stack Development?",
-      answer: "Frontend: React, TypeScript, Material-UI, modern CSS, responsive design. Backend: Node.js, Python, REST APIs, database design. Tools: Git, Vite, Jest for testing, modern DevOps practices. I focus on modern, maintainable technologies that provide long-term value and excellent developer experience.",
+      question: "What industries have you worked in?",
+      answer: "Fintech, food tech, marketplaces, enterprise platforms, SaaS, and internal tooling. From banking services to restaurant POS integrations to Fortune 500 testing platforms. Variety sharpened the blade.",
+      category: "background",
+    },
+    {
+      question: "What's your strongest technical stack?",
+      answer: "Modern JavaScript/TypeScript ecosystems (React, Node), plus .NET, Go, Python, Java, SQL/Postgres, Docker, and cloud platforms like AWS and Azure. I adapt fast, but I don't fake fundamentals.",
       category: "technical",
     },
     {
-      question: "Can you help with an existing project or only new ones? What about project rescue?",
-      answer: "I work with both new and existing projects. For existing projects, I can help with feature additions, performance optimization, code refactoring, and technical debt reduction. I also specialize in project rescue situations - taking over stalled projects, fixing critical issues, and getting development back on track.",
-      category: "projects",
+      question: "Do you prefer frontend or backend?",
+      answer: "Both. Frontend for user empathy and experience. Backend for power, scale, and correctness. Full-stack isn't a buzzword to me—it's leverage.",
+      category: "specialization",
     },
     {
-      question: "How do I get started on a project with you, and what's the initial consultation like?",
-      answer: "Getting started is simple: reach out via email, LinkedIn, or schedule a call. The initial consultation is a 30-minute discussion where we'll review your project goals, technical requirements, timeline, and budget. I'll provide honest feedback about feasibility and approach, and if we're a good fit, I'll create a detailed project proposal.",
-      category: "getting-started",
+      question: "What separates you from other senior engineers?",
+      answer: "I think in systems, not tickets. I care about business impact, team velocity, and long-term maintainability—not just getting green checkmarks in Jira. I fix root causes instead of babysitting symptoms.",
+      category: "differentiator",
     },
     {
-      question: "Do you offer ongoing support and maintenance, and what are the terms?",
-      answer: "Yes, I offer ongoing support and maintenance packages. This includes bug fixes, security updates, performance monitoring, and feature enhancements. Support terms are typically on a retainer basis or hourly rate, depending on the project scope and client needs. I believe in long-term partnerships with my clients.",
-      category: "support",
+      question: "Have you led or managed other engineers?",
+      answer: "Yes. I've led teams, mentored juniors, coordinated across countries, and reduced operational load (like cutting open tickets by 87%). Leadership to me means making everyone else better.",
+      category: "leadership",
     },
     {
-      question: "What kind of technical consulting do you provide, and how can it benefit my project's timeline and budget?",
-      answer: "Technical consulting includes architecture review, performance optimization, technology stack selection, code review, and team mentoring. This can significantly benefit your timeline by identifying potential issues early, optimizing development processes, and ensuring best practices. It often saves money by preventing costly rewrites and technical debt.",
-      category: "consulting",
+      question: "What kind of environments do you thrive in?",
+      answer: "High-trust, high-ownership environments. Places where engineers are expected to think, not just execute. I do best where clarity, accountability, and ambition coexist.",
+      category: "culture",
     },
     {
-      question: "How are project timelines estimated, and what happens if there are delays?",
-      answer: "Timelines are estimated based on detailed requirement analysis, technical complexity assessment, and my experience with similar projects. I provide realistic estimates with buffer time for unexpected challenges. If delays occur, I communicate immediately with revised timelines and mitigation strategies. Most delays are avoided through proper planning and regular check-ins.",
-      category: "timeline",
-    },
-    {
-      question: "What are the terms regarding intellectual property (IP) ownership for the developed software?",
-      answer: "Generally, clients retain full intellectual property rights to custom-developed software. I retain rights to any pre-existing tools, frameworks, or general methodologies I bring to the project. All IP terms are clearly defined in the project contract before work begins, ensuring transparency and protection for both parties.",
-      category: "legal",
-    },
-    {
-      question: "How do you handle changes in project scope or requirements (scope creep)?",
-      answer: "Scope changes are handled through a formal change request process. I document the requested changes, assess their impact on timeline and budget, and provide a written amendment for approval. Small changes may be absorbed, but significant changes require project plan updates. Clear communication and documentation prevent scope creep issues.",
-      category: "scope",
+      question: "What are you looking for next?",
+      answer: "Work that matters. Teams that value craftsmanship. Problems that stretch me. I'm not chasing hype—I'm building durable things with people who care about doing it right.",
+      category: "opportunity",
     },
   ];
 
@@ -215,12 +226,13 @@ const ContactPage: React.FC = () => {
               variant="h4"
               sx={{
                 textAlign: "center",
-                mb: 1,
+                mb: 2,
                 fontWeight: "bold",
                 background: `linear-gradient(45deg, ${VaporwaveBlue}, ${VaporwaveGreen})`,
                 backgroundClip: "text",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
+                fontSize: { xs: "1.75rem", md: "2.125rem" },
               }}
             >
               Choose Your Preferred Method
@@ -230,58 +242,94 @@ const ContactPage: React.FC = () => {
               sx={{
                 textAlign: "center",
                 color: theme.palette.text.secondary,
-                mb: 6,
+                mb: 7,
+                fontSize: { xs: "0.95rem", md: "1.05rem" },
+                maxWidth: 700,
+                mx: "auto",
+                lineHeight: 1.7,
               }}
             >
               Select the most convenient way to reach out, and I'll get back to you as soon as possible.
             </Typography>
 
-            <Grid container spacing={4}>
+            <Grid container spacing={{ xs: 3, md: 4 }} sx={{ px: { xs: 0, md: 2 } }}>
               {contactMethods.map((method, index) => (
                 <Grid item xs={12} md={4} key={index}>
                   <Card
                     sx={{
                       height: "100%",
+                      minHeight: { xs: "auto", md: "380px" },
                       background: theme.palette.mode === "dark"
-                        ? `linear-gradient(135deg, ${method.color}20, ${VaporwavePurple}15)`
-                        : `linear-gradient(135deg, ${method.color}15, ${VaporwavePurple}10)`,
-                      backdropFilter: "blur(20px)",
-                      border: `1px solid ${method.color}30`,
-                      borderRadius: 3,
-                      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                        ? `linear-gradient(145deg, ${method.color}18, ${VaporwavePurple}12, transparent)`
+                        : `linear-gradient(145deg, ${method.color}12, ${VaporwavePurple}08, transparent)`,
+                      backdropFilter: "blur(25px)",
+                      border: `2px solid ${method.color}25`,
+                      borderRadius: 4,
+                      transition: "all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
                       cursor: "pointer",
+                      position: "relative",
+                      overflow: "hidden",
+                      boxShadow: `0 8px 32px ${method.color}15`,
+                      "&::before": {
+                        content: '""',
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        background: `radial-gradient(circle at 50% 0%, ${method.color}20, transparent 70%)`,
+                        opacity: 0,
+                        transition: "opacity 0.4s ease",
+                      },
                       "&:hover": {
-                        transform: "translateY(-8px)",
-                        boxShadow: `0 20px 40px ${method.color}30`,
-                        border: `1px solid ${method.color}50`,
+                        transform: "translateY(-12px) scale(1.02)",
+                        boxShadow: `0 24px 48px ${method.color}35, 0 0 60px ${method.color}20`,
+                        border: `2px solid ${method.color}60`,
+                        "&::before": {
+                          opacity: 1,
+                        },
+                        "& .icon-circle": {
+                          transform: "scale(1.1) rotate(5deg)",
+                          boxShadow: `0 15px 40px ${method.color}60`,
+                        },
+                        "& .card-button": {
+                          background: `${method.color}20`,
+                          borderColor: method.color,
+                          transform: "translateY(-2px)",
+                        },
                       },
                     }}
                     onClick={() => window.open(method.link, "_blank")}
                   >
-                    <CardContent sx={{ p: 4, textAlign: "center" }}>
+                    <CardContent sx={{ p: { xs: 3, md: 4.5 }, textAlign: "center", position: "relative", zIndex: 1 }}>
                       <Box
+                        className="icon-circle"
                         sx={{
-                          width: 80,
-                          height: 80,
+                          width: { xs: 90, md: 100 },
+                          height: { xs: 90, md: 100 },
                           borderRadius: "50%",
-                          background: `linear-gradient(45deg, ${method.color}, ${VaporwaveBlueGreen})`,
+                          background: `linear-gradient(135deg, ${method.color}, ${VaporwaveBlueGreen})`,
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",
                           mx: "auto",
-                          mb: 3,
+                          mb: 3.5,
                           color: "white",
-                          boxShadow: `0 10px 30px ${method.color}40`,
+                          boxShadow: `0 12px 35px ${method.color}50`,
+                          transition: "all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
+                          border: `3px solid ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.3)"}`,
                         }}
                       >
-                        {method.icon}
+                        {React.cloneElement(method.icon as React.ReactElement, { sx: { fontSize: { xs: 36, md: 40 } } })}
                       </Box>
                       <Typography
                         variant="h5"
                         sx={{
                           fontWeight: "bold",
-                          mb: 1,
+                          mb: 1.5,
                           color: theme.palette.text.primary,
+                          fontSize: { xs: "1.35rem", md: "1.5rem" },
+                          letterSpacing: "-0.01em",
                         }}
                       >
                         {method.title}
@@ -290,25 +338,60 @@ const ContactPage: React.FC = () => {
                         variant="body2"
                         sx={{
                           color: theme.palette.text.secondary,
-                          mb: 3,
+                          mb: 4,
+                          fontSize: { xs: "0.9rem", md: "0.95rem" },
+                          lineHeight: 1.6,
+                          minHeight: { xs: "auto", md: "48px" },
                         }}
                       >
                         {method.description}
                       </Typography>
                       <Button
+                        className="card-button"
                         variant="outlined"
-                        endIcon={<LaunchIcon />}
+                        endIcon={<LaunchIcon sx={{ fontSize: 16 }} />}
                         sx={{
-                          borderColor: method.color,
+                          borderColor: `${method.color}60`,
                           color: method.color,
-                          fontWeight: "bold",
+                          fontWeight: "600",
+                          px: 2.5,
+                          py: 1.5,
+                          borderRadius: 2.5,
+                          fontSize: { xs: "0.8rem", md: "0.875rem" },
+                          textTransform: "none",
+                          letterSpacing: "0.02em",
+                          borderWidth: 2,
+                          transition: "all 0.3s ease",
+                          width: "100%",
+                          maxWidth: "100%",
+                          minHeight: { xs: "44px", md: "48px" },
+                          lineHeight: 1.4,
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          "& .MuiButton-endIcon": {
+                            ml: 1,
+                            flexShrink: 0,
+                          },
                           "&:hover": {
                             borderColor: method.color,
-                            background: `${method.color}15`,
+                            borderWidth: 2,
                           },
                         }}
                       >
-                        {method.action}
+                        <Box
+                          component="span"
+                          sx={{
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            display: "-webkit-box",
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: "vertical",
+                            wordBreak: "break-all",
+                          }}
+                        >
+                          {method.action}
+                        </Box>
                       </Button>
                     </CardContent>
                   </Card>
@@ -318,7 +401,7 @@ const ContactPage: React.FC = () => {
           </Box>
 
           {/* FAQ Section */}
-          <Box sx={{ mb: 8 }}>
+          <Box id="faq" sx={{ mb: 8, scrollMarginTop: "120px" }}>
             <Typography
               variant="h4"
               sx={{

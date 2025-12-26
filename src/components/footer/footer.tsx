@@ -113,7 +113,12 @@ interface StyledIconButtonProps {
   $preserve?: boolean;
 }
 
-const StyledIconButton = styled(IconButton)<StyledIconButtonProps>(
+const StyledIconButton = styled(IconButton, {
+  shouldForwardProp: (prop) =>
+    prop !== '$brandcolor' &&
+    prop !== '$hovercolor' &&
+    prop !== '$preserve'
+})<StyledIconButtonProps>(
   ({ theme, $brandcolor, $hovercolor, $preserve }) => ({
     color: $preserve ? theme.palette.text.secondary : $brandcolor || theme.palette.text.secondary,
     transition: "all 0.3s ease",
@@ -169,7 +174,7 @@ const Footer: React.FC = () => {
   ];
 
   const legalLinks = [
-    { label: "FAQs", path: "/coming-soon" },
+    { label: "FAQs", path: "/contact#faq" },
     { label: "Privacy Policy", path: "/privacy" },
     { label: "Terms of Service", path: "/terms" },
   ];
@@ -381,7 +386,7 @@ const Footer: React.FC = () => {
             }}
           >
             <Typography variant="body2" color="text.primary" sx={{ fontWeight: 500, fontSize: "0.9rem" }}>
-              © 2024 {portfolio?.personalInfo?.name || "Victor Williams"}. All
+              © {new Date().getFullYear()} {portfolio?.personalInfo?.name || "Victor Williams"}. All
               rights reserved.
             </Typography>
 

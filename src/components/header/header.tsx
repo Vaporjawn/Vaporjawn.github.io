@@ -22,6 +22,7 @@ import {
   Description as DescriptionIcon,
   Info as InfoIcon,
   Build as BuildIcon,
+  ContactMail as ContactMailIcon,
 } from "@mui/icons-material";
 import { NavigateFunction, useNavigate, useLocation } from "react-router-dom";
 import HomePath from "../../routes/homePath";
@@ -42,7 +43,8 @@ const Header = (args: {
   const navigate: NavigateFunction = useNavigate();
   const location = useLocation();
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
+  const isSmallDesktop = useMediaQuery(theme.breakpoints.between("md", "lg"));
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const navItems = [
@@ -52,6 +54,7 @@ const Header = (args: {
     { label: "Projects", path: "/projects", icon: <WorkIcon /> },
     { label: "Resume", path: "/resume", icon: <DescriptionIcon /> },
     { label: "Activity", path: "/activity", icon: <InfoIcon /> },
+    { label: "Contact", path: "/contact", icon: <ContactMailIcon /> },
   ];
 
   const handleDrawerToggle = () => {
@@ -163,6 +166,9 @@ const Header = (args: {
       <AppBar
         position="fixed"
         sx={{
+          top: 0,
+          left: 0,
+          right: 0,
           background: darkMode
             ? `linear-gradient(135deg, ${VaporwaveBlue}95, ${VaporwavePurple}95, ${VaporwavePink}95)`
             : `linear-gradient(135deg, ${VaporwaveBlue}85, ${VaporwavePurple}85, ${VaporwavePink}85)`,
@@ -174,7 +180,7 @@ const Header = (args: {
           zIndex: theme.zIndex.drawer + 1,
         }}
       >
-        <Toolbar sx={{ minHeight: { xs: 64, md: 80 } }}>
+        <Toolbar sx={{ minHeight: { xs: 64, md: 70, lg: 80 }, px: { xs: 1, sm: 2, md: 3 } }}>
           {isMobile && (
             <IconButton
               color="inherit"
@@ -202,13 +208,13 @@ const Header = (args: {
             component="div"
             sx={{
               flexGrow: isMobile ? 1 : 0,
-              mr: isMobile ? 0 : 4,
+              mr: isMobile ? 0 : { lg: 3, xl: 4 },
               background: `linear-gradient(45deg, ${VaporwaveGreen}, ${VaporwaveBlueGreen}, ${VaporwavePink})`,
               backgroundClip: "text",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               fontWeight: "bold",
-              fontSize: { xs: "1.5rem", md: "2rem" },
+              fontSize: { xs: "1.3rem", sm: "1.5rem", lg: "1.8rem", xl: "2rem" },
               textShadow: `0 0 20px ${VaporwaveBlueGreen}50`,
               cursor: "pointer",
               transition: "all 0.3s ease",
@@ -228,7 +234,11 @@ const Header = (args: {
                 display: "flex",
                 alignItems: "center",
                 flexGrow: 1,
-                gap: 1,
+                gap: { lg: 0.5, xl: 1 },
+                flexWrap: "nowrap",
+                overflow: "visible",
+                minHeight: { lg: 70, xl: 80 },
+                py: 2,
               }}
             >
               {navItems.map((item) => (
@@ -238,9 +248,11 @@ const Header = (args: {
                   onClick={() => handleNavigation(item.path)}
                   sx={{
                     color: "white",
-                    px: 3,
-                    py: 1.5,
+                    px: { lg: 1.5, xl: 2.5 },
+                    py: { lg: 1, xl: 1.5 },
                     borderRadius: 3,
+                    minWidth: "auto",
+                    whiteSpace: "nowrap",
                     position: "relative",
                     background: isActivePath(item.path)
                       ? "rgba(255,255,255,0.2)"
@@ -252,7 +264,7 @@ const Header = (args: {
                       ? "1px solid rgba(255,255,255,0.3)"
                       : "1px solid transparent",
                     fontWeight: isActivePath(item.path) ? "bold" : "normal",
-                    fontSize: "1rem",
+                    fontSize: { lg: "0.875rem", xl: "1rem" },
                     transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                     "&:hover": {
                       background: "rgba(255,255,255,0.15)",
@@ -313,7 +325,7 @@ const Header = (args: {
           keepMounted: true,
         }}
         sx={{
-          display: { xs: "block", md: "none" },
+          display: { xs: "block", lg: "none" },
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
             width: 280,
