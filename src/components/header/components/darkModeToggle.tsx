@@ -16,6 +16,7 @@ const DarkModeToggle = (args: {
     >
       <IconButton
         onClick={() => setDarkMode(!darkMode)}
+        aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
         sx={{
           background: "rgba(255,255,255,0.1)",
           backdropFilter: "blur(10px)",

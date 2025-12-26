@@ -82,54 +82,55 @@ const createVaporwaveTheme = (mode: "light" | "dark"): Theme => {
       fontFamily: "Lato, Roboto, Helvetica, Arial, sans-serif",
       h1: {
         fontWeight: 700,
-        fontSize: "3rem",
+        fontSize: "clamp(2rem, 5vw + 1rem, 3rem)", // Fluid: 2rem (mobile) → 3rem (desktop)
         lineHeight: 1.2,
         letterSpacing: "0.1em",
         textTransform: "uppercase",
       },
       h2: {
         fontWeight: 700,
-        fontSize: "2.5rem",
+        fontSize: "clamp(1.75rem, 4vw + 0.5rem, 2.5rem)", // Fluid: 1.75rem → 2.5rem
         lineHeight: 1.3,
         letterSpacing: "0.1em",
         textTransform: "uppercase",
       },
       h3: {
         fontWeight: 600,
-        fontSize: "2rem",
+        fontSize: "clamp(1.5rem, 3vw + 0.5rem, 2rem)", // Fluid: 1.5rem → 2rem
         lineHeight: 1.4,
         letterSpacing: "0.05em",
       },
       h4: {
         fontWeight: 600,
-        fontSize: "1.5rem",
+        fontSize: "clamp(1.25rem, 2vw + 0.5rem, 1.5rem)", // Fluid: 1.25rem → 1.5rem
         lineHeight: 1.4,
         letterSpacing: "0.05em",
       },
       h5: {
         fontWeight: 600,
-        fontSize: "1.25rem",
+        fontSize: "clamp(1.125rem, 1.5vw + 0.5rem, 1.25rem)", // Fluid: 1.125rem → 1.25rem
         lineHeight: 1.5,
         letterSpacing: "0.02em",
       },
       h6: {
         fontWeight: 600,
-        fontSize: "1.1rem",
+        fontSize: "clamp(1rem, 1vw + 0.5rem, 1.1rem)", // Fluid: 1rem → 1.1rem
         lineHeight: 1.5,
         letterSpacing: "0.02em",
       },
       body1: {
-        fontSize: "1rem",
+        fontSize: "clamp(0.9375rem, 0.5vw + 0.75rem, 1rem)", // Fluid: 0.9375rem → 1rem
         lineHeight: 1.75,
         letterSpacing: "0.02em",
       },
       body2: {
-        fontSize: "0.875rem",
+        fontSize: "clamp(0.8125rem, 0.5vw + 0.625rem, 0.875rem)", // Fluid: 0.8125rem → 0.875rem
         lineHeight: 1.6,
         letterSpacing: "0.01em",
       },
       button: {
         fontWeight: 700,
+        fontSize: "clamp(0.8125rem, 0.5vw + 0.625rem, 0.875rem)", // Fluid button text
         letterSpacing: "0.1em",
         textTransform: "uppercase",
       },
@@ -167,11 +168,18 @@ const createVaporwaveTheme = (mode: "light" | "dark"): Theme => {
           root: {
             borderRadius: 12,
             padding: "12px 24px",
+            minHeight: 44, // WCAG touch target minimum
+            minWidth: 44,
             fontSize: "0.875rem",
             fontWeight: 700,
             letterSpacing: "0.1em",
             textTransform: "uppercase",
             transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+            // Enhanced focus indicator for accessibility
+            "&:focus-visible": {
+              outline: `3px solid ${VaporwavePink}`,
+              outlineOffset: "3px",
+            },
             "&:hover": {
               transform: "translateY(-2px)",
               boxShadow: `0 8px 25px ${VaporwavePurple}40`,
@@ -198,7 +206,14 @@ const createVaporwaveTheme = (mode: "light" | "dark"): Theme => {
         styleOverrides: {
           root: {
             borderRadius: 12,
+            minHeight: 44, // WCAG touch target minimum
+            minWidth: 44,
             transition: "all 0.3s ease",
+            // Enhanced focus indicator for accessibility
+            "&:focus-visible": {
+              outline: `3px solid ${VaporwavePink}`,
+              outlineOffset: "3px",
+            },
             "&:hover": {
               transform: "scale(1.05)",
               backgroundColor: "rgba(255,255,255,0.1)",

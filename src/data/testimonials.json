@@ -1,0 +1,52 @@
+[
+  {
+    "id": "1",
+    "name": "Sarah Johnson",
+    "role": "Senior Product Manager",
+    "company": "TechCorp Inc.",
+    "avatar": "",
+    "rating": 5,
+    "content": "Victor is an exceptional developer who consistently delivers high-quality work. His expertise in React and TypeScript helped us modernize our entire frontend stack. He's not just technically skilled but also a great communicator and team player.",
+    "date": "2024-11-15"
+  },
+  {
+    "id": "2",
+    "name": "Michael Chen",
+    "role": "CTO",
+    "company": "StartupLabs",
+    "avatar": "",
+    "rating": 5,
+    "content": "Working with Victor was a game-changer for our startup. He built our MVP from scratch with incredible attention to detail and performance optimization. His architectural decisions have scaled beautifully as we've grown.",
+    "date": "2024-10-20"
+  },
+  {
+    "id": "3",
+    "name": "Emily Rodriguez",
+    "role": "Engineering Manager",
+    "company": "CloudSolutions",
+    "avatar": "",
+    "rating": 5,
+    "content": "Victor's full-stack capabilities are impressive. He seamlessly transitions between frontend and backend work, and his code reviews are always thorough and educational. A valuable asset to any development team.",
+    "date": "2024-09-05"
+  },
+  {
+    "id": "4",
+    "name": "David Thompson",
+    "role": "Lead Developer",
+    "company": "FinTech Solutions",
+    "avatar": "",
+    "rating": 4.5,
+    "content": "Highly skilled developer with strong problem-solving abilities. Victor helped us optimize our application performance and reduce load times by 60%. His expertise in modern web technologies is top-notch.",
+    "date": "2024-08-12"
+  },
+  {
+    "id": "5",
+    "name": "Lisa Park",
+    "role": "Project Director",
+    "company": "Digital Ventures",
+    "avatar": "",
+    "rating": 5,
+    "content": "Victor exceeded all expectations on our project. He delivered complex features ahead of schedule while maintaining exceptional code quality. His proactive communication kept everyone aligned throughout the project.",
+    "date": "2024-07-28"
+  }
+]

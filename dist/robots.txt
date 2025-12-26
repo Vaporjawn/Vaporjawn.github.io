@@ -1,0 +1,25 @@
+# www.robotstxt.org
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.vaporjawn.dev/sitemap.xml
+
+# Crawl-delay for specific bots (optional)
+User-agent: Googlebot
+Crawl-delay: 0
+
+User-agent: Bingbot
+Crawl-delay: 0
+
+# Disallow specific paths if needed (examples)
+# Disallow: /api/
+# Disallow: /admin/
+# Disallow: /_next/
+
+# Performance: Allow CSS and JS for better indexing
+User-agent: *
+Allow: /assets/
+Allow: /*.css$
+Allow: /*.js$

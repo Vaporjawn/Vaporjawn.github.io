@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { Box, Typography, Divider } from "@mui/material";
+import React, { useEffect, useState, useCallback } from "react";
+import { Box, Typography, Divider, Button, CircularProgress } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import ContribHeatmap, { ContributionMetadata } from "../contribs/ContribHeatmap";
 import { Chip, Tooltip } from "@mui/material";
+import RefreshIcon from "@mui/icons-material/Refresh";
 
 /**
  * GitHubContributions now prefers a locally generated JSON heatmap (updated daily via GitHub Actions)
  * rendered by <ContribHeatmap/>. If the JSON fails to load (e.g., first deploy before workflow run),
  * we fall back to the legacy external SVG service and finally to optional static screenshots.
+ *
+ * AUTO-REFRESH DISABLED: Manual refresh only via button to prevent infinite loops.
+ * Users can check data freshness via the status badge and refresh manually when needed.
  *
  * Fallback chain:
  *  1. JSON-driven <ContribHeatmap /> (/data/contributions.json)
@@ -24,6 +28,10 @@ const buildChartUrl = (hexColor: string) => `https://ghchart.rshah.org/${hexColo
 const LOCAL_DARK = "/contributions-dark.png";
 const LOCAL_LIGHT = "/contributions-light.png";
 
+// Staleness threshold and polling interval
+const STALE_HOURS = 48;
+const POLL_INTERVAL_MS = 5 * 60 * 1000; // Check every 5 minutes
+
 const GitHubContributions: React.FC = () => {
   const theme = useTheme();
   // Decide primary tint (fallback to primary.main). Use a mid-saturation for readability.
@@ -33,9 +41,11 @@ const GitHubContributions: React.FC = () => {
   const [attemptedLocal, setAttemptedLocal] = useState(false);
   const [jsonFailed, setJsonFailed] = useState(false);
   const [meta, setMeta] = useState<ContributionMetadata | null>(null);
+  const [refreshKey, setRefreshKey] = useState(0);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [hasAutoRefreshed, setHasAutoRefreshed] = useState(false);
 
   // Compute staleness ( > 48h )
-  const STALE_HOURS = 48;
   const isStale = (() => {
     if (!meta?.fetchedAt) return true; // treat missing metadata as stale/unknown
     const fetched = new Date(meta.fetchedAt).getTime();
@@ -43,6 +53,44 @@ const GitHubContributions: React.FC = () => {
     const ageHrs = (Date.now() - fetched) / 36e5;
     return ageHrs > STALE_HOURS;
   })();
+
+  // Manual refresh handler
+  const handleManualRefresh = useCallback(async () => {
+    setIsRefreshing(true);
+    setHasAutoRefreshed(false); // Reset auto-refresh flag to allow future auto-refreshes
+    // Force a fresh fetch by incrementing the key and adding cache-busting
+    setRefreshKey(prev => prev + 1);
+    // Wait a moment to allow the component to remount with new key
+    await new Promise(resolve => setTimeout(resolve, 500));
+    setIsRefreshing(false);
+  }, []);
+
+  // Auto-refresh DISABLED to prevent infinite loop
+  // The handleManualRefresh callback was causing the effect to re-trigger continuously
+  // Users can manually refresh using the button below
+  /*
+  useEffect(() => {
+    if (isStale && !jsonFailed && !isRefreshing && !hasAutoRefreshed && meta?.fetchedAt) {
+      console.log('[GitHubContributions] Data is stale, triggering one-time automatic refresh...');
+      setHasAutoRefreshed(true);
+      handleManualRefresh();
+    }
+  }, [isStale, jsonFailed, isRefreshing, hasAutoRefreshed, meta?.fetchedAt, handleManualRefresh]);
+  */
+
+  // Optional: Polling mechanism disabled to prevent constant refreshing
+  // Users can manually refresh using the button
+  // Uncomment below to re-enable periodic checking (not recommended if GitHub Actions isn't updating frequently)
+  /*
+  useEffect(() => {
+    const pollInterval = setInterval(() => {
+      console.log('[GitHubContributions] Polling for updated data...');
+      setRefreshKey(prev => prev + 1);
+    }, POLL_INTERVAL_MS);
+
+    return () => clearInterval(pollInterval);
+  }, []);
+  */
 
   function formatRelative(ts?: string) {
     if (!ts) return "unknown";
@@ -126,6 +174,7 @@ const GitHubContributions: React.FC = () => {
         {/* Primary: JSON heatmap */}
         <Box sx={{ mb: 2 }}>
           <ContribHeatmap
+            key={refreshKey} // Force remount on refresh
             ariaLabel="GitHub contribution heatmap"
             onLoaded={() => {
               setJsonFailed(false);
@@ -219,14 +268,34 @@ const GitHubContributions: React.FC = () => {
           <Typography variant="caption" sx={{ opacity: 0.7 }}>
             Last updated: {formatRelative(meta?.fetchedAt)}{meta?.fetchedAt && ` (${new Date(meta.fetchedAt).toLocaleString()})`}
           </Typography>
-          {isStale && (
-            <Tooltip title={meta?.fetchedAt ? `Data older than ${STALE_HOURS}h; run the 'Update Contributions Calendar' workflow.` : "No metadata detected. Run the workflow to generate data."}>
-              <Chip color="warning" size="small" label="STALE" sx={{ fontWeight: 600 }} />
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            {isStale && (
+              <Tooltip title={meta?.fetchedAt ? `Data older than ${STALE_HOURS}h; click refresh to check for updates.` : "No metadata detected. Click refresh to load latest data."}>
+                <Chip color="warning" size="small" label="STALE" sx={{ fontWeight: 600 }} />
+              </Tooltip>
+            )}
+            {!isStale && meta?.fetchedAt && (
+              <Chip color="success" size="small" label="Fresh" sx={{ fontWeight: 600 }} />
+            )}
+            <Tooltip title="Refresh contribution data">
+              <Button
+                size="small"
+                variant="outlined"
+                disabled={isRefreshing}
+                onClick={handleManualRefresh}
+                startIcon={isRefreshing ? <CircularProgress size={16} /> : <RefreshIcon />}
+                sx={{
+                  minWidth: 'auto',
+                  px: 1.5,
+                  py: 0.5,
+                  fontSize: '0.75rem',
+                  textTransform: 'none',
+                }}
+              >
+                {isRefreshing ? 'Refreshing...' : 'Refresh'}
+              </Button>
             </Tooltip>
-          )}
-          {!isStale && meta?.fetchedAt && (
-            <Chip color="success" size="small" label="Fresh" sx={{ fontWeight: 600 }} />
-          )}
+          </Box>
         </Box>
       </Box>
     </Box>

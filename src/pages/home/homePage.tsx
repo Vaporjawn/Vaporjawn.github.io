@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import {
   Box,
   Typography,
@@ -14,6 +15,7 @@ import SEO from "../../components/SEO/SEO";
 import { usePortfolio, useSkills } from "../../hooks/usePortfolioData";
 import OptimizedImage from "../../components/OptimizedImage/OptimizedImage";
 import GitHubContributions from "../../components/github/GitHubContributions";
+import { SkillsRadarChart, CareerTimeline, GitHubStatsChart } from "../../components/charts";
 // Import the actual profile image asset (file name contains a space)
 // Using an import ensures Vite handles hashing/optimization.
 // Asset paths: fall back to static string paths for test environment; Vite will rewrite in prod build.
@@ -28,6 +30,37 @@ const HomePage: React.FC = () => {
   const theme = useTheme();
   const portfolioData = usePortfolio();
   const skills = useSkills();
+
+  // Animation variants for staggered entrance
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }
+    }
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.6, ease: "easeOut" }
+    }
+  };
+
   // Use imported banner image (hashed by Vite). If you want the Philadelphia skyline, drop
   // philadelphia-skyline.jpg into public/ and replace heroBackground with "/philadelphia-skyline.jpg".
   // Multi-layer background: gradient overlay + skyline (if present in public) + fallback banner asset.
@@ -79,6 +112,12 @@ const HomePage: React.FC = () => {
                 sx={{ position: "relative", zIndex: 1 }}
               >
                 <Grid item xs={12} md={8}>
+                  <motion.div
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    <motion.div variants={itemVariants}>
                   <Typography
                     variant="h1"
                     component="h1"
@@ -100,6 +139,8 @@ const HomePage: React.FC = () => {
                   >
                     VICTOR WILLIAMS
                   </Typography>
+                    </motion.div>
+                    <motion.div variants={itemVariants}>
                   <Typography
                     variant="h2"
                     component="h2"
@@ -121,6 +162,8 @@ const HomePage: React.FC = () => {
                   >
                     SOFTWARE DEVELOPER & DIGITAL CREATIVE
                   </Typography>
+                    </motion.div>
+                    <motion.div variants={itemVariants}>
                   <Typography
                     variant="body1"
                     sx={{
@@ -141,9 +184,20 @@ const HomePage: React.FC = () => {
                     Passionate developer creating innovative digital experiences
                     with modern web technologies.
                   </Typography>
+                    </motion.div>
+                    <motion.div variants={itemVariants}>
                   <SocialMedia />
+                    </motion.div>
+                  </motion.div>
                 </Grid>
                 <Grid item xs={12} md={4}>
+                  <motion.div
+                    variants={imageVariants}
+                    initial="hidden"
+                    animate="visible"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                  >
                   <Box sx={{ display: "flex", justifyContent: "center" }}>
                     <OptimizedImage
                       src={profileImage}
@@ -159,6 +213,7 @@ const HomePage: React.FC = () => {
                       }}
                     />
                   </Box>
+                  </motion.div>
                 </Grid>
               </Grid>
             </Box>
@@ -281,6 +336,21 @@ const HomePage: React.FC = () => {
             </Box>
 
             <GitHubContributions />
+
+            {/* Skills Radar Chart */}
+            <Box sx={{ mb: 8, mt: 8 }}>
+              <SkillsRadarChart />
+            </Box>
+
+            {/* GitHub Stats Dashboard */}
+            <Box sx={{ mb: 8 }}>
+              <GitHubStatsChart />
+            </Box>
+
+            {/* Career Timeline */}
+            <Box sx={{ mb: 8 }}>
+              <CareerTimeline />
+            </Box>
 
             {/* Call to Action */}
             <Box

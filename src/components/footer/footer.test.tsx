@@ -23,7 +23,7 @@ jest.mock("./footer", () => {
             <a href="/projects">Projects</a>
             <a href="/resume">Resume</a>
             <a href="/activity">Activity</a>
-            <a href="/20XX">20XX</a>
+
           </div>
           <div data-testid="services">
             <h6>Services</h6>
@@ -121,7 +121,6 @@ describe("Footer Component", () => {
     expect(screen.getByText("Projects")).toBeTruthy();
     expect(screen.getByText("Resume")).toBeTruthy();
     expect(screen.getByText("Activity")).toBeTruthy();
-    expect(screen.getByText("20XX")).toBeTruthy();
   });
 
   test("renders Services section with service offerings", () => {

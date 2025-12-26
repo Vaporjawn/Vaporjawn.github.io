@@ -26,6 +26,8 @@ import { useGithubActivity } from "../../hooks/useGithubActivity";
 import { useNpmPackages } from "../../hooks/useNpmPackages";
 import { CommitGraph, CommitGraphEvent } from "../../components/activity/CommitGraph";
 import { ActivityLegend } from "../../components/activity/ActivityLegend";
+import PullToRefresh from "../../components/PullToRefresh";
+import toast from "react-hot-toast";
 
 // --- relative time utility -------------------------------------------------
 // Lightweight relative time helper (minutes / hours / days / weeks; >30d => locale date)
@@ -109,8 +111,19 @@ const ActivityPage: React.FC = () => {
     );
   }, [githubEvents, npmPackages]);
 
+  // Pull-to-refresh handler
+  const handleRefresh = useCallback(async () => {
+    try {
+      await Promise.all([refreshGithub(), refreshNpm()]);
+      toast.success("Activity refreshed successfully!");
+    } catch (error) {
+      toast.error("Failed to refresh activity");
+    }
+  }, [refreshGithub, refreshNpm]);
+
   return (
-    <Box sx={{ maxWidth: 1200, mx: "auto", px: { xs: 2, md: 3 }, py: { xs: 4, md: 6 } }}>
+    <PullToRefresh onRefresh={handleRefresh}>
+      <Box sx={{ maxWidth: 1200, mx: "auto", px: { xs: 2, md: 3 }, py: { xs: 4, md: 6 } }}>
       <Typography variant="h3" fontWeight={700} gutterBottom>
         Activity
       </Typography>
@@ -365,7 +378,8 @@ const ActivityPage: React.FC = () => {
 
       {/* TODO: Enhance node visuals (shapes/sizes) & add virtualization if event list grows large */}
       {/* TODO: Add richer tooltips with relative time + repository badges */}
-    </Box>
+      </Box>
+    </PullToRefresh>
   );
 };
 

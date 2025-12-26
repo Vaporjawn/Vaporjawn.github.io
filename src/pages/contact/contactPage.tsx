@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Container,
@@ -15,6 +15,7 @@ import {
   useTheme,
   useMediaQuery,
 } from "@mui/material";
+import { PopupModal } from 'react-calendly';
 import {
   Email as EmailIcon,
   LinkedIn as LinkedInIcon,
@@ -24,6 +25,7 @@ import {
 } from "@mui/icons-material";
 import SEO from "../../components/SEO/SEO";
 import { usePortfolio } from "../../hooks/usePortfolioData";
+import ContactForm from "../../components/contact/ContactForm";
 import {
   VaporwavePink,
   VaporwavePurple,
@@ -51,6 +53,7 @@ const ContactPage: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const { personalInfo } = usePortfolio();
+  const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
 
   // Handle scroll to FAQ section when hash is present
   useEffect(() => {
@@ -299,7 +302,13 @@ const ContactPage: React.FC = () => {
                         },
                       },
                     }}
-                    onClick={() => window.open(method.link, "_blank")}
+                    onClick={() => {
+                      if (method.title === "Schedule a Call") {
+                        setIsCalendlyOpen(true);
+                      } else {
+                        window.open(method.link, "_blank");
+                      }
+                    }}
                   >
                     <CardContent sx={{ p: { xs: 3, md: 4.5 }, textAlign: "center", position: "relative", zIndex: 1 }}>
                       <Box
@@ -398,6 +407,42 @@ const ContactPage: React.FC = () => {
                 </Grid>
               ))}
             </Grid>
+          </Box>
+
+          {/* Contact Form Section */}
+          <Box sx={{ mb: 10 }}>
+            <Typography
+              variant="h4"
+              sx={{
+                textAlign: "center",
+                mb: 2,
+                fontWeight: "bold",
+                background: `linear-gradient(45deg, ${VaporwavePink}, ${VaporwaveGreen})`,
+                backgroundClip: "text",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                fontSize: { xs: "1.75rem", md: "2.125rem" },
+              }}
+            >
+              Send Me a Message
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                textAlign: "center",
+                color: theme.palette.text.secondary,
+                mb: 5,
+                fontSize: { xs: "0.95rem", md: "1.05rem" },
+                maxWidth: 700,
+                mx: "auto",
+                lineHeight: 1.7,
+              }}
+            >
+              Fill out the form below and I'll get back to you within 24-48 hours.
+            </Typography>
+            <Box sx={{ maxWidth: 800, mx: "auto" }}>
+              <ContactForm />
+            </Box>
           </Box>
 
           {/* FAQ Section */}
@@ -578,7 +623,7 @@ const ContactPage: React.FC = () => {
                     transform: "translateY(-2px)",
                   },
                 }}
-                onClick={() => window.open("https://cal.com/vaporjawn", "_blank")}
+                onClick={() => setIsCalendlyOpen(true)}
               >
                 Schedule Call
               </Button>
@@ -586,6 +631,14 @@ const ContactPage: React.FC = () => {
           </Box>
         </Container>
       </Box>
+
+      {/* Calendly Modal */}
+      <PopupModal
+        url="https://cal.com/vaporjawn"
+        onModalClose={() => setIsCalendlyOpen(false)}
+        open={isCalendlyOpen}
+        rootElement={document.getElementById('root') as HTMLElement}
+      />
     </>
   );
 };

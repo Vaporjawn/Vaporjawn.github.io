@@ -1,0 +1,643 @@
+---
+title: "Integrating Sentry and Analytics in Production React Apps"
+description: "Complete guide to implementing Sentry error tracking, performance monitoring, and Google Analytics 4 in production React applications with TypeScript."
+date: "2025-12-18"
+author: "Victor Williams"
+tags: ["Sentry", "Analytics", "Monitoring", "React", "Production"]
+image: "/assets/blog/sentry-analytics-hero.jpg"
+readTime: 12
+published: true
+---
+
+# Integrating Sentry and Analytics in Production React Apps
+
+You've built an amazing React application, but how do you know if it's working correctly for all your users? How do you catch errors before they impact user experience? Enter Sentry and Analytics - your production monitoring power couple.
+
+## Why You Need Both
+
+**Sentry** answers: "What's breaking?"
+- Real-time error tracking
+- Performance monitoring
+- Release health tracking
+- User feedback collection
+
+**Google Analytics** answers: "What are users doing?"
+- Page view tracking
+- User behavior patterns
+- Conversion funnels
+- Traffic sources
+
+Together, they give you complete visibility into your application's health and usage.
+
+## Setting Up Sentry
+
+### Installation
+```bash
+npm install @sentry/react @sentry/tracing
+```
+
+### Basic Configuration
+```typescript
+// src/services/sentry.ts
+import * as Sentry from "@sentry/react";
+import { BrowserTracing } from "@sentry/tracing";
+
+export const initSentry = () => {
+  Sentry.init({
+    dsn: import.meta.env.VITE_SENTRY_DSN,
+    environment: import.meta.env.MODE,
+    integrations: [
+      new BrowserTracing({
+        // Track React Router navigation
+        routingInstrumentation: Sentry.reactRouterV6Instrumentation(
+          React.useEffect,
+          useLocation,
+          useNavigationType,
+          createRoutesFromChildren,
+          matchRoutes
+        ),
+      }),
+    ],
+
+    // Performance monitoring
+    tracesSampleRate: 1.0, // Capture 100% of transactions in development
+
+    // Session replay (optional, for debugging)
+    replaysSessionSampleRate: 0.1, // 10% of sessions
+    replaysOnErrorSampleRate: 1.0, // 100% of errors
+
+    // Release tracking
+    release: `portfolio@${import.meta.env.VITE_APP_VERSION}`,
+
+    // Filter out known noise
+    beforeSend(event, hint) {
+      // Don't send development errors to Sentry
+      if (import.meta.env.DEV) {
+        console.error(hint.originalException || hint.syntheticException);
+        return null;
+      }
+
+      // Filter out browser extension errors
+      if (event.exception) {
+        const frames = event.exception.values?.[0]?.stacktrace?.frames;
+        if (frames?.some(frame =>
+          frame.filename?.includes('chrome-extension://') ||
+          frame.filename?.includes('moz-extension://')
+        )) {
+          return null;
+        }
+      }
+
+      return event;
+    },
+  });
+};
+```
+
+### Initialize in Your App
+```typescript
+// src/main.tsx
+import { initSentry } from './services/sentry';
+
+// Initialize Sentry before React
+initSentry();
+
+// Your app initialization
+const root = ReactDOM.createRoot(document.getElementById('root')!);
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+```
+
+## Error Boundary with Sentry
+
+```typescript
+// src/components/ErrorBoundary/ErrorBoundary.tsx
+import * as Sentry from "@sentry/react";
+import { Box, Button, Typography, Container } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+
+const ErrorFallback: React.FC<{ error: Error; resetError: () => void }> = ({
+  error,
+  resetError
+}) => {
+  const navigate = useNavigate();
+
+  const handleReset = () => {
+    resetError();
+    navigate('/');
+  };
+
+  return (
+    <Container maxWidth="sm">
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        minHeight="100vh"
+        textAlign="center"
+        gap={3}
+      >
+        <Typography variant="h2" component="h1">
+          Oops! Something went wrong
+        </Typography>
+        <Typography variant="body1" color="text.secondary">
+          We've been notified and are looking into it.
+        </Typography>
+        {import.meta.env.DEV && (
+          <Box
+            component="pre"
+            sx={{
+              textAlign: 'left',
+              p: 2,
+              bgcolor: 'grey.100',
+              borderRadius: 1,
+              overflow: 'auto',
+              maxWidth: '100%'
+            }}
+          >
+            {error.message}
+          </Box>
+        )}
+        <Box display="flex" gap={2}>
+          <Button variant="contained" onClick={handleReset}>
+            Return Home
+          </Button>
+          <Button variant="outlined" onClick={() => window.location.reload()}>
+            Reload Page
+          </Button>
+        </Box>
+      </Box>
+    </Container>
+  );
+};
+
+const SentryErrorBoundary = Sentry.withErrorBoundary(
+  ({ children }: { children: React.ReactNode }) => <>{children}</>,
+  {
+    fallback: ErrorFallback,
+    showDialog: true, // Show user feedback dialog
+  }
+);
+
+export default SentryErrorBoundary;
+```
+
+### Wrap Your App
+```typescript
+// src/App.tsx
+import SentryErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
+
+function App() {
+  return (
+    <SentryErrorBoundary>
+      <Router>
+        {/* Your app content */}
+      </Router>
+    </SentryErrorBoundary>
+  );
+}
+```
+
+## Performance Monitoring
+
+### Custom Transaction Tracking
+```typescript
+// src/utils/performance.ts
+import * as Sentry from "@sentry/react";
+
+export const trackAsyncOperation = async <T,>(
+  name: string,
+  operation: () => Promise<T>
+): Promise<T> => {
+  const transaction = Sentry.startTransaction({
+    op: "async-operation",
+    name,
+  });
+
+  try {
+    const result = await operation();
+    transaction.setStatus('ok');
+    return result;
+  } catch (error) {
+    transaction.setStatus('internal_error');
+    Sentry.captureException(error);
+    throw error;
+  } finally {
+    transaction.finish();
+  }
+};
+
+// Usage example
+const fetchProjects = () =>
+  trackAsyncOperation('fetch-projects', async () => {
+    const response = await fetch('/api/projects');
+    return response.json();
+  });
+```
+
+### Tracking Component Performance
+```typescript
+// src/components/ExpensiveComponent.tsx
+import { Profiler } from 'react';
+import * as Sentry from "@sentry/react";
+
+const onRenderCallback = (
+  id: string,
+  phase: "mount" | "update",
+  actualDuration: number,
+) => {
+  Sentry.addBreadcrumb({
+    category: 'performance',
+    message: `${id} ${phase}`,
+    level: 'info',
+    data: { actualDuration },
+  });
+
+  // Alert on slow renders
+  if (actualDuration > 100) {
+    Sentry.captureMessage(`Slow render: ${id} took ${actualDuration}ms`, 'warning');
+  }
+};
+
+export const ExpensiveComponent: React.FC = () => {
+  return (
+    <Profiler id="ExpensiveComponent" onRender={onRenderCallback}>
+      {/* Your component content */}
+    </Profiler>
+  );
+};
+```
+
+## Google Analytics 4 Setup
+
+### Installation
+```bash
+npm install react-ga4
+```
+
+### Configuration
+```typescript
+// src/services/analytics.ts
+import ReactGA from 'react-ga4';
+
+export const initGA = () => {
+  const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
+
+  if (!measurementId) {
+    console.warn('GA Measurement ID not found');
+    return;
+  }
+
+  ReactGA.initialize(measurementId, {
+    gaOptions: {
+      send_page_view: false, // Manually track page views
+    },
+    gtagOptions: {
+      // Respect user privacy
+      anonymize_ip: true,
+      cookie_flags: 'SameSite=None;Secure',
+    },
+  });
+};
+
+// Track page views
+export const trackPageView = (path: string, title?: string) => {
+  ReactGA.send({
+    hitType: 'pageview',
+    page: path,
+    title: title || document.title,
+  });
+};
+
+// Track events
+export const trackEvent = (
+  category: string,
+  action: string,
+  label?: string,
+  value?: number
+) => {
+  ReactGA.event({
+    category,
+    action,
+    label,
+    value,
+  });
+};
+
+// Track timing
+export const trackTiming = (
+  category: string,
+  variable: string,
+  value: number,
+  label?: string
+) => {
+  ReactGA.gtag('event', 'timing_complete', {
+    name: variable,
+    value: value,
+    event_category: category,
+    event_label: label,
+  });
+};
+```
+
+### Automatic Page View Tracking
+```typescript
+// src/App.tsx
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { trackPageView } from './services/analytics';
+
+function App() {
+  const location = useLocation();
+
+  useEffect(() => {
+    trackPageView(location.pathname + location.search);
+  }, [location]);
+
+  return (
+    // Your app
+  );
+}
+```
+
+### Track User Interactions
+```typescript
+// src/components/ContactForm.tsx
+import { trackEvent } from '../../services/analytics';
+
+const handleSubmit = async (data: FormData) => {
+  try {
+    await submitForm(data);
+
+    // Track successful submission
+    trackEvent('Contact', 'Form Submission', 'Success');
+
+    toast.success('Message sent successfully!');
+  } catch (error) {
+    // Track failures
+    trackEvent('Contact', 'Form Submission', 'Error');
+
+    Sentry.captureException(error);
+    toast.error('Failed to send message');
+  }
+};
+```
+
+### Track Outbound Links
+```typescript
+// src/components/ExternalLink.tsx
+import { trackEvent } from '../../services/analytics';
+
+interface ExternalLinkProps {
+  href: string;
+  children: React.ReactNode;
+  category?: string;
+}
+
+export const ExternalLink: React.FC<ExternalLinkProps> = ({
+  href,
+  children,
+  category = 'External Link'
+}) => {
+  const handleClick = () => {
+    trackEvent(category, 'Click', href);
+  };
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={handleClick}
+    >
+      {children}
+    </a>
+  );
+};
+```
+
+## Privacy and GDPR Compliance
+
+### Cookie Consent Banner
+```typescript
+// src/components/CookieConsent.tsx
+import { useState, useEffect } from 'react';
+import { Box, Button, Typography, Snackbar } from '@mui/material';
+import ReactGA from 'react-ga4';
+
+export const CookieConsent: React.FC = () => {
+  const [showBanner, setShowBanner] = useState(false);
+
+  useEffect(() => {
+    const consent = localStorage.getItem('cookie-consent');
+    if (!consent) {
+      setShowBanner(true);
+    } else if (consent === 'accepted') {
+      initGA();
+    }
+  }, []);
+
+  const handleAccept = () => {
+    localStorage.setItem('cookie-consent', 'accepted');
+    setShowBanner(false);
+    initGA();
+  };
+
+  const handleDecline = () => {
+    localStorage.setItem('cookie-consent', 'declined');
+    setShowBanner(false);
+  };
+
+  return (
+    <Snackbar
+      open={showBanner}
+      anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+    >
+      <Box
+        sx={{
+          bgcolor: 'background.paper',
+          p: 3,
+          borderRadius: 2,
+          boxShadow: 3,
+          maxWidth: 600
+        }}
+      >
+        <Typography variant="body1" gutterBottom>
+          We use cookies and analytics to improve your experience.
+          By continuing, you agree to our use of cookies.
+        </Typography>
+        <Box display="flex" gap={2} mt={2}>
+          <Button variant="contained" onClick={handleAccept}>
+            Accept
+          </Button>
+          <Button variant="outlined" onClick={handleDecline}>
+            Decline
+          </Button>
+        </Box>
+      </Box>
+    </Snackbar>
+  );
+};
+```
+
+## Best Practices
+
+### 1. Environment-Specific Configuration
+```typescript
+const getSentryConfig = () => {
+  const baseConfig = {
+    dsn: import.meta.env.VITE_SENTRY_DSN,
+    environment: import.meta.env.MODE,
+  };
+
+  if (import.meta.env.PROD) {
+    return {
+      ...baseConfig,
+      tracesSampleRate: 0.1, // Sample 10% in production
+      beforeSend: filterProductionErrors,
+    };
+  }
+
+  return {
+    ...baseConfig,
+    tracesSampleRate: 1.0, // Sample 100% in development
+    beforeSend: () => null, // Don't send to Sentry in dev
+  };
+};
+```
+
+### 2. Set User Context
+```typescript
+// After user authentication
+Sentry.setUser({
+  id: user.id,
+  email: user.email,
+  username: user.username,
+});
+
+// Clear on logout
+Sentry.setUser(null);
+```
+
+### 3. Add Breadcrumbs
+```typescript
+// Track user actions
+const handleProjectClick = (projectId: string) => {
+  Sentry.addBreadcrumb({
+    category: 'user-action',
+    message: 'Clicked project',
+    level: 'info',
+    data: { projectId },
+  });
+
+  navigate(`/projects/${projectId}`);
+};
+```
+
+### 4. Monitor API Calls
+```typescript
+// src/utils/api.ts
+import * as Sentry from "@sentry/react";
+import { trackEvent } from './analytics';
+
+export const apiClient = async <T,>(
+  endpoint: string,
+  options?: RequestInit
+): Promise<T> => {
+  const span = Sentry.getCurrentHub().getScope()?.getSpan();
+  const child = span?.startChild({
+    op: 'http.client',
+    description: `${options?.method || 'GET'} ${endpoint}`,
+  });
+
+  const startTime = performance.now();
+
+  try {
+    const response = await fetch(endpoint, options);
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+
+    // Track API performance
+    const duration = performance.now() - startTime;
+    trackTiming('API', endpoint, Math.round(duration));
+
+    child?.setStatus('ok');
+    return data;
+  } catch (error) {
+    child?.setStatus('internal_error');
+
+    Sentry.captureException(error, {
+      tags: { endpoint },
+      extra: { options },
+    });
+
+    trackEvent('API', 'Error', endpoint);
+    throw error;
+  } finally {
+    child?.finish();
+  }
+};
+```
+
+## Monitoring Dashboard
+
+Create a unified monitoring dashboard:
+
+```typescript
+// src/pages/admin/MonitoringDashboard.tsx
+export const MonitoringDashboard: React.FC = () => {
+  return (
+    <Grid container spacing={3}>
+      <Grid item xs={12} md={6}>
+        <Card>
+          <CardContent>
+            <Typography variant="h6">Error Rate (24h)</Typography>
+            {/* Embed Sentry stats */}
+          </CardContent>
+        </Card>
+      </Grid>
+
+      <Grid item xs={12} md={6}>
+        <Card>
+          <CardContent>
+            <Typography variant="h6">Active Users</Typography>
+            {/* Embed GA real-time stats */}
+          </CardContent>
+        </Card>
+      </Grid>
+
+      <Grid item xs={12}>
+        <Card>
+          <CardContent>
+            <Typography variant="h6">Performance Metrics</Typography>
+            {/* Core Web Vitals trends */}
+          </CardContent>
+        </Card>
+      </Grid>
+    </Grid>
+  );
+};
+```
+
+## Conclusion
+
+Implementing Sentry and Google Analytics provides crucial insights into your application's health and user behavior. Start with basic error tracking and page views, then expand to performance monitoring and detailed event tracking.
+
+Remember: monitoring is not a "set it and forget it" task. Regularly review your dashboards, investigate trends, and continuously improve your application based on real user data.
+
+Questions about production monitoring? [Let's talk](/contact) - I'd be happy to share more insights!
+
+---
+
+**Resources**:
+- [Sentry React Documentation](https://docs.sentry.io/platforms/javascript/guides/react/)
+- [Google Analytics 4 for React](https://github.com/codler/react-ga4)
+- [Web Vitals Library](https://github.com/GoogleChrome/web-vitals)

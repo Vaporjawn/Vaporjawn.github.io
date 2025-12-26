@@ -82,6 +82,7 @@ export const ContribHeatmap: React.FC<HeatmapProps> = ({
     let cancelled = false;
     (async () => {
       try {
+        // Fetch with no-store cache to ensure we get latest data when manually refreshed
         const res = await fetch(source, { cache: "no-store" });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
   const json: ContributionCalendarWithMeta = await res.json();

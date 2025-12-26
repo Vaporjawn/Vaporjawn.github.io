@@ -2,8 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/Vaporjawn.github.io/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="Victor Williams - Senior Full Stack Software Engineer with expertise in React, TypeScript, Node.js, and modern web development. Temple University graduate with 5+ years of experience." />
     <meta name="keywords" content="Victor Williams, Full Stack Developer, Software Engineer, React, TypeScript, Node.js, Web Development, Philadelphia, Temple University" />
     <meta name="author" content="Victor Williams" />
@@ -24,10 +24,26 @@
     <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.github.com" />
+
+    <!-- Preload critical assets for performance -->
+    <link rel="preload" href="/assets/banner-DO8oX7IM.jpg" as="image" type="image/jpeg" />
+    <link rel="preload" href="/assets/profile-picture-CHJxZ5gd.jpeg" as="image" type="image/jpeg" />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+
+    <!-- Theme Color for browser chrome -->
+    <meta name="theme-color" content="#6366f1" />
 
     <title>Victor Williams - Senior Full Stack Software Engineer</title>
-    <script type="module" crossorigin src="/Vaporjawn.github.io/assets/index-C65LJE8m.js"></script>
-    <link rel="stylesheet" crossorigin href="/Vaporjawn.github.io/assets/index-P1VZx9c3.css">
+    <script type="module" crossorigin src="/assets/index-ByWdqT_v.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/react-vendor-5RRwqQhZ.js">
+    <link rel="modulepreload" crossorigin href="/assets/mui-vendor-_bWszY37.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-BZ0hGqV4.css">
   </head>
   <body>
     <div id="root"></div>

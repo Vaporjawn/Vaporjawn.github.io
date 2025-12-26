@@ -160,9 +160,9 @@ const Footer: React.FC = () => {
     { label: "Home", path: "/" },
     { label: "About", path: "/about" },
     { label: "Projects", path: "/projects" },
+    { label: "Blog", path: "/blog" },
     { label: "Resume", path: "/resume" },
     { label: "Activity", path: "/activity" },
-    { label: "20XX", path: "/20XX" },
   ];
 
   const services = [
