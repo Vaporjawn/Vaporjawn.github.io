@@ -1,0 +1,90 @@
+﻿# Dependabot Configuration for Automated Dependency Updates
+# https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+updates:
+  # Monitor npm dependencies
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "America/New_York"
+    # Group related updates together
+    groups:
+      # Group all React-related updates
+      react:
+        patterns:
+          - "react*"
+          - "@types/react*"
+      # Group all Material-UI updates
+      mui:
+        patterns:
+          - "@mui/*"
+          - "@emotion/*"
+      # Group testing-related updates
+      testing:
+        patterns:
+          - "jest*"
+          - "@testing-library/*"
+          - "@types/jest"
+          - "vitest*"
+      # Group build tools
+      build-tools:
+        patterns:
+          - "vite*"
+          - "@vitejs/*"
+          - "typescript"
+          - "eslint*"
+          - "prettier"
+      # Group Sentry updates
+      sentry:
+        patterns:
+          - "@sentry/*"
+      # Group animation libraries
+      animation:
+        patterns:
+          - "framer-motion"
+          - "react-spring"
+      # Group chart libraries
+      charts:
+        patterns:
+          - "recharts"
+          - "d3*"
+    # Set limits to avoid PR spam
+    open-pull-requests-limit: 10
+    # Add labels for easy filtering
+    labels:
+      - "dependencies"
+      - "automated"
+    # Add reviewers (update with your GitHub username if needed)
+    reviewers:
+      - "Vaporjawn"
+    # Commit message prefix
+    commit-message:
+      prefix: "chore(deps)"
+      prefix-development: "chore(dev-deps)"
+    # Automatically rebase PRs when conflicts occur
+    rebase-strategy: "auto"
+    # Allow both direct and indirect dependencies
+    versioning-strategy: "increase"
+    # Ignore specific dependencies if needed (uncomment to use)
+    # ignore:
+    #   - dependency-name: "package-name"
+    #     versions: ["x.x.x"]
+
+  # Monitor GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "America/New_York"
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "chore(actions)"
+    open-pull-requests-limit: 5
