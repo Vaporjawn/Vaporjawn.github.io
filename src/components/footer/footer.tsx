@@ -1,220 +1,51 @@
+/**
+ * Footer Component
+ * Main footer with brand info, navigation links, services, and social icons
+ * @module components/footer/Footer
+ */
+
 import React from "react";
 import {
   Box,
   Grid,
   Typography,
-  Link,
-  IconButton,
   Divider,
   useTheme,
   useMediaQuery,
+  Link,
 } from "@mui/material";
-import { styled } from "@mui/material/styles";
 import { Link as RouterLink } from "react-router-dom";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import TwitterIcon from "@mui/icons-material/Twitter";
 import EmailIcon from "@mui/icons-material/Email";
-import ArticleIcon from "@mui/icons-material/Article";
-import XIcon from "@mui/icons-material/X";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGitlab, faReddit, faThreads } from "@fortawesome/free-brands-svg-icons";
 import { usePortfolio } from "../../hooks/usePortfolioData";
 import { socialLinks } from "../../data/socialLinks";
 import { getBrandColor, SocialBrandKey } from "../../data/socialBrandColors";
-import BlueskyIcon from "../../assets/logos/Bluesky_Logo.svg";
-import NpmIcon from "../../assets/logos/Npm-logo.svg.png";
-import DevpostIcon from "../../assets/logos/devpost_logo_icon_169280.svg";
-import BuyMeACoffeeIcon from "../../assets/logos/buymeacoffee_logo.svg";
+import { renderSocialIcon } from "../socials/utils/iconMapper";
+import {
+  FooterContainer,
+  FooterSection,
+  FooterTitle,
+  FooterLink,
+  BrandText,
+  SocialIconContainer,
+  StyledIconButton,
+  LegalSection,
+} from "./styledComponents";
+import { quickLinks, services, legalLinks } from "./constants";
 
-// Custom styled image component for brand icons (ensure square, no stretching)
-const ImgIcon = styled("img")(() => ({
-  width: 24,
-  height: 24,
-  display: "block",
-  objectFit: "contain",
-  aspectRatio: "1 / 1",
-  // Prevent sub-pixel rendering blur in some browsers
-  imageRendering: "-webkit-optimize-contrast",
-}));
 
-const FooterContainer = styled(Box)(({ theme }) => ({
-  position: "relative",
-  width: "100vw",
-  marginLeft: "calc(50% - 50vw)",
-  background: `linear-gradient(135deg,
-    ${theme.palette.secondary.main} 0%,
-    ${theme.palette.primary.main} 50%,
-    ${theme.palette.secondary.dark} 100%)`,
-  padding: theme.spacing(4, 2),
-  color: theme.palette.text.primary,
-  textAlign: "center",
-  boxSizing: "border-box",
-}));
-
-const FooterSection = styled(Box)(({ theme }) => ({
-  marginBottom: theme.spacing(4),
-  [theme.breakpoints.up("md")]: {
-    marginBottom: 0,
-  },
-}));
-
-const FooterTitle = styled(Typography)(({ theme }) => ({
-  fontWeight: 700,
-  fontSize: "1.1rem",
-  letterSpacing: "0.05em",
-  marginBottom: theme.spacing(2),
-  background: `linear-gradient(45deg, ${theme.palette.vaporwave.pink}, ${theme.palette.vaporwave.purple})`,
-  backgroundClip: "text",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-  textTransform: "uppercase",
-}));
-
-const FooterLink = styled(Link)(({ theme }) => ({
-  color: theme.palette.text.primary,
-  textDecoration: "none",
-  fontSize: "0.9rem",
-  fontWeight: 500,
-  lineHeight: 2,
-  transition: "all 0.3s ease",
-  display: "block",
-  "&:hover": {
-    color: theme.palette.vaporwave.pink,
-    transform: "translateX(4px)",
-  },
-})) as typeof Link;
-
-const BrandText = styled(Typography)(({ theme }) => ({
-  fontWeight: 700,
-  fontSize: "1.5rem",
-  letterSpacing: "0.1em",
-  background: `linear-gradient(45deg, ${theme.palette.vaporwave.green}, ${theme.palette.vaporwave.blueGreen}, ${theme.palette.vaporwave.pink})`,
-  backgroundClip: "text",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-  textShadow: `0 0 20px ${theme.palette.vaporwave.blueGreen}50`,
-  marginBottom: theme.spacing(1),
-}));
-
-const SocialIconContainer = styled(Box)(({ theme }) => ({
-  display: "flex",
-  justifyContent: "center",
-  gap: theme.spacing(1),
-  marginBottom: theme.spacing(3),
-  [theme.breakpoints.up("md")]: {
-    justifyContent: "flex-start",
-  },
-}));
-
-interface StyledIconButtonProps {
-  $brandcolor?: string;
-  $hovercolor?: string;
-  $preserve?: boolean;
-}
-
-const StyledIconButton = styled(IconButton, {
-  shouldForwardProp: (prop) =>
-    prop !== "$brandcolor" &&
-    prop !== "$hovercolor" &&
-    prop !== "$preserve"
-})<StyledIconButtonProps>(
-  ({ theme, $brandcolor, $hovercolor, $preserve }) => ({
-    color: $preserve ? theme.palette.text.secondary : $brandcolor || theme.palette.text.secondary,
-    transition: "all 0.3s ease",
-    backgroundColor:
-      theme.palette.mode === "dark"
-        ? "rgba(255,255,255,0.04)"
-        : "rgba(0,0,0,0.04)",
-    "&:hover": {
-      color: $preserve ? $brandcolor || theme.palette.vaporwave.pink : $hovercolor || $brandcolor || theme.palette.vaporwave.pink,
-      backgroundColor:
-        theme.palette.mode === "dark"
-          ? "rgba(255,255,255,0.1)"
-          : "rgba(0,0,0,0.08)",
-      transform: "translateY(-2px) scale(1.05)",
-      boxShadow: `0 4px 15px ${theme.palette.vaporwave.purple}40`,
-    },
-  })
-);
-
-const LegalSection = styled(Box)(({ theme }) => ({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  gap: theme.spacing(3),
-  flexWrap: "wrap",
-  marginTop: theme.spacing(2),
-  [theme.breakpoints.down("sm")]: {
-    flexDirection: "column",
-    gap: theme.spacing(1),
-  },
-}));
-
+/**
+ * Footer component displaying brand information, navigation, and social links
+ *
+ * @returns Footer component with multi-section layout
+ */
 const Footer: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const portfolio = usePortfolio();
 
-  const quickLinks = [
-    { label: "Home", path: "/" },
-    { label: "About", path: "/about" },
-    { label: "Projects", path: "/projects" },
-    { label: "Blog", path: "/blog" },
-    { label: "Resume", path: "/resume" },
-    { label: "Activity", path: "/activity" },
-  ];
-
-  const services = [
-    "Web Development",
-    "React Development",
-    "TypeScript Solutions",
-    "UI/UX Design",
-    "Portfolio Development",
-  ];
-
-  const legalLinks = [
-    { label: "FAQs", path: "/contact#faq" },
-    { label: "Privacy Policy", path: "/privacy" },
-    { label: "Terms of Service", path: "/terms" },
-  ];
-
   // Use unified social links as single source of truth.
   // Show all links in footer for full parity with SocialMedia component
   const allLinks = socialLinks; // no filtering
-
-  const renderIcon = (key: string, label: string, baseColor?: string) => {
-    switch (key) {
-      case "github":
-        return <GitHubIcon fontSize="small" sx={{ color: baseColor }} />;
-      case "gitlab":
-        return <FontAwesomeIcon icon={faGitlab} style={{ fontSize: "1.05rem", color: baseColor }} />;
-      case "reddit":
-        return <FontAwesomeIcon icon={faReddit} style={{ fontSize: "1.05rem", color: baseColor }} />;
-      case "threads":
-        return <FontAwesomeIcon icon={faThreads} style={{ fontSize: "1.05rem", color: baseColor }} />;
-      case "linkedin":
-        return <LinkedInIcon fontSize="small" sx={{ color: baseColor }} />;
-      case "x":
-        return <XIcon fontSize="small" sx={{ color: baseColor }} />;
-      case "twitter": // backward compatibility if ever appears
-        return <TwitterIcon fontSize="small" sx={{ color: baseColor }} />;
-      case "email":
-        return <EmailIcon fontSize="small" sx={{ color: baseColor }} />;
-      case "resume":
-        return <ArticleIcon fontSize="small" sx={{ color: baseColor }} />;
-      case "npm":
-        return <ImgIcon src={NpmIcon} alt={label} />;
-      case "bluesky":
-        return <ImgIcon src={BlueskyIcon} alt={label} />;
-      case "devpost":
-        return <ImgIcon src={DevpostIcon} alt={label} />;
-      case "buymeacoffee":
-        return <ImgIcon src={BuyMeACoffeeIcon} alt={label} />;
-      default:
-        return null;
-    }
-  };
 
   return (
     <FooterContainer component="footer">
@@ -324,13 +155,20 @@ const Footer: React.FC = () => {
           {/* Social Icons */}
           <SocialIconContainer>
             {allLinks.map((link) => {
-              const key = link.key as SocialBrandKey; // narrowing for brand color helper
-              const paletteMode: "light" | "dark" = theme.palette.mode === "dark" ? "dark" : "light";
+              const key = link.key as SocialBrandKey;
+              const paletteMode: "light" | "dark" =
+                theme.palette.mode === "dark" ? "dark" : "light";
               const brandBase = getBrandColor(key, paletteMode, false);
               const brandHover = getBrandColor(key, paletteMode, true);
-              const preserve = ["npm", "bluesky", "devpost", "buymeacoffee"].includes(link.key);
-              const iconNode = renderIcon(link.key, link.label, preserve ? undefined : brandBase);
+              const preserve = ["npm", "bluesky", "devpost", "buymeacoffee"].includes(
+                link.key
+              );
+
+              // Use iconMapper utility instead of local renderIcon
+              const iconNode = renderSocialIcon(link.key, link.label, paletteMode);
+
               if (!iconNode) return null;
+
               const commonProps = {
                 component: "a" as const,
                 href: link.href,
@@ -339,6 +177,7 @@ const Footer: React.FC = () => {
                 target: link.kind === "external" ? "_blank" : undefined,
                 rel: link.kind === "external" ? "noopener noreferrer" : undefined,
               };
+
               if (link.kind === "internal") {
                 return (
                   <Box

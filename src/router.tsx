@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Suspense, lazy, useState, useEffect } from "react";
-import Footer from "./components/footer/footer";
+import Footer from "./components/footer";
 import Header from "./components/header/header";
 import ErrorBoundary from "./components/errorBoundary/errorBoundary";
 import CssBaseline from "@mui/material/CssBaseline";

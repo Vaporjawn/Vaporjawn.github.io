@@ -6,7 +6,7 @@ import createVaporwaveTheme from "../../theme/theme";
 import { vi } from 'vitest';
 
 // Mock the entire footer module to avoid asset import issues
-vi.mock("./footer", () => {
+vi.mock("./index", () => {
   return {
     __esModule: true,
     default: function MockFooter() {
@@ -73,7 +73,7 @@ vi.mock("./footer", () => {
 });
 
 // Import the mocked footer
-import Footer from "./footer";
+import Footer from "./index";
 
 const theme = createVaporwaveTheme("dark");
 
