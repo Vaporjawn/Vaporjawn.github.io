@@ -1,18 +1,78 @@
+/**
+ * @module components/contact/ContactSection
+ * @description
+ * Reusable contact section component featuring email button and social media links.
+ * Displays contact information with decorative styling, animations, and theme awareness.
+ *
+ * Features:
+ * - Pre-filled mailto functionality
+ * - Social media icon integration
+ * - Decorative radial gradient accents
+ * - Fade-in animation effects
+ * - Light/Dark mode support
+ * - Responsive design
+ *
+ * @example
+ * ```tsx
+ * import ContactSection from '@/components/contact/ContactSection';
+ *
+ * <ContactSection darkMode={theme.palette.mode === "dark"} />
+ * ```
+ */
+
 import React from "react";
 import { Box, Typography, Button, useTheme, Paper, Fade } from "@mui/material";
 import SocialMedia from "../socials/socialMedia";
 
+/**
+ * Props interface for ContactSection component
+ *
+ * @interface ContactSectionProps
+ */
 interface ContactSectionProps {
+  /**
+   * Whether dark mode is active for theme-dependent styling
+   * @type {boolean}
+   */
   darkMode: boolean;
 }
 
-// Simple mailto helper for quick message composition without backend
+/**
+ * Opens default email client with pre-filled subject and body
+ *
+ * @function handleMailTo
+ * @returns {void}
+ *
+ * @example
+ * ```tsx
+ * <Button onClick={handleMailTo}>Email Me</Button>
+ * ```
+ */
 const handleMailTo = () => {
   const subject = encodeURIComponent("Inquiry from your portfolio site");
   const body = encodeURIComponent("Hi Victor,\n\n");
   window.location.href = `mailto:victor.williams.dev@gmail.com?subject=${subject}&body=${body}`;
 };
 
+/**
+ * ContactSection Component
+ *
+ * Displays contact information section with email button and social media links.
+ * Features decorative gradient accents, fade-in animation, and responsive layout.
+ *
+ * @component
+ * @param {ContactSectionProps} props - Component props
+ * @returns {JSX.Element} Rendered contact section
+ *
+ * @example
+ * ```tsx
+ * // Basic usage
+ * <ContactSection darkMode={false} />
+ *
+ * // With theme
+ * <ContactSection darkMode={theme.palette.mode === "dark"} />
+ * ```
+ */
 const ContactSection: React.FC<ContactSectionProps> = ({ darkMode }) => {
   const theme = useTheme();
   return (
