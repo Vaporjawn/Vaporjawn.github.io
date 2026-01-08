@@ -1,60 +1,24 @@
+/**
+ * GitKraken-inspired commit graph visualization
+ * Groups events by repo/lane and displays chronologically
+ * @module components/activity/CommitGraph
+ */
+
 import React, { useMemo } from "react";
 import { Box, Tooltip, useTheme } from "@mui/material";
 
-// Generic activity event for the CommitGraph. We intentionally keep this lightweight so
-// both GitHub events and synthetic npm publish events can be rendered together.
-export interface CommitGraphEvent {
-  id: string;
-  createdAt: string; // ISO timestamp
-  message: string;
-  url?: string;
-  kind: string; // e.g. push, pr-open, npm-publish, etc.
-  // Optional repo (legacy GitHub specific) – retained for backward compatibility.
-  repo?: string;
-  // Lane label – when provided it overrides repo grouping (e.g. "GitHub" or "npm").
-  lane?: string;
-}
+import type { CommitGraphEvent, CommitGraphProps, LaneInfo, Row } from "./types";
 
-/**
- * Minimal GitKraken-inspired commit graph.
- * We group events by repo (branch lane) and order chronologically (newest first input assumed).
- */
-export interface CommitGraphProps {
-  events: CommitGraphEvent[];
-  /** Maximum distinct lanes (ignored if only two like GitHub + npm). */
-  maxRepos?: number;
-  /** Vertical space per row (px). */
-  heightPerNode?: number;
-  /** Optional legend element id to reference for accessibility (aria-describedby). Defaults to 'activity-legend'. */
-  legendId?: string;
-  /** Orientation: 'desc' newest at top (default) or 'asc' oldest at top. */
-  orientation?: "asc" | "desc";
-  /** Show date grouping header rows. */
-  showDates?: boolean;
-}
-
-interface LaneInfo {
-  label: string; // lane label (repo name, or explicit lane override)
-  color: string;
-  index: number;
-}
-
-const PALETTE = [
-  "#14b8a6", // teal
-  "#6366f1", // indigo
-  "#f59e0b", // amber
-  "#ec4899", // pink
-  "#0ea5e9", // sky
-  "#84cc16", // lime
-  "#f43f5e", // rose
-  "#8b5cf6", // violet
-];
-
-function colorForLane(i: number) { return PALETTE[i % PALETTE.length]; }
-
-type Row =
-  | { type: "date"; date: string }
-  | { type: "event"; evt: CommitGraphEvent; laneKey: string; lane?: LaneInfo };
+import {
+  KIND_LABELS,
+  LANE_WIDTH,
+  LEFT_PAD,
+  NODE_SIZE_BRANCH,
+  NODE_SIZE_TRUNK,
+  RADIUS_BRANCH,
+  RADIUS_TRUNK,
+} from "./constants";
+import { colorForLane } from "./utils";
 
 export const CommitGraph: React.FC<CommitGraphProps> = ({
   events,
@@ -117,43 +81,25 @@ export const CommitGraph: React.FC<CommitGraphProps> = ({
     return { lanes: laneOrder.slice(0, maxRepos).map(l => laneMap.get(l)!), rows, trunkLane: trunk, accessibleList };
   }, [events, maxRepos, orientation, showDates]);
 
-  const laneWidth = 36; // horizontal allocation per lane
-  const leftPad = 52;   // more space for date labels + axis
-  const NODE_SIZE_BRANCH = 30;
-  const NODE_SIZE_TRUNK = 16;
-  const RADIUS_BRANCH = NODE_SIZE_BRANCH / 2;
-  const RADIUS_TRUNK = NODE_SIZE_TRUNK / 2;
   const totalHeight = rows.length * heightPerNode + 16;
-
-  const KIND_LABELS: Record<string, string> = {
-    push: "Push",
-    "pr-open": "PR Opened",
-    "pr-merge": "PR Merged",
-    release: "Release",
-    fork: "Fork",
-    star: "Star",
-    "issue-open": "Issue Opened",
-    "issue-comment": "Issue Comment",
-    "npm-publish": "npm Publish",
-  };
 
   return (
     <Box sx={{ position: "relative", width: "100%", overflowX: "auto", py: 2 }}>
       {/* Lanes header */}
-      <Box sx={{ display: "flex", flexDirection: "row", pl: leftPad, mb: 1 }}>
+      <Box sx={{ display: "flex", flexDirection: "row", pl: LEFT_PAD, mb: 1 }}>
         {lanes.map(l => {
           const isTrunk = l.label === "GitHub";
           return (
-            <Box key={l.label} sx={{ width: laneWidth, mr: 3, textAlign: "center", fontSize: 10, color: l.color, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", fontWeight: isTrunk ? 700 : 500, position: "relative", "&:after": isTrunk ? { content: "\"trunk\"", position: "absolute", left: 0, right: 0, top: "100%", fontSize: 8, letterSpacing: 0.5, opacity: 0.55 } : undefined }} title={l.label.split("/").pop()}>
+            <Box key={l.label} sx={{ width: LANE_WIDTH, mr: 3, textAlign: "center", fontSize: 10, color: l.color, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", fontWeight: isTrunk ? 700 : 500, position: "relative", "&:after": isTrunk ? { content: "\"trunk\"", position: "absolute", left: 0, right: 0, top: "100%", fontSize: 8, letterSpacing: 0.5, opacity: 0.55 } : undefined }} title={l.label.split("/").pop()}>
               {l.label === "GitHub" ? "GitHub" : l.label.split("/").pop()}
             </Box>
           );
         })}
       </Box>
-      <Box sx={{ position: "relative", height: totalHeight, pl: leftPad }}>
+      <Box sx={{ position: "relative", height: totalHeight, pl: LEFT_PAD }}>
         {/* Vertical trunk line */}
         {trunkLane && (
-          <Box sx={{ position: "absolute", left: trunkLane.index * (laneWidth + 12) + laneWidth / 2, top: 0, bottom: 0, width: 2, bgcolor: theme.palette.mode === "dark" ? "rgba(255,255,255,0.18)" : "rgba(0,0,0,0.18)" }} />
+          <Box sx={{ position: "absolute", left: trunkLane.index * (LANE_WIDTH + 12) + LANE_WIDTH / 2, top: 0, bottom: 0, width: 2, bgcolor: theme.palette.mode === "dark" ? "rgba(255,255,255,0.18)" : "rgba(0,0,0,0.18)" }} />
         )}
         {/* Rows (date headers + events) */}
         {rows.map((r, rowIndex) => {
@@ -167,8 +113,8 @@ export const CommitGraph: React.FC<CommitGraphProps> = ({
           }
           if (!r.evt) return null;
           const { lane } = r;
-          const trunkX = trunkLane ? trunkLane.index * (laneWidth + 12) + laneWidth / 2 : 0;
-          const laneX = lane ? lane.index * (laneWidth + 12) + laneWidth / 2 : trunkX;
+          const trunkX = trunkLane ? trunkLane.index * (LANE_WIDTH + 12) + LANE_WIDTH / 2 : 0;
+          const laneX = lane ? lane.index * (LANE_WIDTH + 12) + LANE_WIDTH / 2 : trunkX;
           // Determine icon glyph based on kind
           const kindGlyph = (() => {
             switch (r.evt!.kind) {

@@ -1,25 +1,18 @@
+/**
+ * Activity Graph Legend
+ * Displays legend explaining activity graph glyphs and event types
+ * @module components/activity/ActivityLegend
+ */
+
 import React from "react";
 import { Box, Typography, Stack } from "@mui/material";
 
-interface LegendItem {
-  label: string;
-  glyph: string;
-  description: string;
-}
+import { KIND_ITEMS } from "./constants";
 
-// Static legend definitions – keep in sync with CommitGraph KIND_LABELS and glyph switch.
-const KIND_ITEMS: LegendItem[] = [
-  { label: "Push", glyph: "⬆", description: "Code pushed to a repository" },
-  { label: "PR Opened", glyph: "PR", description: "Pull request opened" },
-  { label: "PR Merged", glyph: "M", description: "Pull request merged" },
-  { label: "Release", glyph: "⛓", description: "Release / tag published" },
-  { label: "Fork", glyph: "⑂", description: "Repository forked" },
-  { label: "Star", glyph: "★", description: "Repository starred" },
-  { label: "Issue Opened", glyph: "◻", description: "Issue created" },
-  { label: "Issue Comment", glyph: "💬", description: "Issue or PR comment" },
-  { label: "npm Publish", glyph: "📦", description: "Package version published to npm" },
-];
-
+/**
+ * Legend component for the activity graph
+ * Explains the meaning of different event type glyphs and the lane structure
+ */
 export const ActivityLegend: React.FC = () => {
   return (
     <Box

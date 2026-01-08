@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import CommitGraph, { CommitGraphEvent } from "../../activity/CommitGraph";
+import { CommitGraph } from "../CommitGraph";
+import type { CommitGraphEvent } from "../types";
 
 // Helper to build ISO dates increasing
 function daysAgo(n: number) { return new Date(Date.now() - n * 24*60*60*1000).toISOString(); }
