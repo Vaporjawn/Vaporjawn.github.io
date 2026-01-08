@@ -14,7 +14,7 @@
 
 import React from "react";
 import { Box } from "@mui/material";
-import ContactSection from "../../../components/contact/ContactSection";
+import { ContactSection } from "../../../components/contact/ContactSection";
 
 /**
  * Props interface for AboutContactSection component

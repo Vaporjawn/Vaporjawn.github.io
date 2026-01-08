@@ -14,7 +14,7 @@
  *
  * @example
  * ```tsx
- * import ContactSection from '@/components/contact/ContactSection';
+ * import { ContactSection } from '@/components/contact/ContactSection';
  *
  * <ContactSection darkMode={theme.palette.mode === "dark"} />
  * ```
@@ -73,7 +73,7 @@ const handleMailTo = () => {
  * <ContactSection darkMode={theme.palette.mode === "dark"} />
  * ```
  */
-const ContactSection: React.FC<ContactSectionProps> = ({ darkMode }) => {
+export const ContactSection: React.FC<ContactSectionProps> = ({ darkMode }) => {
   const theme = useTheme();
   return (
     <Fade in timeout={800}>
@@ -173,5 +173,3 @@ const ContactSection: React.FC<ContactSectionProps> = ({ darkMode }) => {
     </Fade>
   );
 };
-
-export default ContactSection;

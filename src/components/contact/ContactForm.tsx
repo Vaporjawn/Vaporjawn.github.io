@@ -1,3 +1,17 @@
+/**
+ * @module components/contact/ContactForm
+ * @description
+ * Contact form component with validation and submission handling.
+ * Collects project inquiry information from potential clients.
+ *
+ * @example
+ * ```tsx
+ * import { ContactForm } from './components/contact';
+ *
+ * <ContactForm />
+ * ```
+ */
+
 import React, { useState } from "react";
 import {
   Box,
@@ -13,31 +27,35 @@ import {
 } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import SendIcon from "@mui/icons-material/Send";
 import toast, { Toaster } from "react-hot-toast";
 import { trackContactFormSubmit } from "../../utils/analytics";
 
-interface ContactFormData {
-  name: string;
-  email: string;
-  subject: string;
-  projectType: string;
-  budget: string;
-  timeline: string;
-  message: string;
-}
+import type { ContactFormData } from "./types";
+import { contactFormSchema } from "./validation";
+import {
+  PROJECT_TYPE_OPTIONS,
+  BUDGET_RANGE_OPTIONS,
+  TIMELINE_OPTIONS,
+  DEFAULT_FORM_VALUES,
+  FORM_ENDPOINT,
+  TOAST_CONFIG,
+} from "./constants";
 
-const schema = yup.object().shape({
-  name: yup.string().required("Name is required").min(2, "Name must be at least 2 characters"),
-  email: yup.string().required("Email is required").email("Invalid email address"),
-  subject: yup.string().required("Subject is required").min(5, "Subject must be at least 5 characters"),
-  projectType: yup.string().required("Project type is required"),
-  budget: yup.string(),
-  timeline: yup.string(),
-  message: yup.string().required("Message is required").min(20, "Message must be at least 20 characters"),
-});
-
+/**
+ * ContactForm Component
+ *
+ * Comprehensive contact form with validation and submission handling.
+ * Collects project inquiry details and sends to configured endpoint.
+ *
+ * @component
+ * @returns {JSX.Element} Rendered contact form
+ *
+ * @example
+ * ```tsx
+ * <ContactForm />
+ * ```
+ */
 const ContactForm: React.FC = () => {
   const [submitting, setSubmitting] = useState(false);
 
@@ -47,26 +65,15 @@ const ContactForm: React.FC = () => {
     reset,
     formState: { errors },
   } = useForm<ContactFormData>({
-    resolver: yupResolver(schema),
-    defaultValues: {
-      name: "",
-      email: "",
-      subject: "",
-      projectType: "",
-      budget: "",
-      timeline: "",
-      message: "",
-    },
+    resolver: yupResolver(contactFormSchema),
+    defaultValues: DEFAULT_FORM_VALUES,
   });
 
   const onSubmit = async (data: ContactFormData) => {
     setSubmitting(true);
 
     try {
-      // Replace with your form submission endpoint (Formspree, EmailJS, or custom backend)
-      const formEndpoint = import.meta.env.VITE_FORM_ENDPOINT || "https://formspree.io/f/your-form-id";
-
-      const response = await fetch(formEndpoint, {
+      const response = await fetch(FORM_ENDPOINT, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -75,14 +82,10 @@ const ContactForm: React.FC = () => {
       });
 
       if (response.ok) {
-        toast.success("Thank you! I'll get back to you within 24-48 hours.", {
-          duration: 4000,
-          position: "top-center",
-          style: {
-            background: "#10b981",
-            color: "#fff",
-            fontWeight: 600,
-          },
+        toast.success(TOAST_CONFIG.success.message, {
+          duration: TOAST_CONFIG.success.duration,
+          position: TOAST_CONFIG.success.position,
+          style: TOAST_CONFIG.success.style,
         });
         trackContactFormSubmit(true);
         reset();
@@ -91,14 +94,10 @@ const ContactForm: React.FC = () => {
       }
     } catch (error) {
       console.error("Contact form error:", error);
-      toast.error("Something went wrong. Please try again or email me directly.", {
-        duration: 5000,
-        position: "top-center",
-        style: {
-          background: "#ef4444",
-          color: "#fff",
-          fontWeight: 600,
-        },
+      toast.error(TOAST_CONFIG.error.message, {
+        duration: TOAST_CONFIG.error.duration,
+        position: TOAST_CONFIG.error.position,
+        style: TOAST_CONFIG.error.style,
       });
       trackContactFormSubmit(false);
     } finally {
@@ -171,12 +170,11 @@ const ContactForm: React.FC = () => {
               <FormControl fullWidth error={!!errors.projectType}>
                 <InputLabel>Project Type</InputLabel>
                 <Select {...field} label="Project Type">
-                  <MenuItem value="web-development">Web Development</MenuItem>
-                  <MenuItem value="mobile-app">Mobile App</MenuItem>
-                  <MenuItem value="full-stack">Full Stack Application</MenuItem>
-                  <MenuItem value="consulting">Consulting</MenuItem>
-                  <MenuItem value="maintenance">Maintenance & Support</MenuItem>
-                  <MenuItem value="other">Other</MenuItem>
+                  {PROJECT_TYPE_OPTIONS.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
                 </Select>
                 {errors.projectType && (
                   <Typography variant="caption" color="error" sx={{ mt: 0.5, ml: 2 }}>
@@ -196,12 +194,11 @@ const ContactForm: React.FC = () => {
               <FormControl fullWidth>
                 <InputLabel>Budget Range</InputLabel>
                 <Select {...field} label="Budget Range">
-                  <MenuItem value="less-than-5k">Less than $5,000</MenuItem>
-                  <MenuItem value="5k-10k">$5,000 - $10,000</MenuItem>
-                  <MenuItem value="10k-25k">$10,000 - $25,000</MenuItem>
-                  <MenuItem value="25k-50k">$25,000 - $50,000</MenuItem>
-                  <MenuItem value="50k-plus">$50,000+</MenuItem>
-                  <MenuItem value="not-sure">Not Sure</MenuItem>
+                  {BUDGET_RANGE_OPTIONS.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
                 </Select>
               </FormControl>
             )}
@@ -216,11 +213,11 @@ const ContactForm: React.FC = () => {
               <FormControl fullWidth>
                 <InputLabel>Timeline</InputLabel>
                 <Select {...field} label="Timeline">
-                  <MenuItem value="asap">ASAP</MenuItem>
-                  <MenuItem value="1-3-months">1-3 Months</MenuItem>
-                  <MenuItem value="3-6-months">3-6 Months</MenuItem>
-                  <MenuItem value="6-plus-months">6+ Months</MenuItem>
-                  <MenuItem value="flexible">Flexible</MenuItem>
+                  {TIMELINE_OPTIONS.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
                 </Select>
               </FormControl>
             )}
