@@ -1,122 +1,99 @@
-import { Box, Button, Typography, useTheme } from "@mui/material";
-import { Download, OpenInNew } from "@mui/icons-material";
-import resume from "../../assets/Resume.pdf";
+/**
+ * @module pages/resume/ResumePage
+ * @description
+ * Resume page component displaying Victor Williams' professional resume.
+ * Provides download, external viewing, and embedded PDF viewing options.
+ *
+ * Features:
+ * - SEO optimization with comprehensive meta tags
+ * - Download resume as PDF with analytics tracking
+ * - Open in new tab for full browser viewing
+ * - Embedded PDF viewer with responsive sizing
+ * - Accessible UI with proper ARIA labels
+ * - Responsive layout for all screen sizes
+ *
+ * @example
+ * ```tsx
+ * import ResumePage from './pages/resume';
+ *
+ * <Route path="/resume" element={<ResumePage />} />
+ * ```
+ */
 
-const ResumePage = () => {
+import React from "react";
+import { Box, Typography, useTheme } from "@mui/material";
+import SEO from "../../components/SEO/SEO";
+import resume from "../../assets/Resume.pdf";
+import { ResumeActions, ResumeViewer } from "./components";
+import {
+  RESUME_PAGE_TITLE,
+  RESUME_PAGE_DESCRIPTION,
+  RESUME_PAGE_KEYWORDS,
+  RESUME_PAGE_URL,
+} from "./constants";
+
+/**
+ * ResumePage Component
+ *
+ * Main Resume page component that orchestrates resume viewing and download functionality.
+ * Provides centered layout with SEO optimization and responsive design.
+ *
+ * @component
+ * @returns {JSX.Element} Rendered Resume page
+ *
+ * @example
+ * ```tsx
+ * <ResumePage />
+ * ```
+ */
+const ResumePage: React.FC = () => {
   const theme = useTheme();
 
-  const handleDownload = () => {
-    const link = document.createElement("a");
-    link.href = resume;
-    link.download = "Victor_Williams_Resume.pdf";
-    link.click();
-  };
-
-  const handleOpenInNewTab = () => {
-    window.open(resume, "_blank");
-  };
-
   return (
-    <Box
-      sx={{
-        minHeight: "100vh",
-        backgroundColor: theme.palette.background.default,
-        py: 4,
-        px: 2,
-      }}
-    >
+    <>
+      <SEO
+        title={RESUME_PAGE_TITLE}
+        description={RESUME_PAGE_DESCRIPTION}
+        keywords={RESUME_PAGE_KEYWORDS}
+        url={RESUME_PAGE_URL}
+      />
+
       <Box
         sx={{
-          // Widen the content area so the embedded resume can use more horizontal space
-          // while still remaining responsive on very small screens.
-          maxWidth: { xs: "100%", sm: "min(1200px, 95vw)" },
-          mx: "auto",
-          textAlign: "center",
+          minHeight: "100vh",
+          backgroundColor: theme.palette.background.default,
+          py: 4,
+          px: 2,
         }}
       >
-        <Typography
-          variant="h3"
-          component="h1"
-          gutterBottom
-          sx={{
-            color: theme.palette.text.primary,
-            fontWeight: "bold",
-            mb: 3,
-          }}
-        >
-          Resume
-        </Typography>
-
-        <Box sx={{ mb: 4, display: "flex", gap: 2, justifyContent: "center" }}>
-          <Button
-            variant="contained"
-            startIcon={<Download />}
-            onClick={handleDownload}
-            sx={{
-              backgroundColor: theme.palette.primary.main,
-              "&:hover": {
-                backgroundColor: theme.palette.primary.dark,
-              },
-            }}
-          >
-            Download PDF
-          </Button>
-          <Button
-            variant="outlined"
-            startIcon={<OpenInNew />}
-            onClick={handleOpenInNewTab}
-            sx={{
-              borderColor: theme.palette.primary.main,
-              color: theme.palette.primary.main,
-              "&:hover": {
-                borderColor: theme.palette.primary.dark,
-                backgroundColor: `${theme.palette.primary.main}08`,
-              },
-            }}
-          >
-            Open in New Tab
-          </Button>
-        </Box>
-
         <Box
           sx={{
-            border: `1px solid ${theme.palette.divider}`,
-            borderRadius: 2,
-            overflow: "hidden",
-            boxShadow: theme.shadows[3],
-            backgroundColor: theme.palette.background.paper,
-            // Give the preview a subtle growth on larger screens
-            // while ensuring it doesn't overwhelm ultra-wide displays.
-            p: { xs: 0, md: 1 },
+            // Widen the content area so the embedded resume can use more horizontal space
+            // while still remaining responsive on very small screens.
+            maxWidth: { xs: "100%", sm: "min(1200px, 95vw)" },
+            mx: "auto",
+            textAlign: "center",
           }}
         >
-          <iframe
-            src={resume}
-            width="100%"
-            // Make the height responsive to viewport while enforcing a reasonable minimum.
-            // This improves the "fits the page" experience without forcing scroll traps.
-            style={{
-              border: "none",
-              display: "block",
-              height: "min(1200px, calc(100vh - 220px))",
-              minHeight: "900px",
+          <Typography
+            variant="h3"
+            component="h1"
+            gutterBottom
+            sx={{
+              color: theme.palette.text.primary,
+              fontWeight: "bold",
+              mb: 3,
             }}
-            title="Victor Williams Resume"
-          />
-        </Box>
+          >
+            Resume
+          </Typography>
 
-        <Typography
-          variant="body2"
-          sx={{
-            mt: 2,
-            color: theme.palette.text.secondary,
-          }}
-        >
-          If the PDF doesn't display correctly, please try downloading it or
-          opening in a new tab.
-        </Typography>
+          <ResumeActions resumePath={resume} />
+
+          <ResumeViewer resumePath={resume} />
+        </Box>
       </Box>
-    </Box>
+    </>
   );
 };
 
