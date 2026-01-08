@@ -1,26 +1,24 @@
-import React from "react";
+/**
+ * CareerTimeline displays chronological career events with visual timeline
+ *
+ * Features:
+ * - Vertical timeline with connecting line
+ * - Color-coded event types (work, education, achievement)
+ * - Smooth scroll animations with Framer Motion
+ * - Integration with PortfolioContext for dynamic data
+ * - Responsive layout adapting to screen size
+ * - Technology tags for work experiences
+ *
+ * @component
+ */
+import React, { useContext } from "react";
+import { Box, Typography, useTheme } from "@mui/material";
+import { PortfolioContext } from "../../contexts/PortfolioContext";
+import TimelineItem from "./components/TimelineItem";
 import {
-  Box,
-  Typography,
-  Paper,
-  useTheme,
-  alpha,
-  Chip,
-} from "@mui/material";
-import { motion } from "framer-motion";
-import WorkIcon from "@mui/icons-material/Work";
-import SchoolIcon from "@mui/icons-material/School";
-import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
-
-interface TimelineEvent {
-  id: string;
-  date: string;
-  title: string;
-  organization: string;
-  description: string;
-  type: "work" | "education" | "achievement";
-  technologies?: string[];
-}
+  experienceToTimelineEvent,
+  type TimelineEvent
+} from "./utils/timelineUtils";
 
 interface CareerTimelineProps {
   title?: string;
@@ -64,37 +62,24 @@ const defaultEvents: TimelineEvent[] = [
   },
 ];
 
+/**
+ * CareerTimeline component renders a visual chronological timeline
+ *
+ * @param title - Section title (default: "Career Journey")
+ * @param events - Optional array of timeline events (uses context or defaults)
+ */
 const CareerTimeline: React.FC<CareerTimelineProps> = ({
   title = "Career Journey",
-  events = defaultEvents,
+  events,
 }) => {
   const theme = useTheme();
+  const portfolioData = useContext(PortfolioContext);
 
-  const getIcon = (type: TimelineEvent["type"]) => {
-    switch (type) {
-      case "work":
-        return <WorkIcon />;
-      case "education":
-        return <SchoolIcon />;
-      case "achievement":
-        return <EmojiEventsIcon />;
-      default:
-        return <WorkIcon />;
-    }
-  };
-
-  const getColor = (type: TimelineEvent["type"]) => {
-    switch (type) {
-      case "work":
-        return theme.palette.primary.main;
-      case "education":
-        return theme.palette.secondary.main;
-      case "achievement":
-        return theme.palette.success.main;
-      default:
-        return theme.palette.primary.main;
-    }
-  };
+  // Use provided events, or transform portfolio experience data, or fall back to defaults
+  const timelineEvents = events ||
+    (portfolioData?.experience
+      ? portfolioData.experience.map(experienceToTimelineEvent)
+      : defaultEvents);
 
   return (
     <Box>
@@ -114,86 +99,18 @@ const CareerTimeline: React.FC<CareerTimelineProps> = ({
           }}
         />
 
-        {events.map((event, index) => (
-          <motion.div
+        {timelineEvents.map((event, index) => (
+          <TimelineItem
             key={event.id}
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-          >
-            <Box sx={{ position: "relative", mb: 4 }}>
-              {/* Timeline dot */}
-              <Box
-                sx={{
-                  position: "absolute",
-                  left: { xs: -8, md: 8 },
-                  top: 8,
-                  width: 16,
-                  height: 16,
-                  borderRadius: "50%",
-                  bgcolor: getColor(event.type),
-                  border: `3px solid ${theme.palette.background.default}`,
-                  zIndex: 1,
-                }}
-              />
-
-              {/* Content card */}
-              <Paper
-                sx={{
-                  ml: { xs: 2, md: 4 },
-                  p: 3,
-                  bgcolor: alpha(theme.palette.background.paper, 0.8),
-                  backdropFilter: "blur(10px)",
-                  border: `1px solid ${alpha(getColor(event.type), 0.2)}`,
-                  "&:hover": {
-                    bgcolor: alpha(theme.palette.background.paper, 0.95),
-                    borderColor: alpha(getColor(event.type), 0.4),
-                    transform: "translateX(4px)",
-                    transition: "all 0.3s ease",
-                  },
-                }}
-              >
-                <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
-                  <Box sx={{ color: getColor(event.type), mr: 1 }}>
-                    {getIcon(event.type)}
-                  </Box>
-                  <Typography variant="caption" color="text.secondary" fontWeight={600}>
-                    {event.date}
-                  </Typography>
-                </Box>
-
-                <Typography variant="h6" fontWeight={700} gutterBottom>
-                  {event.title}
-                </Typography>
-
-                <Typography variant="body2" color="primary" gutterBottom>
-                  {event.organization}
-                </Typography>
-
-                <Typography variant="body2" color="text.secondary" paragraph>
-                  {event.description}
-                </Typography>
-
-                {event.technologies && (
-                  <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                    {event.technologies.map((tech) => (
-                      <Chip
-                        key={tech}
-                        label={tech}
-                        size="small"
-                        sx={{
-                          bgcolor: alpha(getColor(event.type), 0.1),
-                          color: getColor(event.type),
-                          fontSize: "0.75rem",
-                        }}
-                      />
-                    ))}
-                  </Box>
-                )}
-              </Paper>
-            </Box>
-          </motion.div>
+            id={event.id}
+            date={event.date}
+            title={event.title}
+            organization={event.organization}
+            description={event.description}
+            type={event.type}
+            technologies={event.technologies}
+            delay={index}
+          />
         ))}
       </Box>
     </Box>

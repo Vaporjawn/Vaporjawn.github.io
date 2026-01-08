@@ -1,6 +1,40 @@
+/**
+ * SEO Component Module
+ *
+ * Provides comprehensive SEO optimization through meta tags, Open Graph protocol,
+ * Twitter Cards, and JSON-LD structured data. Handles search engine indexing,
+ * social media sharing previews, and schema.org Person markup for enhanced
+ * search visibility.
+ *
+ * Features:
+ * - Basic HTML meta tags (title, description, keywords, author)
+ * - Open Graph protocol for social media sharing
+ * - Twitter Card meta tags for enhanced Twitter previews
+ * - JSON-LD structured data with schema.org Person type
+ * - Google site verification support
+ * - Canonical URL management
+ * - Theme color and mobile web app configuration
+ *
+ * @module components/SEO
+ * @component
+ */
 import React from "react";
 import { Helmet } from "react-helmet-async";
 
+/**
+ * SEO component props interface
+ *
+ * @interface SEOProps
+ * @property {string} [title] - Page title (default: "Victor Williams - Software Developer & Digital Creative")
+ * @property {string} [description] - Page description for search engines and social previews
+ * @property {string} [keywords] - Comma-separated keywords for search engine indexing
+ * @property {string} [author] - Content author name (default: "Victor Williams")
+ * @property {string} [image] - Open Graph and Twitter Card image URL (absolute or relative)
+ * @property {string} [url] - Canonical page URL (default: "https://www.vaporjawn.dev")
+ * @property {string} [type] - Open Graph content type (default: "website", can be "article" for blog posts)
+ * @property {string} [publishedTime] - Article published time in ISO 8601 format (for blog posts)
+ * @property {string} [modifiedTime] - Article modified time in ISO 8601 format (for blog posts)
+ */
 interface SEOProps {
   title?: string;
   description?: string;
@@ -13,6 +47,40 @@ interface SEOProps {
   modifiedTime?: string;
 }
 
+/**
+ * SEO Component
+ *
+ * Comprehensive SEO component that injects meta tags, Open Graph protocol data,
+ * Twitter Card information, and JSON-LD structured data into the document head.
+ * Automatically constructs full URLs for images, handles canonical URLs, and
+ * generates schema.org Person markup for enhanced search engine understanding.
+ *
+ * @param {SEOProps} props - SEO configuration props
+ * @param {string} [props.title] - Page title (automatically appended with site title)
+ * @param {string} [props.description] - Meta description for search results and social previews
+ * @param {string} [props.keywords] - Comma-separated search keywords
+ * @param {string} [props.author] - Content author name
+ * @param {string} [props.image] - Preview image URL (relative paths automatically converted to absolute)
+ * @param {string} [props.url] - Canonical page URL
+ * @param {string} [props.type] - Open Graph content type ("website" or "article")
+ * @param {string} [props.publishedTime] - ISO 8601 published timestamp (for articles)
+ * @param {string} [props.modifiedTime] - ISO 8601 modified timestamp (for articles)
+ * @returns {JSX.Element} Helmet component with meta tags
+ *
+ * @example
+ * // Basic usage with defaults
+ * <SEO />
+ *
+ * @example
+ * // Blog post with custom metadata
+ * <SEO
+ *   title="Building Modern React Applications"
+ *   description="Learn best practices for React development"
+ *   type="article"
+ *   publishedTime="2024-01-15T10:00:00Z"
+ *   image="/blog/react-thumbnail.jpg"
+ * />
+ */
 const SEO: React.FC<SEOProps> = ({
   title = "Victor Williams - Software Developer & Digital Creative",
   description = "Passionate developer creating innovative digital experiences with modern web technologies. Specializing in React, TypeScript, and full-stack development.",

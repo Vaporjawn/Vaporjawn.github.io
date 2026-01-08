@@ -1,32 +1,15 @@
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import ArticleIcon from "@mui/icons-material/Article";
-import XIcon from "@mui/icons-material/X";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGitlab, faReddit, faThreads } from "@fortawesome/free-brands-svg-icons";
+/**
+ * SocialMedia Component
+ * Displays social media links with branded icons in a two-row layout
+ * @module components/socials/SocialMedia
+ */
+
+import React from "react";
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
-import React from "react";
-// Asset imports – ts-ignore to satisfy Jest TS resolution when moduleNameMapper replaces them
-import NpmLogo from "../../assets/logos/Npm-logo.svg.png";
-import DevpostLogo from "../../assets/logos/devpost_logo_icon_169279.svg";
-import BuyMeACoffeeLogo from "../../assets/logos/buymeacoffee_logo.svg";
-import BlueskyIcon from "../../assets/logos/Bluesky_Logo.svg";
-import { socialLinks, UnifiedSocialLink } from "../../data/socialLinks";
-import { getBrandColor, SocialBrandKey } from "../../data/socialBrandColors";
 import { useTheme } from "@mui/material/styles";
-
-// Styled raster / vector image element for imported brand assets
-const ImgIcon = styled("img")<{ $size?: string }>(({ $size = "2.5rem" }) => ({
-  width: $size,
-  height: $size,
-  display: "block",
-  objectFit: "contain",
-  aspectRatio: "1 / 1",
-  userSelect: "none",
-  imageRendering: "-webkit-optimize-contrast",
-}));
+import { socialLinks, UnifiedSocialLink } from "../../data/socialLinks";
+import { renderSocialIcon } from "./utils/iconMapper";
 
 // Styled anchor / link for consistent hover + focus-visible without JS event handlers
 const IconLink = styled("a")(({ theme }) => ({
@@ -77,72 +60,43 @@ const InternalIconLink = styled(Link)(({ theme }) => ({
 }));
 
 interface SocialMediaProps {
+  /** If true, only shows primary social links */
   onlyPrimary?: boolean;
 }
 
-const iconSizeRem = "2.5rem";
-
+/**
+ * SocialMedia displays social media icon links in a two-row layout
+ * First row shows up to 6 icons, remaining icons appear in second row
+ *
+ * @param props - Component props
+ * @param props.onlyPrimary - If true, filters to only primary social links
+ * @returns Social media links component
+ */
 const SocialMedia: React.FC<SocialMediaProps> = ({ onlyPrimary }) => {
   const theme = useTheme();
-  const effectiveMode: "light" | "dark" = theme.palette.mode === "dark" ? "dark" : "light";
+  const effectiveMode: "light" | "dark" =
+    theme.palette.mode === "dark" ? "dark" : "light";
+
+  // Filter links based on onlyPrimary prop
   const links = onlyPrimary
     ? socialLinks.filter((l) => l.primary)
     : socialLinks;
-
-  const renderIcon = (key: string, label: string) => {
-    const brandBase = getBrandColor(key as SocialBrandKey, effectiveMode, false);
-    switch (key) {
-      case "github":
-        return <GitHubIcon style={{ fontSize: iconSizeRem, color: brandBase }} />;
-      case "gitlab":
-        return (
-          <FontAwesomeIcon
-            icon={faGitlab}
-            style={{ fontSize: iconSizeRem, color: brandBase }}
-          />
-        );
-      case "email":
-        return <MailOutlineIcon style={{ fontSize: iconSizeRem, color: brandBase }} />;
-      case "resume":
-        return <ArticleIcon style={{ fontSize: iconSizeRem, color: brandBase }} />;
-      case "linkedin":
-        return <LinkedInIcon style={{ fontSize: iconSizeRem, color: brandBase }} />;
-      case "x":
-        return <XIcon style={{ fontSize: iconSizeRem, color: brandBase }} />;
-      case "reddit":
-        return (
-          <FontAwesomeIcon
-            icon={faReddit}
-            style={{ fontSize: iconSizeRem, color: brandBase }}
-          />
-        );
-      case "threads":
-        return (
-          <FontAwesomeIcon
-            icon={faThreads}
-            style={{ fontSize: iconSizeRem, color: brandBase }}
-          />
-        );
-      case "bluesky":
-        return <ImgIcon src={BlueskyIcon} alt={label} />;
-      case "npm":
-        return <ImgIcon src={NpmLogo} alt={label} />;
-      case "devpost":
-        return <ImgIcon src={DevpostLogo} alt={label} />;
-      case "buymeacoffee":
-        return <ImgIcon src={BuyMeACoffeeLogo} alt={label} />;
-      default:
-        return null;
-    }
-  };
 
   // Split icons into two rows: 6 on top, remaining on bottom
   const topRowLinks = links.slice(0, 6);
   const bottomRowLinks = links.slice(6);
 
+  /**
+   * Renders a single link element with appropriate wrapper (internal vs external)
+   *
+   * @param link - Social link configuration object
+   * @returns Link component wrapped in appropriate container
+   */
   const renderLinkElement = (link: UnifiedSocialLink) => {
-    const iconNode = renderIcon(link.key, link.label);
+    const iconNode = renderSocialIcon(link.key, link.label, effectiveMode);
+
     if (!iconNode) return null;
+
     if (link.kind === "internal") {
       return (
         <InternalIconLink
@@ -155,6 +109,7 @@ const SocialMedia: React.FC<SocialMediaProps> = ({ onlyPrimary }) => {
         </InternalIconLink>
       );
     }
+
     return (
       <IconLink
         key={link.key}

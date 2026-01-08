@@ -198,6 +198,72 @@
       "description": "Led software engineering teams, established best practices, and developed full-stack web applications. Implemented Agile SCRUM methodology and mentored team members while managing client relationships.",
       "technologies": ["Java", "JavaScript", "TypeScript", "React.js", "C#", "Python", ".NET", "REST APIs", "SQL", "HTML", "CSS", "Git"],
       "current": false
+    },
+    {
+      "id": "americorps",
+      "company": "AmeriCorps",
+      "position": "Information Technology Manager / Web Developer",
+      "location": "Greater Philadelphia",
+      "startDate": "2019-07",
+      "endDate": "2019-12",
+      "description": "Refined and improved existing documentation within the system. Reduced number of open tickets by 87% by prioritizing all open issues. Updated several School District websites from AngularJS to ReactJS. Managed a tech team and all technology in Taggart John H. School.",
+      "technologies": ["JavaScript", "TypeScript", "React.js", "AngularJS", "C#", "Python", ".NET", "REST APIs", "SQL", "Linux", "Git", "Cybersecurity"],
+      "current": false
+    },
+    {
+      "id": "bitgamer",
+      "company": "BitGamer.io",
+      "position": "Full Stack Software Engineer / Tournament Organizer",
+      "location": "San Ramon, CA (Remote)",
+      "startDate": "2018-11",
+      "endDate": "2019-11",
+      "description": "Developed a tournament hosting web application along with a small team. Lead a geographically distributed team with large and small scale projects. Wrote a series of technical documents to help speed up new engineer onboarding. Managed social media for the company and performed quality analysis.",
+      "technologies": ["React.js", "Node.js", "Java", "Python", "TypeScript", "C#", ".NET", "AWS", "MongoDB", "HTML5", "JSON", "Blockchain", "Bitcoin"],
+      "current": false
+    },
+    {
+      "id": "ag-esports",
+      "company": "AG Esports",
+      "position": "Director of Content Creation",
+      "location": "Philadelphia, PA (Remote)",
+      "startDate": "2019-03",
+      "endDate": "2019-09",
+      "description": "Spearheaded new business development initiatives, securing strategic partnerships that propelled organizational growth and expanded market reach. Led the scouting and recruitment efforts for both streamers and players. Successfully established partnerships with leading Esports companies. Provided visionary leadership and mentorship to team members.",
+      "technologies": ["Social Media Marketing", "Google Analytics", "Google Ads", "Marketing", "Leadership"],
+      "current": false
+    },
+    {
+      "id": "7sins-esports",
+      "company": "7Sins Esports",
+      "position": "Content Manager",
+      "location": "Portland, OR (Remote)",
+      "startDate": "2019-03",
+      "endDate": "2019-08",
+      "description": "Strategically oversaw and coordinated content creation and distribution across multiple social media platforms, driving engagement and brand visibility. Lead the recruitment, onboarding, and development of a team of high-performing streamers for Twitch.tv. Analyzed performance metrics and implemented data-driven strategies to optimize content reach and impact.",
+      "technologies": ["Social Media Marketing", "Google Analytics", "Google Ads", "Marketing"],
+      "current": false
+    },
+    {
+      "id": "dunkin",
+      "company": "Dunkin' Brands",
+      "position": "Head Cashier",
+      "location": "Nazareth, PA",
+      "startDate": "2016-06",
+      "endDate": "2016-09",
+      "description": "Efficiently managed daily operations at both the drive-through and front desk, ensuring seamless customer service and operational excellence. Provided strong leadership and support to a diverse team, learning Gujarati to better connect with foreign employees. Implemented training programs for staff, promoting best practices and elevating service quality.",
+      "technologies": ["Customer Service", "Leadership", "Training", "Team Management"],
+      "current": false
+    },
+    {
+      "id": "ymca",
+      "company": "YMCA of the USA",
+      "position": "Lifeguard",
+      "location": "Easton, PA",
+      "startDate": "2013-06",
+      "endDate": "2013-09",
+      "description": "Ensured the safety of all swimmers by continuously monitoring pool activities, enforcing rules, and identifying potential hazards. Responded quickly to perform water rescues, administer first aid, and provide CPR as needed. Maintained cleanliness and organization of pool areas. Provided excellent customer service and conducted swim tests.",
+      "technologies": ["CPR", "First Aid", "Water Safety", "Customer Service"],
+      "current": false
     }
   ],
   "social": [

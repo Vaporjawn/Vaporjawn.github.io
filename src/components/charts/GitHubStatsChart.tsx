@@ -1,3 +1,15 @@
+/**
+ * GitHubStatsChart displays comprehensive GitHub activity dashboard
+ *
+ * Features:
+ * - Four stat cards showing stars, forks, repositories, and contribution streak
+ * - Line chart visualizing 6-month contribution activity (commits, PRs, issues)
+ * - Pie chart showing programming language distribution
+ * - Responsive grid layout adapting to screen size
+ * - Themed styling with glassmorphism effects
+ *
+ * @component
+ */
 import React from "react";
 import { Box, Typography, Grid, Paper, useTheme, alpha } from "@mui/material";
 import {
@@ -17,6 +29,8 @@ import StarIcon from "@mui/icons-material/Star";
 import ForkRightIcon from "@mui/icons-material/ForkRight";
 import CodeIcon from "@mui/icons-material/Code";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import StatCard from "./components/StatCard";
+import CustomTooltip from "./components/CustomTooltip";
 
 interface LanguageData {
   name: string;
@@ -67,6 +81,14 @@ const defaultStats = {
   contributionStreak: 127,
 };
 
+/**
+ * GitHubStatsChart component renders comprehensive GitHub activity dashboard
+ *
+ * @param title - Dashboard title (default: "GitHub Activity Dashboard")
+ * @param languageData - Programming language distribution data
+ * @param contributionData - Monthly contribution activity data
+ * @param stats - GitHub statistics (stars, forks, repos, streak)
+ */
 const GitHubStatsChart: React.FC<GitHubStatsChartProps> = ({
   title = "GitHub Activity Dashboard",
   languageData = defaultLanguageData,
@@ -75,46 +97,7 @@ const GitHubStatsChart: React.FC<GitHubStatsChartProps> = ({
 }) => {
   const theme = useTheme();
 
-  const StatCard: React.FC<{
-    icon: React.ReactNode;
-    label: string;
-    value: number | string;
-    color: string;
-  }> = ({ icon, label, value, color }) => (
-    <Paper
-      sx={{
-        p: 2,
-        textAlign: "center",
-        bgcolor: alpha(theme.palette.background.paper, 0.6),
-        backdropFilter: "blur(10px)",
-        border: `1px solid ${alpha(color, 0.2)}`,
-        "&:hover": {
-          borderColor: alpha(color, 0.4),
-          transform: "translateY(-2px)",
-          transition: "all 0.3s ease",
-        },
-      }}
-    >
-      <Box sx={{ color, mb: 1 }}>{icon}</Box>
-      <Typography variant="h5" fontWeight={700} color={color}>
-        {value}
-      </Typography>
-      <Typography variant="body2" color="text.secondary">
-        {label}
-      </Typography>
-    </Paper>
-  );
-
-  interface TooltipProps {
-    active?: boolean;
-    payload?: Array<{
-      name: string;
-      value: number;
-      color: string;
-    }>;
-    label?: string;
-  }
-
+  // Type definitions for Recharts compatibility
   interface PieChartData {
     name: string;
     value: number;
@@ -127,35 +110,6 @@ const GitHubStatsChart: React.FC<GitHubStatsChartProps> = ({
     percent?: number;
     value?: number;
   }
-
-  const CustomTooltip: React.FC<TooltipProps> = ({ active, payload, label }) => {
-    if (active && payload && payload.length) {
-      return (
-        <Box
-          sx={{
-            bgcolor: alpha(theme.palette.background.paper, 0.95),
-            p: 1.5,
-            borderRadius: 1,
-            boxShadow: 3,
-          }}
-        >
-          <Typography variant="body2" fontWeight={600} gutterBottom>
-            {label}
-          </Typography>
-          {payload.map((entry, index: number) => (
-            <Typography
-              key={index}
-              variant="body2"
-              sx={{ color: entry.color }}
-            >
-              {entry.name}: {entry.value}
-            </Typography>
-          ))}
-        </Box>
-      );
-    }
-    return null;
-  };
 
   return (
     <Box>

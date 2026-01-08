@@ -1,22 +1,78 @@
+/**
+ * ContribHeatmap Component Module
+ *
+ * GitHub contribution calendar heatmap visualization with SVG rendering.
+ * Fetches contribution data from JSON, validates schema, detects placeholder
+ * datasets, and renders a week-by-day grid matching GitHub's contribution
+ * graph layout.
+ *
+ * Features:
+ * - Fetches contribution data from /data/contributions.json
+ * - Validates JSON schema and detects placeholder datasets
+ * - Renders SVG-based heatmap with 7 rows (weekdays) × N columns (weeks)
+ * - Theme-aware color mapping for light/dark modes
+ * - Loading skeleton with pulse animation
+ * - Error handling with descriptive messages
+ * - Metadata emission (fetchedAt, schemaVersion, login, range)
+ * - Legend showing contribution intensity scale
+ * - Accessibility with ARIA labels and SVG titles
+ *
+ * @module components/contribs/ContribHeatmap
+ * @component
+ */
 import React, { useEffect, useMemo, useState } from "react";
 import { Box, Typography, useTheme } from "@mui/material";
 
 // Types derived from GitHub GraphQL contributionCalendar shape
+
+/**
+ * Single day contribution data
+ *
+ * @interface ContributionDay
+ * @property {string} date - ISO 8601 date string (YYYY-MM-DD)
+ * @property {number} weekday - Day of week (0=Sunday through 6=Saturday)
+ * @property {number} contributionCount - Number of contributions made on this day
+ * @property {string} color - GitHub API-derived color for contribution intensity
+ */
 interface ContributionDay {
   date: string; // ISO date
   weekday: number; // 0..6
   contributionCount: number;
   color: string; // GitHub API derived color (we may map to theme)
 }
+
+/**
+ * Week of contribution days
+ *
+ * @interface ContributionWeek
+ * @property {ContributionDay[]} contributionDays - Array of 7 days (one per weekday)
+ */
 interface ContributionWeek {
   contributionDays: ContributionDay[];
 }
+
+/**
+ * Contribution calendar data structure
+ *
+ * @interface ContributionCalendar
+ * @property {number} totalContributions - Total contributions across all days
+ * @property {ContributionWeek[]} weeks - Array of weeks in the contribution period
+ */
 interface ContributionCalendar {
   totalContributions: number;
   weeks: ContributionWeek[];
 }
 
-// Extended metadata optionally appended by the fetch script
+/**
+ * Extended contribution calendar with metadata
+ *
+ * @interface ContributionCalendarWithMeta
+ * @extends ContributionCalendar
+ * @property {number} [schemaVersion] - JSON schema version number
+ * @property {string} [fetchedAt] - ISO timestamp when data was fetched by CI
+ * @property {string} [login] - GitHub username
+ * @property {{ from: string; to: string }} [range] - Date range of contribution data
+ */
 interface ContributionCalendarWithMeta extends ContributionCalendar {
   schemaVersion?: number;
   fetchedAt?: string; // ISO timestamp when CI fetched data
@@ -24,7 +80,15 @@ interface ContributionCalendarWithMeta extends ContributionCalendar {
   range?: { from: string; to: string };
 }
 
-// Metadata shape emitted upward (subset of json fields)
+/**
+ * Metadata shape emitted upward (subset of json fields)
+ *
+ * @typedef {Object} ContributionMetadata
+ * @property {string} [fetchedAt] - ISO timestamp when data was fetched
+ * @property {number} [schemaVersion] - JSON schema version
+ * @property {string} [login] - GitHub username
+ * @property {{ from: string; to: string }} [range] - Date range of contribution data
+ */
 export type ContributionMetadata = {
   fetchedAt?: string;
   schemaVersion?: number;
@@ -32,10 +96,27 @@ export type ContributionMetadata = {
   range?: { from: string; to: string };
 };
 
-// underscore param name to avoid unused-var lint complaints in parent implementations
- 
+/**
+ * Callback function type for metadata emission
+ *
+ * @callback ContributionMetadataHandler
+ * @param {ContributionMetadata} meta - Contribution metadata extracted from JSON
+ */
 export type ContributionMetadataHandler = (meta: ContributionMetadata) => void; // parent may ignore param
 
+/**
+ * ContribHeatmap component props interface
+ *
+ * @interface HeatmapProps
+ * @property {string} [source="/data/contributions.json"] - JSON file path to fetch contribution data
+ * @property {number} [maxDays=400] - Safety limit for maximum days to render
+ * @property {number} [cellSize=12] - SVG cell size in pixels
+ * @property {number} [cellGap=3] - Gap between cells in pixels
+ * @property {string} [ariaLabel="GitHub contribution heatmap"] - Accessible label for screen readers
+ * @property {() => void} [onError] - Callback invoked when data fetch or validation fails
+ * @property {() => void} [onLoaded] - Callback invoked when data successfully loads
+ * @property {ContributionMetadataHandler} [onMetadata] - Callback receiving metadata from JSON
+ */
 interface HeatmapProps {
   source?: string; // override JSON path (default /data/contributions.json)
   maxDays?: number; // safety limit
@@ -49,20 +130,70 @@ interface HeatmapProps {
 
 const DEFAULT_SOURCE = "/data/contributions.json";
 
-// Map GitHub green scale (light->dark) to theme primary scale (or keep original) if desired.
+/**
+ * Resolves contribution cell color based on theme mode
+ *
+ * @param {string} input - GitHub API color (green scale)
+ * @param {"light" | "dark"} themeMode - Current theme mode
+ * @returns {string} Resolved color value
+ */
 function resolveColor(input: string, themeMode: "light"|"dark"): string {
   // The API already returns accessible colors. Optionally adjust for dark mode contrast.
   if (themeMode === "dark") return input; // keep as-is for now.
   return input;
 }
 
-// Compute levels for legend (simple quantization) – could be enhanced.
+/**
+ * Computes legend colors from contribution data
+ *
+ * @param {string[]} colors - Array of all contribution cell colors
+ * @returns {string[]} Unique colors for legend display (max 5)
+ */
 function computeLegend(colors: string[]): string[] {
   const uniq = Array.from(new Set(colors));
   // keep order as encountered – limit to 5 for legend clarity
   return uniq.slice(0, 5);
 }
 
+/**
+ * ContribHeatmap Component
+ *
+ * Renders GitHub contribution calendar heatmap from JSON data. Fetches contribution
+ * data, validates schema, detects placeholder datasets from CI workflows, and renders
+ * an SVG-based week-by-weekday grid matching GitHub's contribution graph layout.
+ *
+ * The component handles loading states with pulse animation skeleton, error states
+ * with descriptive messages, and emits metadata upward for parent components to
+ * display freshness indicators and data provenance.
+ *
+ * Layout: 7 rows (weekdays 0-6, Sunday-Saturday) × N columns (weeks), rendered
+ * left-to-right chronologically matching GitHub's convention.
+ *
+ * @param {HeatmapProps} props - Heatmap configuration props
+ * @param {string} [props.source="/data/contributions.json"] - JSON data source URL
+ * @param {number} [props.maxDays=400] - Maximum days to render (safety limit)
+ * @param {number} [props.cellSize=12] - SVG cell size in pixels
+ * @param {number} [props.cellGap=3] - Gap between cells in pixels
+ * @param {string} [props.ariaLabel="GitHub contribution heatmap"] - ARIA label
+ * @param {() => void} [props.onError] - Error callback
+ * @param {() => void} [props.onLoaded] - Success callback
+ * @param {ContributionMetadataHandler} [props.onMetadata] - Metadata callback
+ * @returns {JSX.Element | null} SVG heatmap with legend or loading/error states
+ *
+ * @example
+ * // Basic usage with default JSON source
+ * <ContribHeatmap />
+ *
+ * @example
+ * // Custom configuration with callbacks
+ * <ContribHeatmap
+ *   source="/api/contributions.json"
+ *   cellSize={14}
+ *   cellGap={4}
+ *   onMetadata={(meta) => console.log('Fetched at:', meta.fetchedAt)}
+ *   onError={() => setShowFallback(true)}
+ * />
+ */
 export const ContribHeatmap: React.FC<HeatmapProps> = ({
   source = DEFAULT_SOURCE,
   maxDays = 400,

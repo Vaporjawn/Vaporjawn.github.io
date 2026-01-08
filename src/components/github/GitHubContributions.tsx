@@ -1,49 +1,62 @@
+/**
+ * GitHubContributions Component
+ * Displays GitHub contribution heatmap with fallback chain and refresh mechanism
+ * @module components/github/GitHubContributions
+ */
+
 import React, { useEffect, useState, useCallback } from "react";
-import { Box, Typography, Divider, Button, CircularProgress } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import ContribHeatmap, { ContributionMetadata } from "../contribs/ContribHeatmap";
-import { Chip, Tooltip } from "@mui/material";
-import RefreshIcon from "@mui/icons-material/Refresh";
+import ContribHeatmap, {
+  ContributionMetadata,
+} from "../contribs/ContribHeatmap";
+import ContributionStatus from "./components/ContributionStatus";
+import ContributionFallback from "./components/ContributionFallback";
 
 /**
- * GitHubContributions now prefers a locally generated JSON heatmap (updated daily via GitHub Actions)
- * rendered by <ContribHeatmap/>. If the JSON fails to load (e.g., first deploy before workflow run),
- * we fall back to the legacy external SVG service and finally to optional static screenshots.
+ * GitHubContributions displays contribution activity with intelligent fallback chain
+ *
+ * Prefers locally generated JSON heatmap (updated daily via GitHub Actions) rendered by ContribHeatmap.
+ * If JSON fails to load, falls back to:
+ *  1. External SVG from ghchart.rshah.org (theme-colored)
+ *  2. Local static PNG (/contributions-dark.png or /contributions-light.png) if provided
+ *  3. Error message
  *
  * AUTO-REFRESH DISABLED: Manual refresh only via button to prevent infinite loops.
- * Users can check data freshness via the status badge and refresh manually when needed.
+ * Users can check data freshness via status badge and refresh manually when needed.
  *
- * Fallback chain:
- *  1. JSON-driven <ContribHeatmap /> (/data/contributions.json)
- *  2. External SVG from ghchart.rshah.org (theme-colored)
- *  3. Local static PNG (/contributions-dark.png or /contributions-light.png) if provided
- *  4. Error message
+ * @returns GitHub contributions visualization component
  */
 // External dynamic chart provider: https://ghchart.rshah.org
 const USERNAME = "vaporjawn";
 
-const buildChartUrl = (hexColor: string) => `https://ghchart.rshah.org/${hexColor.replace("#", "")}/${USERNAME}`;
+const buildChartUrl = (hexColor: string) =>
+  `https://ghchart.rshah.org/${hexColor.replace("#", "")}/${USERNAME}`;
 
 // Optional local fallback (user may add later)
 const LOCAL_DARK = "/contributions-dark.png";
 const LOCAL_LIGHT = "/contributions-light.png";
 
-// Staleness threshold
+// Staleness threshold in hours
 const STALE_HOURS = 48;
 
 const GitHubContributions: React.FC = () => {
   const theme = useTheme();
-  // Decide primary tint (fallback to primary.main). Use a mid-saturation for readability.
-  const primary = theme.palette.primary.main || "#34d058"; // default greenish if undefined
+
+  // Decide primary tint (fallback to default green)
+  const primary = theme.palette.primary.main || "#34d058";
+
   const [chartUrl, setChartUrl] = useState<string>(buildChartUrl(primary));
-  const [status, setStatus] = useState<"idle" | "loading" | "loaded" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "loaded" | "error"
+  >("idle");
   const [attemptedLocal, setAttemptedLocal] = useState(false);
   const [jsonFailed, setJsonFailed] = useState(false);
   const [meta, setMeta] = useState<ContributionMetadata | null>(null);
   const [refreshKey, setRefreshKey] = useState(0);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
-  // Compute staleness ( > 48h )
+  // Compute staleness (>48h)
   const isStale = (() => {
     if (!meta?.fetchedAt) return true; // treat missing metadata as stale/unknown
     const fetched = new Date(meta.fetchedAt).getTime();
@@ -52,73 +65,39 @@ const GitHubContributions: React.FC = () => {
     return ageHrs > STALE_HOURS;
   })();
 
-  // Manual refresh handler
+  /**
+   * Manual refresh handler
+   * Forces fresh fetch by incrementing refresh key and adding cache-busting
+   */
   const handleManualRefresh = useCallback(async () => {
     setIsRefreshing(true);
-    setHasAutoRefreshed(false); // Reset auto-refresh flag to allow future auto-refreshes
-    // Force a fresh fetch by incrementing the key and adding cache-busting
-    setRefreshKey(prev => prev + 1);
+    // Force a fresh fetch by incrementing the key
+    setRefreshKey((prev) => prev + 1);
     // Wait a moment to allow the component to remount with new key
-    await new Promise(resolve => setTimeout(resolve, 500));
+    await new Promise((resolve) => setTimeout(resolve, 500));
     setIsRefreshing(false);
   }, []);
 
-  // Auto-refresh DISABLED to prevent infinite loop
-  // The handleManualRefresh callback was causing the effect to re-trigger continuously
-  // Users can manually refresh using the button below
-  /*
+  // If theme changes (light/dark), we can attempt a recolor
   useEffect(() => {
-    if (isStale && !jsonFailed && !isRefreshing && !hasAutoRefreshed && meta?.fetchedAt) {
-      console.log('[GitHubContributions] Data is stale, triggering one-time automatic refresh...');
-      setHasAutoRefreshed(true);
-      handleManualRefresh();
-    }
-  }, [isStale, jsonFailed, isRefreshing, hasAutoRefreshed, meta?.fetchedAt, handleManualRefresh]);
-  */
-
-  // Optional: Polling mechanism disabled to prevent constant refreshing
-  // Users can manually refresh using the button
-  // Uncomment below to re-enable periodic checking (not recommended if GitHub Actions isn't updating frequently)
-  /*
-  useEffect(() => {
-    const pollInterval = setInterval(() => {
-      console.log('[GitHubContributions] Polling for updated data...');
-      setRefreshKey(prev => prev + 1);
-    }, POLL_INTERVAL_MS);
-
-    return () => clearInterval(pollInterval);
-  }, []);
-  */
-
-  function formatRelative(ts?: string) {
-    if (!ts) return "unknown";
-    const date = new Date(ts);
-    if (Number.isNaN(date.getTime())) return "invalid date";
-    const diffMs = Date.now() - date.getTime();
-    const diffSec = Math.floor(diffMs / 1000);
-    if (diffSec < 60) return `${diffSec}s ago`;
-    const diffMin = Math.floor(diffSec / 60);
-    if (diffMin < 60) return `${diffMin}m ago`;
-    const diffHr = Math.floor(diffMin / 60);
-    if (diffHr < 24) return `${diffHr}h ago`;
-    const diffDay = Math.floor(diffHr / 24);
-    return `${diffDay}d ago`;
-  }
-
-  // If theme changes (light/dark), we can attempt a recolor. (Service doesn't expose theme param,
-  // but we could choose different hex per mode.)
-  useEffect(() => {
-    const colorForMode = theme.palette.mode === "dark" ? primary : primary;
+    const colorForMode =
+      theme.palette.mode === "dark" ? primary : primary;
     const newUrl = buildChartUrl(colorForMode);
     setChartUrl(newUrl);
     setStatus("loading");
   }, [theme.palette.mode, primary]);
 
+  /**
+   * Fallback error handler
+   * Attempts local static image before showing error state
+   */
   const handleError = () => {
     if (!attemptedLocal) {
       // Try local fallback image if present
       setAttemptedLocal(true);
-      setChartUrl(theme.palette.mode === "dark" ? LOCAL_DARK : LOCAL_LIGHT);
+      setChartUrl(
+        theme.palette.mode === "dark" ? LOCAL_DARK : LOCAL_LIGHT
+      );
       setStatus("loading");
     } else {
       setStatus("error");
@@ -145,12 +124,18 @@ const GitHubContributions: React.FC = () => {
       >
         GitHub Contributions
       </Typography>
+
       <Typography
         variant="body2"
-        sx={{ textAlign: "center", mb: 3, color: theme.palette.text.secondary }}
+        sx={{
+          textAlign: "center",
+          mb: 3,
+          color: theme.palette.text.secondary,
+        }}
       >
         Activity snapshot from the past 12 months.
       </Typography>
+
       <Box
         sx={{
           maxWidth: 950,
@@ -184,117 +169,26 @@ const GitHubContributions: React.FC = () => {
             onMetadata={(m) => setMeta(m)}
           />
         </Box>
+
+        {/* Fallback chain when JSON fails */}
         {jsonFailed && (
-          <>
-            <Divider sx={{ my: 2 }} />
-            <Box sx={{ mb: 2, p: 2, border: "1px solid", borderColor: "warning.main", borderRadius: 2, bgcolor: theme.palette.mode === "dark" ? "warning.900" : "warning.50" }}>
-              <Typography variant="subtitle2" sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                Contribution data not yet generated
-              </Typography>
-              <Typography variant="caption" sx={{ opacity: 0.8, display: "block", mt: 0.5 }}>
-                The scheduled GitHub Action has not produced a real <code>contributions.json</code> file yet (or it failed). Ensure you have added a repo secret named <code>CONTRIB_GRAPHQL_TOKEN</code> with a GitHub Personal Access Token (scopes: <code>read:user</code>, <code>repo</code> not required) and manually run the workflow "Update Contributions Calendar" via the Actions tab. Once it commits an updated JSON the heatmap will appear here.
-              </Typography>
-            </Box>
-            {/* Legacy external SVG fallback chain */}
-            {status === "loading" && (
-              <Box
-                aria-label="Loading contribution graph"
-                role="status"
-                sx={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(53, 1fr)",
-                  gap: 0.5,
-                  width: "100%",
-                  mb: 2,
-                  aspectRatio: "53 / 7",
-                  maxHeight: 180,
-                }}
-              >
-                {Array.from({ length: 53 * 7 }).map((_, i) => (
-                  <Box
-                    key={i}
-                    sx={{
-                      width: "100%",
-                      backgroundColor:
-                        theme.palette.mode === "dark"
-                          ? "rgba(255,255,255,0.06)"
-                          : "rgba(0,0,0,0.07)",
-                      borderRadius: 0.5,
-                      animation: "pulse 1.6s ease-in-out infinite",
-                      "@keyframes pulse": {
-                        "0%": { opacity: 0.4 },
-                        "50%": { opacity: 1 },
-                        "100%": { opacity: 0.4 },
-                      },
-                    }}
-                  />
-                ))}
-              </Box>
-            )}
-            {status !== "error" && (
-              <Box
-                component="img"
-                src={chartUrl}
-                alt={`GitHub contribution activity graph for ${USERNAME} over the last year`}
-                loading="lazy"
-                onError={handleError}
-                onLoad={handleLoad}
-                sx={{
-                  display: status === "loaded" ? "block" : "none",
-                  width: "100%",
-                  height: "auto",
-                  borderRadius: 2,
-                  userSelect: "none",
-                }}
-              />
-            )}
-            {status === "error" && (
-              <Box sx={{ textAlign: "center", py: 4 }}>
-                <Typography variant="body2" sx={{ mb: 1 }}>
-                  Unable to load dynamic contribution chart.
-                </Typography>
-                <Typography variant="caption" sx={{ display: "block", opacity: 0.7 }}>
-                  Optionally add a static screenshot named {"'contributions-"}
-                  {theme.palette.mode === "dark" ? "dark" : "light"}
-                  {".png'"} into the public/ folder.
-                </Typography>
-              </Box>
-            )}
-          </>
+          <ContributionFallback
+            username={USERNAME}
+            chartUrl={chartUrl}
+            status={status}
+            onError={handleError}
+            onLoad={handleLoad}
+          />
         )}
-        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mt: 1, flexWrap: "wrap", gap: 1 }}>
-          <Typography variant="caption" sx={{ opacity: 0.7 }}>
-            Last updated: {formatRelative(meta?.fetchedAt)}{meta?.fetchedAt && ` (${new Date(meta.fetchedAt).toLocaleString()})`}
-          </Typography>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            {isStale && (
-              <Tooltip title={meta?.fetchedAt ? `Data older than ${STALE_HOURS}h; click refresh to check for updates.` : "No metadata detected. Click refresh to load latest data."}>
-                <Chip color="warning" size="small" label="STALE" sx={{ fontWeight: 600 }} />
-              </Tooltip>
-            )}
-            {!isStale && meta?.fetchedAt && (
-              <Chip color="success" size="small" label="Fresh" sx={{ fontWeight: 600 }} />
-            )}
-            <Tooltip title="Refresh contribution data">
-              <Button
-                size="small"
-                variant="outlined"
-                disabled={isRefreshing}
-                onClick={handleManualRefresh}
-                startIcon={isRefreshing ? <CircularProgress size={16} /> : <RefreshIcon />}
-                sx={{
-                  minWidth: "auto",
-                  px: 1.5,
-                  py: 0.5,
-                  fontSize: "0.75rem",
-                  textTransform: "none",
-                }}
-              >
-                {isRefreshing ? "Refreshing..." : "Refresh"}
-              </Button>
-            </Tooltip>
-          </Box>
-        </Box>
+
+        {/* Status badge and refresh button */}
+        <ContributionStatus
+          meta={meta}
+          isStale={isStale}
+          isRefreshing={isRefreshing}
+          staleHours={STALE_HOURS}
+          onRefresh={handleManualRefresh}
+        />
       </Box>
     </Box>
   );

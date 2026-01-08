@@ -1,3 +1,18 @@
+/**
+ * SkillsRadarChart displays technical skill proficiency in radar/spider chart format
+ *
+ * Features:
+ * - Radar visualization showing skill levels across multiple dimensions
+ * - Custom tooltip with skill name and proficiency percentage
+ * - Themed styling with configurable colors
+ * - Responsive container adapting to screen size
+ * - Default data for 8 technical skill categories
+ *
+ * The radar chart provides an intuitive visual representation of skill balance,
+ * making it easy to identify strengths and areas for development.
+ *
+ * @component
+ */
 import React from "react";
 import { Box, Typography, useTheme, alpha } from "@mui/material";
 import {
@@ -10,14 +25,25 @@ import {
   Tooltip,
 } from "recharts";
 
+/**
+ * SkillData interface for individual skill entries
+ */
 interface SkillData {
+  /** Skill name/label (e.g., "React/TypeScript") */
   skill: string;
+  /** Proficiency level (0-100) */
   proficiency: number;
+  /** Maximum value for scale (typically 100) */
   fullMark: number;
 }
 
+/**
+ * Props for SkillsRadarChart component
+ */
 interface SkillsRadarChartProps {
+  /** Chart title (default: "Technical Skills Proficiency") */
   title?: string;
+  /** Array of skill data (uses defaults if not provided) */
   data?: SkillData[];
 }
 
@@ -32,12 +58,32 @@ const defaultSkillsData: SkillData[] = [
   { skill: "System Design", proficiency: 85, fullMark: 100 },
 ];
 
+/**
+ * SkillsRadarChart component renders a radar chart visualization
+ *
+ * @param title - Chart title
+ * @param data - Skill proficiency data (defaults to 8 technical skills)
+ *
+ * @example
+ * ```tsx
+ * <SkillsRadarChart
+ *   title="My Technical Skills"
+ *   data={[
+ *     { skill: "React", proficiency: 95, fullMark: 100 },
+ *     { skill: "Node.js", proficiency: 90, fullMark: 100 }
+ *   ]}
+ * />
+ * ```
+ */
 const SkillsRadarChart: React.FC<SkillsRadarChartProps> = ({
   title = "Technical Skills Proficiency",
   data = defaultSkillsData,
 }) => {
   const theme = useTheme();
 
+  /**
+   * TooltipProps interface for Recharts tooltip
+   */
   interface TooltipProps {
     active?: boolean;
     payload?: Array<{
@@ -46,6 +92,11 @@ const SkillsRadarChart: React.FC<SkillsRadarChartProps> = ({
     }>;
   }
 
+  /**
+   * CustomTooltip displays skill proficiency on hover
+   * @param active - Whether tooltip is active
+   * @param payload - Data payload from chart
+   */
   const CustomTooltip = ({ active, payload }: TooltipProps) => {
     if (active && payload && payload.length) {
       return (
