@@ -1,3 +1,13 @@
+---
+title: GitHub Contributions Refresh Loop Bug Fix
+category: Bug Fix
+date: 2025
+tags: [bug-fix, root-cause-analysis, react, state-management, performance]
+status: Resolved
+severity: High
+component: GitHubContributions
+---
+
 # GitHub Contributions Refresh Bug Fix
 
 ## Issue Summary

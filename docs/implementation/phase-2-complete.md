@@ -354,7 +354,7 @@ Phase 2 is now **100% complete** with all core features implemented, tested, and
 - `/src/components/header/header.tsx` (added Blog link)
 - `/src/components/footer/footer.tsx` (added Blog link)
 - `/public/sitemap.xml` (added blog URLs)
-- `/SITE_IMPROVEMENT_PLAN.md` (updated progress)
+- [site-improvement-roadmap.md](../planning/site-improvement-roadmap.md) (updated progress)
 - `/package.json` (added dependencies: react-hot-toast, react-calendly, gray-matter)
 
 ### Build Output Verified

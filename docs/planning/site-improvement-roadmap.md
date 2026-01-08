@@ -1,3 +1,13 @@
+---
+title: Portfolio Site Improvement Roadmap
+category: Planning & Roadmap
+date: 2025-12-25
+last_updated: 2025-12-26
+tags: [planning, roadmap, task-tracking, agile, implementation]
+status: In Progress
+project: Vaporjawn Portfolio Enhancement
+---
+
 # Portfolio Site Improvement Implementation Plan
 
 **Project**: Vaporjawn Portfolio Enhancement

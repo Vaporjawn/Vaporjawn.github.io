@@ -1,3 +1,12 @@
+---
+title: Git Commit Signing Setup Guide
+category: Setup Guide
+date: 2025
+tags: [git, security, ssh, gpg, commit-signing, configuration]
+status: Active
+platforms: [macOS, Linux, Windows]
+---
+
 # Commit Signing Guide
 
 This project requires all future commits to be cryptographically signed so collaborators and automation can verify authorship and integrity.

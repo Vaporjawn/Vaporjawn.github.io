@@ -2,7 +2,7 @@
 
 ## Session Overview
 **Duration**: Full implementation session
-**Objective**: Complete checklist items from SITE_IMPROVEMENT_PLAN.md
+**Objective**: Complete checklist items from [site-improvement-roadmap.md](../planning/site-improvement-roadmap.md)
 **Status**: Successfully implemented 25+ new features and components
 
 ---
@@ -440,7 +440,7 @@ npm run generate:rss
 ## 📚 Documentation Updates
 
 ### Updated Files
-- `SITE_IMPROVEMENT_PLAN.md`: Marked all completed tasks with [x]
+- [site-improvement-roadmap.md](../planning/site-improvement-roadmap.md): Marked all completed tasks with [x]
 - `package.json`: Added RSS generation script
 - This summary document
 

@@ -544,7 +544,7 @@ All Phase 4 data visualization tasks are now **COMPLETE** ✅
 
 ### Modified Files (2)
 1. `/src/pages/home/homePage.tsx` - Added chart imports and integration
-2. `/SITE_IMPROVEMENT_PLAN.md` - Updated completion status and progress tracking
+2. [site-improvement-roadmap.md](../planning/site-improvement-roadmap.md) - Updated completion status and progress tracking
 
 ### Dependencies Modified (1)
 1. `/package.json` - Added recharts dependency

@@ -371,11 +371,24 @@ Quick check (most recent commit):
 npm run verify-sign
 ```
 
-Full setup and troubleshooting guide: see [COMMIT_SIGNING.md](./COMMIT_SIGNING.md).
+Full setup and troubleshooting guide: see [docs/guides/commit-signing-setup.md](./docs/guides/commit-signing-setup.md).
 
 > Tip: Enable "Require signed commits" in repo branch protection once all local environments are configured.
 
-## 📄 License
+## � Documentation
+
+Comprehensive technical documentation, implementation guides, and project resources are organized in the [docs/](./docs/) directory. For a complete index with categorized documentation, see [docs/README.md](./docs/README.md).
+
+### Quick Links
+- **Setup Guides**: [docs/guides/](./docs/guides/) - Configuration and setup instructions
+- **Implementation Summaries**: [docs/implementation/](./docs/implementation/) - Feature development and session reports
+- **Bug Fixes**: [docs/bug-fixes/](./docs/bug-fixes/) - Technical problem resolutions
+- **Testing**: [docs/testing/](./docs/testing/) - Test coverage and strategies
+- **Planning**: [docs/planning/](./docs/planning/) - Project roadmaps and improvement plans
+- **Features**: [docs/features/](./docs/features/) - Feature-specific documentation
+- **Profile**: [docs/profile/](./docs/profile/) - Skills and project portfolio
+
+## �📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
 

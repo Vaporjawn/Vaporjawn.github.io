@@ -1,3 +1,12 @@
+---
+title: Star Modification Feature (Development Mode)
+category: Feature Documentation
+date: 2025
+tags: [feature, development, localstorage, environment-config, react]
+status: Active
+environment: Development Only
+---
+
 # Project Star Modification Feature - Development Mode Only
 
 ## Overview

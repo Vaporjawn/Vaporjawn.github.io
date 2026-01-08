@@ -1,3 +1,13 @@
+---
+title: MUI Theme Error Resolution
+category: Bug Fix
+date: 2025
+tags: [bug-fix, material-ui, typescript, module-system, export-patterns]
+status: Resolved
+severity: High
+component: Theme System
+---
+
 # Theme Error Resolution
 
 ## Issue Description
