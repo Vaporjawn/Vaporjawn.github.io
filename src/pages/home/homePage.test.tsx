@@ -1,10 +1,10 @@
-import { describe, it, expect } from "@jest/globals";
+import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 // Mock heavy/asset imports before importing HomePage to avoid TS resolution issues
-jest.mock("../../assets/profile-picture.jpeg", () => "profile-picture-mock.jpg");
-jest.mock("../../assets/banner.jpg", () => "banner-mock.jpg");
+vi.mock("../../assets/profile-picture.jpeg", () => ({ default: "profile-picture-mock.jpg" }));
+vi.mock("../../assets/banner.jpg", () => ({ default: "banner-mock.jpg" }));
 import HomePage from "./homePage";
 import { PortfolioProvider } from "../../contexts/PortfolioContext";
 

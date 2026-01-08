@@ -9,6 +9,7 @@ export type SocialBrandKey =
   | "linkedin"
   | "x"
   | "twitter"
+  | "bluesky"
   | "email"
   | "resume"
   | "npm"
@@ -46,6 +47,11 @@ export const brandColors: Record<SocialBrandKey, BrandColorSpec> = {
   twitter: {
     light: "#1DA1F2",
     dark: "#1DA1F2",
+  },
+  bluesky: {
+    light: "#0a7aff",
+    dark: "#0a7aff",
+    preserveAsset: true,
   },
   email: {
     light: "#444444",

@@ -53,6 +53,12 @@ export const socialLinks: UnifiedSocialLink[] = [
     kind: "external",
   },
   {
+    key: "bluesky",
+    label: "Bluesky",
+    href: "https://bsky.app/profile/vaporjawn.bsky.social",
+    kind: "external",
+  },
+  {
     key: "reddit",
     label: "Reddit",
     href: "https://www.reddit.com/user/vaporjawn/",

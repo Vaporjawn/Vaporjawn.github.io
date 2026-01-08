@@ -12,6 +12,7 @@ import React from "react";
 import NpmLogo from "../../assets/logos/Npm-logo.svg.png";
 import DevpostLogo from "../../assets/logos/devpost_logo_icon_169279.svg";
 import BuyMeACoffeeLogo from "../../assets/logos/buymeacoffee_logo.svg";
+import BlueskyIcon from "../../assets/logos/Bluesky_Logo.svg";
 import { socialLinks, UnifiedSocialLink } from "../../data/socialLinks";
 import { getBrandColor, SocialBrandKey } from "../../data/socialBrandColors";
 import { useTheme } from "@mui/material/styles";
@@ -122,6 +123,8 @@ const SocialMedia: React.FC<SocialMediaProps> = ({ onlyPrimary }) => {
             style={{ fontSize: iconSizeRem, color: brandBase }}
           />
         );
+      case "bluesky":
+        return <ImgIcon src={BlueskyIcon} alt={label} />;
       case "npm":
         return <ImgIcon src={NpmLogo} alt={label} />;
       case "devpost":

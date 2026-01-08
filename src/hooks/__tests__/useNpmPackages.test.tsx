@@ -1,5 +1,6 @@
 import { renderHook, act } from "@testing-library/react";
 import { useNpmPackages } from "../useNpmPackages";
+import { vi } from 'vitest';
 
 // Helper to flush microtasks
 const flush = () => new Promise((r) => setTimeout(r, 0));
@@ -10,7 +11,7 @@ const originalFetch = global.fetch;
 describe("useNpmPackages", () => {
   beforeEach(() => {
     let store: Record<string, string> = {};
-    global.fetch = jest.fn();
+    global.fetch = vi.fn();
     // simple in-memory localStorage mock
   Object.defineProperty(window, "localStorage", {
       value: {
@@ -24,7 +25,7 @@ describe("useNpmPackages", () => {
   });
 
   afterEach(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
   global.fetch = originalFetch as typeof fetch;
   });
 
@@ -44,16 +45,16 @@ describe("useNpmPackages", () => {
   }
 
   test("fetches and normalizes data (no cache)", async () => {
-    (global.fetch as jest.Mock).mockResolvedValueOnce({
+    (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
       ok: true,
       json: async () => mockSearchResult(["pkg-a", "pkg-b"])
     });
     // downloads enrichment for first 2 packages
-    ;(global.fetch as jest.Mock).mockResolvedValueOnce({
+    ;(global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
       ok: true,
       json: async () => ({ downloads: 100 })
     });
-    ;(global.fetch as jest.Mock).mockResolvedValueOnce({
+    ;(global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
       ok: true,
       json: async () => ({ downloads: 200 })
     });
@@ -96,12 +97,12 @@ describe("useNpmPackages", () => {
     };
     window.localStorage.setItem(cacheKey, JSON.stringify(cachedPayload));
 
-    (global.fetch as jest.Mock).mockResolvedValueOnce({
+    (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
       ok: true,
       json: async () => mockSearchResult(["fresh-pkg"])
     });
     // downloads fetch for fresh-pkg
-    ;(global.fetch as jest.Mock).mockResolvedValueOnce({
+    ;(global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
       ok: true,
       json: async () => ({ downloads: 321 })
     });
@@ -118,7 +119,7 @@ describe("useNpmPackages", () => {
   });
 
   test("error during fetch sets error when no cache", async () => {
-    (global.fetch as jest.Mock).mockResolvedValueOnce({ ok: false, status: 500 });
+    (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({ ok: false, status: 500 });
     const { result } = renderHook(() => useNpmPackages({ fetchDownloads: false }));
     await act(async () => { await flush(); });
   expect(result.current.error).toContain("npm search failed");
@@ -133,11 +134,11 @@ describe("useNpmPackages", () => {
     window.localStorage.setItem(cacheKey, JSON.stringify(cachedPayload));
 
     // Fresh cache means initial render should not fetch
-    (global.fetch as jest.Mock).mockResolvedValueOnce({
+    (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
       ok: true,
       json: async () => mockSearchResult(["new-pkg"])
     });
-    ;(global.fetch as jest.Mock).mockResolvedValueOnce({
+    ;(global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
       ok: true,
       json: async () => ({ downloads: 999 })
     });
@@ -157,13 +158,13 @@ describe("useNpmPackages", () => {
 
   test("limits downloads enrichment to first 10 packages", async () => {
     const names = Array.from({ length: 15 }, (_, i) => `pkg-${i}`);
-    (global.fetch as jest.Mock).mockResolvedValueOnce({
+    (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
       ok: true,
       json: async () => mockSearchResult(names)
     });
     // Provide 10 download responses
     for (let i = 0; i < 10; i++) {
-      (global.fetch as jest.Mock).mockResolvedValueOnce({
+      (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
         ok: true,
         json: async () => ({ downloads: i + 1 })
       });

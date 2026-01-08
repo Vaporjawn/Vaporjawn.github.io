@@ -13,7 +13,24 @@ module.exports = {
   transform: {
     '^.+\\.(ts|tsx)$': ['ts-jest', {
       useESM: true,
-      tsconfig: '<rootDir>/jest.tsconfig.json'
+      tsconfig: '<rootDir>/jest.tsconfig.json',
+      // Define globals that will be available during transformation
+      globals: {
+        'import.meta': {
+          env: {
+            MODE: 'test',
+            PROD: false,
+            DEV: false,
+            VITE_GA_MEASUREMENT_ID: 'TEST_GA_ID',
+            VITE_HOTJAR_SITE_ID: 'TEST_HOTJAR_ID',
+            VITE_HOTJAR_VERSION: '6',
+            VITE_SENTRY_DSN: 'TEST_SENTRY_DSN',
+            VITE_APP_VERSION: '1.0.0-test',
+            VITE_FORM_ENDPOINT: 'https://test.formspree.io/test',
+            VITE_GOOGLE_SITE_VERIFICATION: 'TEST_VERIFICATION_CODE'
+          }
+        }
+      }
     }]
   },
   collectCoverageFrom: [

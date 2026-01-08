@@ -1,5 +1,6 @@
 import { renderHook, act } from "@testing-library/react";
 import { useStarredProjects } from "../useStarredProjects";
+import { vi } from 'vitest';
 
 // Mock localStorage
 const localStorageMock = (() => {
@@ -23,7 +24,7 @@ Object.defineProperty(window, "localStorage", {
 });
 
 // Mock console.warn to capture warnings in production mode
-const _consoleWarnSpy = jest.spyOn(console, "warn").mockImplementation(() => {});
+const _consoleWarnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
 
 describe("useStarredProjects", () => {
   beforeEach(() => {
@@ -83,7 +84,7 @@ describe("useStarredProjects", () => {
   it("should handle localStorage errors gracefully", () => {
     // Mock localStorage.setItem to throw an error
     const originalSetItem = localStorageMock.setItem;
-    localStorageMock.setItem = jest.fn(() => {
+    localStorageMock.setItem = vi.fn(() => {
       throw new Error("LocalStorage is full");
     });
 

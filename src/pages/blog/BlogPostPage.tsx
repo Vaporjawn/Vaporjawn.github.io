@@ -27,6 +27,7 @@ import toast from "react-hot-toast";
 import SEO from "../../components/SEO/SEO";
 import { BlogPost } from "../../types/blog";
 import { formatDate } from "../../utils/blogUtils";
+import BlueskyIcon from "../../assets/logos/Bluesky_Logo.svg";
 
 // Placeholder posts - in production, these would be dynamically loaded
 const PLACEHOLDER_POSTS: Record<string, BlogPost> = {
@@ -105,7 +106,7 @@ const BlogPostPage: React.FC = () => {
     }
   }, [slug]);
 
-  const handleShare = (platform: "twitter" | "linkedin" | "copy") => {
+  const handleShare = (platform: "twitter" | "linkedin" | "bluesky" | "copy") => {
     if (!post) return;
 
     const url = window.location.href;
@@ -121,6 +122,12 @@ const BlogPostPage: React.FC = () => {
       case "linkedin":
         window.open(
           `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
+          "_blank"
+        );
+        break;
+      case "bluesky":
+        window.open(
+          `https://bsky.app/intent/compose?text=${encodeURIComponent(text + " " + url)}`,
           "_blank"
         );
         break;
@@ -298,6 +305,18 @@ const BlogPostPage: React.FC = () => {
                   </IconButton>
                   <IconButton
                     size="small"
+                    onClick={() => handleShare("bluesky")}
+                    aria-label="Share on Bluesky"
+                  >
+                    <Box
+                      component="img"
+                      src={BlueskyIcon}
+                      alt="Bluesky"
+                      sx={{ width: 20, height: 20 }}
+                    />
+                  </IconButton>
+                  <IconButton
+                    size="small"
                     onClick={() => handleShare("copy")}
                     aria-label="Copy link"
                   >
@@ -439,6 +458,13 @@ const BlogPostPage: React.FC = () => {
                   onClick={() => handleShare("linkedin")}
                 >
                   Share on LinkedIn
+                </Button>
+                <Button
+                  variant="outlined"
+                  startIcon={<ShareIcon />}
+                  onClick={() => handleShare("bluesky")}
+                >
+                  Share on Bluesky
                 </Button>
                 <Button
                   variant="contained"
