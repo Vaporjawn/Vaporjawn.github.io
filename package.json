@@ -35,7 +35,7 @@
     "@mdx-js/rollup": "^3.1.1",
     "@mui/icons-material": "^7.3.6",
     "@mui/material": "^7.3.6",
-    "@sentry/react": "^10.32.1",
+    "@sentry/react": "^10.33.0",
     "@tanstack/react-query": "^5.90.14",
     "font-awesome": "^4.7.0",
     "framer-motion": "^12.23.26",
