@@ -55,18 +55,19 @@ const Footer: React.FC = () => {
         px: { xs: 2, sm: 3, md: 4 },
         width: "100%"
       }}>
-        <Grid container spacing={4}>
+        <Grid container spacing={3}>
           {/* Brand Section */}
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={5}>
             <FooterSection>
-              <BrandText variant="h4">Vaporjawn</BrandText>
+              <BrandText variant="h3">Vaporjawn</BrandText>
               <Typography
                 variant="body2"
                 color="text.primary"
                 sx={{
                   mb: 2,
+                  mt: 0.5,
                   lineHeight: 1.7,
-                  fontSize: "0.95rem",
+                  fontSize: "0.875rem",
                   fontWeight: 400,
                   opacity: 0.9
                 }}
@@ -97,7 +98,7 @@ const Footer: React.FC = () => {
           </Grid>
 
           {/* Quick Links Section */}
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={3.5}>
             <FooterSection>
               <FooterTitle variant="h6">Quick Links</FooterTitle>
               <Box>
@@ -115,7 +116,7 @@ const Footer: React.FC = () => {
           </Grid>
 
           {/* Services Section */}
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={3.5}>
             <FooterSection>
               <FooterTitle variant="h6">Services</FooterTitle>
               <Box>
@@ -142,7 +143,7 @@ const Footer: React.FC = () => {
         {/* Divider */}
         <Divider
           sx={{
-            my: 4,
+            my: 3,
             borderColor:
               theme.palette.mode === "dark"
                 ? "rgba(255,255,255,0.1)"
@@ -151,7 +152,14 @@ const Footer: React.FC = () => {
         />
 
         {/* Bottom Section - Social Icons and Legal */}
-        <Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 3,
+            alignItems: "center",
+          }}
+        >
           {/* Social Icons */}
           <SocialIconContainer>
             {allLinks.map((link) => {
@@ -221,10 +229,19 @@ const Footer: React.FC = () => {
               justifyContent: "space-between",
               alignItems: "center",
               flexDirection: isMobile ? "column" : "row",
-              gap: 2,
+              gap: isMobile ? 2 : 4,
+              width: "100%",
             }}
           >
-            <Typography variant="body2" color="text.primary" sx={{ fontWeight: 500, fontSize: "0.9rem" }}>
+            <Typography
+              variant="body2"
+              color="text.primary"
+              sx={{
+                fontWeight: 500,
+                fontSize: "0.875rem",
+                opacity: 0.9,
+              }}
+            >
               © {new Date().getFullYear()} {portfolio?.personalInfo?.name || "Victor Williams"}. All
               rights reserved.
             </Typography>

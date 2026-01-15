@@ -1,6 +1,6 @@
 import { renderHook, act } from "@testing-library/react";
 import { useNpmPackages } from "../useNpmPackages";
-import { vi } from 'vitest';
+import { vi } from "vitest";
 
 // Helper to flush microtasks
 const flush = () => new Promise((r) => setTimeout(r, 0));

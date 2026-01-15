@@ -21,6 +21,8 @@ export const initHotjar = (): void => {
   }
 
   // Initialize Hotjar
+  // Note: SRI not used for same reasons as GA4 (dynamic content, frequent updates)
+  // Security enforced via CSP script-src whitelist and HTTPS
   (function (h, o, t, j, a, r) {
     h.hj =
       h.hj ||
@@ -31,6 +33,7 @@ export const initHotjar = (): void => {
     [a] = o.getElementsByTagName("head");
     r = o.createElement("script");
     r.async = true;
+    r.crossOrigin = "anonymous"; // Enable CORS for better error reporting
     r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
     a.appendChild(r);
   })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");

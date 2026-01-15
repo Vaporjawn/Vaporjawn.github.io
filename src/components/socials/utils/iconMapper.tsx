@@ -10,6 +10,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import ArticleIcon from "@mui/icons-material/Article";
 import XIcon from "@mui/icons-material/X";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGitlab,
@@ -86,7 +87,7 @@ const iconConfigs: IconConfig = {
   threads: (color) => (
     <FontAwesomeIcon
       icon={faThreads}
-      style={{ fontSize: iconSizeRem, color }}
+      style={{ fontSize: "2.25rem", color, verticalAlign: "middle" }}
     />
   ),
   bluesky: (_, __, label) => <ImgIcon src={BlueskyIcon} alt={label} />,
@@ -94,6 +95,9 @@ const iconConfigs: IconConfig = {
   devpost: (_, __, label) => <ImgIcon src={DevpostLogo} alt={label} />,
   buymeacoffee: (_, __, label) => (
     <ImgIcon src={BuyMeACoffeeLogo} alt={label} />
+  ),
+  calendly: (color) => (
+    <CalendarMonthIcon style={{ fontSize: iconSizeRem, color }} />
   ),
 };
 

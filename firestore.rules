@@ -1,0 +1,128 @@
+rules_version = '2';
+
+/**
+ * Firestore Security Rules
+ * Defines access control for Firebase analytics data
+ *
+ * Collections:
+ * - analytics_pageViews: Page view events (path, timestamp, session, device, referrer)
+ * - analytics_events: User interaction events (type, label, metadata)
+ * - analytics_sessions: User session data (duration, page count, traffic source)
+ * - analytics_daily: Aggregated daily metrics (requires Cloud Functions)
+ *
+ * Security Strategy:
+ * Client-side writes for real-time event collection
+ * Public reads to support admin dashboard (protected by client-side admin auth)
+ *
+ * Note: For production, implement Firebase Auth and role-based access control
+ * to restrict reads to authenticated admin users only.
+ */
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper function to check if timestamp is recent (within last 5 minutes)
+    // Prevents backdating of analytics events
+    function isRecentTimestamp(timestamp) {
+      return timestamp > request.time - duration.value(5, 'm');
+    }
+
+    // Helper function to validate page view document structure
+    function isValidPageView(data) {
+      return data.keys().hasAll(['timestamp', 'path', 'sessionId'])
+        && data.timestamp is timestamp
+        && data.path is string
+        && data.sessionId is string;
+    }
+
+    // Helper function to validate event document structure
+    function isValidEvent(data) {
+      return data.keys().hasAll(['timestamp', 'type', 'sessionId'])
+        && data.timestamp is timestamp
+        && data.type is string
+        && data.sessionId is string;
+    }
+
+    // Helper function to validate session document structure
+    function isValidSession(data) {
+      return data.keys().hasAll(['sessionId', 'startTime'])
+        && data.sessionId is string
+        && data.startTime is timestamp;
+    }
+
+    /**
+     * Analytics Page Views Collection
+     * Stores individual page view events with session and device information
+     */
+    match /analytics_pageViews/{document} {
+      // Allow all clients to read page views (for dashboard)
+      allow read: if true;
+
+      // Allow clients to write new page views with validation
+      allow create: if isValidPageView(request.resource.data)
+        && isRecentTimestamp(request.resource.data.timestamp);
+
+      // Prevent updates and deletes (immutable event log)
+      allow update, delete: if false;
+    }
+
+    /**
+     * Analytics Events Collection
+     * Stores user interaction events (clicks, submissions, etc.)
+     */
+    match /analytics_events/{document} {
+      // Allow all clients to read events (for dashboard)
+      allow read: if true;
+
+      // Allow clients to write new events with validation
+      allow create: if isValidEvent(request.resource.data)
+        && isRecentTimestamp(request.resource.data.timestamp);
+
+      // Prevent updates and deletes (immutable event log)
+      allow update, delete: if false;
+    }
+
+    /**
+     * Analytics Sessions Collection
+     * Stores session metadata and aggregated session metrics
+     */
+    match /analytics_sessions/{document} {
+      // Allow all clients to read sessions (for dashboard)
+      allow read: if true;
+
+      // Allow clients to create and update their own session documents
+      // Sessions are updated with lastActivity timestamp and counts
+      allow create: if isValidSession(request.resource.data)
+        && isRecentTimestamp(request.resource.data.startTime);
+
+      allow update: if isValidSession(request.resource.data)
+        && request.resource.data.sessionId == resource.data.sessionId;
+
+      // Prevent deletes (preserve session history)
+      allow delete: if false;
+    }
+
+    /**
+     * Analytics Daily Metrics Collection
+     * Stores pre-aggregated daily statistics
+     * Should be written by Cloud Functions only (scheduled aggregation jobs)
+     */
+    match /analytics_daily/{document} {
+      // Allow all clients to read daily metrics (for dashboard)
+      allow read: if true;
+
+      // Prevent client writes - reserved for Cloud Functions
+      // In development: temporarily allow writes for testing
+      // TODO: Implement Cloud Functions and restrict writes to service account
+      allow write: if false;
+    }
+
+    /**
+     * Default rule for all other collections
+     * Deny all access to prevent accidental data exposure
+     */
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

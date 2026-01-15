@@ -231,7 +231,7 @@ const ServicesPage: React.FC = () => {
 
               <Grid container spacing={4}>
                 {workProcess.map((step, index) => (
-                  <Grid item xs={12} md={6} lg={3} key={index}>
+                  <Grid size={{ xs: 12, sm: 6, md: 3 }} key={index}>
                     <Card
                       sx={{
                         height: "100%",
@@ -316,7 +316,7 @@ const ServicesPage: React.FC = () => {
 
               <Grid container spacing={4} justifyContent="center">
                 {servicePackages.map((pkg, index) => (
-                  <Grid item xs={12} md={4} key={index}>
+                  <Grid size={{ xs: 12, md: 4 }} key={index}>
                     <Card
                       sx={{
                         position: "relative",
@@ -443,7 +443,7 @@ const ServicesPage: React.FC = () => {
             <Box sx={{ mb: 8 }}>
               <Grid container spacing={4} justifyContent="center">
                 {stats.map((stat, index) => (
-                  <Grid item xs={12} sm={4} key={index}>
+                  <Grid size={{ xs: 12, sm: 4 }} key={index}>
                     <Box sx={{ textAlign: "center" }}>
                       <Box
                         sx={{

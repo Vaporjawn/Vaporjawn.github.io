@@ -106,7 +106,7 @@ describe("NpmSection", () => {
     expect(screen.getByText(/500 downloads\/week/)).toBeInTheDocument();
   });
 
-  it('displays "No published packages" when packages array is empty', () => {
+  it("displays \"No published packages\" when packages array is empty", () => {
     render(
       <NpmSection
         packages={[]}

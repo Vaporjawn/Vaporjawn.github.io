@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import createVaporwaveTheme from "../../theme/theme";
-import { vi } from 'vitest';
+import { vi } from "vitest";
 
 // Mock the entire footer module to avoid asset import issues
 vi.mock("./index", () => {

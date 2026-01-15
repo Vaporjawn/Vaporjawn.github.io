@@ -1,6 +1,6 @@
 import { renderHook, act } from "@testing-library/react";
 import { useStarredProjects } from "../useStarredProjects";
-import { vi } from 'vitest';
+import { vi } from "vitest";
 
 // Mock localStorage
 const localStorageMock = (() => {

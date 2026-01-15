@@ -82,7 +82,7 @@ const SocialMedia: React.FC<SocialMediaProps> = ({ onlyPrimary }) => {
     ? socialLinks.filter((l) => l.primary)
     : socialLinks;
 
-  // Split icons into two rows: 6 on top, remaining on bottom
+  // Split icons into two rows: 6-6 distribution
   const topRowLinks = links.slice(0, 6);
   const bottomRowLinks = links.slice(6);
 
@@ -142,7 +142,7 @@ const SocialMedia: React.FC<SocialMediaProps> = ({ onlyPrimary }) => {
         {topRowLinks.map((link) => renderLinkElement(link))}
       </div>
 
-      {/* Bottom Row - remaining icons */}
+      {/* Bottom Row - 6 icons */}
       {bottomRowLinks.length > 0 && (
         <div
           style={{

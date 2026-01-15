@@ -24,6 +24,7 @@ import {
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
+import DOMPurify from "dompurify";
 import SEO from "../../components/SEO/SEO";
 import { BlogPost } from "../../types/blog";
 import { formatDate } from "../../utils/blogUtils";
@@ -424,7 +425,18 @@ const BlogPostPage: React.FC = () => {
             >
               <Typography
                 component="div"
-                dangerouslySetInnerHTML={{ __html: post.content }}
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(post.content, {
+                    ALLOWED_TAGS: [
+                      "p", "br", "strong", "em", "u", "i", "b",
+                      "a", "ul", "ol", "li", "code", "pre",
+                      "h1", "h2", "h3", "h4", "h5", "h6",
+                      "blockquote", "img", "div", "span"
+                    ],
+                    ALLOWED_ATTR: ["href", "src", "alt", "title", "class", "id"],
+                    ALLOW_DATA_ATTR: false,
+                  })
+                }}
               />
             </Box>
 

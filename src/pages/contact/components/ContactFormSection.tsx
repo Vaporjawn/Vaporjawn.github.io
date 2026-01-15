@@ -13,7 +13,7 @@
  */
 
 import React from "react";
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useTheme, alpha } from "@mui/material";
 import ContactForm from "../../../components/contact/ContactForm";
 import { VaporwavePink, VaporwaveGreen } from "../../../colors";
 
@@ -47,6 +47,8 @@ export const ContactFormSection: React.FC = () => {
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
           fontSize: { xs: "1.75rem", md: "2.125rem" },
+          textShadow: `0 0 30px ${alpha(VaporwavePink, 0.3)}`,
+          letterSpacing: "0.5px",
         }}
       >
         Send Me a Message

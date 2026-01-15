@@ -5,7 +5,7 @@
  */
 
 import React from "react";
-import { Box, Container, Fade } from "@mui/material";
+import { Container, Fade, Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import SEO from "../../components/SEO/SEO";
 import { usePortfolio, useSkills } from "../../hooks/usePortfolioData";
@@ -17,9 +17,16 @@ import {
 } from "../../components/charts";
 
 // Sub-component imports
-import HeroSection from "./components/HeroSection";
-import SkillsSection from "./components/SkillsSection";
-import CallToActionSection from "./components/CallToActionSection";
+import { HeroSection } from "./components/HeroSection";
+import { SkillsSection } from "./components/SkillsSection";
+import { CallToActionSection } from "./components/CallToActionSection";
+import { ChartSection } from "./components/ChartSection";
+
+// Utility imports
+import {
+  useParallaxBackground,
+  DEFAULT_SKYLINE_PATH,
+} from "./utils/backgroundUtils";
 
 // Asset imports for background images
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -37,23 +44,12 @@ const HomePage: React.FC = () => {
   const portfolioData = usePortfolio();
   const skills = useSkills();
 
-  // Public path to Philadelphia skyline background (place file in public/ to activate)
-  const skylinePublicPath = "/philadelphia-skyline.jpg";
-
-  /**
-   * Reusable parallax background generator
-   * Creates multi-layer background with gradient overlay + skyline + banner
-   * Used by both hero and CTA sections for visual consistency
-   *
-   * @param dark - Whether dark mode is active
-   * @returns CSS background string with layered images
-   */
-  const parallaxBackground = (dark: boolean) =>
-    dark
-      ? `linear-gradient(135deg, rgba(8,8,18,0.55) 0%, rgba(18,0,36,0.65) 55%, ${theme.palette.primary.main}20 100%), url(${skylinePublicPath}), url(${heroBanner})`
-      : `linear-gradient(135deg, rgba(255,255,255,0.62) 0%, rgba(250,250,255,0.70) 55%, ${theme.palette.primary.main}15 100%), url(${skylinePublicPath}), url(${heroBanner})`;
-
-  const background = parallaxBackground(theme.palette.mode === "dark");
+  // Generate parallax background with theme awareness and memoization
+  const background = useParallaxBackground({
+    primaryColor: theme.palette.primary.main,
+    skylinePath: DEFAULT_SKYLINE_PATH,
+    bannerImage: heroBanner,
+  });
 
   return (
     <>
@@ -77,19 +73,25 @@ const HomePage: React.FC = () => {
             <GitHubContributions />
 
             {/* Skills Proficiency Radar Chart */}
-            <Box sx={{ mb: 8, mt: 8 }}>
+            <ChartSection
+              spacing="large"
+              ariaLabel="Skills proficiency radar visualization"
+            >
               <SkillsRadarChart />
-            </Box>
+            </ChartSection>
 
             {/* GitHub Statistics Dashboard */}
-            <Box sx={{ mb: 8 }}>
+            <ChartSection spacing="large" ariaLabel="GitHub statistics dashboard">
               <GitHubStatsChart />
-            </Box>
+            </ChartSection>
 
             {/* Career Timeline Visualization */}
-            <Box sx={{ mb: 8 }}>
+            <ChartSection
+              spacing="large"
+              ariaLabel="Career timeline visualization"
+            >
               <CareerTimeline />
-            </Box>
+            </ChartSection>
 
             {/* Call to Action with Projects and Contact buttons */}
             <CallToActionSection

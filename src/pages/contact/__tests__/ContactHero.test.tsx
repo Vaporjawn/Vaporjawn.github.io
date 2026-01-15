@@ -52,7 +52,7 @@ describe("ContactHero", () => {
     );
 
     // Verify hero section renders with MUI Box
-    const box = container.querySelector('div[class*="MuiBox"]');
+    const box = container.querySelector("div[class*=\"MuiBox\"]");
     expect(box).toBeInTheDocument();
   });
 

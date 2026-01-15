@@ -22,12 +22,6 @@ export const socialLinks: UnifiedSocialLink[] = [
     primary: true,
   },
   {
-    key: "gitlab",
-    label: "GitLab",
-    href: "https://gitlab.com/vaporjawn",
-    kind: "external",
-  },
-  {
     key: "email",
     label: "Email",
     href: "mailto:victor.williams.dev@gmail.com",
@@ -86,6 +80,12 @@ export const socialLinks: UnifiedSocialLink[] = [
     key: "buymeacoffee",
     label: "Buy Me a Coffee",
     href: "https://buymeacoffee.com/vaporjawn",
+    kind: "external",
+  },
+  {
+    key: "calendly",
+    label: "Calendly",
+    href: "https://calendly.com/victor-williams-dev/introductory-call",
     kind: "external",
   },
 ];

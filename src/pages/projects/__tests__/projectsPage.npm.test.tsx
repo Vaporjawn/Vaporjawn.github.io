@@ -1,7 +1,7 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { HelmetProvider } from "react-helmet-async";
 import ProjectsPage from "../projectsPage"; // adjust if path differs
-import { vi } from 'vitest';
+import { vi } from "vitest";
 
 // Mock hook to control states
 vi.mock("../../../hooks/useNpmPackages", () => ({

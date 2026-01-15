@@ -35,7 +35,6 @@ export const FooterContainer = styled(Box)(({ theme }) => ({
     ${theme.palette.secondary.dark} 100%)`,
   padding: theme.spacing(4, 2),
   color: theme.palette.text.primary,
-  textAlign: "center",
   boxSizing: "border-box",
 }));
 
@@ -56,7 +55,7 @@ export const FooterSection = styled(Box)(({ theme }) => ({
  */
 export const FooterTitle = styled(Typography)(({ theme }) => ({
   fontWeight: 700,
-  fontSize: "1.1rem",
+  fontSize: "1.2rem",
   letterSpacing: "0.05em",
   marginBottom: theme.spacing(2),
   background: `linear-gradient(45deg, ${theme.palette.vaporwave.pink}, ${theme.palette.vaporwave.purple})`,
@@ -166,7 +165,7 @@ export const LegalSection = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  gap: theme.spacing(3),
+  gap: theme.spacing(2),
   flexWrap: "wrap",
   marginTop: theme.spacing(2),
   [theme.breakpoints.down("sm")]: {

@@ -48,11 +48,11 @@ export const getContactMethods = (email: string): ContactMethod[] => [
   },
   {
     title: "Schedule a Call",
-    description: "Book a 30-min consultation",
-    action: "cal.com/vaporjawn",
+    description: "Book a 15-min intro call",
+    action: "calendly.com/victor-williams-dev",
     icon: <ScheduleIcon sx={{ fontSize: 32 }} />,
     color: VaporwaveGreen,
-    link: "https://cal.com/vaporjawn",
+    link: "https://calendly.com/victor-williams-dev/introductory-call",
   },
 ];
 

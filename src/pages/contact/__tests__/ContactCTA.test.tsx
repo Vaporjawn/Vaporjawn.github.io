@@ -84,7 +84,7 @@ describe("ContactCTA", () => {
     );
 
     // Verify component renders with content
-    const box = container.querySelector('div[class*="MuiBox"]');
+    const box = container.querySelector("div[class*=\"MuiBox\"]");
     expect(box).toBeInTheDocument();
   });
 });

@@ -33,10 +33,10 @@ export interface TimelineEvent {
  * ```
  */
 const formatMonth = (dateStr: string): string => {
-  const [year, month] = dateStr.split('-');
+  const [year, month] = dateStr.split("-");
   const monthNames = [
-    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
   ];
   return `${monthNames[parseInt(month) - 1]} ${year}`;
 };
@@ -56,7 +56,7 @@ const formatMonth = (dateStr: string): string => {
  */
 export const formatDateRange = (startDate: string, endDate: string | null): string => {
   const start = formatMonth(startDate);
-  const end = endDate ? formatMonth(endDate) : 'Present';
+  const end = endDate ? formatMonth(endDate) : "Present";
   return `${start} - ${end}`;
 };
 

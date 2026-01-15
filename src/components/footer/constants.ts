@@ -23,6 +23,8 @@ export const quickLinks: NavLink[] = [
   { label: "About", path: "/about" },
   { label: "Projects", path: "/projects" },
   { label: "Blog", path: "/blog" },
+  { label: "Services", path: "/services" },
+  { label: "Contact", path: "/contact" },
   { label: "Resume", path: "/resume" },
   { label: "Activity", path: "/activity" },
 ];
@@ -35,6 +37,9 @@ export const services: string[] = [
   "Web Development",
   "React Development",
   "TypeScript Solutions",
+  "Cloud Solutions",
+  "API Development",
+  "Technical Consulting",
   "UI/UX Design",
   "Portfolio Development",
 ];

@@ -2,14 +2,14 @@
 // Add this to your hosting provider's configuration (Netlify, Vercel, etc.)
 
 export const securityHeaders = {
-  // Content Security Policy
+  // Content Security Policy - Hardened (removed unsafe-inline and unsafe-eval from scripts)
   "Content-Security-Policy": [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com",
+    "script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://browser.sentry-cdn.com https://static.hotjar.com",
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     "img-src 'self' data: https: blob:",
     "font-src 'self' data: https://fonts.gstatic.com",
-    "connect-src 'self' https://api.github.com https://www.google-analytics.com https://sentry.io",
+    "connect-src 'self' https://api.github.com https://registry.npmjs.org https://www.google-analytics.com https://sentry.io https://api.devpost.com https://devpost.com",
     "frame-src 'self' https://calendly.com",
     "object-src 'none'",
     "base-uri 'self'",

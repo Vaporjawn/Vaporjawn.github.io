@@ -1,5 +1,17 @@
 // Google Analytics 4 Integration
 // Initialize with your GA4 Measurement ID
+// Also logs analytics to Firebase Firestore for admin dashboard
+
+import {
+  logPageView as logFirestorePageView,
+  logProjectView as logFirestoreProjectView,
+  logProjectClick as logFirestoreProjectClick,
+  logContactSubmit as logFirestoreContactSubmit,
+  logSocialClick as logFirestoreSocialClick,
+  logBlogRead as logFirestoreBlogRead,
+  logResumeDownload as logFirestoreResumeDownload,
+  logSectionView as logFirestoreSectionView,
+} from '../services/analytics';
 
 interface AnalyticsEvent {
   action: string;
@@ -35,9 +47,15 @@ export const initGA = (): void => {
   }
 
   // Load GA4 script
+  // Note: SRI (Subresource Integrity) is not used here because:
+  // 1. GA script includes dynamic query parameters that change content
+  // 2. Google frequently updates the script, making hash maintenance impractical
+  // 3. CSP restricts script-src to trusted domains (www.googletagmanager.com)
+  // 4. HTTPS ensures transport layer security
   const script = document.createElement("script");
   script.async = true;
   script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+  script.crossOrigin = "anonymous"; // Enable CORS for better error reporting
   document.head.appendChild(script);
 
   // Initialize dataLayer
@@ -56,12 +74,18 @@ export const initGA = (): void => {
 };
 
 export const trackPageView = (pageData: PageView): void => {
-  if (!window.gtag) return;
+  // Log to Google Analytics
+  if (window.gtag) {
+    window.gtag("event", "page_view", {
+      page_title: pageData.page_title,
+      page_location: pageData.page_location,
+      page_path: pageData.page_path,
+    });
+  }
 
-  window.gtag("event", "page_view", {
-    page_title: pageData.page_title,
-    page_location: pageData.page_location,
-    page_path: pageData.page_path,
+  // Log to Firebase Firestore for admin dashboard
+  logFirestorePageView(pageData.page_path, pageData.page_title).catch((error) => {
+    console.error('[Analytics] Failed to log page view to Firestore:', error);
   });
 };
 
@@ -82,6 +106,11 @@ export const trackProjectView = (projectName: string): void => {
     category: "Projects",
     label: projectName,
   });
+
+  // Log to Firestore
+  logFirestoreProjectView(projectName).catch((error) => {
+    console.error('[Analytics] Failed to log project view to Firestore:', error);
+  });
 };
 
 export const trackProjectClick = (projectName: string, linkType: "live" | "github"): void => {
@@ -89,6 +118,11 @@ export const trackProjectClick = (projectName: string, linkType: "live" | "githu
     action: "click_project_link",
     category: "Projects",
     label: `${projectName} - ${linkType}`,
+  });
+
+  // Log to Firestore
+  logFirestoreProjectClick(projectName, linkType).catch((error) => {
+    console.error('[Analytics] Failed to log project click to Firestore:', error);
   });
 };
 
@@ -98,6 +132,11 @@ export const trackResumeDownload = (): void => {
     category: "Resume",
     label: "PDF Download",
   });
+
+  // Log to Firestore
+  logFirestoreResumeDownload().catch((error) => {
+    console.error('[Analytics] Failed to log resume download to Firestore:', error);
+  });
 };
 
 export const trackContactFormSubmit = (success: boolean): void => {
@@ -106,6 +145,13 @@ export const trackContactFormSubmit = (success: boolean): void => {
     category: "Contact",
     label: success ? "Success" : "Error",
   });
+
+  // Log to Firestore (only count successful submissions)
+  if (success) {
+    logFirestoreContactSubmit('contact').catch((error) => {
+      console.error('[Analytics] Failed to log contact submit to Firestore:', error);
+    });
+  }
 };
 
 export const trackSocialClick = (platform: string): void => {
@@ -113,6 +159,11 @@ export const trackSocialClick = (platform: string): void => {
     action: "click_social_link",
     category: "Social",
     label: platform,
+  });
+
+  // Log to Firestore
+  logFirestoreSocialClick(platform).catch((error) => {
+    console.error('[Analytics] Failed to log social click to Firestore:', error);
   });
 };
 
@@ -191,6 +242,11 @@ export const trackBlogRead = (postTitle: string, readPercentage: number): void =
     category: "Blog",
     label: postTitle,
     value: readPercentage,
+  });
+
+  // Log to Firestore (simplified - just track that it was read)
+  logFirestoreBlogRead(postTitle).catch((error) => {
+    console.error('[Analytics] Failed to log blog read to Firestore:', error);
   });
 };
 

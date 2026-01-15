@@ -142,7 +142,7 @@ const ContactPage: React.FC = () => {
 
       {/* Calendly Modal */}
       <PopupModal
-        url="https://cal.com/vaporjawn"
+        url="https://calendly.com/victor-williams-dev/introductory-call"
         onModalClose={() => setIsCalendlyOpen(false)}
         open={isCalendlyOpen}
         rootElement={document.getElementById("root") as HTMLElement}

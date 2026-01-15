@@ -128,11 +128,16 @@ export const ContactMethods: React.FC<ContactMethodsProps> = ({
 
         <Grid
           container
-          spacing={{ xs: 3, md: 4 }}
-          sx={{ px: { xs: 0, md: 2 } }}
+          spacing={{ xs: 3, md: 1 }}
+          justifyContent="center"
+          sx={{
+            maxWidth: 1100,
+            mx: "auto",
+            flexWrap: { md: "nowrap" }
+          }}
         >
           {contactMethods.map((method, index) => (
-            <Grid item xs={12} md={4} key={index}>
+            <Grid item xs={12} sm={12} md={4} lg={4} key={index}>
               <Card
                 sx={{
                   height: "100%",
@@ -150,7 +155,7 @@ export const ContactMethods: React.FC<ContactMethodsProps> = ({
                   overflow: "hidden",
                   boxShadow: `0 8px 32px ${method.color}15`,
                   "&::before": {
-                    content: '""',
+                    content: "\"\"",
                     position: "absolute",
                     top: 0,
                     left: 0,

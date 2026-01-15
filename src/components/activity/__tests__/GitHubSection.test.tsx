@@ -119,7 +119,7 @@ describe("GitHubSection", () => {
     expect(screen.getByText(/Opened PR for new feature/)).toBeInTheDocument();
   });
 
-  it('displays "No recent activity" when events array is empty', () => {
+  it("displays \"No recent activity\" when events array is empty", () => {
     render(
       <GitHubSection
         events={[]}

@@ -48,31 +48,31 @@ describe("ActivityLegend", () => {
     // Component uses Stack (not list), so verify by checking unique text per item
     // Using stronger selectors to avoid "Found multiple elements" error
     expect(screen.getByText((content, element) => {
-      return element?.tagName === 'STRONG' && content === 'Push';
+      return element?.tagName === "STRONG" && content === "Push";
     })).toBeInTheDocument();
     expect(screen.getByText((content, element) => {
-      return element?.tagName === 'STRONG' && content === 'PR Opened';
+      return element?.tagName === "STRONG" && content === "PR Opened";
     })).toBeInTheDocument();
     expect(screen.getByText((content, element) => {
-      return element?.tagName === 'STRONG' && content === 'PR Merged';
+      return element?.tagName === "STRONG" && content === "PR Merged";
     })).toBeInTheDocument();
     expect(screen.getByText((content, element) => {
-      return element?.tagName === 'STRONG' && content === 'Release';
+      return element?.tagName === "STRONG" && content === "Release";
     })).toBeInTheDocument();
     expect(screen.getByText((content, element) => {
-      return element?.tagName === 'STRONG' && content === 'Fork';
+      return element?.tagName === "STRONG" && content === "Fork";
     })).toBeInTheDocument();
     expect(screen.getByText((content, element) => {
-      return element?.tagName === 'STRONG' && content === 'Star';
+      return element?.tagName === "STRONG" && content === "Star";
     })).toBeInTheDocument();
     expect(screen.getByText((content, element) => {
-      return element?.tagName === 'STRONG' && content === 'Issue Opened';
+      return element?.tagName === "STRONG" && content === "Issue Opened";
     })).toBeInTheDocument();
     expect(screen.getByText((content, element) => {
-      return element?.tagName === 'STRONG' && content === 'Issue Comment';
+      return element?.tagName === "STRONG" && content === "Issue Comment";
     })).toBeInTheDocument();
     expect(screen.getByText((content, element) => {
-      return element?.tagName === 'STRONG' && content === 'npm Publish';
+      return element?.tagName === "STRONG" && content === "npm Publish";
     })).toBeInTheDocument();
   });
 

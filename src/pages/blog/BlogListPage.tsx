@@ -19,7 +19,7 @@ import {
   useTheme,
   alpha,
 } from "@mui/material";
-import { Search as SearchIcon, CalendarToday, AccessTime } from "@mui/icons-material";
+import { Search as SearchIcon, CalendarToday, AccessTime, Article as ArticleIcon } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import SEO from "../../components/SEO/SEO";
@@ -249,48 +249,155 @@ const BlogListPage: React.FC = () => {
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1 * index }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{
+                      duration: 0.5,
+                      delay: index * 0.08,
+                      ease: [0.25, 0.1, 0.25, 1],
+                    }}
+                    style={{ height: "100%" }}
                   >
                     <Card
+                      elevation={0}
                       sx={{
                         height: "100%",
                         display: "flex",
                         flexDirection: "column",
-                        borderRadius: 3,
-                        transition: "all 0.3s",
+                        borderRadius: 4,
+                        background: alpha(theme.palette.background.paper, 0.85),
+                        backdropFilter: "blur(10px)",
+                        border: `1px solid ${alpha(theme.palette.primary.main, 0.15)}`,
+                        transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+                        overflow: "hidden",
+                        "@media (prefers-reduced-motion: reduce)": {
+                          transition: "none",
+                        },
                         "&:hover": {
-                          transform: "translateY(-8px)",
-                          boxShadow: theme.shadows[12],
+                          transform: "translateY(-12px)",
+                          borderColor: alpha(theme.palette.primary.main, 0.4),
+                          boxShadow: `0 20px 40px ${alpha(theme.palette.primary.main, 0.25)},
+                                     0 0 0 1px ${alpha(theme.palette.primary.main, 0.1)}`,
                         },
                       }}
                     >
-                      <CardActionArea onClick={() => handlePostClick(post.slug)}>
-                        {post.image && (
-                          <CardMedia
-                            component="img"
-                            height="220"
-                            image={post.image}
-                            alt={post.title}
-                            sx={{
-                              objectFit: "cover",
-                            }}
-                          />
-                        )}
+                      <CardActionArea
+                        onClick={() => handlePostClick(post.slug)}
+                        sx={{
+                          height: "100%",
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "stretch",
+                        }}
+                      >
+                        {/* Thumbnail Area - Always rendered for consistent card heights */}
+                        <Box
+                          sx={{
+                            position: "relative",
+                            height: 240,
+                            overflow: "hidden",
+                            background: post.image
+                              ? "transparent"
+                              : `linear-gradient(135deg, ${alpha(theme.palette.primary.main, 0.15)} 0%, ${alpha(theme.palette.secondary.main, 0.15)} 100%)`,
+                            backdropFilter: post.image ? "none" : "blur(10px)",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            "&::after": {
+                              content: "\"\"",
+                              position: "absolute",
+                              top: 0,
+                              left: 0,
+                              right: 0,
+                              bottom: 0,
+                              background: post.image
+                                ? `linear-gradient(
+                                    to bottom,
+                                    ${alpha(theme.palette.background.default, 0.3)} 0%,
+                                    ${alpha(theme.palette.primary.main, 0.1)} 100%
+                                  )`
+                                : "none",
+                              transition: "opacity 0.3s ease",
+                              pointerEvents: "none",
+                            },
+                            "&:hover::after": {
+                              opacity: post.image ? 0.6 : 1,
+                            },
+                          }}
+                        >
+                          {post.image ? (
+                            <CardMedia
+                              component="img"
+                              height="240"
+                              image={post.image}
+                              alt={post.title}
+                              sx={{
+                                objectFit: "cover",
+                                transition: "transform 0.4s ease",
+                                width: "100%",
+                                "&:hover": {
+                                  transform: "scale(1.05)",
+                                },
+                              }}
+                            />
+                          ) : (
+                            <ArticleIcon
+                              sx={{
+                                fontSize: 80,
+                                color: alpha(theme.palette.primary.main, 0.4),
+                                transition: "all 0.4s ease",
+                                zIndex: 1,
+                                "&:hover": {
+                                  color: alpha(theme.palette.primary.main, 0.6),
+                                  transform: "scale(1.1)",
+                                },
+                              }}
+                            />
+                          )}
+                        </Box>
                         <CardContent sx={{ flexGrow: 1, p: 3 }}>
-                          <Box mb={2}>
-                            <Stack direction="row" spacing={1} mb={1.5}>
-                              {post.tags.slice(0, 3).map(tag => (
+                          <Box mb={2.5}>
+                            <Stack direction="row" spacing={1} mb={2} flexWrap="wrap" useFlexGap>
+                              {post.tags.slice(0, 3).map((tag, tagIndex) => (
                                 <Chip
                                   key={tag}
                                   label={tag}
-                                  size="small"
-                                  sx={{
-                                    bgcolor: alpha(theme.palette.primary.main, 0.1),
+                                  size={tagIndex === 0 ? "medium" : "small"}
+                                  sx={tagIndex === 0 ? {
+                                    background: `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+                                    color: "#fff",
+                                    fontWeight: 700,
+                                    fontSize: "0.8125rem",
+                                    letterSpacing: "0.02em",
+                                    transition: "all 0.3s ease",
+                                    "&:hover": {
+                                      transform: "translateY(-2px)",
+                                      boxShadow: `0 4px 12px ${alpha(theme.palette.primary.main, 0.4)}`,
+                                    },
+                                  } : {
+                                    bgcolor: alpha(theme.palette.primary.main, 0.08),
                                     color: theme.palette.primary.main,
                                     fontWeight: 600,
+                                    fontSize: "0.75rem",
+                                    border: `1px solid ${alpha(theme.palette.primary.main, 0.2)}`,
+                                    transition: "all 0.2s ease",
+                                    "&:hover": {
+                                      bgcolor: alpha(theme.palette.primary.main, 0.15),
+                                      borderColor: alpha(theme.palette.primary.main, 0.4),
+                                    },
                                   }}
                                 />
                               ))}
+                              {post.tags.length > 3 && (
+                                <Chip
+                                  label={`+${post.tags.length - 3}`}
+                                  size="small"
+                                  sx={{
+                                    bgcolor: alpha(theme.palette.text.secondary, 0.08),
+                                    color: theme.palette.text.secondary,
+                                    fontSize: "0.75rem",
+                                  }}
+                                />
+                              )}
                             </Stack>
                           </Box>
 
@@ -300,11 +407,20 @@ const BlogListPage: React.FC = () => {
                             gutterBottom
                             sx={{
                               fontWeight: 700,
-                              mb: 1.5,
+                              mb: 2,
+                              fontSize: "1.5rem",
+                              lineHeight: 1.3,
                               display: "-webkit-box",
                               WebkitLineClamp: 2,
                               WebkitBoxOrient: "vertical",
                               overflow: "hidden",
+                              transition: "all 0.3s ease",
+                              "&:hover": {
+                                background: `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+                                backgroundClip: "text",
+                                WebkitBackgroundClip: "text",
+                                WebkitTextFillColor: "transparent",
+                              },
                             }}
                           >
                             {post.title}
@@ -314,7 +430,8 @@ const BlogListPage: React.FC = () => {
                             variant="body2"
                             color="text.secondary"
                             sx={{
-                              mb: 2,
+                              mb: 3,
+                              lineHeight: 1.7,
                               display: "-webkit-box",
                               WebkitLineClamp: 3,
                               WebkitBoxOrient: "vertical",
@@ -326,19 +443,49 @@ const BlogListPage: React.FC = () => {
 
                           <Stack
                             direction="row"
-                            spacing={2}
+                            spacing={3}
                             alignItems="center"
-                            sx={{ mt: "auto" }}
+                            sx={{
+                              mt: "auto",
+                              pt: 2,
+                              borderTop: `1px solid ${alpha(theme.palette.divider, 0.5)}`,
+                            }}
                           >
-                            <Stack direction="row" spacing={0.5} alignItems="center">
-                              <CalendarToday sx={{ fontSize: 16, color: "text.secondary" }} />
-                              <Typography variant="caption" color="text.secondary">
+                            <Stack direction="row" spacing={0.75} alignItems="center">
+                              <CalendarToday
+                                sx={{
+                                  fontSize: 18,
+                                  color: theme.palette.primary.main,
+                                  opacity: 0.8,
+                                }}
+                              />
+                              <Typography
+                                variant="caption"
+                                sx={{
+                                  color: theme.palette.text.secondary,
+                                  fontWeight: 500,
+                                  fontSize: "0.8125rem",
+                                }}
+                              >
                                 {formatDate(post.date)}
                               </Typography>
                             </Stack>
-                            <Stack direction="row" spacing={0.5} alignItems="center">
-                              <AccessTime sx={{ fontSize: 16, color: "text.secondary" }} />
-                              <Typography variant="caption" color="text.secondary">
+                            <Stack direction="row" spacing={0.75} alignItems="center">
+                              <AccessTime
+                                sx={{
+                                  fontSize: 18,
+                                  color: theme.palette.secondary.main,
+                                  opacity: 0.8,
+                                }}
+                              />
+                              <Typography
+                                variant="caption"
+                                sx={{
+                                  color: theme.palette.text.secondary,
+                                  fontWeight: 500,
+                                  fontSize: "0.8125rem",
+                                }}
+                              >
                                 {post.readTime} min read
                               </Typography>
                             </Stack>

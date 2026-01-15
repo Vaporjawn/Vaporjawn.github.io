@@ -10,10 +10,25 @@ import { initSentry } from "./utils/errorTracking";
 import { initPerformanceMonitoring, monitorLongTasks } from "./utils/performanceMonitoring";
 import { registerServiceWorker, setupInstallPrompt } from "./utils/pwa";
 import { initHotjar } from "./utils/hotjar";
+import { initializeFirebase } from "./backend/firebase";
+
 // Material Web Components imports removed - not currently used in the application
 // import "@material/web/button/filled-button.js";
 // import "@material/web/button/outlined-button.js";
 // import "@material/web/checkbox/checkbox.js";
+
+// Initialize Firebase services
+try {
+  console.log(`[App] Initializing Firebase... (Build timestamp: ${new Date().toISOString()})`);
+  initializeFirebase({
+    enableAnalytics: true,
+    enableOfflinePersistence: true,
+  });
+  console.log('[App] Firebase initialized successfully');
+} catch (error) {
+  console.error('[App] Failed to initialize Firebase:', error);
+  // Continue app initialization even if Firebase fails
+}
 
 // Initialize monitoring services
 if (import.meta.env.PROD) {

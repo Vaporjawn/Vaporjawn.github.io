@@ -16,7 +16,8 @@ export type SocialBrandKey =
   | "devpost"
   | "buymeacoffee"
   | "reddit"
-  | "threads";
+  | "threads"
+  | "calendly";
 
 export interface BrandColorSpec {
   light: string;
@@ -83,6 +84,10 @@ export const brandColors: Record<SocialBrandKey, BrandColorSpec> = {
   threads: {
     light: "#000000",
     dark: "#FFFFFF",
+  },
+  calendly: {
+    light: "#006BFF",
+    dark: "#3D9EFF",
   },
 };
 

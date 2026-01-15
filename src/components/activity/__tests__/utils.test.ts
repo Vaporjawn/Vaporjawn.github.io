@@ -17,7 +17,7 @@ describe("relativeTime", () => {
     vi.useRealTimers();
   });
 
-  it('returns "just now" for timestamps less than 45 seconds ago', () => {
+  it("returns \"just now\" for timestamps less than 45 seconds ago", () => {
     const thirtySecsAgo = new Date("2024-01-15T11:59:30Z").toISOString();
     expect(relativeTime(thirtySecsAgo)).toBe("just now");
   });
@@ -67,7 +67,7 @@ describe("relativeTime", () => {
     expect(result).toMatch(/2023/);
   });
 
-  it('handles future timestamps with "in" prefix', () => {
+  it("handles future timestamps with \"in\" prefix", () => {
     const fiveMinutesFromNow = new Date("2024-01-15T12:05:00Z").toISOString();
     expect(relativeTime(fiveMinutesFromNow)).toBe("in 5m");
 
