@@ -1,4 +1,4 @@
-﻿# Deploy to GitHub Pages using GitHub Actions
+# Deploy to GitHub Pages using GitHub Actions
 # This replaces the old gh-pages npm package workflow
 
 name: Deploy to GitHub Pages
@@ -44,7 +44,7 @@ jobs:
         run: npm run build
 
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
