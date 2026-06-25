@@ -59,6 +59,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
+    "@playwright/test": "^1.61.1",
     "@tanstack/react-query-devtools": "^5.101.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.1",
