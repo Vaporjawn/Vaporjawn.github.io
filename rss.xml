@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Victor Williams - Full-Stack Developer</title>
+    <description>Portfolio and blog of Victor Williams - Expert Full-Stack Developer specializing in React, TypeScript, Node.js, and cloud solutions</description>
+    <link>https://www.vaporjawn.dev</link>
+    <atom:link href="https://www.vaporjawn.dev/rss.xml" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>Fri, 26 Dec 2025 06:11:46 GMT</lastBuildDate>
+    <language>en-US</language>
+    
+    <item>
+      <title><![CDATA[Building a Modern Portfolio with React + TypeScript]]></title>
+      <description><![CDATA[A comprehensive guide to creating a professional portfolio website using React, TypeScript, and modern web technologies.]]></description>
+      <link>https://www.vaporjawn.dev/blog/building-modern-portfolio</link>
+      <guid isPermaLink="true">https://www.vaporjawn.dev/blog/building-modern-portfolio</guid>
+      <pubDate>Thu, 25 Dec 2025 00:00:00 GMT</pubDate>
+      <author>Victor Williams</author>
+      <category>React</category>
+      <category>TypeScript</category>
+      <category>Web Development</category>
+      <category>Portfolio</category>
+    </item>
+
+    <item>
+      <title><![CDATA[Mastering Core Web Vitals for Peak Performance]]></title>
+      <description><![CDATA[Learn how to optimize your website for Google]]></description>
+      <link>https://www.vaporjawn.dev/blog/mastering-core-web-vitals</link>
+      <guid isPermaLink="true">https://www.vaporjawn.dev/blog/mastering-core-web-vitals</guid>
+      <pubDate>Sat, 20 Dec 2025 00:00:00 GMT</pubDate>
+      <author>Victor Williams</author>
+      <category>Performance</category>
+      <category>Web Vitals</category>
+      <category>Optimization</category>
+      <category>SEO</category>
+    </item>
+
+    <item>
+      <title><![CDATA[Integrating Sentry and Analytics in Production React Apps]]></title>
+      <description><![CDATA[Complete guide to implementing Sentry error tracking, performance monitoring, and Google Analytics 4 in production React applications with TypeScript.]]></description>
+      <link>https://www.vaporjawn.dev/blog/sentry-analytics-production</link>
+      <guid isPermaLink="true">https://www.vaporjawn.dev/blog/sentry-analytics-production</guid>
+      <pubDate>Thu, 18 Dec 2025 00:00:00 GMT</pubDate>
+      <author>Victor Williams</author>
+      <category>Sentry</category>
+      <category>Analytics</category>
+      <category>Monitoring</category>
+      <category>React</category>
+      <category>Production</category>
+    </item>
+  </channel>
+</rss>
