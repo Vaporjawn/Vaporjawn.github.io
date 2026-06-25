@@ -15,6 +15,7 @@
  */
 import React from "react";
 import { Box, Typography, useTheme, alpha } from "@mui/material";
+import type { Theme } from "@mui/material/styles";
 import {
   Radar,
   RadarChart,
@@ -58,6 +59,45 @@ const defaultSkillsData: SkillData[] = [
   { skill: "System Design", proficiency: 85, fullMark: 100 },
 ];
 
+// TooltipProps for Recharts custom tooltip
+interface TooltipProps {
+  active?: boolean;
+  payload?: Array<{
+    payload: SkillData;
+    value: number;
+  }>;
+}
+
+/**
+ * CustomTooltip — defined at module scope so React Compiler / Fast Refresh
+ * never sees a new component type created during render of SkillsRadarChart.
+ * Calls useTheme() directly so it can access palette values independently.
+ */
+const CustomTooltip: React.FC<TooltipProps> = ({ active, payload }) => {
+  const theme: Theme = useTheme();
+  if (active && payload && payload.length) {
+    return (
+      <Box
+        sx={{
+          bgcolor: alpha(theme.palette.background.paper, 0.95),
+          p: 1.5,
+          border: `1px solid ${theme.palette.divider}`,
+          borderRadius: 1,
+          boxShadow: 3,
+        }}
+      >
+        <Typography variant="body2" fontWeight={600}>
+          {payload[0].payload.skill}
+        </Typography>
+        <Typography variant="body2" color="primary">
+          Proficiency: {payload[0].value}%
+        </Typography>
+      </Box>
+    );
+  }
+  return null;
+};
+
 /**
  * SkillsRadarChart component renders a radar chart visualization
  *
@@ -80,46 +120,6 @@ const SkillsRadarChart: React.FC<SkillsRadarChartProps> = ({
   data = defaultSkillsData,
 }) => {
   const theme = useTheme();
-
-  /**
-   * TooltipProps interface for Recharts tooltip
-   */
-  interface TooltipProps {
-    active?: boolean;
-    payload?: Array<{
-      payload: SkillData;
-      value: number;
-    }>;
-  }
-
-  /**
-   * CustomTooltip displays skill proficiency on hover
-   * @param active - Whether tooltip is active
-   * @param payload - Data payload from chart
-   */
-  const CustomTooltip = ({ active, payload }: TooltipProps) => {
-    if (active && payload && payload.length) {
-      return (
-        <Box
-          sx={{
-            bgcolor: alpha(theme.palette.background.paper, 0.95),
-            p: 1.5,
-            border: `1px solid ${theme.palette.divider}`,
-            borderRadius: 1,
-            boxShadow: 3,
-          }}
-        >
-          <Typography variant="body2" fontWeight={600}>
-            {payload[0].payload.skill}
-          </Typography>
-          <Typography variant="body2" color="primary">
-            Proficiency: {payload[0].value}%
-          </Typography>
-        </Box>
-      );
-    }
-    return null;
-  };
 
   return (
     <Box>
@@ -155,7 +155,7 @@ const SkillsRadarChart: React.FC<SkillsRadarChartProps> = ({
             fillOpacity={0.6}
             strokeWidth={2}
           />
-          <Tooltip content={<CustomTooltip />} />
+          <Tooltip content={CustomTooltip} />
         </RadarChart>
       </ResponsiveContainer>
     </Box>

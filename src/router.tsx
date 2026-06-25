@@ -10,9 +10,24 @@ import { createVaporwaveTheme } from "./theme/theme";
 import { Box, CircularProgress } from "@mui/material";
 import HomePath from "./routes/homePath";
 import { PortfolioProvider } from "./contexts/PortfolioContext";
-import { AdminAuthProvider } from "./contexts/AdminAuthContext";
+import { AdminAuthProvider } from "./contexts/AdminAuthProvider";
 import SkipNavigation from "./components/a11y/SkipNavigation";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+
+/**
+ * Shared Suspense fallback spinner — defined at module scope so React does not
+ * create a new component type on every render of AppRouter.
+ */
+const LoadingSpinner = () => (
+  <Box
+    display="flex"
+    justifyContent="center"
+    alignItems="center"
+    minHeight="50vh"
+  >
+    <CircularProgress />
+  </Box>
+);
 
 // Lazy load components for better performance
 const HomePage = lazy(() => import("./pages/home/homePage"));
@@ -63,17 +78,6 @@ const Router = () => {
    * Admin routes include: /admin, /admin/login, /admin/settings, etc.
    */
   const isAdminRoute = location.pathname.startsWith("/admin");
-
-  const LoadingSpinner = () => (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      minHeight="50vh"
-    >
-      <CircularProgress />
-    </Box>
-  );
 
   // Add smooth theme transition
   useEffect(() => {

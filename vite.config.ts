@@ -24,9 +24,22 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
+          // Core React runtime — changes rarely, long cache life
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          // MUI component library — large but stable
           'mui-vendor': ['@mui/material', '@mui/icons-material'],
+          // Animation library
           'animation-vendor': ['framer-motion'],
+          // Charting library — used only by admin + activity pages
+          'charts-vendor': ['recharts'],
+          // Firebase SDK — used only by admin, analytics, blog services
+          'firebase-vendor': [
+            'firebase/app',
+            'firebase/auth',
+            'firebase/firestore',
+            'firebase/storage',
+            'firebase/analytics',
+          ],
         },
       },
     },

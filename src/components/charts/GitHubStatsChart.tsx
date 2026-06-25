@@ -119,7 +119,7 @@ const GitHubStatsChart: React.FC<GitHubStatsChartProps> = ({
 
       {/* Stats Cards */}
       <Grid container spacing={2} mb={4}>
-        <Grid item xs={6} md={3}>
+        <Grid size={{ xs: 6, md: 3 }}>
           <StatCard
             icon={<StarIcon sx={{ fontSize: 32 }} />}
             label="Total Stars"
@@ -127,7 +127,7 @@ const GitHubStatsChart: React.FC<GitHubStatsChartProps> = ({
             color={theme.palette.warning.main}
           />
         </Grid>
-        <Grid item xs={6} md={3}>
+        <Grid size={{ xs: 6, md: 3 }}>
           <StatCard
             icon={<ForkRightIcon sx={{ fontSize: 32 }} />}
             label="Total Forks"
@@ -135,7 +135,7 @@ const GitHubStatsChart: React.FC<GitHubStatsChartProps> = ({
             color={theme.palette.info.main}
           />
         </Grid>
-        <Grid item xs={6} md={3}>
+        <Grid size={{ xs: 6, md: 3 }}>
           <StatCard
             icon={<CodeIcon sx={{ fontSize: 32 }} />}
             label="Repositories"
@@ -143,7 +143,7 @@ const GitHubStatsChart: React.FC<GitHubStatsChartProps> = ({
             color={theme.palette.primary.main}
           />
         </Grid>
-        <Grid item xs={6} md={3}>
+        <Grid size={{ xs: 6, md: 3 }}>
           <StatCard
             icon={<TrendingUpIcon sx={{ fontSize: 32 }} />}
             label="Day Streak"
@@ -156,7 +156,7 @@ const GitHubStatsChart: React.FC<GitHubStatsChartProps> = ({
       {/* Charts Grid */}
       <Grid container spacing={3}>
         {/* Contribution Activity */}
-        <Grid item xs={12} md={8}>
+        <Grid size={{ xs: 12, md: 8 }}>
           <Paper
             sx={{
               p: 3,
@@ -208,7 +208,7 @@ const GitHubStatsChart: React.FC<GitHubStatsChartProps> = ({
         </Grid>
 
         {/* Language Distribution */}
-        <Grid item xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <Paper
             sx={{
               p: 3,

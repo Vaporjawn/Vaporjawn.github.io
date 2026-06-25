@@ -22,8 +22,11 @@ export interface HeroSectionProps {
 export interface HeroProfileProps {
   /** Alternative text for profile image (accessibility) */
   alt: string;
-  /** Profile image source URL */
+  /** Profile image source URL (JPEG/PNG fallback for older browsers) */
   src: string;
+  /** Optional WebP source. When provided, the image is wrapped in a <picture> element
+   *  so browsers that support WebP receive the smaller file. */
+  srcWebP?: string;
 }
 
 /**

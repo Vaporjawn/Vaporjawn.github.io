@@ -57,7 +57,7 @@ const Footer: React.FC = () => {
       }}>
         <Grid container spacing={3}>
           {/* Brand Section */}
-          <Grid item xs={12} md={5}>
+          <Grid size={{ xs: 12, md: 5 }}>
             <FooterSection>
               <BrandText variant="h3">Vaporjawn</BrandText>
               <Typography
@@ -98,7 +98,7 @@ const Footer: React.FC = () => {
           </Grid>
 
           {/* Quick Links Section */}
-          <Grid item xs={12} md={3.5}>
+          <Grid size={{ xs: 12, md: 3.5 }}>
             <FooterSection>
               <FooterTitle variant="h6">Quick Links</FooterTitle>
               <Box>
@@ -116,7 +116,7 @@ const Footer: React.FC = () => {
           </Grid>
 
           {/* Services Section */}
-          <Grid item xs={12} md={3.5}>
+          <Grid size={{ xs: 12, md: 3.5 }}>
             <FooterSection>
               <FooterTitle variant="h6">Services</FooterTitle>
               <Box>

@@ -9,8 +9,8 @@ import {
   persistentLocalCache,
   persistentMultipleTabManager,
   type Firestore,
-} from 'firebase/firestore';
-import type { FirebaseApp } from 'firebase/app';
+} from "firebase/firestore";
+import type { FirebaseApp } from "firebase/app";
 
 let firestoreInstance: Firestore | null = null;
 
@@ -36,15 +36,15 @@ export function initializeFirestoreDB(
           tabManager: persistentMultipleTabManager(),
         }),
       });
-      console.log('[Firestore] Initialized with offline persistence');
+      console.log("[Firestore] Initialized with offline persistence");
     } else {
       firestoreInstance = getFirestore(app);
-      console.log('[Firestore] Initialized without persistence');
+      console.log("[Firestore] Initialized without persistence");
     }
 
     return firestoreInstance;
   } catch (error) {
-    console.error('[Firestore] Failed to initialize:', error);
+    console.error("[Firestore] Failed to initialize:", error);
     throw error;
   }
 }
@@ -56,7 +56,7 @@ export function initializeFirestoreDB(
  */
 export function getFirestoreDB(): Firestore {
   if (!firestoreInstance) {
-    throw new Error('Firestore not initialized. Call initializeFirestoreDB() first.');
+    throw new Error("Firestore not initialized. Call initializeFirestoreDB() first.");
   }
   return firestoreInstance;
 }

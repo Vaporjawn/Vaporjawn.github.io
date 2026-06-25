@@ -129,7 +129,9 @@ export const useParallaxBackground = (
   return useMemo(
     () =>
       createParallaxBackground({
-        ...config,
+        primaryColor: config.primaryColor,
+        skylinePath: config.skylinePath,
+        bannerImage: config.bannerImage,
         isDark: theme.palette.mode === "dark",
       }),
     [config.primaryColor, config.skylinePath, config.bannerImage, theme.palette.mode]

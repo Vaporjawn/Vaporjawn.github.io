@@ -3,10 +3,10 @@
  * @module backend/firebase/types
  */
 
-import type { FirebaseApp } from 'firebase/app';
-import type { Analytics } from 'firebase/analytics';
-import type { Firestore } from 'firebase/firestore';
-import type { FirebaseStorage } from 'firebase/storage';
+import type { FirebaseApp } from "firebase/app";
+import type { Analytics } from "firebase/analytics";
+import type { Firestore } from "firebase/firestore";
+import type { FirebaseStorage } from "firebase/storage";
 
 /**
  * Firebase configuration object

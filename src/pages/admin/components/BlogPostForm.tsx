@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Button,
@@ -15,27 +15,27 @@ import {
   CircularProgress,
   IconButton,
   InputAdornment,
-} from '@mui/material';
+} from "@mui/material";
 import {
   Close as CloseIcon,
   Save as SaveIcon,
   Image as ImageIcon,
   AutoFixHigh as AutoIcon,
-} from '@mui/icons-material';
-import { useForm, Controller } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import MDEditor from '@uiw/react-md-editor';
-import { blogPostSchema, type BlogPostSchemaType } from '../../../schemas/blogPostSchema';
+} from "@mui/icons-material";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import MDEditor from "@uiw/react-md-editor";
+import { blogPostSchema, type BlogPostSchemaType } from "../../../schemas/blogPostSchema";
 import {
   createBlogPost,
   updateBlogPost,
   isSlugUnique,
-} from '../../../services/blogPostService';
-import { uploadBlogFeaturedImage } from '../../../services/imageUploadService';
-import { slugify } from '../../../utils/slugify';
-import { calculateReadTime } from '../../../utils/readTimeEstimate';
-import type { FirestoreBlogPost } from '../../../types/blog';
-import { useAdminAuth } from '../../../contexts/AdminAuthContext';
+} from "../../../services/blogPostService";
+import { uploadBlogFeaturedImage } from "../../../services/imageUploadService";
+import { slugify } from "../../../utils/slugify";
+import { calculateReadTime } from "../../../utils/readTimeEstimate";
+import type { FirestoreBlogPost } from "../../../types/blog";
+import { useAdminAuth } from "../../../contexts/AdminAuthContext";
 
 interface BlogPostFormProps {
   post?: FirestoreBlogPost | null;
@@ -57,22 +57,22 @@ export const BlogPostForm: React.FC<BlogPostFormProps> = ({
     post?.featuredImage || null
   );
   const [readTime, setReadTime] = useState(post?.readTime || 0);
-  const [availableTags, setAvailableTags] = useState<string[]>([
-    'React',
-    'TypeScript',
-    'JavaScript',
-    'Web Development',
-    'Firebase',
-    'CSS',
-    'HTML',
-    'Node.js',
-    'Performance',
-    'Accessibility',
-    'UI/UX',
-    'Material-UI',
-    'Tutorial',
-    'Guide',
-    'Best Practices',
+  const [availableTags, _setAvailableTags] = useState<string[]>([
+    "React",
+    "TypeScript",
+    "JavaScript",
+    "Web Development",
+    "Firebase",
+    "CSS",
+    "HTML",
+    "Node.js",
+    "Performance",
+    "Accessibility",
+    "UI/UX",
+    "Material-UI",
+    "Tutorial",
+    "Guide",
+    "Best Practices",
   ]);
 
   const {
@@ -84,27 +84,27 @@ export const BlogPostForm: React.FC<BlogPostFormProps> = ({
   } = useForm<BlogPostSchemaType>({
     resolver: yupResolver(blogPostSchema),
     defaultValues: {
-      title: post?.title || '',
-      slug: post?.slug || '',
-      description: post?.description || '',
-      content: post?.content || '',
-      excerpt: post?.excerpt || '',
+      title: post?.title || "",
+      slug: post?.slug || "",
+      description: post?.description || "",
+      content: post?.content || "",
+      excerpt: post?.excerpt || "",
       tags: post?.tags || [],
-      author: post?.author || 'Victor Williams', // Default admin author
+      author: post?.author || "Victor Williams", // Default admin author
       published: post?.published || false,
     },
   });
 
-  const watchTitle = watch('title');
-  const watchContent = watch('content');
-  const watchSlug = watch('slug');
+  const watchTitle = watch("title");
+  const watchContent = watch("content");
+  const _watchSlug = watch("slug");
 
   // Auto-generate slug from title
   useEffect(() => {
     if (watchTitle && !post) {
       // Only auto-generate for new posts
       const newSlug = slugify(watchTitle);
-      setValue('slug', newSlug, { shouldValidate: true });
+      setValue("slug", newSlug, { shouldValidate: true });
     }
   }, [watchTitle, post, setValue]);
 
@@ -121,16 +121,16 @@ export const BlogPostForm: React.FC<BlogPostFormProps> = ({
     const file = event.target.files?.[0];
     if (file) {
       // Validate file type
-      const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+      const validTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif", "image/webp"];
       if (!validTypes.includes(file.type)) {
-        setError('Please select a valid image file (JPEG, PNG, GIF, or WebP)');
+        setError("Please select a valid image file (JPEG, PNG, GIF, or WebP)");
         return;
       }
 
       // Validate file size (5MB)
       const maxSize = 5 * 1024 * 1024;
       if (file.size > maxSize) {
-        setError('Image file size must be less than 5MB');
+        setError("Image file size must be less than 5MB");
         return;
       }
 
@@ -155,7 +155,7 @@ export const BlogPostForm: React.FC<BlogPostFormProps> = ({
   // Form submission
   const onSubmit = async (data: BlogPostSchemaType) => {
     if (!isAuthenticated) {
-      setError('You must be logged in to create or edit blog posts');
+      setError("You must be logged in to create or edit blog posts");
       return;
     }
 
@@ -187,7 +187,7 @@ export const BlogPostForm: React.FC<BlogPostFormProps> = ({
       }
 
       // Use a default author ID for admin posts (can be customized)
-      const authorId = 'admin'; // Or get from environment variable
+      const authorId = "admin"; // Or get from environment variable
 
       // Create or update blog post
       if (post) {
@@ -201,11 +201,11 @@ export const BlogPostForm: React.FC<BlogPostFormProps> = ({
       // Success - close form and refresh list
       onSuccess();
     } catch (err) {
-      console.error('Error saving blog post:', err);
+      console.error("Error saving blog post:", err);
       setError(
         err instanceof Error
           ? err.message
-          : 'An error occurred while saving the blog post. Please try again.'
+          : "An error occurred while saving the blog post. Please try again."
       );
     } finally {
       setLoading(false);
@@ -214,20 +214,20 @@ export const BlogPostForm: React.FC<BlogPostFormProps> = ({
   };
 
   return (
-    <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+    <Box sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
       {/* Header */}
       <Box
         sx={{
           p: 2,
           borderBottom: 1,
-          borderColor: 'divider',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
+          borderColor: "divider",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
         }}
       >
         <Typography variant="h5">
-          {post ? 'Edit Blog Post' : 'Create New Blog Post'}
+          {post ? "Edit Blog Post" : "Create New Blog Post"}
         </Typography>
         <IconButton onClick={onCancel} disabled={loading}>
           <CloseIcon />
@@ -235,7 +235,7 @@ export const BlogPostForm: React.FC<BlogPostFormProps> = ({
       </Box>
 
       {/* Form Content */}
-      <Box sx={{ flexGrow: 1, overflow: 'auto', p: 3 }}>
+      <Box sx={{ flexGrow: 1, overflow: "auto", p: 3 }}>
         <form onSubmit={handleSubmit(onSubmit)}>
           {error && (
             <Alert severity="error" sx={{ mb: 3 }} onClose={() => setError(null)}>
@@ -245,7 +245,7 @@ export const BlogPostForm: React.FC<BlogPostFormProps> = ({
 
           <Grid container spacing={3}>
             {/* Left Column - Main Content */}
-            <Grid item xs={12} md={8}>
+            <Grid size={{ xs: 12, md: 8 }}>
               {/* Title */}
               <Controller
                 name="title"
@@ -277,7 +277,7 @@ export const BlogPostForm: React.FC<BlogPostFormProps> = ({
                     error={!!errors.slug}
                     helperText={
                       errors.slug?.message ||
-                      'Lowercase letters, numbers, and hyphens only'
+                      "Lowercase letters, numbers, and hyphens only"
                     }
                     sx={{ mb: 3 }}
                     disabled={loading}
@@ -286,7 +286,7 @@ export const BlogPostForm: React.FC<BlogPostFormProps> = ({
                         <InputAdornment position="end">
                           <IconButton
                             onClick={() =>
-                              setValue('slug', slugify(watchTitle), {
+                              setValue("slug", slugify(watchTitle), {
                                 shouldValidate: true,
                               })
                             }
@@ -306,7 +306,7 @@ export const BlogPostForm: React.FC<BlogPostFormProps> = ({
               {/* Content Editor */}
               <Box sx={{ mb: 3 }}>
                 <Typography variant="subtitle2" gutterBottom>
-                  Content <span style={{ color: 'red' }}>*</span>
+                  Content <span style={{ color: "red" }}>*</span>
                 </Typography>
                 <Controller
                   name="content"
@@ -315,7 +315,7 @@ export const BlogPostForm: React.FC<BlogPostFormProps> = ({
                     <Box data-color-mode="light">
                       <MDEditor
                         value={field.value}
-                        onChange={(value) => field.onChange(value || '')}
+                        onChange={(value) => field.onChange(value || "")}
                         height={400}
                         preview="edit"
                         hideToolbar={false}
@@ -328,7 +328,7 @@ export const BlogPostForm: React.FC<BlogPostFormProps> = ({
                         <Typography
                           variant="caption"
                           color="error"
-                          sx={{ mt: 0.5, display: 'block' }}
+                          sx={{ mt: 0.5, display: "block" }}
                         >
                           {errors.content.message}
                         </Typography>
@@ -352,7 +352,7 @@ export const BlogPostForm: React.FC<BlogPostFormProps> = ({
                     error={!!errors.excerpt}
                     helperText={
                       errors.excerpt?.message ||
-                      'Brief summary for previews. Auto-generated if empty.'
+                      "Brief summary for previews. Auto-generated if empty."
                     }
                     sx={{ mb: 3 }}
                     disabled={loading}
@@ -362,7 +362,7 @@ export const BlogPostForm: React.FC<BlogPostFormProps> = ({
             </Grid>
 
             {/* Right Column - Metadata */}
-            <Grid item xs={12} md={4}>
+            <Grid size={{ xs: 12, md: 4 }}>
               <Card sx={{ mb: 3 }}>
                 <CardContent>
                   {/* Publish Toggle */}
@@ -378,7 +378,7 @@ export const BlogPostForm: React.FC<BlogPostFormProps> = ({
                             disabled={loading}
                           />
                         }
-                        label={field.value ? 'Published' : 'Draft'}
+                        label={field.value ? "Published" : "Draft"}
                         sx={{ mb: 2 }}
                       />
                     )}
@@ -434,7 +434,7 @@ export const BlogPostForm: React.FC<BlogPostFormProps> = ({
                             label="Tags"
                             error={!!errors.tags}
                             helperText={
-                              errors.tags?.message || 'Type and press Enter to add tags'
+                              errors.tags?.message || "Type and press Enter to add tags"
                             }
                           />
                         )}
@@ -458,7 +458,7 @@ export const BlogPostForm: React.FC<BlogPostFormProps> = ({
                         error={!!errors.description}
                         helperText={
                           errors.description?.message ||
-                          'For SEO and social media previews'
+                          "For SEO and social media previews"
                         }
                         disabled={loading}
                       />
@@ -475,14 +475,14 @@ export const BlogPostForm: React.FC<BlogPostFormProps> = ({
                   </Typography>
 
                   {imagePreview && (
-                    <Box sx={{ position: 'relative', mb: 2 }}>
+                    <Box sx={{ position: "relative", mb: 2 }}>
                       <img
                         src={imagePreview}
                         alt="Featured preview"
                         style={{
-                          width: '100%',
+                          width: "100%",
                           height: 200,
-                          objectFit: 'cover',
+                          objectFit: "cover",
                           borderRadius: 8,
                         }}
                       />
@@ -490,11 +490,11 @@ export const BlogPostForm: React.FC<BlogPostFormProps> = ({
                         onClick={handleImageRemove}
                         disabled={loading}
                         sx={{
-                          position: 'absolute',
+                          position: "absolute",
                           top: 8,
                           right: 8,
-                          bgcolor: 'background.paper',
-                          '&:hover': { bgcolor: 'background.paper' },
+                          bgcolor: "background.paper",
+                          "&:hover": { bgcolor: "background.paper" },
                         }}
                         size="small"
                       >
@@ -505,7 +505,7 @@ export const BlogPostForm: React.FC<BlogPostFormProps> = ({
 
                   <input
                     accept="image/jpeg,image/jpg,image/png,image/gif,image/webp"
-                    style={{ display: 'none' }}
+                    style={{ display: "none" }}
                     id="featured-image-upload"
                     type="file"
                     onChange={handleImageSelect}
@@ -519,7 +519,7 @@ export const BlogPostForm: React.FC<BlogPostFormProps> = ({
                       startIcon={<ImageIcon />}
                       disabled={loading}
                     >
-                      {imagePreview ? 'Change Image' : 'Upload Image'}
+                      {imagePreview ? "Change Image" : "Upload Image"}
                     </Button>
                   </label>
 
@@ -530,9 +530,9 @@ export const BlogPostForm: React.FC<BlogPostFormProps> = ({
                       </Typography>
                       <Box
                         sx={{
-                          width: '100%',
+                          width: "100%",
                           height: 4,
-                          bgcolor: 'grey.300',
+                          bgcolor: "grey.300",
                           borderRadius: 2,
                           mt: 0.5,
                         }}
@@ -540,17 +540,17 @@ export const BlogPostForm: React.FC<BlogPostFormProps> = ({
                         <Box
                           sx={{
                             width: `${uploadProgress}%`,
-                            height: '100%',
-                            bgcolor: 'primary.main',
+                            height: "100%",
+                            bgcolor: "primary.main",
                             borderRadius: 2,
-                            transition: 'width 0.3s',
+                            transition: "width 0.3s",
                           }}
                         />
                       </Box>
                     </Box>
                   )}
 
-                  <Typography variant="caption" color="text.secondary" sx={{ mt: 1, display: 'block' }}>
+                  <Typography variant="caption" color="text.secondary" sx={{ mt: 1, display: "block" }}>
                     JPEG, PNG, GIF, WebP (max 5MB)
                   </Typography>
                 </CardContent>
@@ -565,9 +565,9 @@ export const BlogPostForm: React.FC<BlogPostFormProps> = ({
         sx={{
           p: 2,
           borderTop: 1,
-          borderColor: 'divider',
-          display: 'flex',
-          justifyContent: 'flex-end',
+          borderColor: "divider",
+          display: "flex",
+          justifyContent: "flex-end",
           gap: 2,
         }}
       >
@@ -580,7 +580,7 @@ export const BlogPostForm: React.FC<BlogPostFormProps> = ({
           disabled={loading || !isDirty}
           startIcon={loading ? <CircularProgress size={20} /> : <SaveIcon />}
         >
-          {loading ? 'Saving...' : post ? 'Update Post' : 'Create Post'}
+          {loading ? "Saving..." : post ? "Update Post" : "Create Post"}
         </Button>
       </Box>
     </Box>

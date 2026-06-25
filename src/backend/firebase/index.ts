@@ -3,21 +3,21 @@
  * @module backend/firebase
  */
 
-import type { FirebaseServices, FirebaseInitOptions } from './types';
-import { initializeFirebaseApp } from './initializeApp';
-import { initializeFirebaseAnalytics } from './initializeAnalytics';
-import { initializeFirestoreDB } from './initializeFirestore';
-import { initializeFirebaseStorage } from './initializeStorage';
+import type { FirebaseServices, FirebaseInitOptions } from "./types";
+import { initializeFirebaseApp } from "./initializeApp";
+import { initializeFirebaseAnalytics } from "./initializeAnalytics";
+import { initializeFirestoreDB } from "./initializeFirestore";
+import { initializeFirebaseStorage } from "./initializeStorage";
 
 // Export types
-export type { FirebaseConfig, FirebaseServices, FirebaseInitOptions } from './types';
+export type { FirebaseConfig, FirebaseServices, FirebaseInitOptions } from "./types";
 
 // Export individual initialization functions
-export { initializeFirebaseApp, getFirebaseApp } from './initializeApp';
-export { initializeFirebaseAnalytics, getFirebaseAnalytics } from './initializeAnalytics';
-export { initializeFirestoreDB, getFirestoreDB } from './initializeFirestore';
-export { initializeFirebaseStorage, getFirebaseStorage } from './initializeStorage';
-export { getFirebaseConfig } from './config';
+export { initializeFirebaseApp, getFirebaseApp } from "./initializeApp";
+export { initializeFirebaseAnalytics, getFirebaseAnalytics } from "./initializeAnalytics";
+export { initializeFirestoreDB, getFirestoreDB } from "./initializeFirestore";
+export { initializeFirebaseStorage, getFirebaseStorage } from "./initializeStorage";
+export { getFirebaseConfig } from "./config";
 
 let servicesInitialized = false;
 let services: FirebaseServices | null = null;
@@ -48,11 +48,11 @@ export function initializeFirebase(options: FirebaseInitOptions = {}): FirebaseS
     };
 
     servicesInitialized = true;
-    console.log('[Firebase] All services initialized successfully');
+    console.log("[Firebase] All services initialized successfully");
 
     return services;
   } catch (error) {
-    console.error('[Firebase] Failed to initialize services:', error);
+    console.error("[Firebase] Failed to initialize services:", error);
     throw error;
   }
 }
@@ -64,7 +64,7 @@ export function initializeFirebase(options: FirebaseInitOptions = {}): FirebaseS
  */
 export function getFirebaseServices(): FirebaseServices {
   if (!services) {
-    throw new Error('Firebase services not initialized. Call initializeFirebase() first.');
+    throw new Error("Firebase services not initialized. Call initializeFirebase() first.");
   }
   return services;
 }

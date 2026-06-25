@@ -11,7 +11,7 @@ import { SkillCategory } from "../SkillCategory";
 // Mock framer-motion
 vi.mock("framer-motion", () => ({
   motion: {
-    div: ({ children, ...props }: any) => <div {...props}>{children}</div>,
+    div: ({ children, ...props }: React.ComponentProps<"div">) => <div {...props}>{children}</div>,
   },
 }));
 
@@ -66,7 +66,7 @@ describe("SkillCategory", () => {
   });
 
   it("applies theme-aware primary color to title", () => {
-    const { container } = render(
+    render(
       <SkillCategory title="Frontend" skills={mockSkills} />
     );
     const title = screen.getByText("Frontend");

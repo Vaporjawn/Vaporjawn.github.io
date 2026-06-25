@@ -7,6 +7,9 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
 
+/data/contributions.json
+  Cache-Control: public, max-age=3600
+
 /service-worker.js
   Cache-Control: no-cache
 

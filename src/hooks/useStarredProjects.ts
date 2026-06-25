@@ -1,23 +1,19 @@
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState } from "react";
 
 const FEATURED_OVERRIDES_KEY = "featured-status-overrides";
 
 // Since starred should be the same as featured, we implement localStorage overrides
 // This allows users to star/unstar projects while treating starred === featured
 export const useStarredProjects = () => {
-  const [featuredOverrides, setFeaturedOverrides] = useState<Record<string, boolean>>({});
-
-  // Load featured overrides from localStorage on mount
-  useEffect(() => {
+  // Lazy initializer reads localStorage once on mount — avoids synchronous setState in an effect.
+  const [featuredOverrides, setFeaturedOverrides] = useState<Record<string, boolean>>(() => {
     try {
       const saved = localStorage.getItem(FEATURED_OVERRIDES_KEY);
-      if (saved) {
-        setFeaturedOverrides(JSON.parse(saved));
-      }
-    } catch (error) {
-      console.error("Error loading featured overrides:", error);
+      return saved ? (JSON.parse(saved) as Record<string, boolean>) : {};
+    } catch {
+      return {};
     }
-  }, []);
+  });
 
   // Save featured overrides to localStorage whenever they change
   const saveFeaturedOverrides = useCallback((overrides: Record<string, boolean>) => {

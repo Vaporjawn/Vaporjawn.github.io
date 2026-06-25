@@ -11,16 +11,16 @@ import {
   orderBy,
   limit,
   Timestamp,
-} from 'firebase/firestore';
-import { getFirestoreDB } from '../../backend/firebase';
+} from "firebase/firestore";
+import { getFirestoreDB } from "../../backend/firebase";
 import type {
   DashboardMetrics,
   PageViewDocument,
   AnalyticsEventDocument,
   DeviceType,
   TrafficSource,
-} from './types';
-import { COLLECTIONS } from './types';
+} from "./types";
+import { COLLECTIONS } from "./types";
 
 /**
  * Get date range for querying (default: last 30 days)
@@ -52,8 +52,8 @@ export async function fetchDashboardMetrics(days: number = 30): Promise<Dashboar
     const pageViewsRef = collection(db, COLLECTIONS.PAGE_VIEWS);
     const pageViewsQuery = query(
       pageViewsRef,
-      where('timestamp', '>=', start),
-      where('timestamp', '<=', end)
+      where("timestamp", ">=", start),
+      where("timestamp", "<=", end)
     );
     const pageViewsSnapshot = await getDocs(pageViewsQuery);
     const pageViews = pageViewsSnapshot.docs.map((doc) => doc.data() as PageViewDocument);
@@ -62,8 +62,8 @@ export async function fetchDashboardMetrics(days: number = 30): Promise<Dashboar
     const eventsRef = collection(db, COLLECTIONS.EVENTS);
     const eventsQuery = query(
       eventsRef,
-      where('timestamp', '>=', start),
-      where('timestamp', '<=', end)
+      where("timestamp", ">=", start),
+      where("timestamp", "<=", end)
     );
     const eventsSnapshot = await getDocs(eventsQuery);
     const events = eventsSnapshot.docs.map((doc) => doc.data() as AnalyticsEventDocument);
@@ -71,10 +71,10 @@ export async function fetchDashboardMetrics(days: number = 30): Promise<Dashboar
     // Calculate metrics
     const metrics = calculateMetrics(pageViews, events, days);
 
-    console.log('[Analytics] Dashboard metrics fetched successfully');
+    console.log("[Analytics] Dashboard metrics fetched successfully");
     return metrics;
   } catch (error) {
-    console.error('[Analytics] Failed to fetch dashboard metrics:', error);
+    console.error("[Analytics] Failed to fetch dashboard metrics:", error);
     throw error;
   }
 }
@@ -89,7 +89,7 @@ export async function fetchDashboardMetrics(days: number = 30): Promise<Dashboar
 function calculateMetrics(
   pageViews: PageViewDocument[],
   events: AnalyticsEventDocument[],
-  days: number
+  _days: number
 ): DashboardMetrics {
   // Unique visitors (unique sessionIds)
   const uniqueSessions = new Set(pageViews.map((pv) => pv.sessionId));
@@ -130,10 +130,10 @@ function calculateMetrics(
       : 0;
 
   // Count events by type
-  const contactForms = events.filter((e) => e.type === 'contact_submit').length;
-  const projectViews = events.filter((e) => e.type === 'project_view').length;
-  const socialClicks = events.filter((e) => e.type === 'social_click').length;
-  const blogReads = events.filter((e) => e.type === 'blog_read').length;
+  const contactForms = events.filter((e) => e.type === "contact_submit").length;
+  const projectViews = events.filter((e) => e.type === "project_view").length;
+  const socialClicks = events.filter((e) => e.type === "social_click").length;
+  const blogReads = events.filter((e) => e.type === "blog_read").length;
 
   // Top pages
   const pageCounts = new Map<string, number>();
@@ -169,7 +169,7 @@ function calculateMetrics(
   // Page views trend (group by date)
   const viewsByDate = new Map<string, number>();
   pageViews.forEach((pv) => {
-    const date = new Date(pv.timestamp.toMillis()).toISOString().split('T')[0];
+    const [date] = new Date(pv.timestamp.toMillis()).toISOString().split("T");
     viewsByDate.set(date, (viewsByDate.get(date) || 0) + 1);
   });
   const pageViewsTrend = Array.from(viewsByDate.entries())
@@ -203,12 +203,12 @@ export async function getRecentPageViews(count: number = 100): Promise<PageViewD
   try {
     const db = getFirestoreDB();
     const pageViewsRef = collection(db, COLLECTIONS.PAGE_VIEWS);
-    const recentQuery = query(pageViewsRef, orderBy('timestamp', 'desc'), limit(count));
+    const recentQuery = query(pageViewsRef, orderBy("timestamp", "desc"), limit(count));
 
     const snapshot = await getDocs(recentQuery);
     return snapshot.docs.map((doc) => doc.data() as PageViewDocument);
   } catch (error) {
-    console.error('[Analytics] Failed to fetch recent page views:', error);
+    console.error("[Analytics] Failed to fetch recent page views:", error);
     throw error;
   }
 }
@@ -224,12 +224,12 @@ export async function getRecentEvents(
   try {
     const db = getFirestoreDB();
     const eventsRef = collection(db, COLLECTIONS.EVENTS);
-    const recentQuery = query(eventsRef, orderBy('timestamp', 'desc'), limit(count));
+    const recentQuery = query(eventsRef, orderBy("timestamp", "desc"), limit(count));
 
     const snapshot = await getDocs(recentQuery);
     return snapshot.docs.map((doc) => doc.data() as AnalyticsEventDocument);
   } catch (error) {
-    console.error('[Analytics] Failed to fetch recent events:', error);
+    console.error("[Analytics] Failed to fetch recent events:", error);
     throw error;
   }
 }

@@ -44,7 +44,7 @@ import { imageVariants } from "./animations";
  * />
  * ```
  */
-export const HeroProfile: React.FC<HeroProfileProps> = ({ src, alt }) => {
+export const HeroProfile: React.FC<HeroProfileProps> = ({ src, alt, srcWebP }) => {
   const theme = useTheme();
 
   return (
@@ -65,6 +65,7 @@ export const HeroProfile: React.FC<HeroProfileProps> = ({ src, alt }) => {
         <OptimizedImage
           src={src}
           alt={alt}
+          srcWebP={srcWebP}
           width="280px"
           height="280px"
           sx={{

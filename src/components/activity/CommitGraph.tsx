@@ -7,7 +7,7 @@
 import React, { useMemo } from "react";
 import { Box, Tooltip, useTheme } from "@mui/material";
 
-import type { CommitGraphEvent, CommitGraphProps, LaneInfo, Row } from "./types";
+import type { CommitGraphProps, LaneInfo, Row } from "./types";
 
 import {
   KIND_LABELS,

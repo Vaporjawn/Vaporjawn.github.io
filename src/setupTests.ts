@@ -8,6 +8,7 @@ vi.mock("*.jpg", () => ({ default: "test-file-stub" }));
 vi.mock("*.jpeg", () => ({ default: "test-file-stub" }));
 vi.mock("*.gif", () => ({ default: "test-file-stub" }));
 vi.mock("*.pdf", () => ({ default: "test-file-stub" }));
+vi.mock("*.webp", () => ({ default: "test-file-stub" }));
 
 // Polyfill / mock for IntersectionObserver in jsdom test environment
 // Needed because hooks/components rely on it but jsdom doesn't implement it.

@@ -4,20 +4,20 @@
  * @module services/analytics/logEvent
  */
 
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { getFirestoreDB } from '../../backend/firebase';
+import { collection, addDoc, serverTimestamp, type FieldValue } from "firebase/firestore";
+import { getFirestoreDB } from "../../backend/firebase";
 import type {
   EventType,
   PageViewDocument,
   AnalyticsEventDocument,
-} from './types';
+} from "./types";
 import {
   getSessionId,
   detectDeviceType,
   classifyTrafficSource,
   sanitizePath,
-} from './utils';
-import { COLLECTIONS } from './types';
+} from "./utils";
+import { COLLECTIONS } from "./types";
 
 /**
  * Log a page view event to Firestore
@@ -32,7 +32,7 @@ export async function logPageView(path: string, title: string): Promise<void> {
     const deviceType = detectDeviceType();
     const trafficSource = classifyTrafficSource(document.referrer);
 
-    const pageViewData: Omit<PageViewDocument, 'timestamp'> & { timestamp: any } = {
+    const pageViewData: Omit<PageViewDocument, "timestamp"> & { timestamp: FieldValue } = {
       timestamp: serverTimestamp(),
       path: sanitizePath(path),
       title,
@@ -44,9 +44,9 @@ export async function logPageView(path: string, title: string): Promise<void> {
 
     await addDoc(collection(db, COLLECTIONS.PAGE_VIEWS), pageViewData);
 
-    console.log('[Analytics] Page view logged:', path);
+    console.log("[Analytics] Page view logged:", path);
   } catch (error) {
-    console.error('[Analytics] Failed to log page view:', error);
+    console.error("[Analytics] Failed to log page view:", error);
     // Don't throw - analytics failures shouldn't break the app
   }
 }
@@ -61,13 +61,13 @@ export async function logPageView(path: string, title: string): Promise<void> {
 export async function logAnalyticsEvent(
   type: EventType,
   label: string,
-  metadata?: Record<string, any>
+  metadata?: Record<string, unknown>
 ): Promise<void> {
   try {
     const db = getFirestoreDB();
     const sessionId = getSessionId();
 
-    const eventData: Omit<AnalyticsEventDocument, 'timestamp'> & { timestamp: any } = {
+    const eventData: Omit<AnalyticsEventDocument, "timestamp"> & { timestamp: FieldValue } = {
       timestamp: serverTimestamp(),
       type,
       label,
@@ -77,9 +77,9 @@ export async function logAnalyticsEvent(
 
     await addDoc(collection(db, COLLECTIONS.EVENTS), eventData);
 
-    console.log('[Analytics] Event logged:', type, label);
+    console.log("[Analytics] Event logged:", type, label);
   } catch (error) {
-    console.error('[Analytics] Failed to log event:', error);
+    console.error("[Analytics] Failed to log event:", error);
     // Don't throw - analytics failures shouldn't break the app
   }
 }
@@ -90,7 +90,7 @@ export async function logAnalyticsEvent(
  * @returns Promise that resolves when logged
  */
 export async function logProjectView(projectName: string): Promise<void> {
-  return logAnalyticsEvent('project_view', projectName);
+  return logAnalyticsEvent("project_view", projectName);
 }
 
 /**
@@ -101,9 +101,9 @@ export async function logProjectView(projectName: string): Promise<void> {
  */
 export async function logProjectClick(
   projectName: string,
-  linkType: 'live' | 'github'
+  linkType: "live" | "github"
 ): Promise<void> {
-  return logAnalyticsEvent('project_click', `${projectName} - ${linkType}`, {
+  return logAnalyticsEvent("project_click", `${projectName} - ${linkType}`, {
     linkType,
   });
 }
@@ -113,8 +113,8 @@ export async function logProjectClick(
  * @param formType - Type of contact form
  * @returns Promise that resolves when logged
  */
-export async function logContactSubmit(formType: string = 'contact'): Promise<void> {
-  return logAnalyticsEvent('contact_submit', formType);
+export async function logContactSubmit(formType: string = "contact"): Promise<void> {
+  return logAnalyticsEvent("contact_submit", formType);
 }
 
 /**
@@ -123,7 +123,7 @@ export async function logContactSubmit(formType: string = 'contact'): Promise<vo
  * @returns Promise that resolves when logged
  */
 export async function logSocialClick(platform: string): Promise<void> {
-  return logAnalyticsEvent('social_click', platform);
+  return logAnalyticsEvent("social_click", platform);
 }
 
 /**
@@ -132,7 +132,7 @@ export async function logSocialClick(platform: string): Promise<void> {
  * @returns Promise that resolves when logged
  */
 export async function logBlogRead(postTitle: string): Promise<void> {
-  return logAnalyticsEvent('blog_read', postTitle);
+  return logAnalyticsEvent("blog_read", postTitle);
 }
 
 /**
@@ -140,7 +140,7 @@ export async function logBlogRead(postTitle: string): Promise<void> {
  * @returns Promise that resolves when logged
  */
 export async function logResumeDownload(): Promise<void> {
-  return logAnalyticsEvent('resume_download', 'Resume PDF');
+  return logAnalyticsEvent("resume_download", "Resume PDF");
 }
 
 /**
@@ -149,5 +149,5 @@ export async function logResumeDownload(): Promise<void> {
  * @returns Promise that resolves when logged
  */
 export async function logSectionView(sectionName: string): Promise<void> {
-  return logAnalyticsEvent('section_view', sectionName);
+  return logAnalyticsEvent("section_view", sectionName);
 }

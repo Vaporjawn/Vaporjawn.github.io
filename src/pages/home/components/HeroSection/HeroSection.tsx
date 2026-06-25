@@ -24,6 +24,9 @@ import { HeroProfile } from "./HeroProfile";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore - Jest will mock these via moduleNameMapper
 import profileImage from "../../../../assets/profile-picture.jpeg";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore - Jest will mock these via moduleNameMapper
+import profileImageWebP from "../../../../assets/profile-picture.webp";
 
 /**
  * HeroSection Component
@@ -85,9 +88,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ background }) => {
       >
         {/* Content Section - Name, Title, Bio, Social Links */}
         <Grid
-          item
-          xs={12}
-          md={8}
+          size={{ xs: 12, md: 8 }}
           sx={{
             width: { xs: "100%", md: "66.666%" },
             maxWidth: { xs: "100%", md: "66.666%" },
@@ -103,9 +104,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ background }) => {
 
         {/* Profile Image Section */}
         <Grid
-          item
-          xs={12}
-          md={4}
+          size={{ xs: 12, md: 4 }}
           sx={{
             width: { xs: "100%", md: "33.333%" },
             maxWidth: { xs: "100%", md: "33.333%" },
@@ -116,6 +115,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ background }) => {
         >
           <HeroProfile
             src={profileImage}
+            srcWebP={profileImageWebP}
             alt="Victor Williams - Software Engineer"
           />
         </Grid>

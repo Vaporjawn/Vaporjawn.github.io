@@ -40,7 +40,7 @@ describe("ChartSection", () => {
     );
 
     const section = container.querySelector("section");
-    const styles = window.getComputedStyle(section!);
+    const _styles = window.getComputedStyle(section!);
 
     // MUI spacing(8) typically = 64px (8 * 8px)
     // Note: Actual px value depends on MUI theme

@@ -40,6 +40,10 @@ import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 interface OptimizedImageProps {
   src: string;
   alt: string;
+  /** Optional WebP source. When provided, the img is wrapped in a <picture> element
+   *  so browsers that support WebP receive the smaller file, while older browsers
+   *  fall back to the JPEG/PNG `src`. */
+  srcWebP?: string;
   width?: number | string;
   height?: number | string;
   aspectRatio?: string;
@@ -96,6 +100,7 @@ interface OptimizedImageProps {
 const OptimizedImage: React.FC<OptimizedImageProps> = ({
   src,
   alt,
+  srcWebP,
   width = "100%",
   height = "auto",
   aspectRatio,
@@ -149,22 +154,46 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
       )}
 
       {shouldLoad && (
-        <Box
-          component="img"
-          src={hasError ? placeholder || "/assets/placeholder.jpg" : src}
-          alt={alt}
-          onLoad={handleLoad}
-          onError={handleError}
-          loading={priority ? "eager" : "lazy"}
-          sx={{
-            width: "100%",
-            height: "100%",
-            objectFit,
-            opacity: isLoaded ? 1 : 0,
-            transition: "opacity 0.3s ease-in-out",
-            display: "block",
-          }}
-        />
+        // Wrap in <picture> when a WebP source is supplied so browsers that
+        // support WebP get the smaller file; others receive the JPEG/PNG fallback.
+        srcWebP && !hasError ? (
+          <picture style={{ display: "contents" }}>
+            <source srcSet={srcWebP} type="image/webp" />
+            <Box
+              component="img"
+              src={src}
+              alt={alt}
+              onLoad={handleLoad}
+              onError={handleError}
+              loading={priority ? "eager" : "lazy"}
+              sx={{
+                width: "100%",
+                height: "100%",
+                objectFit,
+                opacity: isLoaded ? 1 : 0,
+                transition: "opacity 0.3s ease-in-out",
+                display: "block",
+              }}
+            />
+          </picture>
+        ) : (
+          <Box
+            component="img"
+            src={hasError ? placeholder || "/assets/placeholder.jpg" : src}
+            alt={alt}
+            onLoad={handleLoad}
+            onError={handleError}
+            loading={priority ? "eager" : "lazy"}
+            sx={{
+              width: "100%",
+              height: "100%",
+              objectFit,
+              opacity: isLoaded ? 1 : 0,
+              transition: "opacity 0.3s ease-in-out",
+              display: "block",
+            }}
+          />
+        )
       )}
     </Box>
   );

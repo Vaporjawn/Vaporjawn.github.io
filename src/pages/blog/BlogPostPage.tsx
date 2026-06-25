@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useMemo } from "react";
 import {
   Box,
   Container,
@@ -94,18 +94,12 @@ const BlogPostPage: React.FC = () => {
   const navigate = useNavigate();
   const { slug } = useParams<{ slug: string }>();
 
-  const [post, setPost] = useState<BlogPost | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // In production, this would load the MDX file dynamically
-    if (slug && PLACEHOLDER_POSTS[slug]) {
-      setPost(PLACEHOLDER_POSTS[slug]);
-      setLoading(false);
-    } else {
-      setLoading(false);
-    }
-  }, [slug]);
+  // Derived from slug — no async work, so useMemo avoids the set-state-in-effect pattern.
+  const post = useMemo<BlogPost | null>(
+    () => (slug && PLACEHOLDER_POSTS[slug] ? PLACEHOLDER_POSTS[slug] : null),
+    [slug]
+  );
+  const loading = false; // All data is synchronous (placeholder); will be async when real API is wired
 
   const handleShare = (platform: "twitter" | "linkedin" | "bluesky" | "copy") => {
     if (!post) return;
@@ -197,11 +191,8 @@ const BlogPostPage: React.FC = () => {
         type="article"
         keywords={post.tags.join(", ")}
         image={post.image}
-        article={{
-          publishedTime: post.date,
-          author: post.author,
-          tags: post.tags,
-        }}
+        author={post.author}
+        publishedTime={post.date}
       />
 
       <Box

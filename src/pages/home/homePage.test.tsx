@@ -4,6 +4,7 @@ import { MemoryRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 // Mock heavy/asset imports before importing HomePage to avoid TS resolution issues
 vi.mock("../../assets/profile-picture.jpeg", () => ({ default: "profile-picture-mock.jpg" }));
+vi.mock("../../assets/profile-picture.webp", () => ({ default: "profile-picture-mock.webp" }));
 vi.mock("../../assets/banner.jpg", () => ({ default: "banner-mock.jpg" }));
 import HomePage from "./homePage";
 import { PortfolioProvider } from "../../contexts/PortfolioContext";

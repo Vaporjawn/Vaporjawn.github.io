@@ -3,7 +3,7 @@
  * @module services/analytics/utils
  */
 
-import type { DeviceType, TrafficSource } from './types';
+import type { DeviceType, TrafficSource } from "./types";
 
 /**
  * Generate a unique session ID
@@ -18,10 +18,10 @@ export function generateSessionId(): string {
  * @returns Session ID
  */
 export function getSessionId(): string {
-  const SESSION_KEY = 'analytics_session_id';
+  const SESSION_KEY = "analytics_session_id";
   const SESSION_DURATION = 30 * 60 * 1000; // 30 minutes
 
-  let sessionData = sessionStorage.getItem(SESSION_KEY);
+  const sessionData = sessionStorage.getItem(SESSION_KEY);
 
   if (sessionData) {
     try {
@@ -54,9 +54,9 @@ export function getSessionId(): string {
 export function detectDeviceType(): DeviceType {
   const width = window.innerWidth;
 
-  if (width < 768) return 'mobile';
-  if (width < 1024) return 'tablet';
-  return 'desktop';
+  if (width < 768) return "mobile";
+  if (width < 1024) return "tablet";
+  return "desktop";
 }
 
 /**
@@ -66,35 +66,35 @@ export function detectDeviceType(): DeviceType {
  */
 export function classifyTrafficSource(referrer: string): TrafficSource {
   if (!referrer || referrer === window.location.origin) {
-    return 'direct';
+    return "direct";
   }
 
   const ref = referrer.toLowerCase();
 
   // Social media sources
   const socialDomains = [
-    'facebook.com',
-    'twitter.com',
-    'linkedin.com',
-    'instagram.com',
-    'github.com',
-    'reddit.com',
-    't.co', // Twitter shortened URLs
+    "facebook.com",
+    "twitter.com",
+    "linkedin.com",
+    "instagram.com",
+    "github.com",
+    "reddit.com",
+    "t.co", // Twitter shortened URLs
   ];
 
   if (socialDomains.some((domain) => ref.includes(domain))) {
-    return 'social';
+    return "social";
   }
 
   // Search engines
-  const searchDomains = ['google.com', 'bing.com', 'yahoo.com', 'duckduckgo.com'];
+  const searchDomains = ["google.com", "bing.com", "yahoo.com", "duckduckgo.com"];
 
   if (searchDomains.some((domain) => ref.includes(domain))) {
-    return 'search';
+    return "search";
   }
 
   // Everything else is referral
-  return 'referral';
+  return "referral";
 }
 
 /**
@@ -114,5 +114,5 @@ export function calculateSessionDuration(startTime: number, endTime: number): nu
  */
 export function sanitizePath(path: string): string {
   // Remove query parameters and hash
-  return path.split('?')[0].split('#')[0];
+  return path.split("?")[0].split("#")[0];
 }

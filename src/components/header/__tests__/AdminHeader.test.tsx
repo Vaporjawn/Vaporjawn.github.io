@@ -4,7 +4,7 @@
  * @module components/header/__tests__/AdminHeader.test
  */
 
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor, within } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { BrowserRouter } from "react-router-dom";
 import AdminHeader from "../AdminHeader";
@@ -60,28 +60,36 @@ describe("AdminHeader", () => {
   describe("Rendering", () => {
     it("renders admin header with title", () => {
       renderAdminHeader();
-      expect(screen.getByText("Admin Panel")).toBeInTheDocument();
+      // "Admin Panel" appears in both AppBar and Drawer — verify at least one instance
+      const titles = screen.getAllByText("Admin Panel");
+      expect(titles.length).toBeGreaterThan(0);
     });
 
     it("renders Dashboard navigation link", () => {
       renderAdminHeader();
-      expect(screen.getByText("Dashboard")).toBeInTheDocument();
+      // "Dashboard" appears in both AppBar Button and Drawer ListItem — use role
+      expect(screen.getByRole("button", { name: /dashboard/i })).toBeInTheDocument();
     });
 
     it("renders Settings navigation link as disabled", () => {
       renderAdminHeader();
-      const settingsButton = screen.getByText("Settings").closest("button");
+      // "Settings" appears in both AppBar Button and Drawer ListItem — use role
+      const settingsButton = screen.getByRole("button", { name: /settings/i });
       expect(settingsButton).toBeDisabled();
     });
 
     it("renders logout button", () => {
       renderAdminHeader();
-      expect(screen.getByText("Logout")).toBeInTheDocument();
+      // "Logout" appears in AppBar, Drawer, and possibly dialog — verify at least one
+      const logoutElements = screen.getAllByText("Logout");
+      expect(logoutElements.length).toBeGreaterThan(0);
     });
 
     it("renders dark mode toggle", () => {
       renderAdminHeader();
-      expect(screen.getByTestId("dark-mode-toggle")).toBeInTheDocument();
+      // DarkModeToggle renders in both AppBar and Drawer — take the first
+      const [toggle] = screen.getAllByTestId("dark-mode-toggle");
+      expect(toggle).toBeInTheDocument();
     });
   });
 
@@ -91,8 +99,9 @@ describe("AdminHeader", () => {
         ...defaultAdminAuthValue,
         sessionTimeRemaining: 1800, // 30 minutes = 30:00
       });
-      // Look for the time text (30:00)
-      expect(screen.getByText(/30:00/)).toBeInTheDocument();
+      // Timer text appears in both AppBar and Drawer — use getAllByText (multiple OK)
+      const timeTexts = screen.getAllByText(/30:00/);
+      expect(timeTexts.length).toBeGreaterThan(0);
     });
 
     it("shows warning state when session < 5 minutes", () => {
@@ -100,10 +109,11 @@ describe("AdminHeader", () => {
         ...defaultAdminAuthValue,
         sessionTimeRemaining: 240, // 4 minutes
       });
-      // Check if timer displays correctly
-      expect(screen.getByText(/04:00/)).toBeInTheDocument();
+      // Timer text appears in both AppBar and Drawer — use getAllByText (multiple OK)
+      const timeTexts = screen.getAllByText(/04:00/);
+      expect(timeTexts.length).toBeGreaterThan(0);
       // Timer icon should be present
-      const timerIcons = container.querySelectorAll('[data-testid="TimerIcon"]');
+      const timerIcons = container.querySelectorAll("[data-testid=\"TimerIcon\"]");
       expect(timerIcons.length).toBeGreaterThan(0);
     });
 
@@ -112,29 +122,35 @@ describe("AdminHeader", () => {
         ...defaultAdminAuthValue,
         sessionTimeRemaining: null,
       });
-      expect(screen.getByText(/00:00/)).toBeInTheDocument();
+      // Timer text appears in both AppBar and Drawer — use getAllByText (multiple OK)
+      const timeTexts = screen.getAllByText(/00:00/);
+      expect(timeTexts.length).toBeGreaterThan(0);
     });
   });
 
   describe("Navigation", () => {
     it("navigates to dashboard when Dashboard link is clicked", () => {
       renderAdminHeader();
-      const dashboardButton = screen.getByText("Dashboard").closest("button");
-      fireEvent.click(dashboardButton!);
+      // "Dashboard" text appears in both AppBar Button and Drawer ListItem; use role to
+      // target only the real <button> in the AppBar.
+      const dashboardButton = screen.getByRole("button", { name: /dashboard/i });
+      fireEvent.click(dashboardButton);
       expect(mockNavigate).toHaveBeenCalledWith("/admin");
     });
 
     it("navigates to dashboard when title is clicked", () => {
       renderAdminHeader();
-      const title = screen.getAllByText("Admin Panel")[0]; // Get first instance (AppBar)
+      const [title] = screen.getAllByText("Admin Panel"); // Get first instance (AppBar)
       fireEvent.click(title);
       expect(mockNavigate).toHaveBeenCalledWith("/admin");
     });
 
     it("does not navigate when Settings button is clicked (disabled)", () => {
       renderAdminHeader();
-      const settingsButton = screen.getByText("Settings").closest("button");
-      fireEvent.click(settingsButton!);
+      // "Settings" text appears in both AppBar Button and Drawer ListItem; use role to
+      // target only the real <button> in the AppBar.
+      const settingsButton = screen.getByRole("button", { name: /settings/i });
+      fireEvent.click(settingsButton);
       expect(mockNavigate).not.toHaveBeenCalled();
     });
   });
@@ -158,11 +174,10 @@ describe("AdminHeader", () => {
       const logoutButtons = screen.getAllByText("Logout");
       fireEvent.click(logoutButtons[0]);
 
-      // Click confirm button in dialog
-      const confirmButton = screen.getAllByText("Logout").find(
-        (el) => el.closest("button")?.className.includes("MuiButton")
-      );
-      fireEvent.click(confirmButton!);
+      // Scope to the dialog so we don't accidentally click the AppBar Logout button again
+      const dialog = screen.getByRole("dialog");
+      const confirmButton = within(dialog).getByRole("button", { name: /logout/i });
+      fireEvent.click(confirmButton);
 
       await waitFor(() => {
         expect(mockLogout).toHaveBeenCalled();
@@ -189,7 +204,8 @@ describe("AdminHeader", () => {
   describe("Dark Mode", () => {
     it("calls setDarkMode when toggle is clicked", () => {
       renderAdminHeader(false);
-      const toggle = screen.getByTestId("dark-mode-toggle");
+      // DarkModeToggle renders in both AppBar and Drawer — take the first instance
+      const [toggle] = screen.getAllByTestId("dark-mode-toggle");
       fireEvent.click(toggle);
       expect(mockSetDarkMode).toHaveBeenCalled();
     });
@@ -201,7 +217,8 @@ describe("AdminHeader", () => {
       window.history.pushState({}, "Admin Dashboard", "/admin");
       renderAdminHeader();
 
-      const dashboardButton = screen.getByText("Dashboard").closest("button");
+      // "Dashboard" text is in both AppBar Button and Drawer ListItem; use role
+      const dashboardButton = screen.getByRole("button", { name: /dashboard/i });
       // Check if button has active styling (would need to inspect computed styles)
       expect(dashboardButton).toBeInTheDocument();
     });

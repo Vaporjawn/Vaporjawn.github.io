@@ -3,8 +3,8 @@
  * @module backend/firebase/initializeApp
  */
 
-import { initializeApp, type FirebaseApp } from 'firebase/app';
-import { getFirebaseConfig } from './config';
+import { initializeApp, type FirebaseApp } from "firebase/app";
+import { getFirebaseConfig } from "./config";
 
 let firebaseApp: FirebaseApp | null = null;
 
@@ -20,10 +20,10 @@ export function initializeFirebaseApp(): FirebaseApp {
   try {
     const config = getFirebaseConfig();
     firebaseApp = initializeApp(config);
-    console.log('[Firebase] App initialized successfully');
+    console.log("[Firebase] App initialized successfully");
     return firebaseApp;
   } catch (error) {
-    console.error('[Firebase] Failed to initialize app:', error);
+    console.error("[Firebase] Failed to initialize app:", error);
     throw error;
   }
 }
@@ -35,7 +35,7 @@ export function initializeFirebaseApp(): FirebaseApp {
  */
 export function getFirebaseApp(): FirebaseApp {
   if (!firebaseApp) {
-    throw new Error('Firebase app not initialized. Call initializeFirebaseApp() first.');
+    throw new Error("Firebase app not initialized. Call initializeFirebaseApp() first.");
   }
   return firebaseApp;
 }

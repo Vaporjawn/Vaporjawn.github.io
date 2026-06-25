@@ -17,13 +17,13 @@ import {
   limit,
   Timestamp,
   type QueryConstraint,
-} from 'firebase/firestore';
-import { getFirestoreDB } from '../backend/firebase';
-import type { FirestoreBlogPost, BlogPostFormData } from '../types/blog';
-import { calculateReadTime } from '../utils/readTimeEstimate';
-import { slugify } from '../utils/slugify';
+} from "firebase/firestore";
+import { getFirestoreDB } from "../backend/firebase";
+import type { FirestoreBlogPost, BlogPostFormData } from "../types/blog";
+import { calculateReadTime } from "../utils/readTimeEstimate";
+import { slugify } from "../utils/slugify";
 
-const COLLECTION_NAME = 'blogPosts';
+const COLLECTION_NAME = "blogPosts";
 
 /**
  * Get all blog posts
@@ -32,10 +32,10 @@ const COLLECTION_NAME = 'blogPosts';
  */
 export async function getAllBlogPosts(published?: boolean): Promise<FirestoreBlogPost[]> {
   const db = getFirestoreDB();
-  const constraints: QueryConstraint[] = [orderBy('createdAt', 'desc')];
+  const constraints: QueryConstraint[] = [orderBy("createdAt", "desc")];
 
   if (published !== undefined) {
-    constraints.unshift(where('published', '==', published));
+    constraints.unshift(where("published", "==", published));
   }
 
   const q = query(collection(db, COLLECTION_NAME), ...constraints);
@@ -76,7 +76,7 @@ export async function getBlogPostBySlug(slug: string): Promise<FirestoreBlogPost
   const db = getFirestoreDB();
   const q = query(
     collection(db, COLLECTION_NAME),
-    where('slug', '==', slug),
+    where("slug", "==", slug),
     limit(1)
   );
   const snapshot = await getDocs(q);
@@ -85,7 +85,7 @@ export async function getBlogPostBySlug(slug: string): Promise<FirestoreBlogPost
     return null;
   }
 
-  const doc = snapshot.docs[0];
+  const [doc] = snapshot.docs;
   return {
     id: doc.id,
     ...doc.data(),
@@ -132,12 +132,12 @@ export async function createBlogPost(
   const readTime = calculateReadTime(formData.content);
   const now = Timestamp.now();
 
-  const blogPost: Omit<FirestoreBlogPost, 'id'> = {
+  const blogPost: Omit<FirestoreBlogPost, "id"> = {
     title: formData.title,
     slug: formData.slug,
     description: formData.description,
     content: formData.content,
-    excerpt: formData.excerpt || formData.content.substring(0, 200) + '...',
+    excerpt: formData.excerpt || formData.content.substring(0, 200) + "...",
     author: formData.author,
     authorId,
     featuredImage: featuredImageUrl,
@@ -186,7 +186,7 @@ export async function updateBlogPost(
     slug: formData.slug,
     description: formData.description,
     content: formData.content,
-    excerpt: formData.excerpt || formData.content.substring(0, 200) + '...',
+    excerpt: formData.excerpt || formData.content.substring(0, 200) + "...",
     author: formData.author,
     tags: formData.tags,
     published: formData.published,

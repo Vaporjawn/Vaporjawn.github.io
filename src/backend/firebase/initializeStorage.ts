@@ -6,8 +6,8 @@
 import {
   getStorage,
   type FirebaseStorage,
-} from 'firebase/storage';
-import type { FirebaseApp } from 'firebase/app';
+} from "firebase/storage";
+import type { FirebaseApp } from "firebase/app";
 
 let storageInstance: FirebaseStorage | null = null;
 
@@ -23,10 +23,10 @@ export function initializeFirebaseStorage(app: FirebaseApp): FirebaseStorage {
 
   try {
     storageInstance = getStorage(app);
-    console.log('[Storage] Initialized successfully');
+    console.log("[Storage] Initialized successfully");
     return storageInstance;
   } catch (error) {
-    console.error('[Storage] Failed to initialize:', error);
+    console.error("[Storage] Failed to initialize:", error);
     throw error;
   }
 }
@@ -38,7 +38,7 @@ export function initializeFirebaseStorage(app: FirebaseApp): FirebaseStorage {
  */
 export function getFirebaseStorage(): FirebaseStorage {
   if (!storageInstance) {
-    throw new Error('Firebase Storage not initialized. Call initializeFirebaseStorage() first.');
+    throw new Error("Firebase Storage not initialized. Call initializeFirebaseStorage() first.");
   }
   return storageInstance;
 }

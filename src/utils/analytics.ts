@@ -10,8 +10,7 @@ import {
   logSocialClick as logFirestoreSocialClick,
   logBlogRead as logFirestoreBlogRead,
   logResumeDownload as logFirestoreResumeDownload,
-  logSectionView as logFirestoreSectionView,
-} from '../services/analytics';
+} from "../services/analytics";
 
 interface AnalyticsEvent {
   action: string;
@@ -27,11 +26,13 @@ interface PageView {
 }
 
 // Type declaration for gtag
+// The second argument to gtag() is 'string | Date' because the GA4 initialization
+// pattern calls window.gtag('js', new Date()) with a Date object, not a string.
 declare global {
   interface Window {
     gtag?: (
       _command: string,
-      _targetId: string,
+      _targetId: string | Date,
       _config?: Record<string, unknown>
     ) => void;
     dataLayer?: unknown[];
@@ -85,7 +86,7 @@ export const trackPageView = (pageData: PageView): void => {
 
   // Log to Firebase Firestore for admin dashboard
   logFirestorePageView(pageData.page_path, pageData.page_title).catch((error) => {
-    console.error('[Analytics] Failed to log page view to Firestore:', error);
+    console.error("[Analytics] Failed to log page view to Firestore:", error);
   });
 };
 
@@ -109,7 +110,7 @@ export const trackProjectView = (projectName: string): void => {
 
   // Log to Firestore
   logFirestoreProjectView(projectName).catch((error) => {
-    console.error('[Analytics] Failed to log project view to Firestore:', error);
+    console.error("[Analytics] Failed to log project view to Firestore:", error);
   });
 };
 
@@ -122,7 +123,7 @@ export const trackProjectClick = (projectName: string, linkType: "live" | "githu
 
   // Log to Firestore
   logFirestoreProjectClick(projectName, linkType).catch((error) => {
-    console.error('[Analytics] Failed to log project click to Firestore:', error);
+    console.error("[Analytics] Failed to log project click to Firestore:", error);
   });
 };
 
@@ -135,7 +136,7 @@ export const trackResumeDownload = (): void => {
 
   // Log to Firestore
   logFirestoreResumeDownload().catch((error) => {
-    console.error('[Analytics] Failed to log resume download to Firestore:', error);
+    console.error("[Analytics] Failed to log resume download to Firestore:", error);
   });
 };
 
@@ -148,8 +149,8 @@ export const trackContactFormSubmit = (success: boolean): void => {
 
   // Log to Firestore (only count successful submissions)
   if (success) {
-    logFirestoreContactSubmit('contact').catch((error) => {
-      console.error('[Analytics] Failed to log contact submit to Firestore:', error);
+    logFirestoreContactSubmit("contact").catch((error) => {
+      console.error("[Analytics] Failed to log contact submit to Firestore:", error);
     });
   }
 };
@@ -163,7 +164,7 @@ export const trackSocialClick = (platform: string): void => {
 
   // Log to Firestore
   logFirestoreSocialClick(platform).catch((error) => {
-    console.error('[Analytics] Failed to log social click to Firestore:', error);
+    console.error("[Analytics] Failed to log social click to Firestore:", error);
   });
 };
 
@@ -246,7 +247,7 @@ export const trackBlogRead = (postTitle: string, readPercentage: number): void =
 
   // Log to Firestore (simplified - just track that it was read)
   logFirestoreBlogRead(postTitle).catch((error) => {
-    console.error('[Analytics] Failed to log blog read to Firestore:', error);
+    console.error("[Analytics] Failed to log blog read to Firestore:", error);
   });
 };
 
@@ -301,7 +302,7 @@ export const trackFileDownload = (fileName: string, fileType: string): void => {
 // Utility to track scroll depth automatically
 let scrollDepthTracked = { 25: false, 50: false, 75: false, 100: false };
 
-export const initScrollTracking = (): void => {
+export const initScrollTracking = (): (() => void) | void => {
   if (typeof window === "undefined") return;
 
   const handleScroll = () => {
@@ -327,7 +328,7 @@ export const initScrollTracking = (): void => {
 };
 
 // Utility to track time on page
-export const initTimeTracking = (): void => {
+export const initTimeTracking = (): (() => void) | void => {
   if (typeof window === "undefined") return;
 
   const startTime = Date.now();

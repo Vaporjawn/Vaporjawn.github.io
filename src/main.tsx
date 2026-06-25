@@ -4,7 +4,19 @@ import "./index.css";
 import "./App.css";
 import { BrowserRouter, useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Router from "./router.tsx";
+
+/** Shared QueryClient for React Query server-state management */
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      retry: 2,
+    },
+  },
+});
 import { initGA, trackPageView, initScrollTracking, initTimeTracking } from "./utils/analytics";
 import { initSentry } from "./utils/errorTracking";
 import { initPerformanceMonitoring, monitorLongTasks } from "./utils/performanceMonitoring";
@@ -24,9 +36,9 @@ try {
     enableAnalytics: true,
     enableOfflinePersistence: true,
   });
-  console.log('[App] Firebase initialized successfully');
+  console.log("[App] Firebase initialized successfully");
 } catch (error) {
-  console.error('[App] Failed to initialize Firebase:', error);
+  console.error("[App] Failed to initialize Firebase:", error);
   // Continue app initialization even if Firebase fails
 }
 
@@ -72,12 +84,16 @@ const AnalyticsWrapper = ({ children }: { children: React.ReactNode }) => {
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <HelmetProvider>
-      <BrowserRouter>
-        <AnalyticsWrapper>
-          <Router />
-        </AnalyticsWrapper>
-      </BrowserRouter>
-    </HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      <HelmetProvider>
+        <BrowserRouter>
+          <AnalyticsWrapper>
+            <Router />
+          </AnalyticsWrapper>
+        </BrowserRouter>
+      </HelmetProvider>
+      {/* DevTools panel — tree-shaken from production builds automatically */}
+      <ReactQueryDevtools initialIsOpen={false} buttonPosition="bottom-right" />
+    </QueryClientProvider>
   </StrictMode>
 );

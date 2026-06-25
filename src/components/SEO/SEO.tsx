@@ -34,6 +34,7 @@ import { Helmet } from "react-helmet-async";
  * @property {string} [type] - Open Graph content type (default: "website", can be "article" for blog posts)
  * @property {string} [publishedTime] - Article published time in ISO 8601 format (for blog posts)
  * @property {string} [modifiedTime] - Article modified time in ISO 8601 format (for blog posts)
+ * @property {boolean} [noindex] - When true, instructs search engines not to index this page
  */
 interface SEOProps {
   title?: string;
@@ -45,6 +46,7 @@ interface SEOProps {
   type?: string;
   publishedTime?: string;
   modifiedTime?: string;
+  noindex?: boolean;
 }
 
 /**
@@ -91,6 +93,7 @@ const SEO: React.FC<SEOProps> = ({
   type = "website",
   publishedTime,
   modifiedTime,
+  noindex = false,
 }) => {
   const siteTitle = "Victor Williams Portfolio";
   const fullTitle = title.includes(siteTitle)
@@ -106,8 +109,8 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="keywords" content={keywords} />
       <meta name="author" content={author} />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta name="robots" content="index, follow" />
-      <meta name="googlebot" content="index, follow" />
+      <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
+      <meta name="googlebot" content={noindex ? "noindex, nofollow" : "index, follow"} />
       <meta name="google-site-verification" content={import.meta.env.VITE_GOOGLE_SITE_VERIFICATION || ""} />
       <link rel="canonical" href={url} />
 

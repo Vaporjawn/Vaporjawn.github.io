@@ -145,7 +145,7 @@ const ContactPage: React.FC = () => {
         url="https://calendly.com/victor-williams-dev/introductory-call"
         onModalClose={() => setIsCalendlyOpen(false)}
         open={isCalendlyOpen}
-        rootElement={document.getElementById("root") as HTMLElement}
+        rootElement={document.getElementById("root") ?? document.body}
       />
     </>
   );

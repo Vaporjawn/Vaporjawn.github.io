@@ -10,7 +10,7 @@ const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({ variant, count = 3 }) =
   const renderHeroSkeleton = () => (
     <Box sx={{ mb: 6 }}>
       <Grid container spacing={4} alignItems="center">
-        <Grid item xs={12} md={8}>
+        <Grid size={{ xs: 12, md: 8 }}>
           <Skeleton variant="text" width="80%" height={80} />
           <Skeleton variant="text" width="60%" height={40} sx={{ mt: 2 }} />
           <Skeleton variant="rectangular" width="100%" height={100} sx={{ mt: 3, borderRadius: 2 }} />
@@ -20,7 +20,7 @@ const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({ variant, count = 3 }) =
             ))}
           </Box>
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <Skeleton variant="circular" width={280} height={280} sx={{ mx: "auto" }} />
         </Grid>
       </Grid>
@@ -32,7 +32,7 @@ const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({ variant, count = 3 }) =
       <Skeleton variant="text" width="30%" height={60} sx={{ mx: "auto", mb: 4 }} />
       <Grid container spacing={3}>
         {[...Array(3)].map((_, i) => (
-          <Grid item xs={12} md={4} key={i}>
+          <Grid size={{ xs: 12, md: 4 }} key={i}>
             <Skeleton variant="text" width="50%" height={40} sx={{ mb: 2 }} />
             <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
               {[...Array(6)].map((_, j) => (
@@ -48,7 +48,7 @@ const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({ variant, count = 3 }) =
   const renderProjectsSkeleton = () => (
     <Grid container spacing={3}>
       {[...Array(count)].map((_, i) => (
-        <Grid item xs={12} sm={6} md={4} key={i}>
+        <Grid size={{ xs: 12, sm: 6, md: 4 }} key={i}>
           <Card>
             <Skeleton variant="rectangular" height={200} />
             <CardContent>

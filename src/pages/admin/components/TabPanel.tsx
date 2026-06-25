@@ -3,8 +3,8 @@
  * @module pages/admin/components/TabPanel
  */
 
-import React from 'react';
-import { Box } from '@mui/material';
+import React from "react";
+import { Box } from "@mui/material";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -30,14 +30,3 @@ export const TabPanel: React.FC<TabPanelProps> = ({ children, value, index }) =>
   );
 };
 
-/**
- * Helper function for tab accessibility props
- * @param index - Tab index
- * @returns Accessibility props object
- */
-export function a11yProps(index: number) {
-  return {
-    id: `admin-tab-${index}`,
-    'aria-controls': `admin-tabpanel-${index}`,
-  };
-}

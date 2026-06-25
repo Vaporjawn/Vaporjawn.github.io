@@ -128,7 +128,7 @@ describe("colorForLane", () => {
   it("handles negative indices by wrapping correctly", () => {
     // PALETTE has 8 colors, so -1 should map to 7
     const colorNeg1 = colorForLane(-1);
-    const color7 = colorForLane(7);
+    const _color7 = colorForLane(7);
 
     // JavaScript modulo with negative numbers: -1 % 8 = -1, not 7
     // So our implementation uses: PALETTE[index % PALETTE.length]

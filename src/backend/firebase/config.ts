@@ -3,7 +3,7 @@
  * @module backend/firebase/config
  */
 
-import type { FirebaseConfig } from './types';
+import type { FirebaseConfig } from "./types";
 
 /**
  * Convert camelCase field name to SCREAMING_SNAKE_CASE environment variable name
@@ -15,7 +15,7 @@ import type { FirebaseConfig } from './types';
  */
 function fieldToEnvVar(field: string): string {
   return field
-    .replace(/([A-Z])/g, '_$1') // Insert underscore before capital letters
+    .replace(/([A-Z])/g, "_$1") // Insert underscore before capital letters
     .toUpperCase(); // Convert to uppercase
 }
 
@@ -26,21 +26,21 @@ function fieldToEnvVar(field: string): string {
  */
 export function getFirebaseConfig(): FirebaseConfig {
   const config: FirebaseConfig = {
-    apiKey: import.meta.env.VITE_FIREBASE_API_KEY || '',
-    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || '',
-    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || '',
-    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || '',
-    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || '',
-    appId: import.meta.env.VITE_FIREBASE_APP_ID || '',
-    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || '',
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "",
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "",
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "",
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "",
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "",
+    appId: import.meta.env.VITE_FIREBASE_APP_ID || "",
+    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || "",
   };
 
   // Validate required fields
   const requiredFields: (keyof FirebaseConfig)[] = [
-    'apiKey',
-    'authDomain',
-    'projectId',
-    'appId',
+    "apiKey",
+    "authDomain",
+    "projectId",
+    "appId",
   ];
 
   const missingFields = requiredFields.filter((field) => !config[field]);
@@ -49,15 +49,15 @@ export function getFirebaseConfig(): FirebaseConfig {
     console.error(
       `[Firebase Config] Missing required environment variables: ${missingFields
         .map((f) => `VITE_FIREBASE_${fieldToEnvVar(f)}`)
-        .join(', ')}`
+        .join(", ")}`
     );
-    console.error('[Firebase Config] Throwing configuration error...');
+    console.error("[Firebase Config] Throwing configuration error...");
     throw new Error(
-      `Firebase configuration incomplete: missing ${missingFields.join(', ')}`
+      `Firebase configuration incomplete: missing ${missingFields.join(", ")}`
     );
   }
 
-  console.log('[Firebase Config] All required fields present, config valid');
+  console.log("[Firebase Config] All required fields present, config valid");
 
   return config;
 }

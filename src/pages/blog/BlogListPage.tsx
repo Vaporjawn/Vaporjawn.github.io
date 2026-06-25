@@ -166,7 +166,7 @@ const BlogListPage: React.FC = () => {
           >
             <Box mb={6}>
               <Grid container spacing={3} mb={3}>
-                <Grid item xs={12} md={8}>
+                <Grid size={{ xs: 12, md: 8 }}>
                   <TextField
                     fullWidth
                     placeholder="Search articles..."
@@ -186,7 +186,7 @@ const BlogListPage: React.FC = () => {
                     }}
                   />
                 </Grid>
-                <Grid item xs={12} md={4}>
+                <Grid size={{ xs: 12, md: 4 }}>
                   <FormControl fullWidth>
                     <InputLabel>Sort By</InputLabel>
                     <Select
@@ -245,7 +245,7 @@ const BlogListPage: React.FC = () => {
           ) : (
             <Grid container spacing={4}>
               {filteredPosts.map((post, index) => (
-                <Grid item xs={12} md={6} key={post.slug}>
+                <Grid size={{ xs: 12, md: 6 }} key={post.slug}>
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}

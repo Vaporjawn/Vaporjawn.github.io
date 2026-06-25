@@ -76,7 +76,7 @@ export const ContactMethods: React.FC<ContactMethodsProps> = ({
   onScheduleClick,
 }) => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const _isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   /**
    * Handles contact method card clicks
@@ -137,7 +137,7 @@ export const ContactMethods: React.FC<ContactMethodsProps> = ({
           }}
         >
           {contactMethods.map((method, index) => (
-            <Grid item xs={12} sm={12} md={4} lg={4} key={index}>
+            <Grid size={{ xs: 12, sm: 12, md: 4, lg: 4 }} key={index}>
               <Card
                 sx={{
                   height: "100%",

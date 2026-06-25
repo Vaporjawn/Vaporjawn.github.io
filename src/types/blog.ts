@@ -1,4 +1,4 @@
-import type { Timestamp } from 'firebase/firestore';
+import type { Timestamp } from "firebase/firestore";
 
 export interface BlogFrontmatter {
   title: string;
@@ -80,7 +80,7 @@ export interface BlogPostFormData {
 /**
  * Blog post status for filtering
  */
-export type BlogPostStatus = 'all' | 'published' | 'draft';
+export type BlogPostStatus = "all" | "published" | "draft";
 
 /**
  * Blog post filter options for admin

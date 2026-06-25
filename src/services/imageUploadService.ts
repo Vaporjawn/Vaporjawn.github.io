@@ -9,8 +9,8 @@ import {
   getDownloadURL,
   deleteObject,
   type UploadTask,
-} from 'firebase/storage';
-import { getFirebaseStorage } from '../backend/firebase';
+} from "firebase/storage";
+import { getFirebaseStorage } from "../backend/firebase";
 
 /**
  * Upload progress callback
@@ -20,7 +20,7 @@ export type UploadProgressCallback = (progress: number) => void;
 /**
  * Allowed image file types
  */
-const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+const ALLOWED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/gif", "image/webp"];
 
 /**
  * Maximum file size (5MB)
@@ -35,7 +35,7 @@ const MAX_FILE_SIZE = 5 * 1024 * 1024;
 function validateImageFile(file: File): void {
   if (!ALLOWED_IMAGE_TYPES.includes(file.type)) {
     throw new Error(
-      `Invalid file type. Allowed types: ${ALLOWED_IMAGE_TYPES.join(', ')}`
+      `Invalid file type. Allowed types: ${ALLOWED_IMAGE_TYPES.join(", ")}`
     );
   }
 
@@ -51,9 +51,9 @@ function validateImageFile(file: File): void {
  */
 function generateUniqueFilename(originalName: string): string {
   const timestamp = Date.now();
-  const extension = originalName.split('.').pop();
-  const nameWithoutExt = originalName.replace(/\.[^/.]+$/, '');
-  const sanitizedName = nameWithoutExt.replace(/[^a-zA-Z0-9-_]/g, '-');
+  const extension = originalName.split(".").pop();
+  const nameWithoutExt = originalName.replace(/\.[^/.]+$/, "");
+  const sanitizedName = nameWithoutExt.replace(/[^a-zA-Z0-9-_]/g, "-");
   return `${sanitizedName}-${timestamp}.${extension}`;
 }
 
@@ -80,13 +80,13 @@ export async function uploadBlogFeaturedImage(
     const uploadTask: UploadTask = uploadBytesResumable(storageRef, file);
 
     uploadTask.on(
-      'state_changed',
+      "state_changed",
       (snapshot) => {
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         onProgress?.(progress);
       },
       (error) => {
-        console.error('[ImageUpload] Upload failed:', error);
+        console.error("[ImageUpload] Upload failed:", error);
         reject(new Error(`Upload failed: ${error.message}`));
       },
       async () => {
@@ -124,13 +124,13 @@ export async function uploadBlogContentImage(
     const uploadTask: UploadTask = uploadBytesResumable(storageRef, file);
 
     uploadTask.on(
-      'state_changed',
+      "state_changed",
       (snapshot) => {
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         onProgress?.(progress);
       },
       (error) => {
-        console.error('[ImageUpload] Upload failed:', error);
+        console.error("[ImageUpload] Upload failed:", error);
         reject(new Error(`Upload failed: ${error.message}`));
       },
       async () => {
@@ -158,16 +158,16 @@ export async function deleteImage(imageUrl: string): Promise<void> {
     const pathMatch = urlObj.pathname.match(/\/o\/(.+)\?/);
 
     if (!pathMatch) {
-      throw new Error('Invalid image URL');
+      throw new Error("Invalid image URL");
     }
 
     const path = decodeURIComponent(pathMatch[1]);
     const storageRef = ref(storage, path);
 
     await deleteObject(storageRef);
-    console.log('[ImageUpload] Image deleted successfully:', path);
+    console.log("[ImageUpload] Image deleted successfully:", path);
   } catch (error) {
-    console.error('[ImageUpload] Failed to delete image:', error);
+    console.error("[ImageUpload] Failed to delete image:", error);
     throw error;
   }
 }
@@ -180,6 +180,6 @@ export async function deletePostImages(postId: string): Promise<void> {
   // Note: Firebase Storage doesn't support deleting entire folders directly
   // In production, you'd want to list all files and delete them individually
   // or use Cloud Functions to handle this
-  console.log('[ImageUpload] Deleting images for post:', postId);
+  console.log("[ImageUpload] Deleting images for post:", postId);
   // Implementation would require listing all files in the folder first
 }

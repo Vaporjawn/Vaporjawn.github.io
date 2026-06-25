@@ -13,6 +13,7 @@
  */
 import React from "react";
 import { Box, Typography, Paper, useTheme, alpha, Chip } from "@mui/material";
+import type { Theme } from "@mui/material/styles";
 import { motion } from "framer-motion";
 import WorkIcon from "@mui/icons-material/Work";
 import SchoolIcon from "@mui/icons-material/School";
@@ -61,7 +62,7 @@ const getIcon = (type: TimelineItemProps["type"]) => {
  * @param theme - MUI theme object
  * @returns Hex color string
  */
-const getColor = (type: TimelineItemProps["type"], theme: any) => {
+const getColor = (type: TimelineItemProps["type"], theme: Theme) => {
   switch (type) {
     case "work":
       return theme.palette.primary.main;
@@ -92,7 +93,7 @@ const getColor = (type: TimelineItemProps["type"], theme: any) => {
  * ```
  */
 const TimelineItem: React.FC<TimelineItemProps> = ({
-  id,
+  id: _id,
   date,
   title,
   organization,

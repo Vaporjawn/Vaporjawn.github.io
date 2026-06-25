@@ -3,7 +3,7 @@
  * @module pages/admin/components/BlogPostsList
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Button,
@@ -33,7 +33,7 @@ import {
   InputLabel,
   Select,
   MenuItem,
-} from '@mui/material';
+} from "@mui/material";
 import {
   Add as AddIcon,
   Edit as EditIcon,
@@ -41,19 +41,20 @@ import {
   Visibility as VisibilityIcon,
   VisibilityOff as VisibilityOffIcon,
   Search as SearchIcon,
-} from '@mui/icons-material';
-import { format } from 'date-fns';
-import type { FirestoreBlogPost, BlogPostStatus } from '../../../types/blog';
-import { getAllBlogPosts, deleteBlogPost } from '../../../services/blogPostService';
-import { BlogPostForm } from './BlogPostForm';
+} from "@mui/icons-material";
+import { format } from "date-fns";
+import type { Timestamp } from "firebase/firestore";
+import type { FirestoreBlogPost, BlogPostStatus } from "../../../types/blog";
+import { getAllBlogPosts, deleteBlogPost } from "../../../services/blogPostService";
+import { BlogPostForm } from "./BlogPostForm";
 
 export const BlogPostsList: React.FC = () => {
   const [posts, setPosts] = useState<FirestoreBlogPost[]>([]);
   const [filteredPosts, setFilteredPosts] = useState<FirestoreBlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [statusFilter, setStatusFilter] = useState<BlogPostStatus>('all');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState<BlogPostStatus>("all");
   const [formOpen, setFormOpen] = useState(false);
   const [editingPost, setEditingPost] = useState<FirestoreBlogPost | null>(null);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
@@ -69,8 +70,8 @@ export const BlogPostsList: React.FC = () => {
       setPosts(fetchedPosts);
       setFilteredPosts(fetchedPosts);
     } catch (err) {
-      console.error('[BlogPostsList] Failed to load posts:', err);
-      setError('Failed to load blog posts. Please try again.');
+      console.error("[BlogPostsList] Failed to load posts:", err);
+      setError("Failed to load blog posts. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -85,9 +86,9 @@ export const BlogPostsList: React.FC = () => {
     let filtered = [...posts];
 
     // Filter by status
-    if (statusFilter === 'published') {
+    if (statusFilter === "published") {
       filtered = filtered.filter(post => post.published);
-    } else if (statusFilter === 'draft') {
+    } else if (statusFilter === "draft") {
       filtered = filtered.filter(post => !post.published);
     }
 
@@ -141,8 +142,8 @@ export const BlogPostsList: React.FC = () => {
       setPostToDelete(null);
       loadPosts();
     } catch (err) {
-      console.error('[BlogPostsList] Failed to delete post:', err);
-      setError('Failed to delete blog post. Please try again.');
+      console.error("[BlogPostsList] Failed to delete post:", err);
+      setError("Failed to delete blog post. Please try again.");
     } finally {
       setDeleteLoading(false);
     }
@@ -153,15 +154,15 @@ export const BlogPostsList: React.FC = () => {
     setPostToDelete(null);
   };
 
-  const formatDate = (timestamp: any): string => {
-    if (!timestamp) return 'N/A';
+  const formatDate = (timestamp: Timestamp | Date | string | number | null | undefined): string => {
+    if (!timestamp) return "N/A";
     const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
-    return format(date, 'MMM dd, yyyy');
+    return format(date, "MMM dd, yyyy");
   };
 
   if (loading) {
     return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', py: 8 }}>
+      <Box sx={{ display: "flex", justifyContent: "center", py: 8 }}>
         <CircularProgress />
       </Box>
     );
@@ -170,7 +171,7 @@ export const BlogPostsList: React.FC = () => {
   return (
     <Box>
       {/* Header */}
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 3 }}>
         <Typography variant="h4" fontWeight="bold">
           Blog Posts
         </Typography>
@@ -194,14 +195,14 @@ export const BlogPostsList: React.FC = () => {
       {/* Filters */}
       <Card sx={{ mb: 3 }}>
         <CardContent>
-          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
+          <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
             <TextField
               fullWidth
               placeholder="Search posts by title, description, or tags..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               InputProps={{
-                startAdornment: <SearchIcon sx={{ mr: 1, color: 'text.secondary' }} />,
+                startAdornment: <SearchIcon sx={{ mr: 1, color: "text.secondary" }} />,
               }}
             />
             <FormControl sx={{ minWidth: 200 }}>
@@ -226,8 +227,8 @@ export const BlogPostsList: React.FC = () => {
           <CardContent>
             <Typography variant="body1" color="text.secondary" align="center" py={4}>
               {posts.length === 0
-                ? 'No blog posts yet. Create your first post!'
-                : 'No posts match your filters.'}
+                ? "No blog posts yet. Create your first post!"
+                : "No posts match your filters."}
             </Typography>
           </CardContent>
         </Card>
@@ -261,8 +262,8 @@ export const BlogPostsList: React.FC = () => {
                   <TableCell>
                     <Chip
                       icon={post.published ? <VisibilityIcon /> : <VisibilityOffIcon />}
-                      label={post.published ? 'Published' : 'Draft'}
-                      color={post.published ? 'success' : 'default'}
+                      label={post.published ? "Published" : "Draft"}
+                      color={post.published ? "success" : "default"}
                       size="small"
                     />
                   </TableCell>

@@ -208,7 +208,7 @@ const AnalyticsDashboard: React.FC = () => {
         {/* Key Metrics Grid */}
         <Grid container spacing={3} sx={{ mb: 4 }}>
           {metrics.map((metric, index) => (
-            <Grid item xs={12} sm={6} md={3} key={index}>
+            <Grid size={{ xs: 12, sm: 6, md: 3 }} key={index}>
               <Card
                 elevation={0}
                 sx={{
@@ -265,7 +265,7 @@ const AnalyticsDashboard: React.FC = () => {
         {/* Charts Grid */}
         <Grid container spacing={3}>
           {/* Page Views Over Time */}
-          <Grid item xs={12} lg={8}>
+          <Grid size={{ xs: 12, lg: 8 }}>
             <Paper elevation={0} sx={{ p: 3, border: 1, borderColor: "divider", height: "100%" }}>
               <Typography variant="h6" gutterBottom fontWeight="bold">
                 Page Views & Visitors
@@ -288,7 +288,7 @@ const AnalyticsDashboard: React.FC = () => {
           </Grid>
 
           {/* Traffic Sources */}
-          <Grid item xs={12} lg={4}>
+          <Grid size={{ xs: 12, lg: 4 }}>
             <Paper elevation={0} sx={{ p: 3, border: 1, borderColor: "divider", height: "100%" }}>
               <Typography variant="h6" gutterBottom fontWeight="bold">
                 Traffic Sources
@@ -319,7 +319,7 @@ const AnalyticsDashboard: React.FC = () => {
           </Grid>
 
           {/* Top Pages */}
-          <Grid item xs={12} lg={6}>
+          <Grid size={{ xs: 12, lg: 6 }}>
             <Paper elevation={0} sx={{ p: 3, border: 1, borderColor: "divider", height: "100%" }}>
               <Typography variant="h6" gutterBottom fontWeight="bold">
                 Top Pages
@@ -340,7 +340,7 @@ const AnalyticsDashboard: React.FC = () => {
           </Grid>
 
           {/* Device Breakdown */}
-          <Grid item xs={12} lg={6}>
+          <Grid size={{ xs: 12, lg: 6 }}>
             <Paper elevation={0} sx={{ p: 3, border: 1, borderColor: "divider", height: "100%" }}>
               <Typography variant="h6" gutterBottom fontWeight="bold">
                 Device Breakdown

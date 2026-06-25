@@ -3,30 +3,30 @@
  * @module services/analytics/types
  */
 
-import type { Timestamp } from 'firebase/firestore';
+import type { Timestamp } from "firebase/firestore";
 
 /**
  * Device type classification
  */
-export type DeviceType = 'mobile' | 'tablet' | 'desktop';
+export type DeviceType = "mobile" | "tablet" | "desktop";
 
 /**
  * Traffic source types
  */
-export type TrafficSource = 'direct' | 'social' | 'search' | 'referral' | 'other';
+export type TrafficSource = "direct" | "social" | "search" | "referral" | "other";
 
 /**
  * Analytics event types
  */
 export type EventType =
-  | 'page_view'
-  | 'project_view'
-  | 'project_click'
-  | 'contact_submit'
-  | 'social_click'
-  | 'blog_read'
-  | 'resume_download'
-  | 'section_view';
+  | "page_view"
+  | "project_view"
+  | "project_click"
+  | "contact_submit"
+  | "social_click"
+  | "blog_read"
+  | "resume_download"
+  | "section_view";
 
 /**
  * Page view document structure
@@ -49,7 +49,7 @@ export interface AnalyticsEventDocument {
   type: EventType;
   label: string;
   sessionId: string;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 /**
@@ -109,8 +109,8 @@ export interface DashboardMetrics {
  * Firestore collection names
  */
 export const COLLECTIONS = {
-  PAGE_VIEWS: 'analytics_pageViews',
-  EVENTS: 'analytics_events',
-  SESSIONS: 'analytics_sessions',
-  DAILY_METRICS: 'analytics_daily',
+  PAGE_VIEWS: "analytics_pageViews",
+  EVENTS: "analytics_events",
+  SESSIONS: "analytics_sessions",
+  DAILY_METRICS: "analytics_daily",
 } as const;

@@ -186,7 +186,7 @@ const ContactForm: React.FC = () => {
         {/* Form Content */}
         <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ position: "relative", zIndex: 1, p: { xs: 3, md: 5 } }}>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <Controller
             name="name"
             control={control}
@@ -224,7 +224,7 @@ const ContactForm: React.FC = () => {
           />
         </Grid>
 
-        <Grid item xs={12} sm={6}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <Controller
             name="email"
             control={control}
@@ -263,7 +263,7 @@ const ContactForm: React.FC = () => {
           />
         </Grid>
 
-        <Grid item xs={12}>
+        <Grid size={12}>
           <Controller
             name="subject"
             control={control}
@@ -301,7 +301,7 @@ const ContactForm: React.FC = () => {
           />
         </Grid>
 
-        <Grid item xs={12} sm={4}>
+        <Grid size={{ xs: 12, sm: 4 }}>
           <Controller
             name="projectType"
             control={control}
@@ -347,7 +347,7 @@ const ContactForm: React.FC = () => {
           />
         </Grid>
 
-        <Grid item xs={12} sm={4}>
+        <Grid size={{ xs: 12, sm: 4 }}>
           <Controller
             name="budget"
             control={control}
@@ -388,7 +388,7 @@ const ContactForm: React.FC = () => {
           />
         </Grid>
 
-        <Grid item xs={12} sm={4}>
+        <Grid size={{ xs: 12, sm: 4 }}>
           <Controller
             name="timeline"
             control={control}
@@ -429,7 +429,7 @@ const ContactForm: React.FC = () => {
           />
         </Grid>
 
-        <Grid item xs={12}>
+        <Grid size={12}>
           <Controller
             name="message"
             control={control}
@@ -469,7 +469,7 @@ const ContactForm: React.FC = () => {
           />
         </Grid>
 
-        <Grid item xs={12}>
+        <Grid size={12}>
           <Button
             type="submit"
             variant="contained"

@@ -67,7 +67,7 @@ const AboutPage: React.FC = () => {
             }}
           >
             <Grid container justifyContent="center">
-              <Grid item xs={12} md={10} lg={8}>
+              <Grid size={{ xs: 12, md: 10, lg: 8 }}>
                 <AboutBioSection portfolioData={portfolioData} />
                 <AboutContactSection
                   darkMode={theme.palette.mode === "dark"}

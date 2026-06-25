@@ -6,7 +6,7 @@
  */
 
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { BrowserRouter, useNavigate } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { PortfolioProvider } from "../../../../../contexts/PortfolioContext";
 import { CTAButton } from "../CTAButton";
@@ -98,8 +98,8 @@ describe("CTAButton", () => {
   it("handles external href correctly", async () => {
     // Mock window.location.href assignment
     const originalLocation = window.location;
-    delete (window as any).location;
-    window.location = { ...originalLocation, href: "" } as any;
+    delete (window as unknown as Record<string, unknown>).location;
+    window.location = { ...originalLocation, href: "" } as unknown as Location;
 
     renderWithProviders(
       <CTAButton

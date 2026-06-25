@@ -43,8 +43,20 @@ import {
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer } from "recharts";
 import SEO from "../../components/SEO/SEO";
 import { fetchDashboardMetrics, type DashboardMetrics } from "../../services/analytics";
-import { TabPanel, a11yProps } from "./components/TabPanel";
+import { TabPanel } from "./components/TabPanel";
 import { BlogPostsList } from "./components/BlogPostsList";
+
+/**
+ * a11yProps — accessibility attributes for MUI Tab / TabPanel pairs.
+ * Defined here (not exported from TabPanel.tsx) so TabPanel.tsx satisfies the
+ * react-refresh/only-export-components rule (component-only exports).
+ */
+function a11yProps(index: number) {
+  return {
+    id: `admin-tab-${index}`,
+    "aria-controls": `admin-tabpanel-${index}`,
+  };
+}
 
 // Types
 interface MetricCard {
@@ -82,11 +94,11 @@ const AdminDashboard: React.FC = () => {
     } catch (err) {
       let errorMessage = err instanceof Error ? err.message : "Failed to load dashboard data";
 
-      console.log('[AdminDashboard] Original error message:', errorMessage);
+      console.log("[AdminDashboard] Original error message:", errorMessage);
 
       // Provide user-friendly guidance for Firebase initialization errors
       if (errorMessage.includes("Firestore not initialized") || errorMessage.includes("Firebase configuration incomplete")) {
-        console.log('[AdminDashboard] Transforming Firebase error to user-friendly message');
+        console.log("[AdminDashboard] Transforming Firebase error to user-friendly message");
         errorMessage = "Firebase is not configured. Please add your Firebase credentials to the .env file. See FIREBASE_QUICKSTART.md for setup instructions.";
       }
 
@@ -185,19 +197,19 @@ const AdminDashboard: React.FC = () => {
 
   // Chart data from Firebase
   const pageViewsData: ChartData[] = metrics?.pageViewsTrend.map(item => ({
-    name: new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+    name: new Date(item.date).toLocaleDateString("en-US", { month: "short", day: "numeric" }),
     views: item.views,
     visitors: item.visitors || 0,
   })) || [];
 
   const topPagesData: ChartData[] = metrics?.topPages.map(item => ({
-    name: item.path.replace(/^\//, '') || 'Home',
+    name: item.page.replace(/^\//, "") || "Home",
     value: item.views,
   })) || [];
 
   const trafficSourcesData: ChartData[] = metrics?.trafficSources.map(item => ({
     name: item.source.charAt(0).toUpperCase() + item.source.slice(1),
-    value: item.percentage,
+    value: item.value,
   })) || [];
 
   const deviceData: ChartData[] = metrics?.deviceBreakdown.map(item => ({
@@ -213,6 +225,7 @@ const AdminDashboard: React.FC = () => {
         title="Admin Dashboard | Victor Williams"
         description="Protected admin dashboard with analytics and insights"
         url="https://vaporjawn.github.io/admin"
+        noindex={true}
       />
       <Container maxWidth="xl" sx={{ py: 4 }}>
         {/* Dashboard Title */}
@@ -226,7 +239,7 @@ const AdminDashboard: React.FC = () => {
         </Box>
 
         {/* Tabs Navigation */}
-        <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 4 }}>
+        <Box sx={{ borderBottom: 1, borderColor: "divider", mb: 4 }}>
           <Tabs value={activeTab} onChange={(_, newValue) => setActiveTab(newValue)}>
             <Tab
               label="Analytics Dashboard"
@@ -308,7 +321,7 @@ const AdminDashboard: React.FC = () => {
           {loading ? (
             // Loading skeletons
             Array.from({ length: 8 }).map((_, index) => (
-              <Grid item xs={12} sm={6} md={3} key={index}>
+              <Grid size={{ xs: 12, sm: 6, md: 3 }} key={index}>
                 <Card elevation={0} sx={{ height: "100%", border: 1, borderColor: "divider" }}>
                   <CardContent>
                     <Skeleton variant="circular" width={40} height={40} sx={{ mb: 2 }} />
@@ -321,7 +334,7 @@ const AdminDashboard: React.FC = () => {
             ))
           ) : (
             metricsCards.map((metric, index) => (
-              <Grid item xs={12} sm={6} md={3} key={index}>
+              <Grid size={{ xs: 12, sm: 6, md: 3 }} key={index}>
                 <Card
                   elevation={0}
                   sx={{
@@ -379,7 +392,7 @@ const AdminDashboard: React.FC = () => {
         {!loading && !error && metrics && (
           <Grid container spacing={3}>
             {/* Page Views Over Time */}
-            <Grid item xs={12} lg={8}>
+            <Grid size={{ xs: 12, lg: 8 }}>
               <Paper elevation={0} sx={{ p: 3, border: 1, borderColor: "divider", height: "100%" }}>
                 <Typography variant="h6" gutterBottom fontWeight="bold">
                   Page Views & Visitors
@@ -400,7 +413,7 @@ const AdminDashboard: React.FC = () => {
                     </LineChart>
                   </ResponsiveContainer>
                 ) : (
-                  <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 300 }}>
+                  <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: 300 }}>
                     <Typography variant="body2" color="text.secondary">No data available</Typography>
                   </Box>
                 )}
@@ -408,7 +421,7 @@ const AdminDashboard: React.FC = () => {
             </Grid>
 
             {/* Traffic Sources */}
-            <Grid item xs={12} lg={4}>
+            <Grid size={{ xs: 12, lg: 4 }}>
               <Paper elevation={0} sx={{ p: 3, border: 1, borderColor: "divider", height: "100%" }}>
                 <Typography variant="h6" gutterBottom fontWeight="bold">
                   Traffic Sources
@@ -437,7 +450,7 @@ const AdminDashboard: React.FC = () => {
                     </PieChart>
                   </ResponsiveContainer>
                 ) : (
-                  <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 300 }}>
+                  <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: 300 }}>
                     <Typography variant="body2" color="text.secondary">No data available</Typography>
                   </Box>
                 )}
@@ -445,7 +458,7 @@ const AdminDashboard: React.FC = () => {
             </Grid>
 
             {/* Top Pages */}
-            <Grid item xs={12} lg={6}>
+            <Grid size={{ xs: 12, lg: 6 }}>
               <Paper elevation={0} sx={{ p: 3, border: 1, borderColor: "divider", height: "100%" }}>
                 <Typography variant="h6" gutterBottom fontWeight="bold">
                   Top Pages
@@ -464,7 +477,7 @@ const AdminDashboard: React.FC = () => {
                     </BarChart>
                   </ResponsiveContainer>
                 ) : (
-                  <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 300 }}>
+                  <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: 300 }}>
                     <Typography variant="body2" color="text.secondary">No data available</Typography>
                   </Box>
                 )}
@@ -472,7 +485,7 @@ const AdminDashboard: React.FC = () => {
             </Grid>
 
             {/* Device Breakdown */}
-            <Grid item xs={12} lg={6}>
+            <Grid size={{ xs: 12, lg: 6 }}>
               <Paper elevation={0} sx={{ p: 3, border: 1, borderColor: "divider", height: "100%" }}>
                 <Typography variant="h6" gutterBottom fontWeight="bold">
                   Device Breakdown
@@ -501,7 +514,7 @@ const AdminDashboard: React.FC = () => {
                     </PieChart>
                   </ResponsiveContainer>
                 ) : (
-                  <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 300 }}>
+                  <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: 300 }}>
                     <Typography variant="body2" color="text.secondary">No data available</Typography>
                   </Box>
                 )}
@@ -513,9 +526,9 @@ const AdminDashboard: React.FC = () => {
         {/* Loading State for Charts */}
         {loading && (
           <Grid container spacing={3}>
-            <Grid item xs={12}>
+            <Grid size={12}>
               <Paper elevation={0} sx={{ p: 3, border: 1, borderColor: "divider" }}>
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, py: 8 }}>
+                <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2, py: 8 }}>
                   <CircularProgress />
                   <Typography variant="body2" color="text.secondary">Loading analytics data...</Typography>
                 </Box>

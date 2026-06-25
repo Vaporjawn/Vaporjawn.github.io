@@ -486,7 +486,7 @@ const ProjectsPage: React.FC = () => {
 
               {/* Quick Filter Buttons */}
               <Grid container spacing={2} sx={{ mb: 3, justifyContent: "center" }}>
-                <Grid item xs={12} sm={4} md={2}>
+                <Grid size={{ xs: 12, sm: 4, md: 2 }}>
                   <Button
                     fullWidth
                     variant={showOnlyNpm ? "contained" : "outlined"}
@@ -501,7 +501,7 @@ const ProjectsPage: React.FC = () => {
                     {showOnlyNpm ? "All" : "📦 NPM"}
                   </Button>
                 </Grid>
-                <Grid item xs={12} sm={4} md={2}>
+                <Grid size={{ xs: 12, sm: 4, md: 2 }}>
                   <Button
                     fullWidth
                     variant={showOnlyFeatured ? "contained" : "outlined"}
@@ -516,7 +516,7 @@ const ProjectsPage: React.FC = () => {
                     {showOnlyFeatured ? "All" : "⭐ Featured"}
                   </Button>
                 </Grid>
-                <Grid item xs={12} sm={4} md={2}>
+                <Grid size={{ xs: 12, sm: 4, md: 2 }}>
                   <Button
                     fullWidth
                     variant={showOnlyDevpost ? "contained" : "outlined"}
@@ -535,7 +535,7 @@ const ProjectsPage: React.FC = () => {
 
               {/* Search and Dropdown Filters */}
               <Grid container spacing={2} sx={{ mb: 3 }}>
-                <Grid item xs={12} md={6}>
+                <Grid size={{ xs: 12, md: 6 }}>
                   <TextField
                     fullWidth
                     label="Search projects"
@@ -552,7 +552,7 @@ const ProjectsPage: React.FC = () => {
                     placeholder="Search by name, description, or technology..."
                   />
                 </Grid>
-                <Grid item xs={12} sm={6} md={3}>
+                <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                   <FormControl fullWidth>
                     <InputLabel>Status</InputLabel>
                     <Select
@@ -569,7 +569,7 @@ const ProjectsPage: React.FC = () => {
                     </Select>
                   </FormControl>
                 </Grid>
-                <Grid item xs={12} sm={6} md={3}>
+                <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                   <FormControl fullWidth>
                     <InputLabel>Category</InputLabel>
                     <Select
@@ -590,7 +590,7 @@ const ProjectsPage: React.FC = () => {
 
               {/* Sorting and View Controls */}
               <Grid container spacing={2} sx={{ mt: 2 }}>
-                <Grid item xs={12} sm={6} md={3}>
+                <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                   <FormControl fullWidth size="small">
                     <InputLabel>Sort By</InputLabel>
                     <Select
@@ -607,7 +607,7 @@ const ProjectsPage: React.FC = () => {
                   </FormControl>
                 </Grid>
 
-                <Grid item xs={12} sm={6} md={2}>
+                <Grid size={{ xs: 12, sm: 6, md: 2 }}>
                   <ToggleButtonGroup
                     value={sortOrder}
                     exclusive
@@ -630,7 +630,7 @@ const ProjectsPage: React.FC = () => {
                   </ToggleButtonGroup>
                 </Grid>
 
-                <Grid item xs={12} sm={12} md={2}>
+                <Grid size={{ xs: 12, sm: 12, md: 2 }}>
                   <ToggleButtonGroup
                     value={viewMode}
                     exclusive
@@ -661,7 +661,7 @@ const ProjectsPage: React.FC = () => {
               <Grid container spacing={3}>
               <AnimatePresence mode="popLayout">
               {filteredProjects.map((project, index) => (
-                <Grid item xs={12} sm={6} lg={4} key={project.id}>
+                <Grid size={{ xs: 12, sm: 6, lg: 4 }} key={project.id}>
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}

@@ -16,11 +16,11 @@ export function calculateReadTime(content: string): number {
 
   // Remove markdown syntax for more accurate word count
   const cleanContent = content
-    .replace(/```[\s\S]*?```/g, '') // Remove code blocks
-    .replace(/`[^`]*`/g, '')         // Remove inline code
-    .replace(/!\[.*?\]\(.*?\)/g, '') // Remove images
-    .replace(/\[.*?\]\(.*?\)/g, '')  // Remove links
-    .replace(/[#*_~]/g, '');         // Remove markdown symbols
+    .replace(/```[\s\S]*?```/g, "") // Remove code blocks
+    .replace(/`[^`]*`/g, "")         // Remove inline code
+    .replace(/!\[.*?\]\(.*?\)/g, "") // Remove images
+    .replace(/\[.*?\]\(.*?\)/g, "")  // Remove links
+    .replace(/[#*_~]/g, "");         // Remove markdown symbols
 
   const words = cleanContent.trim().split(/\s+/).length;
   const readTime = Math.ceil(words / wordsPerMinute);

@@ -4,7 +4,7 @@
  * @module components/github/GitHubContributions
  */
 
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import { Box, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import ContribHeatmap, {
@@ -46,7 +46,13 @@ const GitHubContributions: React.FC = () => {
   // Decide primary tint (fallback to default green)
   const primary = theme.palette.primary.main || "#34d058";
 
-  const [chartUrl, setChartUrl] = useState<string>(buildChartUrl(primary));
+  // Derive theme URL from primary color (memoised so the compiler is happy)
+  const themeChartUrl = useMemo(() => buildChartUrl(primary), [primary]);
+  // Local fallback URL is set (via handleError) only when the theme URL fails
+  const [localFallback, setLocalFallback] = useState<string | null>(null);
+  // Effective URL: theme-derived unless a local fallback was triggered by an error
+  const chartUrl = localFallback ?? themeChartUrl;
+
   const [status, setStatus] = useState<
     "idle" | "loading" | "loaded" | "error"
   >("idle");
@@ -56,14 +62,18 @@ const GitHubContributions: React.FC = () => {
   const [refreshKey, setRefreshKey] = useState(0);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
-  // Compute staleness (>48h)
-  const isStale = (() => {
-    if (!meta?.fetchedAt) return true; // treat missing metadata as stale/unknown
-    const fetched = new Date(meta.fetchedAt).getTime();
-    if (Number.isNaN(fetched)) return true;
-    const ageHrs = (Date.now() - fetched) / 36e5;
-    return ageHrs > STALE_HOURS;
-  })();
+  // Capture wall-clock time at mount via lazy useState initializer.
+  // Passing `Date.now` (function reference, not a call) satisfies react-hooks/purity
+  // because the reference itself is pure — React calls it once during initialisation.
+  const [mountTime] = useState<number>(Date.now);
+
+  // Compute staleness (>48h) against the mount-time baseline.
+  // Omitting useMemo intentionally: the React Compiler handles memoisation automatically,
+  // which avoids the conflict between exhaustive-deps and preserve-manual-memoization.
+  // new Date(fetchedAt) with a deterministic string arg is considered pure by the compiler.
+  const fetchedMs = meta?.fetchedAt ? new Date(meta.fetchedAt).getTime() : NaN;
+  const isStale =
+    !meta?.fetchedAt || Number.isNaN(fetchedMs) || (mountTime - fetchedMs) / 36e5 > STALE_HOURS;
 
   /**
    * Manual refresh handler
@@ -78,14 +88,8 @@ const GitHubContributions: React.FC = () => {
     setIsRefreshing(false);
   }, []);
 
-  // If theme changes (light/dark), we can attempt a recolor
-  useEffect(() => {
-    const colorForMode =
-      theme.palette.mode === "dark" ? primary : primary;
-    const newUrl = buildChartUrl(colorForMode);
-    setChartUrl(newUrl);
-    setStatus("loading");
-  }, [theme.palette.mode, primary]);
+  // Note: chartUrl auto-updates when `primary` changes (via useMemo above),
+  // so no useEffect is needed to recolor on theme change.
 
   /**
    * Fallback error handler
@@ -95,9 +99,7 @@ const GitHubContributions: React.FC = () => {
     if (!attemptedLocal) {
       // Try local fallback image if present
       setAttemptedLocal(true);
-      setChartUrl(
-        theme.palette.mode === "dark" ? LOCAL_DARK : LOCAL_LIGHT
-      );
+      setLocalFallback(theme.palette.mode === "dark" ? LOCAL_DARK : LOCAL_LIGHT);
       setStatus("loading");
     } else {
       setStatus("error");
