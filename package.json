@@ -38,7 +38,7 @@
     "@mui/material": "^7.3.11",
     "@sentry/react": "^10.64.0",
     "@tanstack/react-query": "^5.101.2",
-    "@uiw/react-md-editor": "^4.0.11",
+    "@uiw/react-md-editor": "^4.1.1",
     "date-fns": "^4.1.0",
     "dompurify": "^3.4.11",
     "firebase": "^12.15.0",
