@@ -15,7 +15,7 @@
         "sash.hoverBorder": "#4d004a",
         "statusBar.background": "#1a0019",
         "statusBarItem.hoverBackground": "#4d004a",
-        "statusBarItem.remoteBackground": "#5c6000",
+        "statusBarItem.remoteBackground": "#1a0019",
         "titleBar.activeBackground": "#1a0019",
         "titleBar.inactiveBackground": "#1a001999",
         "editorGroup.border": "#4d004a",
@@ -25,9 +25,7 @@
         "statusBar.debuggingBackground": "#001a01",
         "statusBar.debuggingBorder": "#001a01",
         "tab.activeBorder": "#4d004a",
-        "titleBar.border": "#1a0019",
-        "activityBarTop.activeBackground": "#4d004a",
-        "activityBarTop.background": "#4d004a"
+        "titleBar.border": "#1a0019"
     },
     "peacock.color": "#1a0019"
 }
