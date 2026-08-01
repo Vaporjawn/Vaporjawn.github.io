@@ -51,7 +51,20 @@ import profileImageWebP from "../../../../assets/profile-picture.webp";
  * <HeroSection background={background} />
  * ```
  */
-export const HeroSection: React.FC<HeroSectionProps> = ({ background }) => {
+// Defaults match the site's real positioning (src/data/portfolio.json) so a caller
+// that forgets to pass these still gets the correct, current-title copy rather than
+// silently reverting to old generic placeholder text.
+const DEFAULT_NAME = "Victor Williams";
+const DEFAULT_TITLE = "Chief Technology Officer & Senior Software Engineer";
+const DEFAULT_BIO =
+  "Technology leader and full-stack engineer with a track record of scaling engineering teams and shipping enterprise-grade products.";
+
+export const HeroSection: React.FC<HeroSectionProps> = ({
+  background,
+  name = DEFAULT_NAME,
+  title = DEFAULT_TITLE,
+  bio = DEFAULT_BIO,
+}) => {
   const theme = useTheme();
 
   return (
@@ -95,11 +108,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ background }) => {
             flexBasis: { xs: "100%", md: "66.666%" },
           }}
         >
-          <HeroContent
-            name="VICTOR WILLIAMS"
-            title="SOFTWARE DEVELOPER & DIGITAL CREATIVE"
-            bio="Passionate developer creating innovative digital experiences with modern web technologies."
-          />
+          <HeroContent name={name} title={title} bio={bio} />
         </Grid>
 
         {/* Profile Image Section */}

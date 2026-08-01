@@ -23,6 +23,7 @@ import {
   Info as InfoIcon,
   Build as BuildIcon,
   ContactMail as ContactMailIcon,
+  Article as ArticleIcon,
 } from "@mui/icons-material";
 import { NavigateFunction, useNavigate, useLocation } from "react-router-dom";
 import HomePath from "../../routes/homePath";
@@ -51,7 +52,7 @@ const Header = (args: {
     { label: "About", path: "/about", icon: <InfoIcon /> },
     { label: "Services", path: "/services", icon: <BuildIcon /> },
     { label: "Projects", path: "/projects", icon: <WorkIcon /> },
-    /* { label: "Blog", path: "/blog", icon: <DescriptionIcon /> }, */
+    { label: "Blog", path: "/blog", icon: <ArticleIcon /> },
     { label: "Resume", path: "/resume", icon: <DescriptionIcon /> },
     { label: "Activity", path: "/activity", icon: <InfoIcon /> },
     { label: "Contact", path: "/contact", icon: <ContactMailIcon /> },

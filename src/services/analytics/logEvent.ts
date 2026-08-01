@@ -5,7 +5,7 @@
  */
 
 import { collection, addDoc, serverTimestamp, type FieldValue } from "firebase/firestore";
-import { getFirestoreDB } from "../../backend/firebase";
+import { getFirestoreDB, isFirebaseInitialized } from "../../backend/firebase";
 import type {
   EventType,
   PageViewDocument,
@@ -26,6 +26,11 @@ import { COLLECTIONS } from "./types";
  * @returns Promise that resolves when logged
  */
 export async function logPageView(path: string, title: string): Promise<void> {
+  // Skip quietly when Firebase never initialized (e.g. no VITE_FIREBASE_* configured)
+  // instead of attempting-and-catching on every single page navigation — this is what
+  // was producing a fresh console error on every page load in production.
+  if (!isFirebaseInitialized()) return;
+
   try {
     const db = getFirestoreDB();
     const sessionId = getSessionId();
@@ -63,6 +68,9 @@ export async function logAnalyticsEvent(
   label: string,
   metadata?: Record<string, unknown>
 ): Promise<void> {
+  // Skip quietly when Firebase never initialized — see logPageView above.
+  if (!isFirebaseInitialized()) return;
+
   try {
     const db = getFirestoreDB();
     const sessionId = getSessionId();

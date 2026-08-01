@@ -74,7 +74,7 @@ const AdminLogin: React.FC = () => {
       <SEO
         title="Admin Login | Victor Williams"
         description="Admin dashboard login"
-        url="https://vaporjawn.github.io/admin/login"
+        url="https://vaporjawn.dev/admin/login"
         noindex={true}
       />
 

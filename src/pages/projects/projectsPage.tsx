@@ -439,7 +439,7 @@ const ProjectsPage: React.FC = () => {
         title="Projects | Victor Williams"
         description="Explore Victor Williams' portfolio of web development projects built with React, TypeScript, and modern technologies."
         keywords="Victor Williams Projects, React Projects, TypeScript, Web Development Portfolio, Open Source"
-        url="https://vaporjawn.github.io/projects"
+        url="https://vaporjawn.dev/projects"
       />
 
       <Container maxWidth="xl" sx={{ py: 4, px: { xs: 2, sm: 3, md: 4 } }}>

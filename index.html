@@ -2,24 +2,71 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="description" content="Victor Williams - Senior Full Stack Software Engineer with expertise in React, TypeScript, Node.js, and modern web development. Temple University graduate with 5+ years of experience." />
-    <meta name="keywords" content="Victor Williams, Full Stack Developer, Software Engineer, React, TypeScript, Node.js, Web Development, Philadelphia, Temple University" />
+
+    <!-- Single Page Apps for GitHub Pages (MIT, https://github.com/rafgraph/spa-github-pages)
+         Restores the real path GitHub's 404.html redirect encoded into the query
+         string (see public/404.html) via history.replaceState, before React Router
+         mounts — this is what makes a direct load/refresh of e.g. /resume or
+         /blog/some-post work instead of 404ing. Must run before the app script below. -->
+    <script type="text/javascript">
+      (function (l) {
+        if (l.search[1] === "/") {
+          var decoded = l.search
+            .slice(1)
+            .split("&")
+            .map(function (s) {
+              return s.replace(/~and~/g, "&");
+            })
+            .join("?");
+          window.history.replaceState(
+            null,
+            null,
+            l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      })(window.location);
+    </script>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="Victor Williams - Senior Full Stack Software Engineer with expertise in React, TypeScript, Node.js, and modern web development. Temple University graduate with 5+ years of experience."
+    />
+    <meta
+      name="keywords"
+      content="Victor Williams, Full Stack Developer, Software Engineer, React, TypeScript, Node.js, Web Development, Philadelphia, Temple University"
+    />
     <meta name="author" content="Victor Williams" />
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Victor Williams - Senior Full Stack Software Engineer" />
-    <meta property="og:description" content="Senior Full Stack Software Engineer with expertise in React, TypeScript, Node.js, and modern web development." />
+    <meta
+      property="og:title"
+      content="Victor Williams - Senior Full Stack Software Engineer"
+    />
+    <meta
+      property="og:description"
+      content="Senior Full Stack Software Engineer with expertise in React, TypeScript, Node.js, and modern web development."
+    />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.vaporjawn.dev" />
+    <meta property="og:url" content="https://vaporjawn.dev" />
     <meta property="og:site_name" content="Victor Williams Portfolio" />
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@vaporjawn" />
-    <meta name="twitter:title" content="Victor Williams - Senior Full Stack Software Engineer" />
-    <meta name="twitter:description" content="Senior Full Stack Software Engineer with expertise in React, TypeScript, Node.js, and modern web development." />
+    <meta
+      name="twitter:title"
+      content="Victor Williams - Senior Full Stack Software Engineer"
+    />
+    <meta
+      name="twitter:description"
+      content="Senior Full Stack Software Engineer with expertise in React, TypeScript, Node.js, and modern web development."
+    />
 
     <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -27,14 +74,24 @@
     <link rel="preconnect" href="https://api.github.com" />
 
     <!-- Preload critical assets for performance -->
-    <link rel="preload" href="/src/assets/banner.jpg" as="image" type="image/jpeg" />
-    <link rel="preload" href="/src/assets/profile-picture.jpeg" as="image" type="image/jpeg" />
+    <link
+      rel="preload"
+      href="/src/assets/banner.jpg"
+      as="image"
+      type="image/jpeg"
+    />
+    <link
+      rel="preload"
+      href="/src/assets/profile-picture.jpeg"
+      as="image"
+      type="image/jpeg"
+    />
 
     <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json" />
 
     <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- Theme Color for browser chrome -->
     <meta name="theme-color" content="#6366f1" />

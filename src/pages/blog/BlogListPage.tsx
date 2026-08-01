@@ -23,52 +23,12 @@ import { Search as SearchIcon, CalendarToday, AccessTime, Article as ArticleIcon
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import SEO from "../../components/SEO/SEO";
-import { BlogPost, BlogFilter } from "../../types/blog";
+import { BlogFilter } from "../../types/blog";
 import { filterBlogPosts, getAllTags, formatDate } from "../../utils/blogUtils";
+import { getAllBlogPosts } from "../../utils/blogLoader";
 
-// Import blog posts - in a real app, these would be loaded dynamically
-// For now, we'll use placeholder data until actual .mdx files are created
-const PLACEHOLDER_POSTS: BlogPost[] = [
-  {
-    title: "Building a Modern Portfolio with React + TypeScript",
-    description: "A comprehensive guide to creating a professional portfolio website using React, TypeScript, and modern web technologies.",
-    date: "2025-12-25",
-    author: "Victor Williams",
-    tags: ["React", "TypeScript", "Web Development", "Portfolio"],
-    image: "/assets/blog/portfolio-hero.jpg",
-    readTime: 8,
-    published: true,
-    slug: "building-modern-portfolio",
-    content: "",
-    excerpt: "Creating a standout portfolio is essential for any developer looking to showcase their skills and attract opportunities...",
-  },
-  {
-    title: "Mastering Core Web Vitals for Peak Performance",
-    description: "Learn how to optimize your website for Google's Core Web Vitals metrics - FCP, LCP, FID, CLS, and TTFB.",
-    date: "2025-12-20",
-    author: "Victor Williams",
-    tags: ["Performance", "Web Vitals", "Optimization", "SEO"],
-    image: "/assets/blog/web-vitals-hero.jpg",
-    readTime: 10,
-    published: true,
-    slug: "mastering-core-web-vitals",
-    content: "",
-    excerpt: "In 2021, Google made Core Web Vitals a ranking factor for search results. If you want your website to rank well...",
-  },
-  {
-    title: "Integrating Sentry and Analytics in Production React Apps",
-    description: "Complete guide to implementing Sentry error tracking, performance monitoring, and Google Analytics 4.",
-    date: "2025-12-18",
-    author: "Victor Williams",
-    tags: ["Sentry", "Analytics", "Monitoring", "React", "Production"],
-    image: "/assets/blog/sentry-analytics-hero.jpg",
-    readTime: 12,
-    published: true,
-    slug: "sentry-analytics-production",
-    content: "",
-    excerpt: "You've built an amazing React application, but how do you know if it's working correctly for all your users?...",
-  },
-];
+// Real posts loaded from content/blog/*.md(x) at build time — see utils/blogLoader.ts.
+const ALL_POSTS = getAllBlogPosts();
 
 const BlogListPage: React.FC = () => {
   const theme = useTheme();
@@ -81,11 +41,11 @@ const BlogListPage: React.FC = () => {
   });
 
   // Get all unique tags from posts
-  const allTags = useMemo(() => getAllTags(PLACEHOLDER_POSTS), []);
+  const allTags = useMemo(() => getAllTags(ALL_POSTS), []);
 
   // Apply filters
   const filteredPosts = useMemo(() =>
-    filterBlogPosts(PLACEHOLDER_POSTS, filter),
+    filterBlogPosts(ALL_POSTS, filter),
     [filter]
   );
 

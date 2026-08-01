@@ -129,7 +129,7 @@ const ServicesPage: React.FC = () => {
         title="Web Development Services | Victor Williams"
         description="Professional web development services from concept to deployment. Full-stack development, technical consulting, and project leadership with modern technologies."
         keywords="Web Development, React, TypeScript, Full Stack, Technical Consulting, Project Management, Custom Applications"
-        url="https://vaporjawn.github.io/services"
+        url="https://vaporjawn.dev/services"
       />
 
       <Container maxWidth="lg" sx={{ py: 4 }}>

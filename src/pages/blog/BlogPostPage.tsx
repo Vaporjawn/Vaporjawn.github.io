@@ -24,82 +24,29 @@ import {
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
-import DOMPurify from "dompurify";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
+import "highlight.js/styles/atom-one-dark.css";
 import SEO from "../../components/SEO/SEO";
 import { BlogPost } from "../../types/blog";
 import { formatDate } from "../../utils/blogUtils";
+import { getBlogPostBySlug } from "../../utils/blogLoader";
 import BlueskyIcon from "../../assets/logos/Bluesky_Logo.svg";
-
-// Placeholder posts - in production, these would be dynamically loaded
-const PLACEHOLDER_POSTS: Record<string, BlogPost> = {
-  "building-modern-portfolio": {
-    title: "Building a Modern Portfolio with React + TypeScript",
-    description: "A comprehensive guide to creating a professional portfolio website using React, TypeScript, and modern web technologies.",
-    date: "2025-12-25",
-    author: "Victor Williams",
-    tags: ["React", "TypeScript", "Web Development", "Portfolio"],
-    image: "/assets/blog/portfolio-hero.jpg",
-    readTime: 8,
-    published: true,
-    slug: "building-modern-portfolio",
-    content: `
-Creating a standout portfolio is essential for any developer looking to showcase their skills and attract opportunities. In this guide, I'll walk you through the process of building a modern, performant portfolio using React and TypeScript.
-
-## Why React + TypeScript?
-
-React has become the de facto standard for building modern web applications, and for good reason...
-
-[Content would be loaded from MDX file in production]
-    `,
-    excerpt: "Creating a standout portfolio is essential for any developer looking to showcase their skills...",
-  },
-  "mastering-core-web-vitals": {
-    title: "Mastering Core Web Vitals for Peak Performance",
-    description: "Learn how to optimize your website for Google's Core Web Vitals metrics.",
-    date: "2025-12-20",
-    author: "Victor Williams",
-    tags: ["Performance", "Web Vitals", "Optimization", "SEO"],
-    image: "/assets/blog/web-vitals-hero.jpg",
-    readTime: 10,
-    published: true,
-    slug: "mastering-core-web-vitals",
-    content: `
-In 2021, Google made Core Web Vitals a ranking factor for search results...
-
-[Content would be loaded from MDX file in production]
-    `,
-    excerpt: "In 2021, Google made Core Web Vitals a ranking factor for search results...",
-  },
-  "sentry-analytics-production": {
-    title: "Integrating Sentry and Analytics in Production React Apps",
-    description: "Complete guide to implementing Sentry error tracking and Google Analytics 4.",
-    date: "2025-12-18",
-    author: "Victor Williams",
-    tags: ["Sentry", "Analytics", "Monitoring", "React", "Production"],
-    image: "/assets/blog/sentry-analytics-hero.jpg",
-    readTime: 12,
-    published: true,
-    slug: "sentry-analytics-production",
-    content: `
-You've built an amazing React application, but how do you know if it's working correctly for all your users?...
-
-[Content would be loaded from MDX file in production]
-    `,
-    excerpt: "You've built an amazing React application, but how do you know if it's working correctly...",
-  },
-};
 
 const BlogPostPage: React.FC = () => {
   const theme = useTheme();
   const navigate = useNavigate();
   const { slug } = useParams<{ slug: string }>();
 
-  // Derived from slug — no async work, so useMemo avoids the set-state-in-effect pattern.
+  // Real content loaded from content/blog/*.md(x) at build time — see
+  // utils/blogLoader.ts. Derived from slug, no async work, so useMemo avoids the
+  // set-state-in-effect pattern.
   const post = useMemo<BlogPost | null>(
-    () => (slug && PLACEHOLDER_POSTS[slug] ? PLACEHOLDER_POSTS[slug] : null),
+    () => (slug && getBlogPostBySlug(slug)) || null,
     [slug]
   );
-  const loading = false; // All data is synchronous (placeholder); will be async when real API is wired
+  const loading = false; // All data is synchronous (build-time loaded), nothing to await
 
   const handleShare = (platform: "twitter" | "linkedin" | "bluesky" | "copy") => {
     if (!post) return;
@@ -414,21 +361,12 @@ const BlogPostPage: React.FC = () => {
                 },
               }}
             >
-              <Typography
-                component="div"
-                dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(post.content, {
-                    ALLOWED_TAGS: [
-                      "p", "br", "strong", "em", "u", "i", "b",
-                      "a", "ul", "ol", "li", "code", "pre",
-                      "h1", "h2", "h3", "h4", "h5", "h6",
-                      "blockquote", "img", "div", "span"
-                    ],
-                    ALLOWED_ATTR: ["href", "src", "alt", "title", "class", "id"],
-                    ALLOW_DATA_ATTR: false,
-                  })
-                }}
-              />
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeHighlight]}
+              >
+                {post.content}
+              </ReactMarkdown>
             </Box>
 
             <Divider sx={{ my: 6 }} />

@@ -25,12 +25,12 @@ import { Helmet } from "react-helmet-async";
  * SEO component props interface
  *
  * @interface SEOProps
- * @property {string} [title] - Page title (default: "Victor Williams - Software Developer & Digital Creative")
+ * @property {string} [title] - Page title (default: "Victor Williams - CTO & Senior Software Engineer")
  * @property {string} [description] - Page description for search engines and social previews
  * @property {string} [keywords] - Comma-separated keywords for search engine indexing
  * @property {string} [author] - Content author name (default: "Victor Williams")
  * @property {string} [image] - Open Graph and Twitter Card image URL (absolute or relative)
- * @property {string} [url] - Canonical page URL (default: "https://www.vaporjawn.dev")
+ * @property {string} [url] - Canonical page URL (default: "https://vaporjawn.dev")
  * @property {string} [type] - Open Graph content type (default: "website", can be "article" for blog posts)
  * @property {string} [publishedTime] - Article published time in ISO 8601 format (for blog posts)
  * @property {string} [modifiedTime] - Article modified time in ISO 8601 format (for blog posts)
@@ -84,12 +84,17 @@ interface SEOProps {
  * />
  */
 const SEO: React.FC<SEOProps> = ({
-  title = "Victor Williams - Software Developer & Digital Creative",
-  description = "Passionate developer creating innovative digital experiences with modern web technologies. Specializing in React, TypeScript, and full-stack development.",
-  keywords = "software developer, web developer, react, typescript, javascript, portfolio, philadelphia",
+  title = "Victor Williams - CTO & Senior Software Engineer",
+  description = "Technology leader and full-stack engineer with a track record of scaling engineering teams and shipping enterprise-grade products.",
+  keywords = "CTO, chief technology officer, engineering leadership, senior software engineer, react, typescript, philadelphia",
   author = "Victor Williams",
   image = "/og-image.jpg",
-  url = "https://www.vaporjawn.dev",
+  // Apex domain, not "www." — GitHub Pages only provisions a valid HTTPS cert for the
+  // one domain configured as the custom domain (vaporjawn.dev). www.vaporjawn.dev gets
+  // served GitHub's generic *.github.io cert instead, which triggers a browser TLS
+  // warning (ERR_CERT_COMMON_NAME_INVALID). Never point canonical/OG/Twitter/JSON-LD
+  // URLs at "www." here until that's fixed at the DNS level.
+  url = "https://vaporjawn.dev",
   type = "website",
   publishedTime,
   modifiedTime,

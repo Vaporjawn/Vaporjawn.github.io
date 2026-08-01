@@ -12,6 +12,12 @@
 export interface HeroSectionProps {
   /** Background image URL or gradient configuration for parallax effect */
   background: string;
+  /** Full name to display as the main heading. Falls back to a default if omitted. */
+  name?: string;
+  /** Professional title/tagline. Falls back to a default if omitted. */
+  title?: string;
+  /** Brief biographical description. Falls back to a default if omitted. */
+  bio?: string;
 }
 
 /**

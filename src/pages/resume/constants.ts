@@ -35,17 +35,17 @@ export const RESUME_PAGE_TITLE = "Resume | Victor Williams";
  * @constant {string}
  */
 export const RESUME_PAGE_DESCRIPTION =
-  "View and download Victor Williams' professional resume. Experienced Full Stack Software Engineer specializing in React, TypeScript, and modern web development.";
+  "View and download Victor Williams' professional resume. Chief Technology Officer and Senior Software Engineer with a track record of scaling engineering teams and shipping enterprise-grade products.";
 
 /**
  * Page keywords for SEO
  * @constant {string}
  */
 export const RESUME_PAGE_KEYWORDS =
-  "Victor Williams Resume, Software Engineer Resume, Full Stack Developer CV, React Developer Resume, TypeScript Developer";
+  "Victor Williams Resume, CTO Resume, Chief Technology Officer, Engineering Leadership, Senior Software Engineer Resume, Full Stack Developer CV";
 
 /**
  * Canonical URL for Resume page
  * @constant {string}
  */
-export const RESUME_PAGE_URL = "https://vaporjawn.github.io/resume";
+export const RESUME_PAGE_URL = "https://vaporjawn.dev/resume";
