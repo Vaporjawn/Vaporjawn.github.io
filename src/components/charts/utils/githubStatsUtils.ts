@@ -1,7 +1,7 @@
 /**
  * Pure helpers that turn raw `GithubRepo[]` (from `useGithubRepos`) into the
  * aggregate shapes `GitHubStatsChart` renders: summary stats and a
- * top-N-plus-"Other" language distribution.
+ * per-language repo-count distribution.
  *
  * Kept separate from `GitHubStatsChart.tsx` and from `homePage.tsx` so the
  * aggregation logic is independently testable without rendering React or
@@ -18,7 +18,8 @@ export interface RepoStats {
 }
 
 export interface LanguageSlice {
-  /** Language name (or "Other" for the long tail beyond `maxSlices`) */
+  /** Language name (or "Other" for the long tail, only when `maxSlices` is
+   *  passed explicitly — every language gets its own slice by default) */
   name: string;
   /** Repo count in this language — Recharts derives slice percentages from
    *  the proportion between slices, so raw counts (not pre-computed
@@ -73,19 +74,26 @@ const FALLBACK_COLORS = ["#8884d8", "#82ca9d", "#ffc658", "#ff7f50", "#5cb3ff"];
 const OTHER_COLOR = "#858585";
 
 /**
- * Buckets repos by primary language, keeping the top `maxSlices` languages
- * by repo count and folding the rest into a single "Other" slice. Repos
- * with no reported language (e.g. docs-only repos) are excluded entirely.
+ * Buckets repos by primary language. By default every distinct language gets
+ * its own slice, sorted by repo count descending — with 11 languages across
+ * this account's repos at the time of writing, there's no real risk of an
+ * unreadable chart, and lumping the tail into "Other" hid real information
+ * (which language "Other" even meant) for no real space savings. Pass an
+ * explicit `maxSlices` to opt back into top-N-plus-"Other" bucketing if the
+ * account ever grows enough distinct languages for that to matter again.
+ * Repos with no reported language (e.g. docs-only repos) are excluded
+ * entirely.
  *
  * @example
  * ```ts
  * const { repos } = useGithubRepos();
- * const languageData = computeLanguageDistribution(repos);
+ * const languageData = computeLanguageDistribution(repos); // every language, no cap
+ * const top5 = computeLanguageDistribution(repos, 5); // top 5 + "Other"
  * ```
  */
 export function computeLanguageDistribution(
   repos: GithubRepo[],
-  maxSlices = 5
+  maxSlices = Infinity
 ): LanguageSlice[] {
   const counts = new Map<string, number>();
   for (const repo of repos) {

@@ -28,7 +28,7 @@ import {
   useTheme,
   alpha,
 } from "@mui/material";
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from "recharts";
 import StarIcon from "@mui/icons-material/Star";
 import ForkRightIcon from "@mui/icons-material/ForkRight";
 import CodeIcon from "@mui/icons-material/Code";
@@ -59,12 +59,6 @@ interface PieChartData {
   value: number;
   color: string;
   [key: string]: string | number; // Index signature for recharts compatibility
-}
-
-interface PieLabelEntry {
-  name?: string;
-  percent?: number;
-  value?: number;
 }
 
 /**
@@ -140,7 +134,7 @@ const GitHubStatsChart: React.FC<GitHubStatsChartProps> = ({
 
           {/* Language Distribution */}
           <Grid container justifyContent="center">
-            <Grid size={{ xs: 12, sm: 8, md: 6 }}>
+            <Grid size={{ xs: 12, sm: 10, md: 8 }}>
               <Paper
                 sx={{
                   p: 3,
@@ -163,18 +157,17 @@ const GitHubStatsChart: React.FC<GitHubStatsChartProps> = ({
                     No language data available yet.
                   </Typography>
                 ) : (
-                  <ResponsiveContainer width="100%" height={250}>
+                  // Every distinct language gets its own slice (see
+                  // computeLanguageDistribution) — with more than a handful of
+                  // categories, labels drawn directly on the pie start overlapping,
+                  // so names/percentages live in a side legend instead, which scales
+                  // to as many languages as the account actually has.
+                  <ResponsiveContainer width="100%" height={Math.max(250, languageData.length * 28)}>
                     <PieChart>
                       <Pie
                         data={languageData as unknown as PieChartData[]}
-                        cx="50%"
+                        cx="35%"
                         cy="50%"
-                        labelLine={false}
-                        label={(entry: PieLabelEntry) => {
-                          const name = entry.name || "";
-                          const percent = entry.percent || 0;
-                          return `${name} ${(percent * 100).toFixed(0)}%`;
-                        }}
                         outerRadius={80}
                         fill="#8884d8"
                         dataKey="value"
@@ -183,7 +176,30 @@ const GitHubStatsChart: React.FC<GitHubStatsChartProps> = ({
                           <Cell key={`cell-${index}`} fill={entry.color} />
                         ))}
                       </Pie>
-                      <Tooltip />
+                      <Tooltip
+                        formatter={(value: number, name: string) => {
+                          const total = languageData.reduce((sum, d) => sum + d.value, 0);
+                          const percent = total > 0 ? Math.round((value / total) * 100) : 0;
+                          return [`${value} repo${value === 1 ? "" : "s"} (${percent}%)`, name];
+                        }}
+                      />
+                      <Legend
+                        layout="vertical"
+                        align="right"
+                        verticalAlign="middle"
+                        iconType="circle"
+                        formatter={(value: string, entry) => {
+                          const slice = languageData.find((d) => d.name === value);
+                          const total = languageData.reduce((sum, d) => sum + d.value, 0);
+                          const percent =
+                            slice && total > 0 ? Math.round((slice.value / total) * 100) : 0;
+                          return (
+                            <span style={{ color: entry.color }}>
+                              {value} {percent}%
+                            </span>
+                          );
+                        }}
+                      />
                     </PieChart>
                   </ResponsiveContainer>
                 )}

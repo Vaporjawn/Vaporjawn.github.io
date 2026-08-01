@@ -6,6 +6,25 @@ history already covers what changed).
 
 ---
 
+## 2026-08-01 — Language Distribution pie: show every language, not top-5-plus-"Other"
+
+Site owner asked whether the languages folded into the "Other 14%" slice could be shown
+individually instead. Checked the real data first (`gh`/`curl` against the GitHub API):
+only **11** distinct languages across all repos — nowhere near enough to make an
+unreadable chart, so no reason to hide any of them. `computeLanguageDistribution`'s
+`maxSlices` default changed from `5` to `Infinity` (parameter kept, now opt-in, for if
+the account ever grows enough languages for bucketing to matter again). Also swapped
+`GitHubStatsChart`'s on-pie text labels for a side `<Legend>` (name + computed % per
+entry) — direct pie labels were already visibly crowding with just 6 slices in the
+screenshot that prompted this, and would have been worse at 11; a legend is the
+standard fix and scales to however many languages exist. Added a test asserting the new
+no-cap default explicitly (`githubStatsUtils.test.ts`), verified real full test suite,
+build, and a live-browser screenshot showing all 11 languages cleanly listed with
+correct percentages (JavaScript 34%, TypeScript 29%, Java 13%, HTML 6%, CSS 5%, Python
+5%, Rust 2%, C# 3%, C++/Gherkin/Swift 1% each) and zero new console errors.
+
+---
+
 ## 2026-08-01 — Removed the homepage "Recent Thinking" blog teaser
 
 Direct follow-up to the "Positioning fixes + 2 real leadership essays" entry below,

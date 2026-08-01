@@ -93,7 +93,27 @@ describe("computeLanguageDistribution", () => {
     expect(result.map((s) => s.name)).toEqual(["TypeScript", "CSS"]);
   });
 
-  it("folds the long tail beyond maxSlices into 'Other'", () => {
+  it("shows every distinct language by default, with no 'Other' bucket even beyond the old 5-slice cap", () => {
+    const repos = [
+      makeRepo({ language: "TypeScript" }),
+      makeRepo({ language: "TypeScript" }),
+      makeRepo({ language: "JavaScript" }),
+      makeRepo({ language: "Python" }),
+      makeRepo({ language: "Go" }),
+      makeRepo({ language: "Rust" }),
+      makeRepo({ language: "Elixir" }),
+    ];
+
+    const result = computeLanguageDistribution(repos);
+
+    expect(result).toHaveLength(6); // 6 distinct languages (TypeScript appears twice)
+    expect(result.map((s) => s.name)).not.toContain("Other");
+    expect(result.map((s) => s.name)).toEqual(
+      expect.arrayContaining(["TypeScript", "JavaScript", "Python", "Go", "Rust", "Elixir"])
+    );
+  });
+
+  it("folds the long tail beyond an explicit maxSlices into 'Other'", () => {
     const repos = [
       makeRepo({ language: "TypeScript" }),
       makeRepo({ language: "TypeScript" }),
