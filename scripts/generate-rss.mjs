@@ -1,11 +1,14 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import matter from "gray-matter";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const SITE_URL = "https://www.vaporjawn.dev";
+// Apex domain, not "www." — www.vaporjawn.dev currently fails TLS validation
+// (GitHub Pages only provisions a cert for the configured custom domain, vaporjawn.dev).
+const SITE_URL = "https://vaporjawn.dev";
 const SITE_NAME = "Victor Williams - Full-Stack Developer";
 const SITE_DESCRIPTION =
   "Portfolio and blog of Victor Williams - Expert Full-Stack Developer specializing in React, TypeScript, Node.js, and cloud solutions";
@@ -33,30 +36,26 @@ const getBlogPosts = () => {
 
   files.forEach((file) => {
     if (file.endsWith(".md") || file.endsWith(".mdx")) {
-      const content = fs.readFileSync(path.join(blogDir, file), "utf-8");
+      const raw = fs.readFileSync(path.join(blogDir, file), "utf-8");
       const slug = file.replace(/\.(md|mdx)$/, "");
 
-      // Extract frontmatter (simplified)
-      const frontmatterMatch = content.match(/^---\n([\s\S]+?)\n---/);
-      if (frontmatterMatch) {
-        const frontmatter = frontmatterMatch[1];
-        const title =
-          frontmatter.match(/title:\s*["'](.+?)["']/)?.[1] || slug;
-        const description =
-          frontmatter.match(/description:\s*["'](.+?)["']/)?.[1] || "";
-        const date =
-          frontmatter.match(/date:\s*["']?(.+?)["']?\n/)?.[1] ||
-          new Date().toISOString();
-        const author =
-          frontmatter.match(/author:\s*["'](.+?)["']/)?.[1] ||
-          "Victor Williams";
-        const tagsMatch = frontmatter.match(/tags:\s*\[(.+?)\]/);
-        const tags = tagsMatch
-          ? tagsMatch[1].split(",").map((t) => t.trim().replace(/["']/g, ""))
-          : [];
+      // Parsed with gray-matter (a real YAML parser, already a project dependency and
+      // already used identically in src/utils/blogUtils.ts) rather than hand-rolled
+      // regexes — a previous regex-based version of this function
+      // (`/description:\s*["'](.+?)["']/`) silently truncated any field containing an
+      // apostrophe, since `["']` matched the apostrophe itself as a closing quote
+      // (e.g. "Google's Core Web Vitals" got cut to "Google").
+      const { data: frontmatter } = matter(raw);
+      if (frontmatter.published === false) return;
 
-        posts.push({ slug, title, description, date, author, tags });
-      }
+      posts.push({
+        slug,
+        title: frontmatter.title || slug,
+        description: frontmatter.description || "",
+        date: frontmatter.date || new Date().toISOString(),
+        author: frontmatter.author || "Victor Williams",
+        tags: Array.isArray(frontmatter.tags) ? frontmatter.tags : [],
+      });
     }
   });
 

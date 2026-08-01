@@ -50,7 +50,7 @@ const AboutPage: React.FC = () => {
         title="About | Victor Williams"
         description="Learn more about Victor Williams, a seasoned Full Stack Software Engineer with expertise in React, TypeScript, and modern web development."
         keywords="About Victor Williams, Software Engineer Bio, Full Stack Developer, React Expert"
-        url="https://vaporjawn.github.io/about"
+        url="https://vaporjawn.dev/about"
       />
 
       <Container maxWidth="lg" sx={{ py: 4 }}>

@@ -9,9 +9,9 @@
  * import { HeroContent } from './HeroContent';
  *
  * <HeroContent
- *   name="VICTOR WILLIAMS"
- *   title="SOFTWARE DEVELOPER & DIGITAL CREATIVE"
- *   bio="Passionate developer creating innovative digital experiences with modern web technologies."
+ *   name="Victor Williams"
+ *   title="Chief Technology Officer & Senior Software Engineer"
+ *   bio="Technology leader and full-stack engineer with a track record of scaling engineering teams and shipping enterprise-grade products."
  * />
  * ```
  */
@@ -73,6 +73,7 @@ export const HeroContent: React.FC<HeroContentProps> = ({
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
+            textTransform: "uppercase",
           }}
         >
           {name}

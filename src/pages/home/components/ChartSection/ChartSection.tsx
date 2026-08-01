@@ -7,10 +7,10 @@
  * @example
  * ```tsx
  * import { ChartSection } from './components/ChartSection';
- * import { SkillsRadarChart } from '../../components/charts';
+ * import { GitHubStatsChart } from '../../components/charts';
  *
  * <ChartSection spacing="large">
- *   <SkillsRadarChart />
+ *   <GitHubStatsChart />
  * </ChartSection>
  * ```
  */
@@ -70,7 +70,7 @@ const SPACING_MAP = {
  * ```tsx
  * // Default spacing (large)
  * <ChartSection>
- *   <SkillsRadarChart />
+ *   <CareerTimeline />
  * </ChartSection>
  *
  * // Custom spacing
@@ -79,8 +79,8 @@ const SPACING_MAP = {
  * </ChartSection>
  *
  * // With accessibility label
- * <ChartSection ariaLabel="Skills proficiency radar visualization">
- *   <SkillsRadarChart />
+ * <ChartSection ariaLabel="GitHub statistics dashboard">
+ *   <GitHubStatsChart />
  * </ChartSection>
  * ```
  */

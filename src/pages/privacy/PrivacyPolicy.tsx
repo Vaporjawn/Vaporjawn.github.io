@@ -57,7 +57,7 @@ const PrivacyPolicy: React.FC = () => {
       <SEO
         title="Privacy Policy - Victor Williams"
         description="Privacy policy explaining how Victor Williams collects, uses, and protects your information when you visit the website."
-        url="https://vaporjawn.github.io/privacy"
+        url="https://vaporjawn.dev/privacy"
       />
 
       <Container maxWidth="lg" sx={{ py: 4 }}>

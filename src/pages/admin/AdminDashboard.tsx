@@ -224,7 +224,7 @@ const AdminDashboard: React.FC = () => {
       <SEO
         title="Admin Dashboard | Victor Williams"
         description="Protected admin dashboard with analytics and insights"
-        url="https://vaporjawn.github.io/admin"
+        url="https://vaporjawn.dev/admin"
         noindex={true}
       />
       <Container maxWidth="xl" sx={{ py: 4 }}>

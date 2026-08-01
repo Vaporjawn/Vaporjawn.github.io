@@ -157,7 +157,7 @@ const AnalyticsDashboard: React.FC = () => {
       <SEO
         title="Analytics Dashboard"
         description="Real-time analytics and insights for Victor Williams portfolio"
-        url="https://www.vaporjawn.dev/analytics"
+        url="https://vaporjawn.dev/analytics"
       />
       <Container maxWidth="xl" sx={{ py: 4 }}>
         {/* Header */}

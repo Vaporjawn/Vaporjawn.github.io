@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Victor Williams - Senior Full Stack Software Engineer</title>
+    <script type="text/javascript">
+      // Single Page Apps for GitHub Pages
+      // MIT License
+      // https://github.com/rafgraph/spa-github-pages
+      //
+      // GitHub Pages serves this file for any path that isn't a real file in the
+      // deployed output (e.g. a client-side route like /resume or /blog/some-post
+      // loaded directly or refreshed). This script converts the path + query
+      // string into just a query string and redirects back to the app's real
+      // index.html, which restores the original path client-side (see the
+      // matching script in index.html) so React Router can route it normally.
+      // e.g. https://vaporjawn.dev/resume becomes
+      // https://vaporjawn.dev/?/resume
+      //
+      // Custom domain deployed at the root (not a GitHub-Pages-style
+      // /repo-name/ subpath), so pathSegmentsToKeep stays 0.
+      var pathSegmentsToKeep = 0;
+
+      var l = window.location;
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.hash
+      );
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

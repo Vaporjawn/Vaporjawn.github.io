@@ -4,7 +4,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://www.vaporjawn.dev/sitemap.xml
+Sitemap: https://vaporjawn.dev/sitemap.xml
 
 # Crawl-delay for specific bots (optional)
 User-agent: Googlebot

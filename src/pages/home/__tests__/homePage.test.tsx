@@ -19,21 +19,19 @@ const renderWithRouter = (component: React.ReactElement) => {
 describe("HomePage", () => {
   it("renders Victor Williams name", () => {
     renderWithRouter(<HomePage />);
-    // The component renders "VICTOR WILLIAMS" in all caps
-    expect(screen.getByText("VICTOR WILLIAMS")).toBeInTheDocument();
+    // The name renders as-is in the DOM; CSS text-transform: uppercase handles the caps display
+    expect(screen.getByText("Victor Williams")).toBeInTheDocument();
   });
 
   it("renders in dark mode", () => {
     renderWithRouter(<HomePage />);
-    // The component renders "VICTOR WILLIAMS" in all caps
-    const nameElement = screen.getByText("VICTOR WILLIAMS");
+    const nameElement = screen.getByText("Victor Williams");
     expect(nameElement).toBeInTheDocument();
   });
 
   it("renders in light mode", () => {
     renderWithRouter(<HomePage />);
-    // The component renders "VICTOR WILLIAMS" in all caps
-    const nameElement = screen.getByText("VICTOR WILLIAMS");
+    const nameElement = screen.getByText("Victor Williams");
     expect(nameElement).toBeInTheDocument();
   });
 });

@@ -4,6 +4,7 @@ Welcome to the comprehensive documentation for the Vaporjawn.github.io portfolio
 
 ## 📋 Quick Navigation
 
+- [🏗️ Architecture Deep-Dive](#-architecture-deep-dive)
 - [🚀 Setup & Configuration Guides](#-setup--configuration-guides)
 - [✨ Feature Documentation](#-feature-documentation)
 - [🔬 Implementation Summaries](#-implementation-summaries)
@@ -13,6 +14,23 @@ Welcome to the comprehensive documentation for the Vaporjawn.github.io portfolio
 - [👤 Profile & Skills](#-profile--skills)
 - [📚 General Documentation](#-general-documentation)
 - [📦 Archive](#-archive)
+
+---
+
+## 🏗️ Architecture Deep-Dive
+
+### Architecture Reference
+**File**: [ARCHITECTURE.md](./ARCHITECTURE.md)
+
+A code-verified, from-first-principles technical reference — re-derived by reading the
+current source tree directly rather than trusting prior notes. Covers the full route
+table, every page and shared component (including dead/unused code), the hooks/contexts/
+utils/Firebase glue layer, build & CI/CD configuration, security posture, and an explicit
+"Known Inconsistencies & Housekeeping" section documenting where this repo's own
+documentation (including CLAUDE.md) has drifted from the actual code.
+
+**Last Updated**: 2026-08-01
+**Topics**: Architecture, Routing, Components, Hooks, Firebase, Build Tooling, CI/CD, Security, Technical Debt
 
 ---
 
@@ -169,6 +187,20 @@ Complete testing documentation for the Footer component:
 ---
 
 ## 📊 Planning & Roadmaps
+
+### Portfolio Competitive Research (2026)
+**File**: [planning/portfolio-competitive-research-2026.md](./planning/portfolio-competitive-research-2026.md)
+
+Live production audit (real Playwright session, not just source-reading) benchmarked
+against 9 currently-live senior/staff and engineering-leadership portfolio sites, plus
+targeted research on consulting-conversion, CTO-level positioning, testimonials, SEO,
+and AI-era portfolio expectations. Flags trust-breaking production bugs (TLS cert, dead
+deep links, a broken blog post, zero working observability), a cross-page positioning
+inconsistency, and the single biggest opportunity: visible leadership/strategy writing,
+which almost no comparable site does well. Ends with a prioritized, tiered action list.
+
+**Last Updated**: 2026-08-01
+**Topics**: Competitive Research, Site Audit, Positioning Strategy, SEO, Testimonials, CTO Personal Brand
 
 ### Site Improvement Roadmap
 **File**: [planning/site-improvement-roadmap.md](./planning/site-improvement-roadmap.md)

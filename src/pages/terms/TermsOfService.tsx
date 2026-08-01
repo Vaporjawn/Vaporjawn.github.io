@@ -67,7 +67,7 @@ const TermsOfService: React.FC = () => {
       <SEO
         title="Terms of Service - Victor Williams"
         description="Terms of Service governing the use of Victor Williams' website and professional development services."
-        url="https://vaporjawn.github.io/terms"
+        url="https://vaporjawn.dev/terms"
       />
 
       <Container maxWidth="lg" sx={{ py: 4 }}>

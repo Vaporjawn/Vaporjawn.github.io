@@ -4,21 +4,20 @@
  * @module pages/home/HomePage
  */
 
-import React from "react";
+import React, { useMemo } from "react";
 import { Container, Fade, Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import SEO from "../../components/SEO/SEO";
-import { usePortfolio, useSkills } from "../../hooks/usePortfolioData";
-import GitHubContributions from "../../components/github/GitHubContributions";
+import { usePortfolio } from "../../hooks/usePortfolioData";
+import { useGithubRepos } from "../../hooks/useGithubRepos";
+import { CareerTimeline, GitHubStatsChart } from "../../components/charts";
 import {
-  SkillsRadarChart,
-  CareerTimeline,
-  GitHubStatsChart,
-} from "../../components/charts";
+  computeRepoStats,
+  computeLanguageDistribution,
+} from "../../components/charts/utils/githubStatsUtils";
 
 // Sub-component imports
 import { HeroSection } from "./components/HeroSection";
-import { SkillsSection } from "./components/SkillsSection";
 import { CallToActionSection } from "./components/CallToActionSection";
 import { ChartSection } from "./components/ChartSection";
 
@@ -42,7 +41,21 @@ import heroBanner from "../../assets/banner.jpg";
 const HomePage: React.FC = () => {
   const theme = useTheme();
   const portfolioData = usePortfolio();
-  const skills = useSkills();
+
+  // Live GitHub repo stats (stars/forks/repos/languages) — real API data,
+  // cached with a TTL by the hook. See utils/githubStatsUtils.ts for the
+  // aggregation and GitHubStatsChart's own doc comment for why this replaced
+  // the previous always-mock-data dashboard.
+  const {
+    repos: githubRepos,
+    loading: githubStatsLoading,
+    error: githubStatsError,
+  } = useGithubRepos();
+  const githubStats = useMemo(() => computeRepoStats(githubRepos), [githubRepos]);
+  const githubLanguageData = useMemo(
+    () => computeLanguageDistribution(githubRepos),
+    [githubRepos]
+  );
 
   // Generate parallax background with theme awareness and memoization
   const background = useParallaxBackground({
@@ -54,35 +67,31 @@ const HomePage: React.FC = () => {
   return (
     <>
       <SEO
-        title="Victor Williams | Software Engineer"
-        description="Full-stack software engineer specializing in React, TypeScript, and modern web technologies. Building innovative solutions with passion for clean code and user experience."
-        keywords="Victor Williams, Software Engineer, React, TypeScript, Web Developer, Full Stack"
-        url="https://vaporjawn.github.io/"
+        title="Victor Williams | CTO & Senior Software Engineer"
+        description="Technology leader and full-stack engineer with a track record of scaling engineering teams and shipping enterprise-grade products. CTO at Kids Care Finder."
+        keywords="Victor Williams, CTO, Chief Technology Officer, Senior Software Engineer, Engineering Leadership, React, TypeScript"
+        url="https://vaporjawn.dev/"
       />
 
       <Container maxWidth="lg" sx={{ py: 4 }}>
         <Fade in timeout={1000}>
           <Box>
             {/* Hero Section with profile and social links */}
-            <HeroSection background={background} />
-
-            {/* Technical Skills Grid */}
-            <SkillsSection skills={skills} />
-
-            {/* GitHub Activity Heatmap */}
-            <GitHubContributions />
-
-            {/* Skills Proficiency Radar Chart */}
-            <ChartSection
-              spacing="large"
-              ariaLabel="Skills proficiency radar visualization"
-            >
-              <SkillsRadarChart />
-            </ChartSection>
+            <HeroSection
+              background={background}
+              name={portfolioData?.personalInfo.name}
+              title={portfolioData?.personalInfo.title}
+              bio={portfolioData?.personalInfo.bio}
+            />
 
             {/* GitHub Statistics Dashboard */}
             <ChartSection spacing="large" ariaLabel="GitHub statistics dashboard">
-              <GitHubStatsChart />
+              <GitHubStatsChart
+                stats={githubStats}
+                languageData={githubLanguageData}
+                loading={githubStatsLoading}
+                error={githubStatsError}
+              />
             </ChartSection>
 
             {/* Career Timeline Visualization */}

@@ -29,14 +29,14 @@ describe("HeroSection", () => {
   it("renders without crashing", async () => {
     renderWithProviders(<HeroSection background={mockBackground} />);
     await waitFor(() => {
-      expect(screen.getByText("VICTOR WILLIAMS")).toBeInTheDocument();
+      expect(screen.getByText("Victor Williams")).toBeInTheDocument();
     });
   });
 
   it("renders the user name", async () => {
     renderWithProviders(<HeroSection background={mockBackground} />);
     await waitFor(() => {
-      const nameElement = screen.getByText("VICTOR WILLIAMS");
+      const nameElement = screen.getByText("Victor Williams");
       expect(nameElement).toBeInTheDocument();
       expect(nameElement.tagName).toBe("H1");
     });
@@ -46,7 +46,7 @@ describe("HeroSection", () => {
     renderWithProviders(<HeroSection background={mockBackground} />);
     await waitFor(() => {
       expect(
-        screen.getByText("SOFTWARE DEVELOPER & DIGITAL CREATIVE")
+        screen.getByText("Chief Technology Officer & Senior Software Engineer")
       ).toBeInTheDocument();
     });
   });
@@ -55,7 +55,7 @@ describe("HeroSection", () => {
     renderWithProviders(<HeroSection background={mockBackground} />);
     await waitFor(() => {
       expect(
-        screen.getByText(/Passionate developer creating innovative digital experiences/)
+        screen.getByText(/Technology leader and full-stack engineer/)
       ).toBeInTheDocument();
     });
   });

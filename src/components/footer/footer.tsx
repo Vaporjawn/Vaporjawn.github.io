@@ -73,7 +73,7 @@ const Footer: React.FC = () => {
                 }}
               >
                 {portfolio?.personalInfo?.bio ||
-                  "Passionate developer creating innovative digital experiences with modern web technologies."}
+                  "Technology leader and full-stack engineer with a track record of scaling engineering teams and shipping enterprise-grade products."}
               </Typography>
               <Link
                 href={`mailto:${portfolio?.personalInfo?.email || "victor.williams.dev@gmail.com"}`}

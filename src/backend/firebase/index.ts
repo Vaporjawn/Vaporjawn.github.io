@@ -68,3 +68,21 @@ export function getFirebaseServices(): FirebaseServices {
   }
   return services;
 }
+
+/**
+ * Whether Firebase successfully initialized (config present, no init error).
+ *
+ * Callers that fire on every page view/navigation (analytics logging in
+ * particular) should check this *before* attempting a Firestore call, rather
+ * than relying on catching the "not initialized" exception every time — with
+ * no `VITE_FIREBASE_*` env vars configured (e.g. no production secrets set up
+ * yet), that pattern logs a fresh console error on every single page load.
+ *
+ * @example
+ * ```ts
+ * if (!isFirebaseInitialized()) return; // skip quietly, nothing configured yet
+ * ```
+ */
+export function isFirebaseInitialized(): boolean {
+  return servicesInitialized;
+}
