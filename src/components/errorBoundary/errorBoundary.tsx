@@ -1,6 +1,6 @@
 import { Component, ErrorInfo, ReactNode } from "react";
 import { Box, Typography, Button } from "@mui/material";
-import { ErrorOutline } from "@mui/icons-material";
+import { ErrorOutlined as ErrorOutline } from "@mui/icons-material";
 import { VaporwavePurple } from "../../colors";
 
 interface Props {
