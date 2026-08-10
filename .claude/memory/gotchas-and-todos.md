@@ -146,12 +146,13 @@ Check these before trusting an older doc's specific claim:
 | `public/_redirects` exists | It does not. Only `public/_headers` exists. |
 | "253+ tests" (CLAUDE.md) / "236 tests passing" (SECURITY.md, dated Dec 2024) | Real count 2026-08-01: ~249 unit/component tests (34 files) + 19 Playwright e2e ≈ 268 combined. |
 | `PortfolioContext` described as "GitHub API data context" | It's the static `portfolio.json` context (personalInfo/skills/projects/experience/social). Live GitHub API data is handled entirely separately by `useGithubActivity`/`useGithubRepos`. |
+| `src/pages/projects/data/projectsData.ts` "used directly by the Projects page" (older note in this same file, see below) | **False as of 2026-08-10** — confirmed via `grep -rl projectsData src/pages/projects/` returning only the file itself. `projectsPage.tsx` was rewritten to a `unifiedProjects` model: it merges `useGithubRepos()` (live GitHub API, keyed first) + `useProjects()`/`usePortfolio()` (i.e. `src/data/portfolio.json`'s `projects` array, matched onto a GitHub entry via `githubUrl` canonicalization, or added standalone if no match) + `useNpmPackages()` + `useDevpostProjects()`, deduped into one card list. `projectsData.ts` (the richer `Project`/`ProjectCategoryEnum`-typed file under `pages/projects/data/`) is now **fully dead code** — editing it has zero effect on the rendered page. **To add/edit a project shown on `/projects`, edit `src/data/portfolio.json`'s `projects` array** (fields: `id`,`title`,`description`,`longDescription`,`image`,`technologies[]`,`liveUrl?`,`githubUrl?`,`featured`,`status: "completed"\|"in-progress"\|"planned"`,`category`) — if `githubUrl` matches a public repo already surfaced by `useGithubRepos()`, the portfolio entry's description/technologies/liveUrl/featured/status enrich that card instead of creating a duplicate. |
 
 ## Data duplication worth knowing about (not necessarily bugs, just non-obvious)
 
-- **Two independent project datasets**: `src/data/portfolio.json`'s `projects` array
-  (via `useProjects()`) vs. `src/pages/projects/data/projectsData.ts` (used directly by
-  the Projects page). Not derived from each other.
+- ~~Two independent project datasets... `projectsData.ts` (used directly by the Projects
+  page)~~ — **superseded, see the Discrepancies table above**: `projectsData.ts` is dead;
+  `portfolio.json`'s `projects` array is the only one that reaches the Projects page.
 - **Two independent social-link datasets**: `src/data/socialLinks.ts` (→
   `SocialMedia`/`Footer`) vs. `portfolioData.social` (→ `useSocial()`).
 - **Four hooks each reimplement their own localStorage TTL cache**

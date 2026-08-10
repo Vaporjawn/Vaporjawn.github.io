@@ -112,8 +112,12 @@ src/
     about/ contact/ projects/ resume/ services/ activity/
     AnalyticsDashboard/ # ORPHANED — no route, no imports anywhere. Distinct from admin/.
     privacy/ terms/ comingSoon/ dev-test/ error/
-    projects/data/projectsData.ts  # SEPARATE project dataset from data/portfolio.json —
-                                     # not derived from it, feeds the Projects page directly
+    projects/data/projectsData.ts  # DEAD CODE (verified 2026-08-10, zero imports) — the
+                                     # Projects page actually merges data/portfolio.json's
+                                     # `projects` (via useProjects) with live useGithubRepos/
+                                     # useNpmPackages/useDevpostProjects in projectsPage.tsx's
+                                     # unifiedProjects logic. Edit portfolio.json to change
+                                     # what's shown on /projects, not this file.
   hooks/               # 8 custom hooks: useIntersectionObserver, usePortfolioData,
                         # useNpmPackages, useGithubActivity, useGithubRepos,
                         # useDevpostProjects (HTML-scrapes Devpost), useSwipeGesture,
@@ -289,9 +293,11 @@ static host.
 ### Data layer — watch for duplication
 
 - `src/data/portfolio.json` backs `PortfolioContext` (`personalInfo`/`skills`/
-  `projects`/`experience`/`social`). **But** `src/pages/projects/data/projectsData.ts`
-  is a second, independent project dataset that the Projects page actually reads —
-  not derived from `portfolio.json`.
+  `projects`/`experience`/`social`) and its `projects` array is the one the Projects
+  page actually reads (via `useProjects()`), merged there with live `useGithubRepos()`/
+  `useNpmPackages()`/`useDevpostProjects()` data. `src/pages/projects/data/projectsData.ts`
+  _looks_ like a second project dataset but is dead code (zero imports) — don't edit it
+  expecting it to affect `/projects`.
 - `src/data/socialLinks.ts` (12 entries, used by `SocialMedia`/`Footer`) is likewise
   independent from `portfolioData.social` (used by `useSocial()`) — two separate lists,
   not the same data.
@@ -410,7 +416,9 @@ Dead code with zero import sites anywhere in `src/`: `components/illustrations/*
 `components/testimonials/TestimonialsCarousel.tsx`, `components/Skeleton/SkeletonLoader.tsx`,
 `components/ThemeToggle/ThemeToggle.tsx`, and the whole `pages/AnalyticsDashboard/` page.
 None of it is broken, it's just unreachable — see the memory file before deleting or
-reviving any of it.
+reviving any of it. Also `pages/projects/data/projectsData.ts` (12 hand-written project
+entries) — the live `/projects` page is powered entirely by `usePortfolioData`
+(`portfolio.json`) merged with the live GitHub API via `useGithubRepos`, not this file.
 
 There is also, as of 2026-08-01, an **uncommitted, in-progress simplification** on branch
 `fix/react-group-and-misc` progressively trimming/fixing homepage sections the site owner
