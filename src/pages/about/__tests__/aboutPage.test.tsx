@@ -37,7 +37,7 @@ describe("AboutPage", () => {
     renderWithRouter(<AboutPage />);
 
     // Check for bio content from portfolio data
-    const bioContent = screen.queryByText(/technology leader|full-stack engineer/i) ||
+    const bioContent = screen.queryByText(/senior full stack software engineer|full-stack platforms/i) ||
                        screen.queryByText(/passionate developer focused on building interactive experiences/i);
     expect(bioContent).toBeInTheDocument();
   });

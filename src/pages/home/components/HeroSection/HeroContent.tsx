@@ -10,8 +10,8 @@
  *
  * <HeroContent
  *   name="Victor Williams"
- *   title="Chief Technology Officer & Senior Software Engineer"
- *   bio="Technology leader and full-stack engineer with a track record of scaling engineering teams and shipping enterprise-grade products."
+ *   title="Senior Full Stack Software Engineer"
+ *   bio="Senior Full Stack Software Engineer with 9+ years building and leading full-stack platforms across fintech, legal tech, and marketplace industries."
  * />
  * ```
  */

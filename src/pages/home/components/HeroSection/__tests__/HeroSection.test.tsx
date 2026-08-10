@@ -46,7 +46,7 @@ describe("HeroSection", () => {
     renderWithProviders(<HeroSection background={mockBackground} />);
     await waitFor(() => {
       expect(
-        screen.getByText("Chief Technology Officer & Senior Software Engineer")
+        screen.getByText("Senior Full Stack Software Engineer")
       ).toBeInTheDocument();
     });
   });
@@ -55,7 +55,7 @@ describe("HeroSection", () => {
     renderWithProviders(<HeroSection background={mockBackground} />);
     await waitFor(() => {
       expect(
-        screen.getByText(/Technology leader and full-stack engineer/)
+        screen.getByText(/Senior Full Stack Software Engineer with 9\+ years/)
       ).toBeInTheDocument();
     });
   });

@@ -35,14 +35,14 @@ export const RESUME_PAGE_TITLE = "Resume | Victor Williams";
  * @constant {string}
  */
 export const RESUME_PAGE_DESCRIPTION =
-  "View and download Victor Williams' professional resume. Chief Technology Officer and Senior Software Engineer with a track record of scaling engineering teams and shipping enterprise-grade products.";
+  "View and download Victor Williams' professional resume. Senior Full Stack Software Engineer with 9+ years building and leading full-stack platforms across fintech, legal tech, and marketplace industries.";
 
 /**
  * Page keywords for SEO
  * @constant {string}
  */
 export const RESUME_PAGE_KEYWORDS =
-  "Victor Williams Resume, CTO Resume, Chief Technology Officer, Engineering Leadership, Senior Software Engineer Resume, Full Stack Developer CV";
+  "Victor Williams Resume, Senior Software Engineer Resume, Full Stack Developer CV, Engineering Leadership, Full Stack Software Engineer";
 
 /**
  * Canonical URL for Resume page

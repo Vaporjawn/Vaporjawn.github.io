@@ -156,10 +156,10 @@ const SEO: React.FC<SEOProps> = ({
           name: author,
           url: url,
           image: fullImageUrl,
-          jobTitle: "Chief Technology Officer & Senior Software Engineer",
+          jobTitle: "Senior Full Stack Software Engineer",
           worksFor: {
             "@type": "Organization",
-            name: "Kids Care Finder",
+            name: "Morgan Lewis",
           },
           alumniOf: {
             "@type": "Organization",

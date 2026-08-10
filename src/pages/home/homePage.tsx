@@ -67,9 +67,9 @@ const HomePage: React.FC = () => {
   return (
     <>
       <SEO
-        title="Victor Williams | CTO & Senior Software Engineer"
-        description="Technology leader and full-stack engineer with a track record of scaling engineering teams and shipping enterprise-grade products. CTO at Kids Care Finder."
-        keywords="Victor Williams, CTO, Chief Technology Officer, Senior Software Engineer, Engineering Leadership, React, TypeScript"
+        title="Victor Williams | Senior Full Stack Software Engineer"
+        description="Senior Full Stack Software Engineer with 9+ years building and leading full-stack platforms across fintech, legal tech, and marketplace industries. Currently at Morgan Lewis."
+        keywords="Victor Williams, Senior Software Engineer, Full Stack Engineer, Engineering Leadership, React, TypeScript"
         url="https://vaporjawn.dev/"
       />
 

@@ -55,9 +55,9 @@ import profileImageWebP from "../../../../assets/profile-picture.webp";
 // that forgets to pass these still gets the correct, current-title copy rather than
 // silently reverting to old generic placeholder text.
 const DEFAULT_NAME = "Victor Williams";
-const DEFAULT_TITLE = "Chief Technology Officer & Senior Software Engineer";
+const DEFAULT_TITLE = "Senior Full Stack Software Engineer";
 const DEFAULT_BIO =
-  "Technology leader and full-stack engineer with a track record of scaling engineering teams and shipping enterprise-grade products.";
+  "Senior Full Stack Software Engineer with 9+ years building and leading full-stack platforms across fintech, legal tech, and marketplace industries.";
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
   background,
