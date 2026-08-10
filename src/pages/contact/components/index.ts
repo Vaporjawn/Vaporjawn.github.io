@@ -6,7 +6,6 @@
  * @example
  * ```tsx
  * import {
- *   ContactHero,
  *   ContactMethods,
  *   ContactFormSection,
  *   FAQSection,
@@ -14,7 +13,6 @@
  * } from './components';
  * ``` */
 
-export { ContactHero } from "./ContactHero";
 export { ContactMethods } from "./ContactMethods";
 export { ContactFormSection } from "./ContactFormSection";
 export { FAQSection } from "./FAQSection";

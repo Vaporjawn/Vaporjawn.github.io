@@ -5,7 +5,6 @@
  * Modular architecture with dedicated components for each section.
  *
  * Features:
- * - Hero section with call-to-action
  * - Multiple contact methods (Email, LinkedIn, Schedule)
  * - Contact form with validation
  * - Comprehensive FAQ accordion
@@ -32,7 +31,6 @@ import {
   VaporwaveBlue,
 } from "../../colors";
 import {
-  ContactHero,
   ContactMethods,
   ContactFormSection,
   FAQSection,
@@ -119,11 +117,9 @@ const ContactPage: React.FC = () => {
           sx={{
             position: "relative",
             zIndex: 1,
-            py: { xs: 6, md: 10 },
+            py: 4,
           }}
         >
-          <ContactHero />
-
           <ContactMethods
             contactMethods={contactMethods}
             onScheduleClick={() => setIsCalendlyOpen(true)}
