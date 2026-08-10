@@ -119,6 +119,19 @@
       "featured": false,
       "status": "in-progress",
       "category": "tool"
+    },
+    {
+      "id": "centipawn-loss-calculator",
+      "title": "Centipawn Loss Calculator",
+      "description": "Free, private, browser-based Average Centipawn Loss (ACPL) and move-accuracy calculator for chess games.",
+      "longDescription": "A browser-based chess analysis tool that computes Average Centipawn Loss and move accuracy for any pasted PGN. If the PGN already carries computer evaluations (e.g. from Lichess or Chess.com), those are used instantly; otherwise a real Stockfish engine compiled to WebAssembly runs entirely client-side to analyze the game, with nothing ever uploaded to a server. Classifies every move (Best/Excellent/Good/Inaccuracy/Mistake/Blunder), charts centipawn loss per move, and shows a full move-by-move breakdown table.",
+      "image": "/assets/images/centipawn-loss-calculator-preview.jpg",
+      "technologies": ["React", "TypeScript", "Material UI", "chess.js", "Stockfish.js"],
+      "liveUrl": "https://vaporjawn.dev/Centipawn-Loss-Calculator/",
+      "githubUrl": "https://github.com/Vaporjawn/Centipawn-Loss-Calculator",
+      "featured": true,
+      "status": "completed",
+      "category": "tool"
     }
   ],
   "experience": [
