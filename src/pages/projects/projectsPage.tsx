@@ -452,18 +452,18 @@ const ProjectsPage: React.FC = () => {
         url="https://vaporjawn.dev/projects"
       />
 
-      <Container maxWidth="xl" sx={{ py: 4, px: { xs: 2, sm: 3, md: 4 } }}>
+      <Container maxWidth="xl" sx={{ pt: { xs: 2, sm: 3 }, pb: 4, px: { xs: 2, sm: 3, md: 4 } }}>
         <Fade in timeout={1000}>
           <Box>
             {/* Header Section */}
-            <Box textAlign="center" sx={{ mb: 6 }}>
+            <Box textAlign="center" sx={{ mb: 2.5 }}>
               <Typography
                 variant="h2"
                 component="h1"
                 sx={{
                   fontWeight: 700,
-                  mb: 2,
-                  fontSize: { xs: "2.5rem", md: "3rem" },
+                  mb: 0.5,
+                  fontSize: { xs: "2rem", md: "2.5rem" },
                   background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
                   backgroundClip: "text",
                   WebkitBackgroundClip: "text",
@@ -473,7 +473,7 @@ const ProjectsPage: React.FC = () => {
                 My Projects
               </Typography>
               <Typography
-                variant="h6"
+                variant="body1"
                 color="text.secondary"
                 sx={{ maxWidth: 600, mx: "auto" }}
               >
@@ -486,63 +486,6 @@ const ProjectsPage: React.FC = () => {
 
             {/* Search and Filters */}
             <Box sx={{ mb: 4 }}>
-              <Typography
-                variant="h4"
-                component="h2"
-                sx={{ mb: 3, fontWeight: 600 }}
-              >
-                All Projects ({filteredProjects.length})
-              </Typography>
-
-              {/* Quick Filter Buttons */}
-              <Grid container spacing={2} sx={{ mb: 3, justifyContent: "center" }}>
-                <Grid size={{ xs: 12, sm: 4, md: 2 }}>
-                  <Button
-                    fullWidth
-                    variant={showOnlyNpm ? "contained" : "outlined"}
-                    onClick={() => setShowOnlyNpm(!showOnlyNpm)}
-                    startIcon={<Code />}
-                    sx={{
-                      height: "56px",
-                      textTransform: "none",
-                      fontSize: "0.875rem"
-                    }}
-                  >
-                    {showOnlyNpm ? "All" : "📦 NPM"}
-                  </Button>
-                </Grid>
-                <Grid size={{ xs: 12, sm: 4, md: 2 }}>
-                  <Button
-                    fullWidth
-                    variant={showOnlyFeatured ? "contained" : "outlined"}
-                    onClick={() => setShowOnlyFeatured(!showOnlyFeatured)}
-                    startIcon={<Star />}
-                    sx={{
-                      height: "56px",
-                      textTransform: "none",
-                      fontSize: "0.875rem"
-                    }}
-                  >
-                    {showOnlyFeatured ? "All" : "⭐ Featured"}
-                  </Button>
-                </Grid>
-                <Grid size={{ xs: 12, sm: 4, md: 2 }}>
-                  <Button
-                    fullWidth
-                    variant={showOnlyDevpost ? "contained" : "outlined"}
-                    onClick={() => setShowOnlyDevpost(!showOnlyDevpost)}
-                    startIcon={<Launch />}
-                    sx={{
-                      height: "56px",
-                      textTransform: "none",
-                      fontSize: "0.875rem"
-                    }}
-                  >
-                    {showOnlyDevpost ? "All" : "🏆 Devpost"}
-                  </Button>
-                </Grid>
-              </Grid>
-
               {/* Search and Dropdown Filters */}
               <Grid container spacing={2} sx={{ mb: 3 }}>
                 <Grid size={{ xs: 12, md: 6 }}>
@@ -640,7 +583,7 @@ const ProjectsPage: React.FC = () => {
                   </ToggleButtonGroup>
                 </Grid>
 
-                <Grid size={{ xs: 12, sm: 12, md: 2 }}>
+                <Grid size={{ xs: 12, sm: 4, md: 2 }}>
                   <ToggleButtonGroup
                     value={viewMode}
                     exclusive
@@ -661,6 +604,38 @@ const ProjectsPage: React.FC = () => {
                       Table
                     </ToggleButton>
                   </ToggleButtonGroup>
+                </Grid>
+
+                <Grid size={{ xs: 12, sm: 8, md: 5 }}>
+                  <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap", justifyContent: { sm: "flex-end" } }}>
+                    <Button
+                      size="small"
+                      variant={showOnlyNpm ? "contained" : "outlined"}
+                      onClick={() => setShowOnlyNpm(!showOnlyNpm)}
+                      startIcon={<Code />}
+                      sx={{ textTransform: "none" }}
+                    >
+                      {showOnlyNpm ? "All" : "📦 NPM"}
+                    </Button>
+                    <Button
+                      size="small"
+                      variant={showOnlyFeatured ? "contained" : "outlined"}
+                      onClick={() => setShowOnlyFeatured(!showOnlyFeatured)}
+                      startIcon={<Star />}
+                      sx={{ textTransform: "none" }}
+                    >
+                      {showOnlyFeatured ? "All" : "⭐ Featured"}
+                    </Button>
+                    <Button
+                      size="small"
+                      variant={showOnlyDevpost ? "contained" : "outlined"}
+                      onClick={() => setShowOnlyDevpost(!showOnlyDevpost)}
+                      startIcon={<Launch />}
+                      sx={{ textTransform: "none" }}
+                    >
+                      {showOnlyDevpost ? "All" : "🏆 Devpost"}
+                    </Button>
+                  </Box>
                 </Grid>
               </Grid>
             </Box>
@@ -918,7 +893,7 @@ const ProjectsPage: React.FC = () => {
                             }
                           }}
                         >
-                          Project
+                          Project ({filteredProjects.length})
                         </TableSortLabel>
                       </TableCell>
                       <TableCell
