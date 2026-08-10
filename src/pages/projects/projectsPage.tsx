@@ -49,6 +49,8 @@ import { useNpmPackages } from "../../hooks/useNpmPackages";
 import { useDevpostProjects } from "../../hooks/useDevpostProjects";
 import { useGithubRepos } from "../../hooks/useGithubRepos";
 import { useStarredProjects } from "../../hooks/useStarredProjects";
+import { normalizeSiteUrl } from "../../utils/normalizeSiteUrl";
+import ReachableSiteLink from "./components/ReachableSiteLink";
 // Devpost standalone section removed per consolidation requirement. Devpost data will be merged into unified list in a later step.
 // Removed image rendering per request (no project thumbnails displayed)
 
@@ -195,7 +197,7 @@ const ProjectsPage: React.FC = () => {
         entry.github = {
           url: r.htmlUrl,
           stars: r.stargazersCount,
-          homepage: r.homepage || undefined,
+          homepage: normalizeSiteUrl(r.homepage),
           pushedAt: r.pushedAt,
           updatedAt: r.updatedAt,
         };
@@ -239,7 +241,7 @@ const ProjectsPage: React.FC = () => {
         entry.category = p.category;
         entry.technologies = p.technologies;
         entry.featured = p.featured;
-        if (p.liveUrl) entry.liveUrl = p.liveUrl;
+        if (p.liveUrl) entry.liveUrl = normalizeSiteUrl(p.liveUrl);
         if (p.githubUrl && (!entry.github || !entry.github.url)) {
           // Edge: portfolio has github link but no github repo facet (maybe repo not public)
           entry.github = { url: p.githubUrl };
@@ -276,8 +278,13 @@ const ProjectsPage: React.FC = () => {
             entry.lastActivityAt = pkg.publishedAt;
           }
         }
-        // If no homepage yet, use npm homepage
-        if (!entry.homepage && pkg.homepage) entry.homepage = pkg.homepage;
+        // Note: entry.homepage is intentionally NOT set here. It's derived
+        // once, in priority order (liveUrl -> github homepage -> npm
+        // homepage), in the "Derive general homepage" pass below - setting
+        // it here unconditionally (entry.homepage is always unset at this
+        // point, since that pass runs later) would let an npm package's
+        // homepage (often just its GitHub readme) silently outrank a real
+        // GitHub Pages site set on the same project.
       }
     }
 
@@ -316,10 +323,13 @@ const ProjectsPage: React.FC = () => {
       }
     }
 
-    // Derive general homepage if absent (prefer liveUrl -> github homepage -> github url -> npm homepage)
+    // Derive general homepage if absent (prefer liveUrl -> github homepage -> npm homepage).
+    // Deliberately does NOT fall back to the GitHub repo URL itself - that's
+    // already surfaced via the dedicated "GitHub" button, and treating it as
+    // a "Site" link would mislabel a code repository as a live demo.
     for (const entry of map.values()) {
       if (!entry.homepage) {
-        entry.homepage = entry.liveUrl || entry.github?.homepage || entry.github?.url || entry.npm?.homepage;
+        entry.homepage = entry.liveUrl || entry.github?.homepage || entry.npm?.homepage;
       }
     }
 
@@ -828,10 +838,18 @@ const ProjectsPage: React.FC = () => {
                         <Button size="small" variant="outlined" startIcon={<Launch />} href={project.devpost.url} target="_blank" rel="noopener noreferrer">Devpost</Button>
                       )}
                       {project.liveUrl && (
-                        <Button size="small" variant="text" startIcon={<Launch />} href={project.liveUrl} target="_blank" rel="noopener noreferrer">Demo</Button>
+                        <ReachableSiteLink url={project.liveUrl}>
+                          {(url) => (
+                            <Button size="small" variant="text" startIcon={<Launch />} href={url} target="_blank" rel="noopener noreferrer">Demo</Button>
+                          )}
+                        </ReachableSiteLink>
                       )}
                       {!project.liveUrl && project.homepage && (
-                        <Button size="small" variant="text" startIcon={<Launch />} href={project.homepage} target="_blank" rel="noopener noreferrer">Site</Button>
+                        <ReachableSiteLink url={project.homepage}>
+                          {(url) => (
+                            <Button size="small" variant="text" startIcon={<Launch />} href={url} target="_blank" rel="noopener noreferrer">Site</Button>
+                          )}
+                        </ReachableSiteLink>
                       )}
                     </CardActions>
                   </Card>
@@ -1087,15 +1105,19 @@ const ProjectsPage: React.FC = () => {
                               </IconButton>
                             )}
                             {(project.liveUrl || project.homepage) && (
-                              <IconButton
-                                component={Link}
-                                href={project.liveUrl || project.homepage}
-                                target="_blank"
-                                size="small"
-                                aria-label={`Visit ${project.title} live site`}
-                              >
-                                <Launch fontSize="small" />
-                              </IconButton>
+                              <ReachableSiteLink url={(project.liveUrl || project.homepage) as string}>
+                                {(url) => (
+                                  <IconButton
+                                    component={Link}
+                                    href={url}
+                                    target="_blank"
+                                    size="small"
+                                    aria-label={`Visit ${project.title} live site`}
+                                  >
+                                    <Launch fontSize="small" />
+                                  </IconButton>
+                                )}
+                              </ReachableSiteLink>
                             )}
                           </Box>
                         </TableCell>

@@ -6,6 +6,65 @@ history already covers what changed).
 
 ---
 
+## 2026-08-10 — Projects page "Site" links: vaporjawn.github.io → vaporjawn.dev, hide dead ones
+
+Site owner reported project "Site" buttons on `/projects` should point at `vaporjawn.dev`
+(the account's real custom domain, which GitHub Pages applies to *every* project page
+under the account, not just the user site) instead of the stale `vaporjawn.github.io`
+form some repos' GitHub `homepage` field still has, and asked for `snapple-facts`
+specifically to work plus all Site links to hide themselves when actually broken.
+Confirmed via `gh api users/Vaporjawn/repos` + `curl` against live GitHub Pages that this
+is real: `Checkers`/`Maze.JS`/`JoJos-Random-Adventure`/`RGB-Calculator`/`SNEK`/
+`Trivia-Game`/`Retro-Catch-the-Block` all had a `vaporjawn.github.io/...` homepage but
+actually serve at `vaporjawn.dev/...`; `Tic-Tac-Toe` and `Prime-Number-Finder-Java` are
+genuinely dead (404 either way); `www.vaporjawn.dev` currently fails TLS entirely (cert
+doesn't cover the `www` subdomain — separate, real, pre-existing GitHub Pages cert issue,
+not touched here) while the bare apex works and is what GitHub's own redirect chain uses.
+
+Also found and fixed a real pre-existing bug while verifying: the npm-package merge step
+in `projectsPage.tsx`'s `unifiedProjects` aggregation was unconditionally setting
+`entry.homepage = pkg.homepage` (since `entry.homepage` is never set before that pass
+runs), silently overriding a legitimate GitHub Pages homepage with the npm package's
+homepage (often just its own GitHub readme URL) whenever a project happened to also be
+published to npm — this is exactly why `snapple-facts` (published to npm) was showing
+`github.com/Vaporjawn/snapple-facts#readme` instead of its real, working
+`vaporjawn.dev/snapple-facts/` demo before the fix.
+
+Implementation: `src/utils/normalizeSiteUrl.ts` (pure host-rewrite: legacy github.io
+project pages + broken www host → vaporjawn.dev apex; everything else untouched),
+`src/hooks/useUrlReachable.ts` (cached HEAD-request reachability check — GitHub Pages
+sends permissive CORS so this is *not* just a DNS-failure check, it can read real 4xx/5xx
+statuses; deliberately fails open on CORS-blocked/network-inconclusive results so
+external sites without permissive CORS, like most non-GitHub-Pages homepages, never get
+falsely hidden — only a proven HTTP error hides the button), `src/pages/projects/
+components/ReachableSiteLink.tsx` (render-prop wrapper applying the hook to both the
+card-view Button and table-view IconButton call sites). Verified live in `npm run
+preview` + Playwright: `snapple-facts` → correct working link; `Tic-Tac-Toe`/`20XX`/
+`Prime-Number-Finder` → button correctly disappears once the check resolves 404.
+
+**Known accepted limitation**: `Weather-WebApp`'s homepage 301-redirects (no trailing
+slash → with slash) to a 404, but the redirect hop itself lacks CORS headers even though
+GitHub Pages' final response has them, so the browser can't read the outcome and the
+check fails open (button stays visible). Not a regression — it had no check at all
+before. Not worth a workaround; redirects are extremely common on genuinely-working
+pages too (most of the fixed ones above 301 non-slash→slash and are fine), so treating
+"redirect = broken" would create false positives elsewhere.
+
+**Also discovered, not touched**: `src/pages/projects/data/projectsData.ts` (12
+hand-written projects incl. a `Sud0ku` entry with `liveUrl: "http://vaporjawn.dev/Sud0ku/"`)
+is completely dead code — zero imports anywhere outside itself. The live `/projects`
+page is powered entirely by `usePortfolioData` (`portfolio.json`) merged with the live
+GitHub API via `useGithubRepos`. Worth deleting or wiring up someday; out of scope for
+this session (would have been unrelated scope creep on a link-fix task). Not yet added
+to `gotchas-and-todos.md`'s dead-code list — do that if this file is touched again.
+
+Verified: `tsc --noEmit`, `npm run lint` (0 errors, same 1 pre-existing warning), full
+`npm test -- --run` (258 passed/5 pre-existing skipped, 2 new test files), `npm run
+build`, and the live Playwright check above. Kept the diff minimal on purpose — an
+earlier pass ran `prettier --write` on the whole already-drifted `projectsPage.tsx` and
+inflated the diff to 570/310 lines of pure formatting noise unrelated to the fix; reverted
+and reapplied only the actual logic edits instead (final diff: 39/17 lines on that file).
+
 ## 2026-08-01 — Language Distribution pie: show every language, not top-5-plus-"Other"
 
 Site owner asked whether the languages folded into the "Other 14%" slice could be shown
