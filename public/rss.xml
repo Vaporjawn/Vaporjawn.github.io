@@ -5,9 +5,49 @@
     <description>Portfolio and blog of Victor Williams - Expert Full-Stack Developer specializing in React, TypeScript, Node.js, and cloud solutions</description>
     <link>https://vaporjawn.dev</link>
     <atom:link href="https://vaporjawn.dev/rss.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Sat, 01 Aug 2026 17:19:47 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 10 Aug 2026 19:02:38 GMT</lastBuildDate>
     <language>en-US</language>
     
+    <item>
+      <title><![CDATA[Presenting the Trade-off Instead of Guessing]]></title>
+      <description><![CDATA[A pattern that keeps showing up across my projects: when a decision is irreversible, costly, or genuinely ambiguous, the right move isn't to guess well — it's to lay out the real trade-off and let the person who owns the consequences choose.]]></description>
+      <link>https://vaporjawn.dev/blog/presenting-the-trade-off-instead-of-guessing</link>
+      <guid isPermaLink="true">https://vaporjawn.dev/blog/presenting-the-trade-off-instead-of-guessing</guid>
+      <pubDate>Mon, 10 Aug 2026 00:00:00 GMT</pubDate>
+      <author>Victor Williams</author>
+      <category>Engineering Leadership</category>
+      <category>Decision-Making</category>
+      <category>Case Study</category>
+      <category>AI Collaboration</category>
+    </item>
+
+    <item>
+      <title><![CDATA[Build vs. Buy: Why My Admin Panel Doesn't Use Firebase Auth]]></title>
+      <description><![CDATA[A real, small architectural decision — and the honest tradeoff that came with it — walked through in full: SHA-256 over Firebase Authentication for a low-stakes admin panel.]]></description>
+      <link>https://vaporjawn.dev/blog/build-vs-buy-admin-auth</link>
+      <guid isPermaLink="true">https://vaporjawn.dev/blog/build-vs-buy-admin-auth</guid>
+      <pubDate>Sat, 01 Aug 2026 00:00:00 GMT</pubDate>
+      <author>Victor Williams</author>
+      <category>Engineering Leadership</category>
+      <category>Architecture</category>
+      <category>Security</category>
+      <category>Firebase</category>
+      <category>Build vs Buy</category>
+    </item>
+
+    <item>
+      <title><![CDATA[My Framework for Cutting Things I Just Built]]></title>
+      <description><![CDATA[A real, blow-by-blow account of simplifying my own portfolio's homepage — and the rule that came out of it: real data or no data, never fake-but-impressive.]]></description>
+      <link>https://vaporjawn.dev/blog/framework-for-cutting-things</link>
+      <guid isPermaLink="true">https://vaporjawn.dev/blog/framework-for-cutting-things</guid>
+      <pubDate>Sat, 01 Aug 2026 00:00:00 GMT</pubDate>
+      <author>Victor Williams</author>
+      <category>Engineering Leadership</category>
+      <category>Prioritization</category>
+      <category>Product Thinking</category>
+      <category>Case Study</category>
+    </item>
+
     <item>
       <title><![CDATA[Building a Modern Portfolio with React + TypeScript]]></title>
       <description><![CDATA[A comprehensive guide to creating a professional portfolio website using React, TypeScript, and modern web technologies.]]></description>
