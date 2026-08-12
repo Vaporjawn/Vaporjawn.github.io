@@ -232,21 +232,6 @@ const createVaporwaveTheme = (mode: "light" | "dark"): Theme => {
           },
         },
       },
-      MuiListItem: {
-        styleOverrides: {
-          root: {
-            borderRadius: 12,
-            margin: "4px 16px",
-            transition: "all 0.3s ease",
-            "&:hover": {
-              background: `linear-gradient(45deg, ${VaporwavePurple}20, ${VaporwaveBlue}20)`,
-              backdropFilter: "blur(10px)",
-              border: `1px solid ${VaporwavePurple}30`,
-              transform: "translateX(5px)",
-            },
-          },
-        },
-      },
       MuiTypography: {
         styleOverrides: {
           h1: {
