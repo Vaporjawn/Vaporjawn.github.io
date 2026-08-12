@@ -105,6 +105,7 @@ export const BrandText = styled(Typography)(({ theme }) => ({
  */
 export const SocialIconContainer = styled(Box)(({ theme }) => ({
   display: "flex",
+  flexWrap: "wrap",
   justifyContent: "center",
   gap: theme.spacing(1),
   marginBottom: theme.spacing(3),

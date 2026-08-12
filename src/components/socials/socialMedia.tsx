@@ -130,10 +130,12 @@ const SocialMedia: React.FC<SocialMediaProps> = ({ onlyPrimary }) => {
         marginTop: "2rem",
       }}
     >
-      {/* Top Row - 6 icons */}
+      {/* Top Row - 6 icons. flexWrap keeps icons from being clipped off the
+          right edge on narrow viewports instead of overflowing the page. */}
       <div
         style={{
           display: "flex",
+          flexWrap: "wrap",
           justifyContent: "flex-start",
           gap: "1.1rem",
           marginBottom: "1.1rem",
@@ -142,11 +144,12 @@ const SocialMedia: React.FC<SocialMediaProps> = ({ onlyPrimary }) => {
         {topRowLinks.map((link) => renderLinkElement(link))}
       </div>
 
-      {/* Bottom Row - 6 icons */}
+      {/* Bottom Row - remaining icons */}
       {bottomRowLinks.length > 0 && (
         <div
           style={{
             display: "flex",
+            flexWrap: "wrap",
             justifyContent: "flex-start",
             gap: "1.1rem",
           }}
