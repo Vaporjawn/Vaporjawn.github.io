@@ -1,4 +1,9 @@
-const CACHE_NAME = "vaporjawn-v1";
+// Bump this on any deploy that changes cached static assets (icons, manifest,
+// etc.) — the activate handler below only evicts old caches when this string
+// changes, otherwise a browser that already installed this worker keeps
+// serving whatever it cached on day one forever, even after new files are
+// deployed under the same URLs (favicons/icons never change filename).
+const CACHE_NAME = "vaporjawn-v2";
 const urlsToCache = [
   "/",
   "/index.html",
