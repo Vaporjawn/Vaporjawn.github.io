@@ -48,6 +48,13 @@ interface GitHubStatsChartProps {
 
 const defaultLanguageData: LanguageSlice[] = [];
 
+// Stat cards and the Language Distribution card below share this width so
+// their left/right edges line up exactly instead of each being centered
+// independently at a different width (previously stat cards sat at 9/12
+// while the card below sat at 8/12 of the page container, leaving visibly
+// mismatched side margins).
+const CONTENT_MAX_WIDTH = 720;
+
 const defaultStats: RepoStats = {
   totalStars: 0,
   totalForks: 0,
@@ -91,10 +98,12 @@ const GitHubStatsChart: React.FC<GitHubStatsChartProps> = ({
           a bit.
         </Alert>
       ) : (
-        <>
-          {/* Stats Cards */}
-          <Grid container spacing={2} mb={4} justifyContent="center">
-            <Grid size={{ xs: 4, sm: 4, md: 3 }}>
+        <Box sx={{ maxWidth: CONTENT_MAX_WIDTH, mx: "auto" }}>
+          {/* Stats Cards — each takes an even third so the row's edges land
+              flush with the Language Distribution card below instead of
+              floating narrower and centered within it. */}
+          <Grid container spacing={2} mb={4}>
+            <Grid size={4}>
               {loading ? (
                 <Skeleton variant="rounded" height={116} />
               ) : (
@@ -106,7 +115,7 @@ const GitHubStatsChart: React.FC<GitHubStatsChartProps> = ({
                 />
               )}
             </Grid>
-            <Grid size={{ xs: 4, sm: 4, md: 3 }}>
+            <Grid size={4}>
               {loading ? (
                 <Skeleton variant="rounded" height={116} />
               ) : (
@@ -118,7 +127,7 @@ const GitHubStatsChart: React.FC<GitHubStatsChartProps> = ({
                 />
               )}
             </Grid>
-            <Grid size={{ xs: 4, sm: 4, md: 3 }}>
+            <Grid size={4}>
               {loading ? (
                 <Skeleton variant="rounded" height={116} />
               ) : (
@@ -133,80 +142,87 @@ const GitHubStatsChart: React.FC<GitHubStatsChartProps> = ({
           </Grid>
 
           {/* Language Distribution */}
-          <Grid container justifyContent="center">
-            <Grid size={{ xs: 12, sm: 10, md: 8 }}>
-              <Paper
-                sx={{
-                  p: 3,
-                  bgcolor: alpha(theme.palette.background.paper, 0.6),
-                  backdropFilter: "blur(10px)",
-                }}
+          <Paper
+            sx={{
+              p: 3,
+              bgcolor: alpha(theme.palette.background.paper, 0.6),
+              backdropFilter: "blur(10px)",
+            }}
+          >
+            <Typography variant="h6" fontWeight={600} gutterBottom textAlign="center">
+              Language Distribution
+            </Typography>
+            {loading ? (
+              <Skeleton variant="circular" width={250} height={250} sx={{ mx: "auto" }} />
+            ) : languageData.length === 0 ? (
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                textAlign="center"
+                sx={{ py: 4 }}
               >
-                <Typography variant="h6" fontWeight={600} gutterBottom textAlign="center">
-                  Language Distribution
-                </Typography>
-                {loading ? (
-                  <Skeleton variant="circular" width={250} height={250} sx={{ mx: "auto" }} />
-                ) : languageData.length === 0 ? (
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    textAlign="center"
-                    sx={{ py: 4 }}
+                No language data available yet.
+              </Typography>
+            ) : (
+              // Every distinct language gets its own slice (see
+              // computeLanguageDistribution). The pie sits centered with a
+              // wrapped, centered legend underneath — rather than a side
+              // legend next to an off-center pie — so the card reads as one
+              // balanced block instead of content bunched to one side with a
+              // large empty gap on the other, at any container width.
+              <ResponsiveContainer
+                width="100%"
+                height={260 + Math.ceil(languageData.length / 4) * 32}
+              >
+                <PieChart>
+                  <Pie
+                    data={languageData as unknown as PieChartData[]}
+                    cx="50%"
+                    cy="42%"
+                    outerRadius={80}
+                    fill="#8884d8"
+                    dataKey="value"
                   >
-                    No language data available yet.
-                  </Typography>
-                ) : (
-                  // Every distinct language gets its own slice (see
-                  // computeLanguageDistribution) — with more than a handful of
-                  // categories, labels drawn directly on the pie start overlapping,
-                  // so names/percentages live in a side legend instead, which scales
-                  // to as many languages as the account actually has.
-                  <ResponsiveContainer width="100%" height={Math.max(250, languageData.length * 28)}>
-                    <PieChart>
-                      <Pie
-                        data={languageData as unknown as PieChartData[]}
-                        cx="35%"
-                        cy="50%"
-                        outerRadius={80}
-                        fill="#8884d8"
-                        dataKey="value"
-                      >
-                        {languageData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={entry.color} />
-                        ))}
-                      </Pie>
-                      <Tooltip
-                        formatter={(value: number, name: string) => {
-                          const total = languageData.reduce((sum, d) => sum + d.value, 0);
-                          const percent = total > 0 ? Math.round((value / total) * 100) : 0;
-                          return [`${value} repo${value === 1 ? "" : "s"} (${percent}%)`, name];
-                        }}
-                      />
-                      <Legend
-                        layout="vertical"
-                        align="right"
-                        verticalAlign="middle"
-                        iconType="circle"
-                        formatter={(value: string, entry) => {
-                          const slice = languageData.find((d) => d.name === value);
-                          const total = languageData.reduce((sum, d) => sum + d.value, 0);
-                          const percent =
-                            slice && total > 0 ? Math.round((slice.value / total) * 100) : 0;
-                          return (
-                            <span style={{ color: entry.color }}>
-                              {value} {percent}%
-                            </span>
-                          );
-                        }}
-                      />
-                    </PieChart>
-                  </ResponsiveContainer>
-                )}
-              </Paper>
-            </Grid>
-          </Grid>
-        </>
+                    {languageData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip
+                    formatter={(value: number, name: string) => {
+                      const total = languageData.reduce((sum, d) => sum + d.value, 0);
+                      const percent = total > 0 ? Math.round((value / total) * 100) : 0;
+                      return [`${value} repo${value === 1 ? "" : "s"} (${percent}%)`, name];
+                    }}
+                  />
+                  <Legend
+                    layout="horizontal"
+                    align="center"
+                    verticalAlign="bottom"
+                    iconType="circle"
+                    wrapperStyle={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      justifyContent: "center",
+                      gap: 4,
+                      paddingTop: 16,
+                    }}
+                    formatter={(value: string, entry) => {
+                      const slice = languageData.find((d) => d.name === value);
+                      const total = languageData.reduce((sum, d) => sum + d.value, 0);
+                      const percent =
+                        slice && total > 0 ? Math.round((slice.value / total) * 100) : 0;
+                      return (
+                        <span style={{ color: entry.color }}>
+                          {value} {percent}%
+                        </span>
+                      );
+                    }}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+            )}
+          </Paper>
+        </Box>
       )}
     </Box>
   );
