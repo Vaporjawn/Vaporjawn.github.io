@@ -140,7 +140,7 @@
       "company": "Morgan Lewis",
       "position": "Senior Full Stack Software Engineer",
       "location": "Philadelphia, PA",
-      "startDate": "2025-08",
+      "startDate": "2024-08",
       "endDate": null,
       "description": "Independently designed and built case management tooling for attorneys supporting active litigation and pro bono casework, developed a firm-wide global events calendar application, and created a business-to-business onboarding platform connecting outside companies with the firm. Partnered directly with attorneys, paralegals, and firm stakeholders to refine each tool against real casework and onboarding needs.",
       "technologies": ["SharePoint", "C#", ".NET Core", "REST API", "JavaScript", "TypeScript", "React.js", "SQL", "Azure"],
@@ -152,7 +152,7 @@
       "position": "Technical Lead",
       "location": "Boston, MA (Remote)",
       "startDate": "2023-12",
-      "endDate": "2025-08",
+      "endDate": "2024-07",
       "description": "Created a marketplace platform connecting customers with discounted, prepaid meal plans from their favorite restaurants. Created and managed database entities and queries, facilitated the integration of a wide range of point-of-sale systems, and developed food testing platforms for the facilities of Fortune 500 companies.",
       "technologies": ["React.js", "Svelte", "Node.js", "Go", "REST API", ".NET Core", "Ionic", "Capacitor"],
       "current": false
