@@ -250,27 +250,6 @@ const createVaporwaveTheme = (mode: "light" | "dark"): Theme => {
           },
         },
       },
-      MuiChip: {
-        styleOverrides: {
-          root: {
-            background: `linear-gradient(45deg, ${VaporwaveGreen}, ${VaporwaveBlueGreen})`,
-            color: VaporwaveBlue,
-            fontWeight: "bold",
-            // Subtle slow breathing effect (almost imperceptible)
-            animation: "pulse 18s ease-in-out infinite",
-            willChange: "transform",
-            "@keyframes pulse": {
-              "0%": { transform: "scale(1)" },
-              "50%": { transform: "scale(1.02)" },
-              "100%": { transform: "scale(1)" },
-            },
-            // Respect user prefers-reduced-motion to eliminate animation
-            "@media (prefers-reduced-motion: reduce)": {
-              animation: "none",
-            },
-          },
-        },
-      },
       MuiCard: {
         styleOverrides: {
           root: {
