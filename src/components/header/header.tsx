@@ -12,7 +12,6 @@ import {
   ListItemText,
   useTheme,
   useMediaQuery,
-  Chip,
 } from "@mui/material";
 import {
   Menu as MenuIcon,
@@ -284,31 +283,6 @@ const Header = (args: {
                   }}
                 >
                   {item.label}
-                  {isActivePath(item.path) && (
-                    <Chip
-                      size="small"
-                      sx={{
-                        position: "absolute",
-                        top: -8,
-                        right: -8,
-                        height: 16,
-                        fontSize: "0.7rem",
-                        background: `linear-gradient(45deg, ${VaporwaveGreen}, ${VaporwaveBlueGreen})`,
-                        color: VaporwaveBlue,
-                        fontWeight: "bold",
-                        animation: "pulse 18s ease-in-out infinite",
-                        willChange: "transform",
-                        "@keyframes pulse": {
-                          "0%": { transform: "scale(1)" },
-                          "50%": { transform: "scale(1.02)" },
-                          "100%": { transform: "scale(1)" },
-                        },
-                        "@media (prefers-reduced-motion: reduce)": {
-                          animation: "none",
-                        },
-                      }}
-                    />
-                  )}
                 </Button>
               ))}
             </Box>
