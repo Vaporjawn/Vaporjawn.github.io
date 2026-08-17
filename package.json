@@ -41,7 +41,7 @@
     "@uiw/react-md-editor": "^4.1.1",
     "date-fns": "^4.4.0",
     "firebase": "^12.17.1",
-    "framer-motion": "^13.0.0",
+    "framer-motion": "^13.1.0",
     "gray-matter": "^4.0.3",
     "js-yaml": "^5.2.3",
     "react": "^19.2.8",
