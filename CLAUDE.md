@@ -45,9 +45,14 @@ npm run generate:rss                # Regenerate public/rss.xml from content/blo
 node scripts/generate-admin-hash.mjs <pw> # Generate a VITE_ADMIN_PASSWORD_HASH value
 ```
 
-**Test runner is Vitest, not Jest** — `jest.config.cjs`/`jest.config.old.cjs`/
-`jest.tsconfig.json`/`__mocks__/fileMock.js` are dead leftovers from a migration never
-cleaned up. Don't reach for Jest APIs or trust those config files.
+**Test runner is Vitest, not Jest.** As of 2026-09-04 the dead Jest toolchain is
+gone: `jest`/`ts-jest`/`jest-environment-jsdom`/`jest-transform-stub`/
+`identity-obj-proxy` were removed from `devDependencies`, along with
+`jest.config.cjs`, `jest.config.old.cjs`, `jest.tsconfig.json` and
+`__mocks__/fileMock.js`. `jsdom` is now an explicit devDependency (it used to arrive
+transitively via `jest-environment-jsdom`) and is **pinned to `^26`** — jsdom 30
+changed CSS parsing and breaks style assertions such as
+`toHaveStyle({ background: "linear-gradient(…)" })`.
 
 ---
 
@@ -58,7 +63,7 @@ cleaned up. Don't reach for Jest APIs or trust those config files.
 | Framework    | React 19, TypeScript 5.9 strict                                                             |
 | Build        | Vite 7 (`@vitejs/plugin-react`, MDX via `@mdx-js/rollup`)                                   |
 | Routing      | React Router **v7** (`react-router-dom@^7`) — not v6                                        |
-| UI           | MUI v7 (**Grid v2**), Emotion, Framer Motion                                                |
+| UI           | MUI **v9** (**Grid v2**, `sx` only — no system props), Emotion, Framer Motion               |
 | Server state | TanStack React Query (`staleTime: 5min`, `retry: 2`)                                        |
 | Forms        | react-hook-form + Yup                                                                       |
 | Backend      | Firebase (Firestore, Analytics, Storage — **no Hosting**)                                   |
@@ -186,16 +191,41 @@ still a `warn`, and `npm run lint --max-warnings 4` means the project tolerates 
 - **Utility pattern**: helpers that are not components live in `src/utils/` or alongside
   the file they belong to, never re-exported from a component file.
 
-### MUI Grid v2 (not v1)
+### MUI v9 — style with `sx`, never with system props
 
-This project uses MUI v7 where Grid v2 is the default.
+**This is MUI v9** (`@mui/material@^9`), not v7 as older notes claim. v9 **removed
+system-prop support** from `Box`, `Stack` and `Typography` — their `propTypes` now
+accept only their own API plus `sx`. A prop like `display="flex"` is not a type error
+and not a runtime warning; it is silently dropped, and the element renders unstyled.
+This had quietly broken ~162 props across 20 files before the 2026-09-04 sweep.
+
+```tsx
+// ✅ Correct
+<Box sx={{ display: "flex", justifyContent: "space-between", mb: 1 }}>
+<Typography variant="h6" sx={{ fontWeight: 600, mb: 2 }}>
+<Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+
+// ❌ Silently does nothing in v9
+<Box display="flex" justifyContent="space-between" mb={1}>
+<Typography variant="h6" fontWeight={600} paragraph>
+<Stack direction="row" spacing={1} alignItems="center">
+```
+
+Each component's _own_ props still work and must stay out of `sx`: `Stack` keeps
+`direction`/`spacing`/`divider`/`useFlexGap`; `Typography` keeps
+`variant`/`component`/`align`/`color`/`gutterBottom`/`noWrap`. `Typography`'s
+`paragraph` boolean is gone — use `sx={{ mb: 2 }}`.
+
+Other v9 removals in use here: `TextField`'s `InputProps` → `slotProps={{ input: … }}`.
+
+### MUI Grid v2 (not v1)
 
 ```tsx
 // ✅ Correct — Grid v2
 <Grid size={{ xs: 12, md: 6 }}>
 <Grid size={12}>
 
-// ❌ Wrong — Grid v1 (removed in MUI v7)
+// ❌ Wrong — Grid v1
 <Grid item xs={12} md={6}>
 ```
 
@@ -335,8 +365,8 @@ so `content/blog/*.mdx` compiles directly, ahead of `@vitejs/plugin-react`.
   test file **before** any imports that trigger that module.
 - **Coverage**: v8 provider, excludes `src/main.tsx`, `src/vite-env.d.ts`, and
   `src/pages/resume/resumePage.tsx` (documented PDF-import issue in tests).
-- **Real current count** (2026-08-01, don't trust older "253+"/"236" claims elsewhere):
-  ~249 unit/component tests across 34 files, plus 19 separate Playwright e2e tests.
+- **Real current count** (2026-09-04, don't trust older "253+"/"236" claims elsewhere):
+  261 unit/component tests across 34 files, plus 19 separate Playwright e2e tests.
   `admin/` pages have **no tests**; `header/header.tsx` (the main nav) has no dedicated
   test file either (only `AdminHeader` does).
 - **e2e** (`e2e/*.spec.ts`, Playwright, Chromium-only): smoke-level coverage of home,
@@ -350,9 +380,12 @@ so `content/blog/*.mdx` compiles directly, ahead of `@vitejs/plugin-react`.
 
 Node 18/20/22 matrices for `build.js.yml`/`install.js.yml`/`tests.js.yml`
 (`lint.js.yml` is 18/20 only), all triggered on push/PR to `main`/`V3`. Production
-deploys happen via **`deploy-pages.yml`** (push to `main` or manual dispatch) — its
-build step uses `rm -rf node_modules package-lock.json && npm install` (regenerating the
-lockfile, not `npm ci`), then `npm run build`, then `actions/deploy-pages`. The
+deploys happen via **`deploy-pages.yml`** (push to `main` or manual dispatch), which
+now runs `npm ci` like every other workflow, then `npm run build`, then
+`actions/deploy-pages`. It previously did `rm -rf node_modules package-lock.json &&
+npm install`, re-resolving the whole tree on every deploy; that made deploys hostage to
+upstream publishing and, by 2026-09-04, had actually broken — see the `overrides.vitest`
+pin in `package.json` for why. The
 package.json `gh-pages`-based `npm run deploy` script is **not** what production
 actually uses. `contribs.yml` refreshes the contributions-calendar JSON daily via cron
 and commits it back directly. `securityScan.yml` runs `njsscan` weekly + on push/PR.

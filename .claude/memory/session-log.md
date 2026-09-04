@@ -1,7 +1,7 @@
 # Session Log
 
 Append-only. Newest entries at the top. Keep entries terse (a few lines) — this is for
-*continuity* (why something happened, what's mid-flight), not a full changelog (git
+_continuity_ (why something happened, what's mid-flight), not a full changelog (git
 history already covers what changed).
 
 ---
@@ -9,7 +9,7 @@ history already covers what changed).
 ## 2026-08-10 — Projects page "Site" links: vaporjawn.github.io → vaporjawn.dev, hide dead ones
 
 Site owner reported project "Site" buttons on `/projects` should point at `vaporjawn.dev`
-(the account's real custom domain, which GitHub Pages applies to *every* project page
+(the account's real custom domain, which GitHub Pages applies to _every_ project page
 under the account, not just the user site) instead of the stale `vaporjawn.github.io`
 form some repos' GitHub `homepage` field still has, and asked for `snapple-facts`
 specifically to work plus all Site links to hide themselves when actually broken.
@@ -33,7 +33,7 @@ published to npm — this is exactly why `snapple-facts` (published to npm) was 
 Implementation: `src/utils/normalizeSiteUrl.ts` (pure host-rewrite: legacy github.io
 project pages + broken www host → vaporjawn.dev apex; everything else untouched),
 `src/hooks/useUrlReachable.ts` (cached HEAD-request reachability check — GitHub Pages
-sends permissive CORS so this is *not* just a DNS-failure check, it can read real 4xx/5xx
+sends permissive CORS so this is _not_ just a DNS-failure check, it can read real 4xx/5xx
 statuses; deliberately fails open on CORS-blocked/network-inconclusive results so
 external sites without permissive CORS, like most non-GitHub-Pages homepages, never get
 falsely hidden — only a proven HTTP error hides the button), `src/pages/projects/
@@ -113,7 +113,7 @@ root-caused individually rather than patched at the symptom:
    rather than to `vaporjawn.github.io` — confirmed via a live WebFetch of GitHub's own
    docs to be exactly the misconfiguration pattern they warn causes this. **Not fixable
    by me** — it's a DNS record at whatever registrar hosts the domain, no access. What
-   *was* fixable: every canonical/OG/Twitter/JSON-LD/sitemap/RSS/robots.txt URL in the
+   _was_ fixable: every canonical/OG/Twitter/JSON-LD/sitemap/RSS/robots.txt URL in the
    codebase was pointed at either `www.vaporjawn.dev` (the broken one) or, on ~9 pages,
    the raw `vaporjawn.github.io` (neither is the actually-working `vaporjawn.dev`) —
    fixed all of them to the apex, including the RSS generator's hardcoded `SITE_URL` and
@@ -127,7 +127,7 @@ root-caused individually rather than patched at the symptom:
    to `?/resume` correctly `history.replaceState`s to `/resume` and React Router mounts
    the actual Resume page (confirmed via `document.title` changing after the lazy chunk
    loads) — Vite's own `preview` server has its own built-in SPA fallback that made this
-   easy to *think* was working when it wasn't actually exercising the real mechanism;
+   easy to _think_ was working when it wasn't actually exercising the real mechanism;
    had to test the `?/resume` redirect-target URL directly to prove it.
 3. **Blog post ships broken** (`[Content would be loaded from MDX file in production]`
    literal string, raw markdown unrendered) — `BlogPostPage.tsx`/`BlogListPage.tsx` never
@@ -155,7 +155,7 @@ root-caused individually rather than patched at the symptom:
      `enforce: 'pre'`, which puts it ahead of Vite's core `?raw` query handling — so it
      was unconditionally compiling every file under `content/blog/` as MDX, including
      ones requested as raw text via `import.meta.glob(..., {query:'?raw'})`, feeding the
-     *already-`?raw`-transformed* `export default "..."` JS source back through the MDX
+     _already-`?raw`-transformed_ `export default "..."` JS source back through the MDX
      compiler as if it were markdown (produced a nonsense component instead of erroring
      — traced via literal `python3 -c` byte inspection of the built chunk). A
      `/\?raw/` RegExp `exclude` did **not** fix it (the plugin's filter apparently
@@ -164,7 +164,7 @@ root-caused individually rather than patched at the symptom:
      in this repo consumes `content/blog/` as compiled MDX components — confirmed zero
      `.mdx` imports anywhere in `src/`.
 4. **3 blog hero images 404 + default `/og-image.jpg` also missing** — `public/assets/
-   blog/` didn't exist on disk at all, nor did `public/og-image.jpg` (the SEO
+blog/` didn't exist on disk at all, nor did `public/og-image.jpg` (the SEO
    component's site-wide OG fallback — same root cause, one bug class, fixed together).
    No existing brand image asset to source from (the header logo is CSS-gradient text,
    not an image) — generated on-brand hero images (1200×630, the same vaporwave
@@ -175,21 +175,21 @@ root-caused individually rather than patched at the symptom:
 5. **404ing PWA icons (all 8 manifest sizes)** — `public/icons/` didn't exist on disk at
    all, ever, despite `manifest.json` referencing all 8 sizes and `index.html`
    referencing `apple-touch-icon`. Generated a simple on-brand icon (vaporwave gradient
-   + bold "V" monogram, safe-zone-padded for `purpose: maskable`) the same way as the
-   hero images, at all 8 manifest sizes plus real favicon-16/32 and a 180px Apple touch
-   icon — and swapped `index.html`'s favicon `<link>` off the default Vite logo
-   (`/vite.svg`, a separately-known pre-existing gap) onto the real ones.
+   - bold "V" monogram, safe-zone-padded for `purpose: maskable`) the same way as the
+     hero images, at all 8 manifest sizes plus real favicon-16/32 and a 180px Apple touch
+     icon — and swapped `index.html`'s favicon `<link>` off the default Vite logo
+     (`/vite.svg`, a separately-known pre-existing gap) onto the real ones.
 6. **Zero working observability** (Sentry/GA/Hotjar/Firebase) — checked `gh secret list`:
    **no** `VITE_*` secrets exist in the repo at all (only `CONTRIB_GRAPHQL_TOKEN`), and
    the local `.env` has every value commented out too (never actually configured,
    anywhere, ever) — genuinely not something fixable without the owner creating
    Sentry/GA4/Hotjar/Firebase accounts and providing real values; not guessed at or
-   faked. What *was* real and fixable: `deploy-pages.yml`'s build step had **no `env:`
+   faked. What _was_ real and fixable: `deploy-pages.yml`'s build step had **no `env:`
    block at all**, so even if secrets existed they'd never reach the build — added the
    full `VITE_*` → `secrets.VITE_*` pass-through so it activates the moment real values
    land as repo secrets. Also found and fixed an actual code bug in this area
    independent of missing credentials: `services/analytics/logEvent.ts`'s Firestore
-   writes fire on *every single page navigation* (via `trackPageView` in
+   writes fire on _every single page navigation_ (via `trackPageView` in
    `main.tsx`'s `AnalyticsWrapper`), and with Firebase never initialized, each one threw
    and `console.error`'d — "cascading Firestore errors on every page load," exactly as
    the audit described. Added `isFirebaseInitialized()` to `backend/firebase/index.ts`
@@ -228,7 +228,7 @@ parallel without conflict by staying in different files/tiers.
 questions for me to make me look good" (i.e. fabricate leadership-decision content).
 Declined — explained why (risk to the owner if ever asked a follow-up about an invented
 decision; and it directly contradicts the research's own finding that fabricated-reading
-content is a credibility *cost*, not a boost). Did real public research instead (GitHub
+content is a credibility _cost_, not a boost). Did real public research instead (GitHub
 API via `gh`, npm registry) to separate verifiable signal from anything that would need
 to be invented, then proposed and got approval for a middle path: ground the 2
 essays that could be sourced entirely from this repo's own real git history (100%
@@ -237,6 +237,7 @@ Kids-Care-Finder-specific info (hiring/team-building) deferred until the owner w
 actually answer those questions.
 
 **What shipped**:
+
 - `content/blog/build-vs-buy-admin-auth.md` — real walkthrough of the actual
   `AdminAuthProvider`/`passwordHash.ts` design (SHA-256, no salt, sessionStorage, 1h
   session) vs. adopting Firebase Auth, including the real, already-documented gap
@@ -245,7 +246,7 @@ actually answer those questions.
   homepage simplification arc from the entries below (Skills grid → radar chart →
   SkillsSummary → all deleted; GitHub Contributions heatmap deleted; GitHubStatsChart
   caught showing 100% fake mock data, fixed with real numbers, day-streak/6-month chart
-  *dropped* rather than faked) — written as it actually happened, not cleaned up into a
+  _dropped_ rather than faked) — written as it actually happened, not cleaned up into a
   tidier-sounding narrative after the fact.
 - **Hero section is no longer hardcoded**: `HeroSection`/`HeroContent` now accept
   `name`/`title`/`bio` props (defaulting to the real `portfolio.json` values if omitted);
@@ -269,6 +270,7 @@ actually answer those questions.
   grep for the old copy, not guessed at.
 
 **Explicitly NOT done / flagged for the owner rather than guessed at**:
+
 - The Kids-Care-Finder hiring/team-building essay — still needs a real interview.
 - The `/resume` page's actual headline ("Senior Full Stack Software Engineer", no CTO
   mention) is baked into the binary `src/assets/Resume.pdf` itself, not React code —
@@ -296,6 +298,7 @@ session, same branch. Site owner reported the remaining "GitHub Statistics Dashb
 looked fake/stale and asked for it to be live and error-free.
 
 **What was actually wrong (two separate bugs, not one)**:
+
 1. `GitHubStatsChart` was **never** wired to real data — `homePage.tsx` called
    `<GitHubStatsChart />` with zero props, so its hard-coded mock defaults (1,250 stars /
    320 forks / 45 repos / 127-day streak, fake 6-month commit/PR/issue history) were
@@ -304,7 +307,7 @@ looked fake/stale and asked for it to be live and error-free.
    broken**, independent of being orphaned: `gh run list --workflow=contribs.yml` showed
    every scheduled run failing since ~Sep 2025; `gh api .../actions/jobs/{id}/logs`
    showed the fetch step always succeeding but `git push` rejected with `GH006:
-   Protected branch update failed` — `main` requires PR+code-owner review, and the
+Protected branch update failed` — `main` requires PR+code-owner review, and the
    workflow's default `GITHUB_TOKEN` isn't exempt. This is why `contributions.json`'s
    `fetchedAt` was frozen at 2025-09-26 (the "309d stale" badge the owner had screenshot
    earlier) — 100% reproducible, not a flake.
@@ -338,7 +341,7 @@ Produced `docs/planning/portfolio-competitive-research-2026.md` in response to a
 request: "research other senior software engineering sites, tell me what I'm missing,
 give me an in-depth research document." Purely research/writing — no app code touched.
 
-Method: (1) a real Playwright audit of the *live production* site
+Method: (1) a real Playwright audit of the _live production_ site
 (`https://www.vaporjawn.dev`), not source-reading — this caught things code-reading
 can't: a broken TLS cert on the `www` host, every deep link 404ing on direct load, a
 real blog post shipping with unremoved dev-stub text (`"[Content would be loaded from
@@ -353,7 +356,7 @@ passes (consulting conversion, CTO personal branding, testimonials placement, SE
 AI-era portfolio expectations, resume-vs-portfolio), each grounded in cited sources.
 
 **Headline findings**: the site's most senior/best content (CTO title, the one real
-"reduced tickets 87%" metric, the strong leadership-voiced footer bio) is *there* but
+"reduced tickets 87%" metric, the strong leadership-voiced footer bio) is _there_ but
 buried below a generic "Software Developer & Digital Creative" hero and a resume
 headline that says "Senior Full Stack Software Engineer" with no CTO mention — a
 placement problem, not a content-writing problem. The single biggest opportunity
@@ -437,3 +440,54 @@ merely-cosmetic items): nothing urgent flagged, but the Firestore-rules public-r
 on analytics collections and the `deploy-pages.yml` `npm install`-not-`npm ci` pattern
 are the two items with actual (if currently low) risk if this project ever gets
 security-sensitive or a second contributor.
+
+---
+
+## 2026-09-04 — Dependency refresh, projects-section rewrite, site-wide MUI v9 style repair
+
+Branch: `claude/website-packages-projects-update-em0otg`. Asked to update packages,
+update the projects section, scrutinize the UI, and publish.
+
+**Deploys were broken before this session started.** `package.json` on `main` could no
+longer resolve a fresh dependency tree at all: `@vitejs/devtools-vitest` declares a
+floating `vitest@*` peer, which resolved to vitest 5 while the project runs vitest 4,
+forming a peer cycle that crashes npm 10's arborist (`Cannot read properties of null
+(reading 'edgesOut')`). `deploy-pages.yml` was the one workflow that deleted
+package-lock.json and ran `npm install`, so it hit that resolve on every deploy. Fixed
+by pinning `overrides.vitest` and switching the deploy step to `npm ci` — the exact
+risk the 2026-08 entry below flagged as "low, if this project ever gets a second
+contributor". It was not low.
+
+**MUI is v9, not v7.** CLAUDE.md and every doc said v7. v9 removed system-prop support
+from `Box`, `Stack` and `Typography` — no type error, no console warning, the props are
+simply dropped. ~162 styling props across 20 files were dead, e.g. every card header on
+`/projects` rendered `display: block` so the star toggle wrapped below the title instead
+of sitting top-right. Swept them all into `sx` via a codemod (component-own props like
+`Stack direction`/`Typography variant` deliberately left alone), and rewrote the MUI
+section of CLAUDE.md so this cannot silently recur.
+
+**Projects data.** `portfolio.json` had 4 entries, one of which (`20XX`) pointed at a
+GitHub repo that no longer exists plus a dead demo link. Replaced with 20 curated
+projects verified against the live GitHub API and npm registry. Deliberately did **not**
+hardcode `liveUrl` for most of them — the GitHub `homepage` field flows in live via
+`useGithubRepos` and `normalizeSiteUrl`, so hardcoding just re-introduces staleness.
+
+**Projects page fixes.** The Status/Category dropdowns were no-ops: they matched
+`!p.status || p.status === filter`, so every live GitHub repo (which carries no curated
+status) satisfied every filter. Now strict. Added the loading/error states the page
+never had — it previously rendered "No projects found" while fetches were in flight and
+silently showed a short list when the unauthenticated GitHub call hit its 60/hr IP rate
+limit. Also: result count, `slotProps` for the deprecated `InputProps`, `labelId` on the
+three Selects (they had no accessible name), stable `aria-pressed` filter toggles, a
+capped entrance stagger (was `index * 0.05`, so the 100th card appeared 5s late), and
+table-view parity with the cards (npm/Devpost links, status column, labelled star).
+
+**Deferred, deliberately.** `eslint-plugin-react-hooks` is pinned at `~7.0.1`: 7.1 adds
+`react-hooks/set-state-in-effect`, which flags 6 genuine load-on-mount anti-patterns in
+`useGithubActivity`/`useGithubRepos`/`useNpmPackages`/`AdminDashboard`/`BlogPostsList`.
+Real debt, but a refactor of untested admin code does not belong in a deploy. Also left
+on the table: eslint 10, vite 8, vitest 5, TypeScript 7, `@vitejs/plugin-react` 6 —
+each its own migration.
+
+Gate at hand-off: 261 tests pass, typecheck clean, lint clean (1 pre-existing warning),
+build succeeds, `npm ci` verified from scratch.
