@@ -19,7 +19,12 @@ import {
   useTheme,
   alpha,
 } from "@mui/material";
-import { Search as SearchIcon, CalendarToday, AccessTime, Article as ArticleIcon } from "@mui/icons-material";
+import {
+  Search as SearchIcon,
+  CalendarToday,
+  AccessTime,
+  Article as ArticleIcon,
+} from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import SEO from "../../components/SEO/SEO";
@@ -44,24 +49,24 @@ const BlogListPage: React.FC = () => {
   const allTags = useMemo(() => getAllTags(ALL_POSTS), []);
 
   // Apply filters
-  const filteredPosts = useMemo(() =>
-    filterBlogPosts(ALL_POSTS, filter),
+  const filteredPosts = useMemo(
+    () => filterBlogPosts(ALL_POSTS, filter),
     [filter]
   );
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFilter(prev => ({ ...prev, searchQuery: event.target.value }));
+    setFilter((prev) => ({ ...prev, searchQuery: event.target.value }));
   };
 
   const handleTagClick = (tag: string) => {
-    setFilter(prev => ({
+    setFilter((prev) => ({
       ...prev,
       tag: prev.tag === tag ? undefined : tag,
     }));
   };
 
   const handleSortChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFilter(prev => ({ ...prev, sortBy: event.target.value }));
+    setFilter((prev) => ({ ...prev, sortBy: event.target.value }));
   };
 
   const handlePostClick = (slug: string) => {
@@ -93,7 +98,7 @@ const BlogListPage: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <Box textAlign="center" mb={6}>
+            <Box sx={{ textAlign: "center", mb: 6 }}>
               <Typography
                 variant="h1"
                 sx={{
@@ -113,7 +118,8 @@ const BlogListPage: React.FC = () => {
                 color="text.secondary"
                 sx={{ maxWidth: 600, mx: "auto" }}
               >
-                Insights on web development, performance optimization, and software engineering best practices
+                Insights on web development, performance optimization, and
+                software engineering best practices
               </Typography>
             </Box>
           </motion.div>
@@ -124,7 +130,7 @@ const BlogListPage: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <Box mb={6}>
+            <Box sx={{ mb: 6 }}>
               <Grid container spacing={3} mb={3}>
                 <Grid size={{ xs: 12, md: 8 }}>
                   <TextField
@@ -166,11 +172,20 @@ const BlogListPage: React.FC = () => {
               {/* Tag Filter */}
               {allTags.length > 0 && (
                 <Box>
-                  <Typography variant="subtitle2" color="text.secondary" mb={1.5}>
+                  <Typography
+                    variant="subtitle2"
+                    color="text.secondary"
+                    sx={{ mb: 1.5 }}
+                  >
                     Filter by topic:
                   </Typography>
-                  <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
-                    {allTags.map(tag => (
+                  <Stack
+                    direction="row"
+                    spacing={1}
+                    useFlexGap
+                    sx={{ flexWrap: "wrap" }}
+                  >
+                    {allTags.map((tag) => (
                       <Chip
                         key={tag}
                         label={tag}
@@ -194,7 +209,7 @@ const BlogListPage: React.FC = () => {
 
           {/* Blog Posts Grid */}
           {filteredPosts.length === 0 ? (
-            <Box textAlign="center" py={8}>
+            <Box sx={{ textAlign: "center", py: 8 }}>
               <Typography variant="h5" color="text.secondary" gutterBottom>
                 No articles found
               </Typography>
@@ -263,7 +278,7 @@ const BlogListPage: React.FC = () => {
                             alignItems: "center",
                             justifyContent: "center",
                             "&::after": {
-                              content: "\"\"",
+                              content: '""',
                               position: "absolute",
                               top: 0,
                               left: 0,
@@ -315,36 +330,54 @@ const BlogListPage: React.FC = () => {
                           )}
                         </Box>
                         <CardContent sx={{ flexGrow: 1, p: 3 }}>
-                          <Box mb={2.5}>
-                            <Stack direction="row" spacing={1} mb={2} flexWrap="wrap" useFlexGap>
+                          <Box sx={{ mb: 2.5 }}>
+                            <Stack
+                              direction="row"
+                              spacing={1}
+                              useFlexGap
+                              sx={{ mb: 2, flexWrap: "wrap" }}
+                            >
                               {post.tags.slice(0, 3).map((tag, tagIndex) => (
                                 <Chip
                                   key={tag}
                                   label={tag}
                                   size={tagIndex === 0 ? "medium" : "small"}
-                                  sx={tagIndex === 0 ? {
-                                    background: `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
-                                    color: "#fff",
-                                    fontWeight: 700,
-                                    fontSize: "0.8125rem",
-                                    letterSpacing: "0.02em",
-                                    transition: "all 0.3s ease",
-                                    "&:hover": {
-                                      transform: "translateY(-2px)",
-                                      boxShadow: `0 4px 12px ${alpha(theme.palette.primary.main, 0.4)}`,
-                                    },
-                                  } : {
-                                    bgcolor: alpha(theme.palette.primary.main, 0.08),
-                                    color: theme.palette.primary.main,
-                                    fontWeight: 600,
-                                    fontSize: "0.75rem",
-                                    border: `1px solid ${alpha(theme.palette.primary.main, 0.2)}`,
-                                    transition: "all 0.2s ease",
-                                    "&:hover": {
-                                      bgcolor: alpha(theme.palette.primary.main, 0.15),
-                                      borderColor: alpha(theme.palette.primary.main, 0.4),
-                                    },
-                                  }}
+                                  sx={
+                                    tagIndex === 0
+                                      ? {
+                                          background: `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+                                          color: "#fff",
+                                          fontWeight: 700,
+                                          fontSize: "0.8125rem",
+                                          letterSpacing: "0.02em",
+                                          transition: "all 0.3s ease",
+                                          "&:hover": {
+                                            transform: "translateY(-2px)",
+                                            boxShadow: `0 4px 12px ${alpha(theme.palette.primary.main, 0.4)}`,
+                                          },
+                                        }
+                                      : {
+                                          bgcolor: alpha(
+                                            theme.palette.primary.main,
+                                            0.08
+                                          ),
+                                          color: theme.palette.primary.main,
+                                          fontWeight: 600,
+                                          fontSize: "0.75rem",
+                                          border: `1px solid ${alpha(theme.palette.primary.main, 0.2)}`,
+                                          transition: "all 0.2s ease",
+                                          "&:hover": {
+                                            bgcolor: alpha(
+                                              theme.palette.primary.main,
+                                              0.15
+                                            ),
+                                            borderColor: alpha(
+                                              theme.palette.primary.main,
+                                              0.4
+                                            ),
+                                          },
+                                        }
+                                  }
                                 />
                               ))}
                               {post.tags.length > 3 && (
@@ -352,7 +385,10 @@ const BlogListPage: React.FC = () => {
                                   label={`+${post.tags.length - 3}`}
                                   size="small"
                                   sx={{
-                                    bgcolor: alpha(theme.palette.text.secondary, 0.08),
+                                    bgcolor: alpha(
+                                      theme.palette.text.secondary,
+                                      0.08
+                                    ),
                                     color: theme.palette.text.secondary,
                                     fontSize: "0.75rem",
                                   }}
@@ -404,14 +440,18 @@ const BlogListPage: React.FC = () => {
                           <Stack
                             direction="row"
                             spacing={3}
-                            alignItems="center"
                             sx={{
+                              alignItems: "center",
                               mt: "auto",
                               pt: 2,
                               borderTop: `1px solid ${alpha(theme.palette.divider, 0.5)}`,
                             }}
                           >
-                            <Stack direction="row" spacing={0.75} alignItems="center">
+                            <Stack
+                              direction="row"
+                              spacing={0.75}
+                              sx={{ alignItems: "center" }}
+                            >
                               <CalendarToday
                                 sx={{
                                   fontSize: 18,
@@ -430,7 +470,11 @@ const BlogListPage: React.FC = () => {
                                 {formatDate(post.date)}
                               </Typography>
                             </Stack>
-                            <Stack direction="row" spacing={0.75} alignItems="center">
+                            <Stack
+                              direction="row"
+                              spacing={0.75}
+                              sx={{ alignItems: "center" }}
+                            >
                               <AccessTime
                                 sx={{
                                   fontSize: 18,

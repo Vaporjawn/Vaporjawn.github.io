@@ -17,37 +17,44 @@ import SEO from "../../components/SEO/SEO";
 const StyledPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(4),
   marginBottom: theme.spacing(3),
-  background: theme.palette.mode === "dark"
-    ? "rgba(25, 25, 35, 0.9)"
-    : "rgba(255, 255, 255, 0.95)",
+  background:
+    theme.palette.mode === "dark"
+      ? "rgba(25, 25, 35, 0.9)"
+      : "rgba(255, 255, 255, 0.95)",
   backdropFilter: "blur(10px)",
-  border: `1px solid ${theme.palette.mode === "dark"
-    ? "rgba(139, 69, 255, 0.2)"
-    : "rgba(139, 69, 255, 0.1)"}`,
+  border: `1px solid ${
+    theme.palette.mode === "dark"
+      ? "rgba(139, 69, 255, 0.2)"
+      : "rgba(139, 69, 255, 0.1)"
+  }`,
   borderRadius: theme.spacing(2),
 }));
 
-const SectionTitle = styled(Typography)<{ component?: React.ElementType }>(({ theme }) => ({
-  fontWeight: 700,
-  marginBottom: theme.spacing(2),
-  background: `linear-gradient(45deg, ${theme.palette.vaporwave.pink}, ${theme.palette.vaporwave.purple})`,
-  backgroundClip: "text",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-  textTransform: "uppercase",
-  letterSpacing: "0.05em",
-}));
+const SectionTitle = styled(Typography)<{ component?: React.ElementType }>(
+  ({ theme }) => ({
+    fontWeight: 700,
+    marginBottom: theme.spacing(2),
+    background: `linear-gradient(45deg, ${theme.palette.vaporwave.pink}, ${theme.palette.vaporwave.purple})`,
+    backgroundClip: "text",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    textTransform: "uppercase",
+    letterSpacing: "0.05em",
+  })
+);
 
-const MainTitle = styled(Typography)<{ component?: React.ElementType }>(({ theme }) => ({
-  fontWeight: 700,
-  marginBottom: theme.spacing(3),
-  textAlign: "center",
-  background: `linear-gradient(45deg, ${theme.palette.vaporwave.green}, ${theme.palette.vaporwave.blueGreen}, ${theme.palette.vaporwave.pink})`,
-  backgroundClip: "text",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-  textShadow: `0 0 20px ${theme.palette.vaporwave.blueGreen}50`,
-}));
+const MainTitle = styled(Typography)<{ component?: React.ElementType }>(
+  ({ theme }) => ({
+    fontWeight: 700,
+    marginBottom: theme.spacing(3),
+    textAlign: "center",
+    background: `linear-gradient(45deg, ${theme.palette.vaporwave.green}, ${theme.palette.vaporwave.blueGreen}, ${theme.palette.vaporwave.pink})`,
+    backgroundClip: "text",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    textShadow: `0 0 20px ${theme.palette.vaporwave.blueGreen}50`,
+  })
+);
 
 const PrivacyPolicy: React.FC = () => {
   const theme = useTheme();
@@ -68,10 +75,10 @@ const PrivacyPolicy: React.FC = () => {
         <Typography
           variant="subtitle1"
           color="text.secondary"
-          textAlign="center"
-          sx={{ mb: 4 }}
+          sx={{ textAlign: "center", mb: 4 }}
         >
-          This privacy policy explains how I collect, use, and protect your information when you visit my website.
+          This privacy policy explains how I collect, use, and protect your
+          information when you visit my website.
         </Typography>
 
         <StyledPaper>
@@ -84,14 +91,17 @@ const PrivacyPolicy: React.FC = () => {
           <SectionTitle variant="h4" component="h2">
             Introduction
           </SectionTitle>
-          <Typography variant="body1" paragraph>
-            Welcome to vaporjawn.com ("I," "my," or "me"). This privacy policy explains how Victor Williams
-            collects, uses, and protects your personal information when you visit my website or use my services.
-            I am committed to protecting your privacy and ensuring transparency about my data practices.
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            Welcome to vaporjawn.com ("I," "my," or "me"). This privacy policy
+            explains how Victor Williams collects, uses, and protects your
+            personal information when you visit my website or use my services. I
+            am committed to protecting your privacy and ensuring transparency
+            about my data practices.
           </Typography>
-          <Typography variant="body1" paragraph>
-            By using my website, you consent to the collection and use of information in accordance with this policy.
-            If you do not agree with this policy, please do not use my website.
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            By using my website, you consent to the collection and use of
+            information in accordance with this policy. If you do not agree with
+            this policy, please do not use my website.
           </Typography>
         </StyledPaper>
 
@@ -100,7 +110,15 @@ const PrivacyPolicy: React.FC = () => {
             Information I Collect
           </SectionTitle>
 
-          <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 2, color: theme.palette.vaporwave.blueGreen }}>
+          <Typography
+            variant="h5"
+            component="h3"
+            sx={{
+              fontWeight: 600,
+              mb: 2,
+              color: theme.palette.vaporwave.blueGreen,
+            }}
+          >
             Information You Provide Directly
           </Typography>
           <List>
@@ -124,7 +142,16 @@ const PrivacyPolicy: React.FC = () => {
             </ListItem>
           </List>
 
-          <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 2, mt: 3, color: theme.palette.vaporwave.blueGreen }}>
+          <Typography
+            variant="h5"
+            component="h3"
+            sx={{
+              fontWeight: 600,
+              mb: 2,
+              mt: 3,
+              color: theme.palette.vaporwave.blueGreen,
+            }}
+          >
             Information Collected Automatically
           </Typography>
           <List>
@@ -159,7 +186,7 @@ const PrivacyPolicy: React.FC = () => {
           <SectionTitle variant="h4" component="h2">
             How I Use Your Information
           </SectionTitle>
-          <Typography variant="body1" paragraph>
+          <Typography variant="body1" sx={{ mb: 2 }}>
             I use the collected information for the following purposes:
           </Typography>
           <List>
@@ -200,29 +227,58 @@ const PrivacyPolicy: React.FC = () => {
           <SectionTitle variant="h4" component="h2">
             Cookies and Tracking Technologies
           </SectionTitle>
-          <Typography variant="body1" paragraph>
-            I use cookies and similar tracking technologies to enhance your browsing experience:
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            I use cookies and similar tracking technologies to enhance your
+            browsing experience:
           </Typography>
 
-          <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 2, color: theme.palette.vaporwave.blueGreen }}>
+          <Typography
+            variant="h5"
+            component="h3"
+            sx={{
+              fontWeight: 600,
+              mb: 2,
+              color: theme.palette.vaporwave.blueGreen,
+            }}
+          >
             Essential Cookies
           </Typography>
-          <Typography variant="body1" paragraph>
-            Required for website functionality, security, and user preferences (theme, language settings).
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            Required for website functionality, security, and user preferences
+            (theme, language settings).
           </Typography>
 
-          <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 2, color: theme.palette.vaporwave.blueGreen }}>
+          <Typography
+            variant="h5"
+            component="h3"
+            sx={{
+              fontWeight: 600,
+              mb: 2,
+              color: theme.palette.vaporwave.blueGreen,
+            }}
+          >
             Analytics Cookies
           </Typography>
-          <Typography variant="body1" paragraph>
-            Help me understand how visitors interact with my website to improve user experience.
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            Help me understand how visitors interact with my website to improve
+            user experience.
           </Typography>
 
-          <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 2, color: theme.palette.vaporwave.blueGreen }}>
+          <Typography
+            variant="h5"
+            component="h3"
+            sx={{
+              fontWeight: 600,
+              mb: 2,
+              color: theme.palette.vaporwave.blueGreen,
+            }}
+          >
             Cookie Management
           </Typography>
-          <Typography variant="body1" paragraph>
-            You can control cookie preferences through your browser settings. Note that disabling certain cookies may affect website functionality.
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            You can control cookie preferences through your browser settings.
+            Note that disabling certain cookies may affect website
+            functionality.
           </Typography>
         </StyledPaper>
 
@@ -230,27 +286,52 @@ const PrivacyPolicy: React.FC = () => {
           <SectionTitle variant="h4" component="h2">
             Third-Party Services
           </SectionTitle>
-          <Typography variant="body1" paragraph>
-            My website integrates with third-party services that have their own privacy policies:
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            My website integrates with third-party services that have their own
+            privacy policies:
           </Typography>
 
-          <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 2, color: theme.palette.vaporwave.blueGreen }}>
+          <Typography
+            variant="h5"
+            component="h3"
+            sx={{
+              fontWeight: 600,
+              mb: 2,
+              color: theme.palette.vaporwave.blueGreen,
+            }}
+          >
             Analytics
           </Typography>
-          <Typography variant="body1" paragraph>
-            I may use Google Analytics or similar services to track website usage and performance.
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            I may use Google Analytics or similar services to track website
+            usage and performance.
           </Typography>
-          <Link href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" sx={{ color: theme.palette.vaporwave.pink }}>
+          <Link
+            href="https://policies.google.com/privacy"
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={{ color: theme.palette.vaporwave.pink }}
+          >
             Google Privacy Policy
           </Link>
 
-          <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 2, mt: 3, color: theme.palette.vaporwave.blueGreen }}>
+          <Typography
+            variant="h5"
+            component="h3"
+            sx={{
+              fontWeight: 600,
+              mb: 2,
+              mt: 3,
+              color: theme.palette.vaporwave.blueGreen,
+            }}
+          >
             Email Services
           </Typography>
-          <Typography variant="body1" paragraph>
-            Contact forms and newsletters may be processed through email service providers.
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            Contact forms and newsletters may be processed through email service
+            providers.
           </Typography>
-          <Typography variant="body1" paragraph>
+          <Typography variant="body1" sx={{ mb: 2 }}>
             Service providers are carefully selected for GDPR compliance.
           </Typography>
         </StyledPaper>
@@ -259,8 +340,9 @@ const PrivacyPolicy: React.FC = () => {
           <SectionTitle variant="h4" component="h2">
             Data Security
           </SectionTitle>
-          <Typography variant="body1" paragraph>
-            I implement appropriate security measures to protect your personal information:
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            I implement appropriate security measures to protect your personal
+            information:
           </Typography>
           <List>
             <ListItem>
@@ -288,7 +370,7 @@ const PrivacyPolicy: React.FC = () => {
           <SectionTitle variant="h4" component="h2">
             Your Rights and Choices
           </SectionTitle>
-          <Typography variant="body1" paragraph>
+          <Typography variant="body1" sx={{ mb: 2 }}>
             You have the following rights regarding your personal information:
           </Typography>
           <List>
@@ -330,12 +412,24 @@ const PrivacyPolicy: React.FC = () => {
             </ListItem>
           </List>
 
-          <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 2, mt: 3, color: theme.palette.vaporwave.blueGreen }}>
+          <Typography
+            variant="h5"
+            component="h3"
+            sx={{
+              fontWeight: 600,
+              mb: 2,
+              mt: 3,
+              color: theme.palette.vaporwave.blueGreen,
+            }}
+          >
             Exercise Your Rights
           </Typography>
-          <Typography variant="body1" paragraph>
+          <Typography variant="body1" sx={{ mb: 2 }}>
             To exercise any of these rights, please contact me at{" "}
-            <Link href="mailto:victor.williams.dev@gmail.com" sx={{ color: theme.palette.vaporwave.pink }}>
+            <Link
+              href="mailto:victor.williams.dev@gmail.com"
+              sx={{ color: theme.palette.vaporwave.pink }}
+            >
               victor.williams.dev@gmail.com
             </Link>
             . I will respond within 30 days.
@@ -346,8 +440,9 @@ const PrivacyPolicy: React.FC = () => {
           <SectionTitle variant="h4" component="h2">
             Data Retention
           </SectionTitle>
-          <Typography variant="body1" paragraph>
-            I retain your personal information only as long as necessary for the purposes outlined in this policy:
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            I retain your personal information only as long as necessary for the
+            purposes outlined in this policy:
           </Typography>
           <List>
             <ListItem>
@@ -357,10 +452,7 @@ const PrivacyPolicy: React.FC = () => {
               />
             </ListItem>
             <ListItem>
-              <ListItemText
-                primary="Analytics data"
-                secondary="26 months"
-              />
+              <ListItemText primary="Analytics data" secondary="26 months" />
             </ListItem>
             <ListItem>
               <ListItemText
@@ -381,10 +473,12 @@ const PrivacyPolicy: React.FC = () => {
           <SectionTitle variant="h4" component="h2">
             Children's Privacy
           </SectionTitle>
-          <Typography variant="body1" paragraph>
-            My website is not intended for children under 13 years of age. I do not knowingly collect personal
-            information from children under 13. If you are a parent or guardian and believe your child has provided
-            me with personal information, please contact me immediately so I can delete such information.
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            My website is not intended for children under 13 years of age. I do
+            not knowingly collect personal information from children under 13.
+            If you are a parent or guardian and believe your child has provided
+            me with personal information, please contact me immediately so I can
+            delete such information.
           </Typography>
         </StyledPaper>
 
@@ -392,9 +486,10 @@ const PrivacyPolicy: React.FC = () => {
           <SectionTitle variant="h4" component="h2">
             Changes to This Privacy Policy
           </SectionTitle>
-          <Typography variant="body1" paragraph>
-            I may update this privacy policy from time to time to reflect changes in my practices or legal requirements.
-            I will notify you of any material changes by:
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            I may update this privacy policy from time to time to reflect
+            changes in my practices or legal requirements. I will notify you of
+            any material changes by:
           </Typography>
           <List>
             <ListItem>
@@ -413,15 +508,19 @@ const PrivacyPolicy: React.FC = () => {
           <SectionTitle variant="h4" component="h2">
             Contact Me
           </SectionTitle>
-          <Typography variant="body1" paragraph>
-            If you have any questions about this privacy policy or my data practices, please contact me:
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            If you have any questions about this privacy policy or my data
+            practices, please contact me:
           </Typography>
           <List>
             <ListItem>
               <ListItemText
                 primary="Email"
                 secondary={
-                  <Link href="mailto:victor.williams.dev@gmail.com" sx={{ color: theme.palette.vaporwave.pink }}>
+                  <Link
+                    href="mailto:victor.williams.dev@gmail.com"
+                    sx={{ color: theme.palette.vaporwave.pink }}
+                  >
                     victor.williams.dev@gmail.com
                   </Link>
                 }
@@ -431,7 +530,11 @@ const PrivacyPolicy: React.FC = () => {
               <ListItemText
                 primary="Website"
                 secondary={
-                  <Link component={RouterLink} to="/" sx={{ color: theme.palette.vaporwave.pink }}>
+                  <Link
+                    component={RouterLink}
+                    to="/"
+                    sx={{ color: theme.palette.vaporwave.pink }}
+                  >
                     vaporjawn.com
                   </Link>
                 }
@@ -450,9 +553,10 @@ const PrivacyPolicy: React.FC = () => {
           <SectionTitle variant="h4" component="h2">
             Questions About Your Privacy?
           </SectionTitle>
-          <Typography variant="body1" paragraph>
-            I'm committed to protecting your privacy and being transparent about my data practices.
-            Don't hesitate to reach out if you have any concerns.
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            I'm committed to protecting your privacy and being transparent about
+            my data practices. Don't hesitate to reach out if you have any
+            concerns.
           </Typography>
           <Box sx={{ display: "flex", gap: 2, mt: 3 }}>
             <Link
@@ -462,8 +566,8 @@ const PrivacyPolicy: React.FC = () => {
                 textDecoration: "none",
                 fontWeight: 600,
                 "&:hover": {
-                  textDecoration: "underline"
-                }
+                  textDecoration: "underline",
+                },
               }}
             >
               Contact Me
@@ -476,8 +580,8 @@ const PrivacyPolicy: React.FC = () => {
                 textDecoration: "none",
                 fontWeight: 600,
                 "&:hover": {
-                  textDecoration: "underline"
-                }
+                  textDecoration: "underline",
+                },
               }}
             >
               Back to Home

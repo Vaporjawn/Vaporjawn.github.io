@@ -17,7 +17,7 @@ import { PortfolioContext } from "../../contexts/PortfolioContext";
 import TimelineItem from "./components/TimelineItem";
 import {
   experienceToTimelineEvent,
-  type TimelineEvent
+  type TimelineEvent,
 } from "./utils/timelineUtils";
 
 interface CareerTimelineProps {
@@ -31,7 +31,8 @@ const defaultEvents: TimelineEvent[] = [
     date: "2024 - Present",
     title: "Senior Full-Stack Developer",
     organization: "Current Company",
-    description: "Leading development of enterprise cloud solutions with React, TypeScript, and AWS.",
+    description:
+      "Leading development of enterprise cloud solutions with React, TypeScript, and AWS.",
     type: "work",
     technologies: ["React", "TypeScript", "AWS", "Node.js", "PostgreSQL"],
   },
@@ -40,7 +41,8 @@ const defaultEvents: TimelineEvent[] = [
     date: "2022 - 2024",
     title: "Full-Stack Developer",
     organization: "Tech Company",
-    description: "Built scalable web applications and microservices architecture.",
+    description:
+      "Built scalable web applications and microservices architecture.",
     type: "work",
     technologies: ["React", "Node.js", "Docker", "MongoDB"],
   },
@@ -49,7 +51,8 @@ const defaultEvents: TimelineEvent[] = [
     date: "2021",
     title: "AWS Certified Solutions Architect",
     organization: "Amazon Web Services",
-    description: "Achieved professional certification in cloud architecture and best practices.",
+    description:
+      "Achieved professional certification in cloud architecture and best practices.",
     type: "achievement",
   },
   {
@@ -57,7 +60,8 @@ const defaultEvents: TimelineEvent[] = [
     date: "2018 - 2022",
     title: "Computer Science Degree",
     organization: "University",
-    description: "Bachelor of Science in Computer Science with focus on software engineering.",
+    description:
+      "Bachelor of Science in Computer Science with focus on software engineering.",
     type: "education",
   },
 ];
@@ -76,14 +80,19 @@ const CareerTimeline: React.FC<CareerTimelineProps> = ({
   const portfolioData = useContext(PortfolioContext);
 
   // Use provided events, or transform portfolio experience data, or fall back to defaults
-  const timelineEvents = events ||
+  const timelineEvents =
+    events ||
     (portfolioData?.experience
       ? portfolioData.experience.map(experienceToTimelineEvent)
       : defaultEvents);
 
   return (
     <Box>
-      <Typography variant="h5" fontWeight={700} gutterBottom textAlign="center" mb={4}>
+      <Typography
+        variant="h5"
+        gutterBottom
+        sx={{ fontWeight: 700, textAlign: "center", mb: 4 }}
+      >
         {title}
       </Typography>
       <Box sx={{ position: "relative", pl: { xs: 2, md: 4 } }}>

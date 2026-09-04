@@ -23,24 +23,38 @@ export const ActivityLegend: React.FC = () => {
         mt: 3,
         p: 2,
         borderRadius: 2,
-        border: theme => `1px solid ${theme.palette.divider}`,
-  background: theme => theme.palette.mode === "dark" ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.02)",
+        border: (theme) => `1px solid ${theme.palette.divider}`,
+        background: (theme) =>
+          theme.palette.mode === "dark"
+            ? "rgba(255,255,255,0.03)"
+            : "rgba(0,0,0,0.02)",
       }}
     >
-      <Typography id="activity-legend-heading" variant="subtitle2" fontWeight={600} gutterBottom>
+      <Typography
+        id="activity-legend-heading"
+        variant="subtitle2"
+        gutterBottom
+        sx={{ fontWeight: 600 }}
+      >
         Activity Graph Legend
       </Typography>
-      <Typography variant="caption" component="p" sx={{ mb: 2, lineHeight: 1.4 }}>
-        The first lane is the GitHub trunk. Each GitHub repository branches horizontally from the trunk on the row of its first visible event; connectors show the relationship. The separate <strong>npm</strong> lane lists package publish events. Hover or focus bubbles for details.
+      <Typography
+        variant="caption"
+        component="p"
+        sx={{ mb: 2, lineHeight: 1.4 }}
+      >
+        The first lane is the GitHub trunk. Each GitHub repository branches
+        horizontally from the trunk on the row of its first visible event;
+        connectors show the relationship. The separate <strong>npm</strong> lane
+        lists package publish events. Hover or focus bubbles for details.
       </Typography>
-      <Stack direction="row" flexWrap="wrap" spacing={1.5} useFlexGap>
-        {KIND_ITEMS.map(item => (
+      <Stack direction="row" spacing={1.5} useFlexGap sx={{ flexWrap: "wrap" }}>
+        {KIND_ITEMS.map((item) => (
           <Stack
             key={item.label}
             direction="row"
             spacing={0.75}
-            alignItems="center"
-            sx={{ minWidth: 140 }}
+            sx={{ alignItems: "center", minWidth: 140 }}
           >
             <Box
               aria-hidden

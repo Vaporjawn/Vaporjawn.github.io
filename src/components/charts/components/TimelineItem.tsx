@@ -145,15 +145,17 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
-            <Box sx={{ color: color, mr: 1 }}>
-              {getIcon(type)}
-            </Box>
-            <Typography variant="caption" color="text.secondary" fontWeight={600}>
+            <Box sx={{ color: color, mr: 1 }}>{getIcon(type)}</Box>
+            <Typography
+              variant="caption"
+              color="text.secondary"
+              sx={{ fontWeight: 600 }}
+            >
               {date}
             </Typography>
           </Box>
 
-          <Typography variant="h6" fontWeight={700} gutterBottom>
+          <Typography variant="h6" gutterBottom sx={{ fontWeight: 700 }}>
             {title}
           </Typography>
 
@@ -161,7 +163,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
             {organization}
           </Typography>
 
-          <Typography variant="body2" color="text.secondary" paragraph>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
             {description}
           </Typography>
 

@@ -27,7 +27,21 @@ import {
   AccountTree,
   Assignment,
 } from "@mui/icons-material";
-import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import {
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  PieChart,
+  Pie,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 import SEO from "../../components/SEO/SEO";
 
 // Types
@@ -150,7 +164,14 @@ const AnalyticsDashboard: React.FC = () => {
     { name: "Tablet", value: 10 },
   ];
 
-  const COLORS = ["#6366f1", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6", "#06b6d4"];
+  const COLORS = [
+    "#6366f1",
+    "#10b981",
+    "#f59e0b",
+    "#ef4444",
+    "#8b5cf6",
+    "#06b6d4",
+  ];
 
   return (
     <>
@@ -162,7 +183,12 @@ const AnalyticsDashboard: React.FC = () => {
       <Container maxWidth="xl" sx={{ py: 4 }}>
         {/* Header */}
         <Box sx={{ mb: 4 }}>
-          <Typography variant="h3" component="h1" gutterBottom fontWeight="bold">
+          <Typography
+            variant="h3"
+            component="h1"
+            gutterBottom
+            sx={{ fontWeight: "bold" }}
+          >
             Analytics Dashboard
           </Typography>
           <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
@@ -170,7 +196,14 @@ const AnalyticsDashboard: React.FC = () => {
           </Typography>
 
           {/* Time Range Selector */}
-          <Box sx={{ display: "flex", gap: 2, alignItems: "center", flexWrap: "wrap" }}>
+          <Box
+            sx={{
+              display: "flex",
+              gap: 2,
+              alignItems: "center",
+              flexWrap: "wrap",
+            }}
+          >
             <FormControl size="small" sx={{ minWidth: 150 }}>
               <InputLabel>Time Range</InputLabel>
               <Select
@@ -196,10 +229,16 @@ const AnalyticsDashboard: React.FC = () => {
           <AlertTitle>Setup Required</AlertTitle>
           This dashboard displays mock data. To view real analytics:
           <ul style={{ margin: "8px 0" }}>
-            <li>Configure Google Analytics 4 Measurement ID in environment variables</li>
+            <li>
+              Configure Google Analytics 4 Measurement ID in environment
+              variables
+            </li>
             <li>Set up Google Analytics Reporting API credentials</li>
             <li>Enable Hotjar for heatmaps and session recordings</li>
-            <li>Refer to <code>docs/analytics-setup.md</code> for detailed instructions</li>
+            <li>
+              Refer to <code>docs/analytics-setup.md</code> for detailed
+              instructions
+            </li>
           </ul>
         </Alert>
 
@@ -244,13 +283,15 @@ const AnalyticsDashboard: React.FC = () => {
                       {metric.title}
                     </Typography>
                   </Box>
-                  <Typography variant="h4" fontWeight="bold" sx={{ mb: 0.5 }}>
+                  <Typography variant="h4" sx={{ fontWeight: "bold", mb: 0.5 }}>
                     {metric.value}
                   </Typography>
                   <Typography
                     variant="body2"
                     sx={{
-                      color: metric.change.startsWith("+") ? "success.main" : "error.main",
+                      color: metric.change.startsWith("+")
+                        ? "success.main"
+                        : "error.main",
                       fontWeight: 600,
                     }}
                   >
@@ -266,8 +307,11 @@ const AnalyticsDashboard: React.FC = () => {
         <Grid container spacing={3}>
           {/* Page Views Over Time */}
           <Grid size={{ xs: 12, lg: 8 }}>
-            <Paper elevation={0} sx={{ p: 3, border: 1, borderColor: "divider", height: "100%" }}>
-              <Typography variant="h6" gutterBottom fontWeight="bold">
+            <Paper
+              elevation={0}
+              sx={{ p: 3, border: 1, borderColor: "divider", height: "100%" }}
+            >
+              <Typography variant="h6" gutterBottom sx={{ fontWeight: "bold" }}>
                 Page Views & Visitors
               </Typography>
               <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
@@ -280,8 +324,20 @@ const AnalyticsDashboard: React.FC = () => {
                   <YAxis />
                   <Tooltip />
                   <Legend />
-                  <Line type="monotone" dataKey="views" stroke="#6366f1" strokeWidth={2} name="Page Views" />
-                  <Line type="monotone" dataKey="visitors" stroke="#10b981" strokeWidth={2} name="Unique Visitors" />
+                  <Line
+                    type="monotone"
+                    dataKey="views"
+                    stroke="#6366f1"
+                    strokeWidth={2}
+                    name="Page Views"
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="visitors"
+                    stroke="#10b981"
+                    strokeWidth={2}
+                    name="Unique Visitors"
+                  />
                 </LineChart>
               </ResponsiveContainer>
             </Paper>
@@ -289,8 +345,11 @@ const AnalyticsDashboard: React.FC = () => {
 
           {/* Traffic Sources */}
           <Grid size={{ xs: 12, lg: 4 }}>
-            <Paper elevation={0} sx={{ p: 3, border: 1, borderColor: "divider", height: "100%" }}>
-              <Typography variant="h6" gutterBottom fontWeight="bold">
+            <Paper
+              elevation={0}
+              sx={{ p: 3, border: 1, borderColor: "divider", height: "100%" }}
+            >
+              <Typography variant="h6" gutterBottom sx={{ fontWeight: "bold" }}>
                 Traffic Sources
               </Typography>
               <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
@@ -309,7 +368,10 @@ const AnalyticsDashboard: React.FC = () => {
                     dataKey="value"
                   >
                     {trafficSourcesData.map((_, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                      <Cell
+                        key={`cell-${index}`}
+                        fill={COLORS[index % COLORS.length]}
+                      />
                     ))}
                   </Pie>
                   <Tooltip />
@@ -320,8 +382,11 @@ const AnalyticsDashboard: React.FC = () => {
 
           {/* Top Pages */}
           <Grid size={{ xs: 12, lg: 6 }}>
-            <Paper elevation={0} sx={{ p: 3, border: 1, borderColor: "divider", height: "100%" }}>
-              <Typography variant="h6" gutterBottom fontWeight="bold">
+            <Paper
+              elevation={0}
+              sx={{ p: 3, border: 1, borderColor: "divider", height: "100%" }}
+            >
+              <Typography variant="h6" gutterBottom sx={{ fontWeight: "bold" }}>
                 Top Pages
               </Typography>
               <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
@@ -341,8 +406,11 @@ const AnalyticsDashboard: React.FC = () => {
 
           {/* Device Breakdown */}
           <Grid size={{ xs: 12, lg: 6 }}>
-            <Paper elevation={0} sx={{ p: 3, border: 1, borderColor: "divider", height: "100%" }}>
-              <Typography variant="h6" gutterBottom fontWeight="bold">
+            <Paper
+              elevation={0}
+              sx={{ p: 3, border: 1, borderColor: "divider", height: "100%" }}
+            >
+              <Typography variant="h6" gutterBottom sx={{ fontWeight: "bold" }}>
                 Device Breakdown
               </Typography>
               <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
@@ -361,7 +429,10 @@ const AnalyticsDashboard: React.FC = () => {
                     dataKey="value"
                   >
                     {deviceData.map((_, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                      <Cell
+                        key={`cell-${index}`}
+                        fill={COLORS[index % COLORS.length]}
+                      />
                     ))}
                   </Pie>
                   <Tooltip />
@@ -373,13 +444,25 @@ const AnalyticsDashboard: React.FC = () => {
 
         {/* Action Buttons */}
         <Box sx={{ mt: 4, display: "flex", gap: 2, flexWrap: "wrap" }}>
-          <Button variant="contained" href="https://analytics.google.com" target="_blank">
+          <Button
+            variant="contained"
+            href="https://analytics.google.com"
+            target="_blank"
+          >
             Open Google Analytics
           </Button>
-          <Button variant="contained" href="https://insights.hotjar.com" target="_blank">
+          <Button
+            variant="contained"
+            href="https://insights.hotjar.com"
+            target="_blank"
+          >
             Open Hotjar Dashboard
           </Button>
-          <Button variant="outlined" href="https://search.google.com/search-console" target="_blank">
+          <Button
+            variant="outlined"
+            href="https://search.google.com/search-console"
+            target="_blank"
+          >
             Open Search Console
           </Button>
           <Button variant="outlined" onClick={() => window.location.reload()}>

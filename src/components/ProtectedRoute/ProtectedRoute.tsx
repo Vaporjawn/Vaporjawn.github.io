@@ -43,10 +43,12 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   if (isChecking) {
     return (
       <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        minHeight="50vh"
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: "50vh",
+        }}
       >
         <CircularProgress />
       </Box>

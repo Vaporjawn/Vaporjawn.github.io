@@ -48,7 +48,9 @@ const BlogPostPage: React.FC = () => {
   );
   const loading = false; // All data is synchronous (build-time loaded), nothing to await
 
-  const handleShare = (platform: "twitter" | "linkedin" | "bluesky" | "copy") => {
+  const handleShare = (
+    platform: "twitter" | "linkedin" | "bluesky" | "copy"
+  ) => {
     if (!post) return;
 
     const url = window.location.href;
@@ -91,10 +93,12 @@ const BlogPostPage: React.FC = () => {
   if (loading) {
     return (
       <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        minHeight="100vh"
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: "100vh",
+        }}
       >
         <CircularProgress />
       </Box>
@@ -105,17 +109,19 @@ const BlogPostPage: React.FC = () => {
     return (
       <Container maxWidth="md">
         <Box
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-          minHeight="100vh"
-          textAlign="center"
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            minHeight: "100vh",
+            textAlign: "center",
+          }}
         >
           <Typography variant="h2" gutterBottom>
             Article Not Found
           </Typography>
-          <Typography variant="body1" color="text.secondary" mb={3}>
+          <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
             The article you're looking for doesn't exist or has been removed.
           </Typography>
           <Button
@@ -166,9 +172,14 @@ const BlogPostPage: React.FC = () => {
             </Button>
 
             {/* Post Header */}
-            <Box mb={4}>
-              <Stack direction="row" spacing={1} mb={2} flexWrap="wrap" useFlexGap>
-                {post.tags.map(tag => (
+            <Box sx={{ mb: 4 }}>
+              <Stack
+                direction="row"
+                spacing={1}
+                useFlexGap
+                sx={{ mb: 2, flexWrap: "wrap" }}
+              >
+                {post.tags.map((tag) => (
                   <Chip
                     key={tag}
                     label={tag}
@@ -195,36 +206,54 @@ const BlogPostPage: React.FC = () => {
                 {post.title}
               </Typography>
 
-              <Typography
-                variant="h6"
-                color="text.secondary"
-                sx={{ mb: 3 }}
-              >
+              <Typography variant="h6" color="text.secondary" sx={{ mb: 3 }}>
                 {post.description}
               </Typography>
 
               <Stack
                 direction={{ xs: "column", sm: "row" }}
                 spacing={{ xs: 1, sm: 3 }}
-                alignItems={{ xs: "flex-start", sm: "center" }}
-                justifyContent="space-between"
+                sx={{
+                  alignItems: { xs: "flex-start", sm: "center" },
+                  justifyContent: "space-between",
+                }}
               >
-                <Stack direction="row" spacing={3} alignItems="center">
-                  <Stack direction="row" spacing={0.5} alignItems="center">
-                    <CalendarToday sx={{ fontSize: 18, color: "text.secondary" }} />
+                <Stack
+                  direction="row"
+                  spacing={3}
+                  sx={{ alignItems: "center" }}
+                >
+                  <Stack
+                    direction="row"
+                    spacing={0.5}
+                    sx={{ alignItems: "center" }}
+                  >
+                    <CalendarToday
+                      sx={{ fontSize: 18, color: "text.secondary" }}
+                    />
                     <Typography variant="body2" color="text.secondary">
                       {formatDate(post.date)}
                     </Typography>
                   </Stack>
-                  <Stack direction="row" spacing={0.5} alignItems="center">
-                    <AccessTime sx={{ fontSize: 18, color: "text.secondary" }} />
+                  <Stack
+                    direction="row"
+                    spacing={0.5}
+                    sx={{ alignItems: "center" }}
+                  >
+                    <AccessTime
+                      sx={{ fontSize: 18, color: "text.secondary" }}
+                    />
                     <Typography variant="body2" color="text.secondary">
                       {post.readTime} min read
                     </Typography>
                   </Stack>
                 </Stack>
 
-                <Stack direction="row" spacing={1} alignItems="center">
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  sx={{ alignItems: "center" }}
+                >
                   <Typography variant="body2" color="text.secondary">
                     Share:
                   </Typography>
@@ -316,7 +345,8 @@ const BlogPostPage: React.FC = () => {
                   fontSize: "0.95em",
                 },
                 "& pre": {
-                  bgcolor: theme.palette.mode === "dark" ? "#1e1e1e" : "#f5f5f5",
+                  bgcolor:
+                    theme.palette.mode === "dark" ? "#1e1e1e" : "#f5f5f5",
                   p: 2,
                   borderRadius: 2,
                   overflow: "auto",
@@ -372,19 +402,18 @@ const BlogPostPage: React.FC = () => {
             <Divider sx={{ my: 6 }} />
 
             {/* Post Footer */}
-            <Box textAlign="center">
+            <Box sx={{ textAlign: "center" }}>
               <Typography variant="h6" gutterBottom>
                 Found this helpful?
               </Typography>
-              <Typography variant="body2" color="text.secondary" mb={3}>
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
                 Share it with others or reach out with questions!
               </Typography>
               <Stack
                 direction="row"
                 spacing={2}
-                justifyContent="center"
-                flexWrap="wrap"
                 useFlexGap
+                sx={{ justifyContent: "center", flexWrap: "wrap" }}
               >
                 <Button
                   variant="outlined"

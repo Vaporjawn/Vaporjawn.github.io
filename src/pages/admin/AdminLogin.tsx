@@ -92,9 +92,10 @@ const AdminLogin: React.FC = () => {
             sx={{
               p: 4,
               borderRadius: 2,
-              background: theme.palette.mode === "dark"
-                ? "linear-gradient(135deg, rgba(26, 35, 126, 0.2) 0%, rgba(123, 31, 162, 0.2) 100%)"
-                : "linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%)",
+              background:
+                theme.palette.mode === "dark"
+                  ? "linear-gradient(135deg, rgba(26, 35, 126, 0.2) 0%, rgba(123, 31, 162, 0.2) 100%)"
+                  : "linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%)",
             }}
           >
             {/* Header */}
@@ -106,7 +107,12 @@ const AdminLogin: React.FC = () => {
                   mb: 2,
                 }}
               />
-              <Typography variant="h4" component="h1" gutterBottom fontWeight="bold">
+              <Typography
+                variant="h4"
+                component="h1"
+                gutterBottom
+                sx={{ fontWeight: "bold" }}
+              >
                 Admin Access
               </Typography>
               <Typography variant="body2" color="text.secondary">

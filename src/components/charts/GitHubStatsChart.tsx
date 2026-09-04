@@ -28,7 +28,14 @@ import {
   useTheme,
   alpha,
 } from "@mui/material";
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from "recharts";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+  Tooltip,
+  Legend,
+} from "recharts";
 import StarIcon from "@mui/icons-material/Star";
 import ForkRightIcon from "@mui/icons-material/ForkRight";
 import CodeIcon from "@mui/icons-material/Code";
@@ -88,14 +95,18 @@ const GitHubStatsChart: React.FC<GitHubStatsChartProps> = ({
 
   return (
     <Box>
-      <Typography variant="h5" fontWeight={700} gutterBottom textAlign="center" mb={4}>
+      <Typography
+        variant="h5"
+        gutterBottom
+        sx={{ fontWeight: 700, textAlign: "center", mb: 4 }}
+      >
         {title}
       </Typography>
 
       {error ? (
         <Alert severity="error" sx={{ maxWidth: 600, mx: "auto" }}>
-          Couldn't load live GitHub stats right now ({error}). Try refreshing the page in
-          a bit.
+          Couldn't load live GitHub stats right now ({error}). Try refreshing
+          the page in a bit.
         </Alert>
       ) : (
         <Box sx={{ maxWidth: CONTENT_MAX_WIDTH, mx: "auto" }}>
@@ -149,17 +160,25 @@ const GitHubStatsChart: React.FC<GitHubStatsChartProps> = ({
               backdropFilter: "blur(10px)",
             }}
           >
-            <Typography variant="h6" fontWeight={600} gutterBottom textAlign="center">
+            <Typography
+              variant="h6"
+              gutterBottom
+              sx={{ fontWeight: 600, textAlign: "center" }}
+            >
               Language Distribution
             </Typography>
             {loading ? (
-              <Skeleton variant="circular" width={250} height={250} sx={{ mx: "auto" }} />
+              <Skeleton
+                variant="circular"
+                width={250}
+                height={250}
+                sx={{ mx: "auto" }}
+              />
             ) : languageData.length === 0 ? (
               <Typography
                 variant="body2"
                 color="text.secondary"
-                textAlign="center"
-                sx={{ py: 4 }}
+                sx={{ textAlign: "center", py: 4 }}
               >
                 No language data available yet.
               </Typography>
@@ -189,9 +208,16 @@ const GitHubStatsChart: React.FC<GitHubStatsChartProps> = ({
                   </Pie>
                   <Tooltip
                     formatter={(value: number, name: string) => {
-                      const total = languageData.reduce((sum, d) => sum + d.value, 0);
-                      const percent = total > 0 ? Math.round((value / total) * 100) : 0;
-                      return [`${value} repo${value === 1 ? "" : "s"} (${percent}%)`, name];
+                      const total = languageData.reduce(
+                        (sum, d) => sum + d.value,
+                        0
+                      );
+                      const percent =
+                        total > 0 ? Math.round((value / total) * 100) : 0;
+                      return [
+                        `${value} repo${value === 1 ? "" : "s"} (${percent}%)`,
+                        name,
+                      ];
                     }}
                   />
                   <Legend
@@ -208,9 +234,14 @@ const GitHubStatsChart: React.FC<GitHubStatsChartProps> = ({
                     }}
                     formatter={(value: string, entry) => {
                       const slice = languageData.find((d) => d.name === value);
-                      const total = languageData.reduce((sum, d) => sum + d.value, 0);
+                      const total = languageData.reduce(
+                        (sum, d) => sum + d.value,
+                        0
+                      );
                       const percent =
-                        slice && total > 0 ? Math.round((slice.value / total) * 100) : 0;
+                        slice && total > 0
+                          ? Math.round((slice.value / total) * 100)
+                          : 0;
                       return (
                         <span style={{ color: entry.color }}>
                           {value} {percent}%

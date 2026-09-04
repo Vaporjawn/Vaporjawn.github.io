@@ -67,11 +67,14 @@ export const GitHubSection: React.FC<GitHubSectionProps> = ({
       }}
     >
       <Stack spacing={1}>
-        <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <Typography variant="h5" fontWeight={600} component="h2">
+        <Stack
+          direction="row"
+          sx={{ alignItems: "center", justifyContent: "space-between" }}
+        >
+          <Typography variant="h5" component="h2" sx={{ fontWeight: 600 }}>
             GitHub Activity
           </Typography>
-          <Stack direction="row" spacing={1} alignItems="center">
+          <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
             <Tooltip title="Refresh">
               <span>
                 <IconButton
@@ -114,7 +117,7 @@ export const GitHubSection: React.FC<GitHubSectionProps> = ({
         </Stack>
 
         {loading && (
-          <Box display="flex" justifyContent="center" py={4}>
+          <Box sx={{ display: "flex", justifyContent: "center", py: 4 }}>
             <CircularProgress size={28} />
           </Box>
         )}
@@ -127,7 +130,11 @@ export const GitHubSection: React.FC<GitHubSectionProps> = ({
 
         {!loading && !error && view === "graph" && (
           <Box sx={{ mt: 1 }}>
-            <CommitGraph events={events} maxRepos={maxRepos} heightPerNode={heightPerNode} />
+            <CommitGraph
+              events={events}
+              maxRepos={maxRepos}
+              heightPerNode={heightPerNode}
+            />
             <ActivityLegend />
             {events.length === 0 && (
               <Typography variant="body2" sx={{ opacity: 0.6, mt: 1 }}>
@@ -138,7 +145,11 @@ export const GitHubSection: React.FC<GitHubSectionProps> = ({
         )}
 
         {!loading && !error && view === "list" && (
-          <List dense aria-label="Recent GitHub / npm activity list" sx={{ width: "100%" }}>
+          <List
+            dense
+            aria-label="Recent GitHub / npm activity list"
+            sx={{ width: "100%" }}
+          >
             {events.slice(0, 32).map((evt) => (
               <React.Fragment key={evt.id}>
                 <ListItem

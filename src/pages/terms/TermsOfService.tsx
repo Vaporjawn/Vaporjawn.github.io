@@ -18,37 +18,44 @@ import SEO from "../../components/SEO/SEO";
 const StyledPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(4),
   marginBottom: theme.spacing(3),
-  background: theme.palette.mode === "dark"
-    ? "rgba(25, 25, 35, 0.9)"
-    : "rgba(255, 255, 255, 0.95)",
+  background:
+    theme.palette.mode === "dark"
+      ? "rgba(25, 25, 35, 0.9)"
+      : "rgba(255, 255, 255, 0.95)",
   backdropFilter: "blur(10px)",
-  border: `1px solid ${theme.palette.mode === "dark"
-    ? "rgba(139, 69, 255, 0.2)"
-    : "rgba(139, 69, 255, 0.1)"}`,
+  border: `1px solid ${
+    theme.palette.mode === "dark"
+      ? "rgba(139, 69, 255, 0.2)"
+      : "rgba(139, 69, 255, 0.1)"
+  }`,
   borderRadius: theme.spacing(2),
 }));
 
-const SectionTitle = styled(Typography)<{ component?: React.ElementType }>(({ theme }) => ({
-  fontWeight: 700,
-  marginBottom: theme.spacing(2),
-  background: `linear-gradient(45deg, ${theme.palette.vaporwave.pink}, ${theme.palette.vaporwave.purple})`,
-  backgroundClip: "text",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-  textTransform: "uppercase",
-  letterSpacing: "0.05em",
-}));
+const SectionTitle = styled(Typography)<{ component?: React.ElementType }>(
+  ({ theme }) => ({
+    fontWeight: 700,
+    marginBottom: theme.spacing(2),
+    background: `linear-gradient(45deg, ${theme.palette.vaporwave.pink}, ${theme.palette.vaporwave.purple})`,
+    backgroundClip: "text",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    textTransform: "uppercase",
+    letterSpacing: "0.05em",
+  })
+);
 
-const MainTitle = styled(Typography)<{ component?: React.ElementType }>(({ theme }) => ({
-  fontWeight: 700,
-  marginBottom: theme.spacing(3),
-  textAlign: "center",
-  background: `linear-gradient(45deg, ${theme.palette.vaporwave.green}, ${theme.palette.vaporwave.blueGreen}, ${theme.palette.vaporwave.pink})`,
-  backgroundClip: "text",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-  textShadow: `0 0 20px ${theme.palette.vaporwave.blueGreen}50`,
-}));
+const MainTitle = styled(Typography)<{ component?: React.ElementType }>(
+  ({ theme }) => ({
+    fontWeight: 700,
+    marginBottom: theme.spacing(3),
+    textAlign: "center",
+    background: `linear-gradient(45deg, ${theme.palette.vaporwave.green}, ${theme.palette.vaporwave.blueGreen}, ${theme.palette.vaporwave.pink})`,
+    backgroundClip: "text",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    textShadow: `0 0 20px ${theme.palette.vaporwave.blueGreen}50`,
+  })
+);
 
 const ImportantNotice = styled(Alert)(({ theme }) => ({
   marginBottom: theme.spacing(3),
@@ -78,10 +85,10 @@ const TermsOfService: React.FC = () => {
         <Typography
           variant="subtitle1"
           color="text.secondary"
-          textAlign="center"
-          sx={{ mb: 4 }}
+          sx={{ textAlign: "center", mb: 4 }}
         >
-          These terms govern the use of my website and the provision of my professional development services.
+          These terms govern the use of my website and the provision of my
+          professional development services.
         </Typography>
 
         <StyledPaper>
@@ -94,14 +101,17 @@ const TermsOfService: React.FC = () => {
           <SectionTitle variant="h4" component="h2">
             Introduction
           </SectionTitle>
-          <Typography variant="body1" paragraph>
-            Welcome to vaporjawn.com ("I," "my," or "me"). These Terms of Service ("Terms") govern your use of my website
-            and any professional services provided by Victor Williams ("I," "my," or "me"). By accessing my website or
-            engaging my services, you agree to be bound by these Terms.
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            Welcome to vaporjawn.com ("I," "my," or "me"). These Terms of
+            Service ("Terms") govern your use of my website and any professional
+            services provided by Victor Williams ("I," "my," or "me"). By
+            accessing my website or engaging my services, you agree to be bound
+            by these Terms.
           </Typography>
-          <Typography variant="body1" paragraph>
-            Please read these Terms carefully before using my website or services. If you do not agree with any part
-            of these Terms, you should not use my website or engage my services.
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            Please read these Terms carefully before using my website or
+            services. If you do not agree with any part of these Terms, you
+            should not use my website or engage my services.
           </Typography>
         </StyledPaper>
 
@@ -110,7 +120,15 @@ const TermsOfService: React.FC = () => {
             Website Usage
           </SectionTitle>
 
-          <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 2, color: theme.palette.vaporwave.blueGreen }}>
+          <Typography
+            variant="h5"
+            component="h3"
+            sx={{
+              fontWeight: 600,
+              mb: 2,
+              color: theme.palette.vaporwave.blueGreen,
+            }}
+          >
             Permitted Use
           </Typography>
           <List>
@@ -140,7 +158,16 @@ const TermsOfService: React.FC = () => {
             </ListItem>
           </List>
 
-          <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 2, mt: 3, color: theme.palette.vaporwave.blueGreen }}>
+          <Typography
+            variant="h5"
+            component="h3"
+            sx={{
+              fontWeight: 600,
+              mb: 2,
+              mt: 3,
+              color: theme.palette.vaporwave.blueGreen,
+            }}
+          >
             Prohibited Activities
           </Typography>
           <List>
@@ -176,7 +203,15 @@ const TermsOfService: React.FC = () => {
             Professional Service Terms
           </SectionTitle>
 
-          <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 2, color: theme.palette.vaporwave.blueGreen }}>
+          <Typography
+            variant="h5"
+            component="h3"
+            sx={{
+              fontWeight: 600,
+              mb: 2,
+              color: theme.palette.vaporwave.blueGreen,
+            }}
+          >
             Service Scope & Agreements
           </Typography>
           <List>
@@ -206,7 +241,16 @@ const TermsOfService: React.FC = () => {
             </ListItem>
           </List>
 
-          <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 2, mt: 3, color: theme.palette.vaporwave.blueGreen }}>
+          <Typography
+            variant="h5"
+            component="h3"
+            sx={{
+              fontWeight: 600,
+              mb: 2,
+              mt: 3,
+              color: theme.palette.vaporwave.blueGreen,
+            }}
+          >
             Client Responsibilities
           </Typography>
           <List>
@@ -242,7 +286,15 @@ const TermsOfService: React.FC = () => {
             Payment & Billing Terms
           </SectionTitle>
 
-          <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 2, color: theme.palette.vaporwave.blueGreen }}>
+          <Typography
+            variant="h5"
+            component="h3"
+            sx={{
+              fontWeight: 600,
+              mb: 2,
+              color: theme.palette.vaporwave.blueGreen,
+            }}
+          >
             Payment Structure
           </Typography>
           <List>
@@ -272,7 +324,16 @@ const TermsOfService: React.FC = () => {
             </ListItem>
           </List>
 
-          <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 2, mt: 3, color: theme.palette.vaporwave.blueGreen }}>
+          <Typography
+            variant="h5"
+            component="h3"
+            sx={{
+              fontWeight: 600,
+              mb: 2,
+              mt: 3,
+              color: theme.palette.vaporwave.blueGreen,
+            }}
+          >
             Payment Terms
           </Typography>
           <List>
@@ -307,7 +368,8 @@ const TermsOfService: React.FC = () => {
               Important Notice
             </Typography>
             <Typography variant="body2">
-              All project work is suspended if payments become overdue. Additional fees may apply for project resumption.
+              All project work is suspended if payments become overdue.
+              Additional fees may apply for project resumption.
             </Typography>
           </ImportantNotice>
         </StyledPaper>
@@ -317,12 +379,21 @@ const TermsOfService: React.FC = () => {
             Intellectual Property Rights
           </SectionTitle>
 
-          <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 2, color: theme.palette.vaporwave.blueGreen }}>
+          <Typography
+            variant="h5"
+            component="h3"
+            sx={{
+              fontWeight: 600,
+              mb: 2,
+              color: theme.palette.vaporwave.blueGreen,
+            }}
+          >
             Client Work & Deliverables
           </Typography>
-          <Typography variant="body1" paragraph>
-            Upon full payment, clients receive ownership of custom code and designs created specifically for their project.
-            However, I retain the right to:
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            Upon full payment, clients receive ownership of custom code and
+            designs created specifically for their project. However, I retain
+            the right to:
           </Typography>
           <List>
             <ListItem>
@@ -336,12 +407,22 @@ const TermsOfService: React.FC = () => {
             </ListItem>
           </List>
 
-          <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 2, mt: 3, color: theme.palette.vaporwave.blueGreen }}>
+          <Typography
+            variant="h5"
+            component="h3"
+            sx={{
+              fontWeight: 600,
+              mb: 2,
+              mt: 3,
+              color: theme.palette.vaporwave.blueGreen,
+            }}
+          >
             Third-Party Resources
           </Typography>
-          <Typography variant="body1" paragraph>
-            Projects may incorporate third-party libraries, frameworks, and resources with their own licensing terms.
-            Clients are responsible for compliance with all applicable licenses.
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            Projects may incorporate third-party libraries, frameworks, and
+            resources with their own licensing terms. Clients are responsible
+            for compliance with all applicable licenses.
           </Typography>
         </StyledPaper>
 
@@ -350,7 +431,15 @@ const TermsOfService: React.FC = () => {
             Project Delivery & Support
           </SectionTitle>
 
-          <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 2, color: theme.palette.vaporwave.blueGreen }}>
+          <Typography
+            variant="h5"
+            component="h3"
+            sx={{
+              fontWeight: 600,
+              mb: 2,
+              color: theme.palette.vaporwave.blueGreen,
+            }}
+          >
             Delivery Terms
           </Typography>
           <List>
@@ -380,7 +469,16 @@ const TermsOfService: React.FC = () => {
             </ListItem>
           </List>
 
-          <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 2, mt: 3, color: theme.palette.vaporwave.blueGreen }}>
+          <Typography
+            variant="h5"
+            component="h3"
+            sx={{
+              fontWeight: 600,
+              mb: 2,
+              mt: 3,
+              color: theme.palette.vaporwave.blueGreen,
+            }}
+          >
             Support & Maintenance
           </Typography>
           <List>
@@ -416,12 +514,21 @@ const TermsOfService: React.FC = () => {
             Liability & Warranties
           </SectionTitle>
 
-          <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 2, color: theme.palette.vaporwave.blueGreen }}>
+          <Typography
+            variant="h5"
+            component="h3"
+            sx={{
+              fontWeight: 600,
+              mb: 2,
+              color: theme.palette.vaporwave.blueGreen,
+            }}
+          >
             Service Warranties
           </Typography>
-          <Typography variant="body1" paragraph>
-            I warrant that my services will be performed in a professional and workmanlike manner in accordance with
-            industry standards. However, I make no warranties regarding:
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            I warrant that my services will be performed in a professional and
+            workmanlike manner in accordance with industry standards. However, I
+            make no warranties regarding:
           </Typography>
           <List>
             <ListItem>
@@ -438,12 +545,23 @@ const TermsOfService: React.FC = () => {
             </ListItem>
           </List>
 
-          <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 2, mt: 3, color: theme.palette.vaporwave.blueGreen }}>
+          <Typography
+            variant="h5"
+            component="h3"
+            sx={{
+              fontWeight: 600,
+              mb: 2,
+              mt: 3,
+              color: theme.palette.vaporwave.blueGreen,
+            }}
+          >
             Limitation of Liability
           </Typography>
-          <Typography variant="body1" paragraph>
-            My total liability for any claims arising from my services shall not exceed the total amount paid for the
-            specific project in question. I am not liable for any indirect, incidental, or consequential damages.
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            My total liability for any claims arising from my services shall not
+            exceed the total amount paid for the specific project in question. I
+            am not liable for any indirect, incidental, or consequential
+            damages.
           </Typography>
         </StyledPaper>
 
@@ -452,7 +570,15 @@ const TermsOfService: React.FC = () => {
             Project Termination
           </SectionTitle>
 
-          <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 2, color: theme.palette.vaporwave.blueGreen }}>
+          <Typography
+            variant="h5"
+            component="h3"
+            sx={{
+              fontWeight: 600,
+              mb: 2,
+              color: theme.palette.vaporwave.blueGreen,
+            }}
+          >
             Client Termination Rights
           </Typography>
           <List>
@@ -482,7 +608,16 @@ const TermsOfService: React.FC = () => {
             </ListItem>
           </List>
 
-          <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 2, mt: 3, color: theme.palette.vaporwave.blueGreen }}>
+          <Typography
+            variant="h5"
+            component="h3"
+            sx={{
+              fontWeight: 600,
+              mb: 2,
+              mt: 3,
+              color: theme.palette.vaporwave.blueGreen,
+            }}
+          >
             My Termination Rights
           </Typography>
           <List>
@@ -506,7 +641,15 @@ const TermsOfService: React.FC = () => {
             General Provisions
           </SectionTitle>
 
-          <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 2, color: theme.palette.vaporwave.blueGreen }}>
+          <Typography
+            variant="h5"
+            component="h3"
+            sx={{
+              fontWeight: 600,
+              mb: 2,
+              color: theme.palette.vaporwave.blueGreen,
+            }}
+          >
             Legal Framework
           </Typography>
           <List>
@@ -530,7 +673,16 @@ const TermsOfService: React.FC = () => {
             </ListItem>
           </List>
 
-          <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 2, mt: 3, color: theme.palette.vaporwave.blueGreen }}>
+          <Typography
+            variant="h5"
+            component="h3"
+            sx={{
+              fontWeight: 600,
+              mb: 2,
+              mt: 3,
+              color: theme.palette.vaporwave.blueGreen,
+            }}
+          >
             Modifications
           </Typography>
           <List>
@@ -559,16 +711,20 @@ const TermsOfService: React.FC = () => {
           <SectionTitle variant="h4" component="h2">
             Questions About These Terms
           </SectionTitle>
-          <Typography variant="body1" paragraph>
-            If you have any questions about these Terms of Service or need clarification on any provisions,
-            please contact me before engaging my services.
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            If you have any questions about these Terms of Service or need
+            clarification on any provisions, please contact me before engaging
+            my services.
           </Typography>
           <List>
             <ListItem>
               <ListItemText
                 primary="Email"
                 secondary={
-                  <Link href="mailto:victor.williams.dev@gmail.com" sx={{ color: theme.palette.vaporwave.pink }}>
+                  <Link
+                    href="mailto:victor.williams.dev@gmail.com"
+                    sx={{ color: theme.palette.vaporwave.pink }}
+                  >
                     victor.williams.dev@gmail.com
                   </Link>
                 }
@@ -578,7 +734,11 @@ const TermsOfService: React.FC = () => {
               <ListItemText
                 primary="Consultation"
                 secondary={
-                  <Link component={RouterLink} to="/contact" sx={{ color: theme.palette.vaporwave.pink }}>
+                  <Link
+                    component={RouterLink}
+                    to="/contact"
+                    sx={{ color: theme.palette.vaporwave.pink }}
+                  >
                     Schedule a call
                   </Link>
                 }
@@ -597,9 +757,10 @@ const TermsOfService: React.FC = () => {
           <SectionTitle variant="h4" component="h2">
             Ready to Start Your Project?
           </SectionTitle>
-          <Typography variant="body1" paragraph>
-            Now that you understand my terms, let's discuss your project requirements and how we can work together
-            to bring your ideas to life.
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            Now that you understand my terms, let's discuss your project
+            requirements and how we can work together to bring your ideas to
+            life.
           </Typography>
           <Box sx={{ display: "flex", gap: 2, mt: 3, flexWrap: "wrap" }}>
             <Link
@@ -615,8 +776,8 @@ const TermsOfService: React.FC = () => {
                 transition: "all 0.3s ease",
                 "&:hover": {
                   background: `${theme.palette.vaporwave.pink}20`,
-                  textDecoration: "none"
-                }
+                  textDecoration: "none",
+                },
               }}
             >
               Start a Project
@@ -634,8 +795,8 @@ const TermsOfService: React.FC = () => {
                 transition: "all 0.3s ease",
                 "&:hover": {
                   background: `${theme.palette.vaporwave.blueGreen}20`,
-                  textDecoration: "none"
-                }
+                  textDecoration: "none",
+                },
               }}
             >
               Schedule Consultation
@@ -653,8 +814,8 @@ const TermsOfService: React.FC = () => {
                 transition: "all 0.3s ease",
                 "&:hover": {
                   background: `${theme.palette.text.secondary}20`,
-                  textDecoration: "none"
-                }
+                  textDecoration: "none",
+                },
               }}
             >
               Back to Home

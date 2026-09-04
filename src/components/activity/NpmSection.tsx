@@ -58,11 +58,14 @@ export const NpmSection: React.FC<NpmSectionProps> = ({
       }}
     >
       <Stack spacing={2}>
-        <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <Typography variant="h5" fontWeight={600} component="h2">
+        <Stack
+          direction="row"
+          sx={{ alignItems: "center", justifyContent: "space-between" }}
+        >
+          <Typography variant="h5" component="h2" sx={{ fontWeight: 600 }}>
             npm Packages
           </Typography>
-          <Stack direction="row" spacing={1} alignItems="center">
+          <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
             <Tooltip title="Refresh">
               <span>
                 <IconButton
@@ -93,7 +96,7 @@ export const NpmSection: React.FC<NpmSectionProps> = ({
           Recently published / updated packages.
         </Typography>
         {loading && (
-          <Box display="flex" justifyContent="center" py={3}>
+          <Box sx={{ display: "flex", justifyContent: "center", py: 3 }}>
             <CircularProgress size={26} />
           </Box>
         )}

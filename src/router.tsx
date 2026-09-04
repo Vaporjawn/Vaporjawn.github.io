@@ -19,12 +19,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
  * create a new component type on every render of AppRouter.
  */
 const LoadingSpinner = () => (
-  <Box
-    display="flex"
-    justifyContent="center"
-    alignItems="center"
-    minHeight="50vh"
-  >
+  <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "50vh" }}>
     <CircularProgress />
   </Box>
 );

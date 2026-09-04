@@ -45,7 +45,10 @@ import {
 import { format } from "date-fns";
 import type { Timestamp } from "firebase/firestore";
 import type { FirestoreBlogPost, BlogPostStatus } from "../../../types/blog";
-import { getAllBlogPosts, deleteBlogPost } from "../../../services/blogPostService";
+import {
+  getAllBlogPosts,
+  deleteBlogPost,
+} from "../../../services/blogPostService";
 import { BlogPostForm } from "./BlogPostForm";
 
 export const BlogPostsList: React.FC = () => {
@@ -56,9 +59,13 @@ export const BlogPostsList: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<BlogPostStatus>("all");
   const [formOpen, setFormOpen] = useState(false);
-  const [editingPost, setEditingPost] = useState<FirestoreBlogPost | null>(null);
+  const [editingPost, setEditingPost] = useState<FirestoreBlogPost | null>(
+    null
+  );
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const [postToDelete, setPostToDelete] = useState<FirestoreBlogPost | null>(null);
+  const [postToDelete, setPostToDelete] = useState<FirestoreBlogPost | null>(
+    null
+  );
   const [deleteLoading, setDeleteLoading] = useState(false);
 
   // Load blog posts
@@ -87,19 +94,19 @@ export const BlogPostsList: React.FC = () => {
 
     // Filter by status
     if (statusFilter === "published") {
-      filtered = filtered.filter(post => post.published);
+      filtered = filtered.filter((post) => post.published);
     } else if (statusFilter === "draft") {
-      filtered = filtered.filter(post => !post.published);
+      filtered = filtered.filter((post) => !post.published);
     }
 
     // Filter by search query
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
       filtered = filtered.filter(
-        post =>
+        (post) =>
           post.title.toLowerCase().includes(query) ||
           post.description.toLowerCase().includes(query) ||
-          post.tags.some(tag => tag.toLowerCase().includes(query))
+          post.tags.some((tag) => tag.toLowerCase().includes(query))
       );
     }
 
@@ -154,7 +161,9 @@ export const BlogPostsList: React.FC = () => {
     setPostToDelete(null);
   };
 
-  const formatDate = (timestamp: Timestamp | Date | string | number | null | undefined): string => {
+  const formatDate = (
+    timestamp: Timestamp | Date | string | number | null | undefined
+  ): string => {
     if (!timestamp) return "N/A";
     const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
     return format(date, "MMM dd, yyyy");
@@ -171,8 +180,15 @@ export const BlogPostsList: React.FC = () => {
   return (
     <Box>
       {/* Header */}
-      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 3 }}>
-        <Typography variant="h4" fontWeight="bold">
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          mb: 3,
+        }}
+      >
+        <Typography variant="h4" sx={{ fontWeight: "bold" }}>
           Blog Posts
         </Typography>
         <Button
@@ -202,7 +218,9 @@ export const BlogPostsList: React.FC = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               InputProps={{
-                startAdornment: <SearchIcon sx={{ mr: 1, color: "text.secondary" }} />,
+                startAdornment: (
+                  <SearchIcon sx={{ mr: 1, color: "text.secondary" }} />
+                ),
               }}
             />
             <FormControl sx={{ minWidth: 200 }}>
@@ -210,7 +228,9 @@ export const BlogPostsList: React.FC = () => {
               <Select
                 value={statusFilter}
                 label="Status"
-                onChange={(e) => setStatusFilter(e.target.value as BlogPostStatus)}
+                onChange={(e) =>
+                  setStatusFilter(e.target.value as BlogPostStatus)
+                }
               >
                 <MenuItem value="all">All Posts</MenuItem>
                 <MenuItem value="published">Published</MenuItem>
@@ -225,7 +245,12 @@ export const BlogPostsList: React.FC = () => {
       {filteredPosts.length === 0 ? (
         <Card>
           <CardContent>
-            <Typography variant="body1" color="text.secondary" align="center" py={4}>
+            <Typography
+              variant="body1"
+              color="text.secondary"
+              align="center"
+              sx={{ py: 4 }}
+            >
               {posts.length === 0
                 ? "No blog posts yet. Create your first post!"
                 : "No posts match your filters."}
@@ -251,7 +276,10 @@ export const BlogPostsList: React.FC = () => {
                 <TableRow key={post.id} hover>
                   <TableCell>
                     <Box>
-                      <Typography variant="subtitle2" fontWeight="600">
+                      <Typography
+                        variant="subtitle2"
+                        sx={{ fontWeight: "600" }}
+                      >
                         {post.title}
                       </Typography>
                       <Typography variant="caption" color="text.secondary">
@@ -261,7 +289,13 @@ export const BlogPostsList: React.FC = () => {
                   </TableCell>
                   <TableCell>
                     <Chip
-                      icon={post.published ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                      icon={
+                        post.published ? (
+                          <VisibilityIcon />
+                        ) : (
+                          <VisibilityOffIcon />
+                        )
+                      }
                       label={post.published ? "Published" : "Draft"}
                       color={post.published ? "success" : "default"}
                       size="small"
@@ -269,12 +303,25 @@ export const BlogPostsList: React.FC = () => {
                   </TableCell>
                   <TableCell>{post.author}</TableCell>
                   <TableCell>
-                    <Stack direction="row" spacing={0.5} flexWrap="wrap">
+                    <Stack
+                      direction="row"
+                      spacing={0.5}
+                      sx={{ flexWrap: "wrap" }}
+                    >
                       {post.tags.slice(0, 3).map((tag) => (
-                        <Chip key={tag} label={tag} size="small" variant="outlined" />
+                        <Chip
+                          key={tag}
+                          label={tag}
+                          size="small"
+                          variant="outlined"
+                        />
                       ))}
                       {post.tags.length > 3 && (
-                        <Chip label={`+${post.tags.length - 3}`} size="small" variant="outlined" />
+                        <Chip
+                          label={`+${post.tags.length - 3}`}
+                          size="small"
+                          variant="outlined"
+                        />
                       )}
                     </Stack>
                   </TableCell>
@@ -282,12 +329,20 @@ export const BlogPostsList: React.FC = () => {
                   <TableCell>{post.views || 0}</TableCell>
                   <TableCell align="right">
                     <Tooltip title="Edit">
-                      <IconButton size="small" onClick={() => handleEdit(post)} color="primary">
+                      <IconButton
+                        size="small"
+                        onClick={() => handleEdit(post)}
+                        color="primary"
+                      >
                         <EditIcon fontSize="small" />
                       </IconButton>
                     </Tooltip>
                     <Tooltip title="Delete">
-                      <IconButton size="small" onClick={() => handleDeleteClick(post)} color="error">
+                      <IconButton
+                        size="small"
+                        onClick={() => handleDeleteClick(post)}
+                        color="error"
+                      >
                         <DeleteIcon fontSize="small" />
                       </IconButton>
                     </Tooltip>
@@ -319,7 +374,8 @@ export const BlogPostsList: React.FC = () => {
         <DialogTitle>Delete Blog Post</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Are you sure you want to delete "{postToDelete?.title}"? This action cannot be undone.
+            Are you sure you want to delete "{postToDelete?.title}"? This action
+            cannot be undone.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
