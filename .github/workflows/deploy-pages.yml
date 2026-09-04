@@ -35,10 +35,12 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      - name: Clean install dependencies
-        run: |
-          rm -rf node_modules package-lock.json
-          npm install
+      # Install from the committed lockfile. The previous step deleted
+      # package-lock.json and re-resolved the whole tree on every deploy, so a
+      # deploy could fail (or ship a different tree than CI tested) purely
+      # because of upstream publishing activity, with no change on this side.
+      - name: Install dependencies
+        run: npm ci
 
       - name: Build application
         # Vite inlines VITE_* vars at build time (see vite.config.ts / import.meta.env

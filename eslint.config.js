@@ -82,7 +82,10 @@ export default tseslint.config({
     'no-case-declarations': 'off',
     'promise/always-return': 'off',
     'jsx-a11y/interactive-supports-focus': 'off',
-    'quotes': ['error', 'double'],
+    // avoidEscape lets a string that itself contains a double quote use single
+    // quotes, which is exactly what Prettier emits - without it the two tools
+    // fight over every `content: '""'` in an sx block.
+    'quotes': ['error', 'double', { avoidEscape: true }],
     'semi': ['error', 'always'],
     "func-style": ["error", "declaration", { "allowArrowFunctions": true }],
     'react/function-component-definition': [
