@@ -9,129 +9,546 @@
   },
   "skills": {
     "leadership": [
-      { "name": "Technical Leadership", "level": 95, "category": "management" },
-      { "name": "Project Management", "level": 90, "category": "management" },
-      { "name": "Team Management", "level": 88, "category": "management" },
-      { "name": "Agile Methodologies", "level": 85, "category": "process" },
-      { "name": "Strategic Planning", "level": 85, "category": "strategy" }
+      {
+        "name": "Technical Leadership",
+        "level": 95,
+        "category": "management"
+      },
+      {
+        "name": "Project Management",
+        "level": 90,
+        "category": "management"
+      },
+      {
+        "name": "Team Management",
+        "level": 88,
+        "category": "management"
+      },
+      {
+        "name": "Agile Methodologies",
+        "level": 85,
+        "category": "process"
+      },
+      {
+        "name": "Strategic Planning",
+        "level": 85,
+        "category": "strategy"
+      }
     ],
     "frontend": [
-      { "name": "React.js", "level": 95, "category": "framework" },
-      { "name": "TypeScript", "level": 92, "category": "language" },
-      { "name": "JavaScript", "level": 95, "category": "language" },
-      { "name": "HTML5", "level": 95, "category": "markup" },
-      { "name": "CSS3", "level": 90, "category": "styling" },
-      { "name": "AngularJS", "level": 80, "category": "framework" },
-      { "name": "jQuery", "level": 85, "category": "library" },
-      { "name": "Electron", "level": 80, "category": "framework" }
+      {
+        "name": "React.js",
+        "level": 95,
+        "category": "framework"
+      },
+      {
+        "name": "TypeScript",
+        "level": 92,
+        "category": "language"
+      },
+      {
+        "name": "JavaScript",
+        "level": 95,
+        "category": "language"
+      },
+      {
+        "name": "HTML5",
+        "level": 95,
+        "category": "markup"
+      },
+      {
+        "name": "CSS3",
+        "level": 90,
+        "category": "styling"
+      },
+      {
+        "name": "AngularJS",
+        "level": 80,
+        "category": "framework"
+      },
+      {
+        "name": "jQuery",
+        "level": 85,
+        "category": "library"
+      },
+      {
+        "name": "Electron",
+        "level": 80,
+        "category": "framework"
+      }
     ],
     "backend": [
-      { "name": "Node.js", "level": 90, "category": "runtime" },
-      { "name": "Python", "level": 88, "category": "language" },
-      { "name": "Java", "level": 85, "category": "language" },
-      { "name": "C#", "level": 85, "category": "language" },
-      { "name": "Go", "level": 75, "category": "language" },
-      { "name": "Ruby", "level": 75, "category": "language" },
-      { "name": "Spring Boot", "level": 80, "category": "framework" },
-      { "name": ".NET Framework", "level": 85, "category": "framework" },
-      { "name": "ASP.NET", "level": 80, "category": "framework" }
+      {
+        "name": "Node.js",
+        "level": 90,
+        "category": "runtime"
+      },
+      {
+        "name": "Python",
+        "level": 88,
+        "category": "language"
+      },
+      {
+        "name": "Java",
+        "level": 85,
+        "category": "language"
+      },
+      {
+        "name": "C#",
+        "level": 85,
+        "category": "language"
+      },
+      {
+        "name": "Go",
+        "level": 75,
+        "category": "language"
+      },
+      {
+        "name": "Ruby",
+        "level": 75,
+        "category": "language"
+      },
+      {
+        "name": "Spring Boot",
+        "level": 80,
+        "category": "framework"
+      },
+      {
+        "name": ".NET Framework",
+        "level": 85,
+        "category": "framework"
+      },
+      {
+        "name": "ASP.NET",
+        "level": 80,
+        "category": "framework"
+      }
     ],
     "database": [
-      { "name": "PostgreSQL", "level": 85, "category": "relational" },
-      { "name": "SQL", "level": 90, "category": "query" },
-      { "name": "MongoDB", "level": 80, "category": "nosql" }
+      {
+        "name": "PostgreSQL",
+        "level": 85,
+        "category": "relational"
+      },
+      {
+        "name": "SQL",
+        "level": 90,
+        "category": "query"
+      },
+      {
+        "name": "MongoDB",
+        "level": 80,
+        "category": "nosql"
+      }
     ],
     "cloud": [
-      { "name": "Microsoft Azure", "level": 88, "category": "platform" },
-      { "name": "Amazon Web Services", "level": 85, "category": "platform" },
-      { "name": "Docker", "level": 85, "category": "containerization" },
-      { "name": "Kubernetes", "level": 78, "category": "orchestration" },
-      { "name": "CI/CD", "level": 88, "category": "deployment" }
+      {
+        "name": "Microsoft Azure",
+        "level": 88,
+        "category": "platform"
+      },
+      {
+        "name": "Amazon Web Services",
+        "level": 85,
+        "category": "platform"
+      },
+      {
+        "name": "Docker",
+        "level": 85,
+        "category": "containerization"
+      },
+      {
+        "name": "Kubernetes",
+        "level": 78,
+        "category": "orchestration"
+      },
+      {
+        "name": "CI/CD",
+        "level": 88,
+        "category": "deployment"
+      }
     ],
     "mobile": [
-      { "name": "Mobile Applications", "level": 80, "category": "development" },
-      { "name": "Xamarin", "level": 75, "category": "framework" },
-      { "name": "React Native", "level": 80, "category": "framework" }
+      {
+        "name": "Mobile Applications",
+        "level": 80,
+        "category": "development"
+      },
+      {
+        "name": "Xamarin",
+        "level": 75,
+        "category": "framework"
+      },
+      {
+        "name": "React Native",
+        "level": 80,
+        "category": "framework"
+      }
     ],
     "architecture": [
-      { "name": "REST APIs", "level": 92, "category": "api" },
-      { "name": "Microservices", "level": 85, "category": "pattern" },
-      { "name": "MVC Architecture", "level": 90, "category": "pattern" },
-      { "name": "System Design", "level": 88, "category": "design" },
-      { "name": "Scalable Architecture", "level": 85, "category": "design" }
+      {
+        "name": "REST APIs",
+        "level": 92,
+        "category": "api"
+      },
+      {
+        "name": "Microservices",
+        "level": 85,
+        "category": "pattern"
+      },
+      {
+        "name": "MVC Architecture",
+        "level": 90,
+        "category": "pattern"
+      },
+      {
+        "name": "System Design",
+        "level": 88,
+        "category": "design"
+      },
+      {
+        "name": "Scalable Architecture",
+        "level": 85,
+        "category": "design"
+      }
     ],
     "tools": [
-      { "name": "Git", "level": 92, "category": "version-control" },
-      { "name": "Vite", "level": 85, "category": "build-tool" },
-      { "name": "Jest", "level": 80, "category": "testing" },
-      { "name": "Visual Studio", "level": 85, "category": "ide" },
-      { "name": "Linux", "level": 82, "category": "os" }
+      {
+        "name": "Git",
+        "level": 92,
+        "category": "version-control"
+      },
+      {
+        "name": "Vite",
+        "level": 85,
+        "category": "build-tool"
+      },
+      {
+        "name": "Jest",
+        "level": 80,
+        "category": "testing"
+      },
+      {
+        "name": "Visual Studio",
+        "level": 85,
+        "category": "ide"
+      },
+      {
+        "name": "Linux",
+        "level": 82,
+        "category": "os"
+      }
     ],
     "business": [
-      { "name": "User Experience (UX)", "level": 85, "category": "design" },
-      { "name": "SEO", "level": 78, "category": "marketing" },
-      { "name": "Customer Service", "level": 88, "category": "service" },
-      { "name": "Business Development", "level": 80, "category": "strategy" },
-      { "name": "Restaurant Management", "level": 75, "category": "industry" }
+      {
+        "name": "User Experience (UX)",
+        "level": 85,
+        "category": "design"
+      },
+      {
+        "name": "SEO",
+        "level": 78,
+        "category": "marketing"
+      },
+      {
+        "name": "Customer Service",
+        "level": 88,
+        "category": "service"
+      },
+      {
+        "name": "Business Development",
+        "level": 80,
+        "category": "strategy"
+      },
+      {
+        "name": "Restaurant Management",
+        "level": 75,
+        "category": "industry"
+      }
     ],
     "security": [
-      { "name": "Cybersecurity", "level": 80, "category": "security" },
-      { "name": "Data Protection", "level": 82, "category": "security" },
-      { "name": "Security Best Practices", "level": 85, "category": "security" }
+      {
+        "name": "Cybersecurity",
+        "level": 80,
+        "category": "security"
+      },
+      {
+        "name": "Data Protection",
+        "level": 82,
+        "category": "security"
+      },
+      {
+        "name": "Security Best Practices",
+        "level": 85,
+        "category": "security"
+      }
     ]
   },
   "projects": [
     {
       "id": "vaporjawn-portfolio",
       "title": "Personal Portfolio",
-      "description": "Modern React portfolio showcasing projects and skills with vaporwave aesthetic",
-      "longDescription": "A fully responsive portfolio website built with React, TypeScript, and Material-UI. Features dark/light theme switching, responsive design, and modern web practices.",
-      "image": "/assets/images/portfolio-preview.jpg",
-      "technologies": ["React", "TypeScript", "Material-UI", "Vite"],
-      "liveUrl": "https://vaporjawn.github.io",
+      "description": "This site — a React 19 portfolio that pulls its own project list live from GitHub, npm and Devpost.",
+      "longDescription": "A fully responsive portfolio built with React 19, TypeScript and MUI v7 on Vite. The projects page aggregates and de-duplicates live GitHub repositories, published npm packages and Devpost entries into a single searchable, sortable view, with a Firestore-backed analytics dashboard behind an admin gate.",
+      "image": "",
+      "technologies": [
+        "React",
+        "TypeScript",
+        "Material-UI",
+        "Vite",
+        "Firebase"
+      ],
+      "liveUrl": "https://vaporjawn.dev",
       "githubUrl": "https://github.com/Vaporjawn/Vaporjawn.github.io",
       "featured": true,
       "status": "completed",
       "category": "web"
     },
     {
-      "id": "20xx-project",
-      "title": "20XX Gaming Project",
-      "description": "Interactive gaming experience with retro aesthetics",
-      "longDescription": "A gaming-focused project that explores retro gaming aesthetics and interactive experiences.",
-      "image": "/assets/images/20xx-preview.jpg",
-      "technologies": ["React", "JavaScript", "CSS3"],
-      "liveUrl": "https://vaporjawn.github.io/20XX",
-      "githubUrl": "https://github.com/Vaporjawn/20XX",
-      "featured": false,
-      "status": "in-progress",
-      "category": "gaming"
-    },
-    {
-      "id": "esperanto-analyzer",
-      "title": "Esperanto Analyzer",
-      "description": "Linguistic analysis tool exploring Esperanto vocabulary, morphology, and usage patterns.",
-      "longDescription": "A language processing and analysis project focusing on Esperanto. Provides parsing, frequency statistics, and morphological breakdowns to support linguistic exploration and learning. Built with a focus on clean modular architecture and potential future integration with interactive visualizations.",
-      "image": "/assets/images/esperanto-analyzer-preview.jpg",
-      "technologies": ["TypeScript", "Node.js", "Parsing", "CLI"],
-      "liveUrl": null,
-      "githubUrl": "https://github.com/Vaporjawn/esperanto-analyzer",
-      "featured": false,
-      "status": "in-progress",
-      "category": "tool"
-    },
-    {
       "id": "centipawn-loss-calculator",
       "title": "Centipawn Loss Calculator",
-      "description": "Free, private, browser-based Average Centipawn Loss (ACPL) and move-accuracy calculator for chess games.",
-      "longDescription": "A browser-based chess analysis tool that computes Average Centipawn Loss and move accuracy for any pasted PGN. If the PGN already carries computer evaluations (e.g. from Lichess or Chess.com), those are used instantly; otherwise a real Stockfish engine compiled to WebAssembly runs entirely client-side to analyze the game, with nothing ever uploaded to a server. Classifies every move (Best/Excellent/Good/Inaccuracy/Mistake/Blunder), charts centipawn loss per move, and shows a full move-by-move breakdown table.",
-      "image": "/assets/images/centipawn-loss-calculator-preview.jpg",
-      "technologies": ["React", "TypeScript", "Material UI", "chess.js", "Stockfish.js"],
+      "description": "Browser-based chess ACPL and move-accuracy analysis — paste a PGN, nothing leaves your machine.",
+      "longDescription": "A free, private, browser-based Average Centipawn Loss (ACPL) and move-accuracy calculator for chess. If a PGN already carries engine evaluations they are used instantly; otherwise Stockfish compiled to WebAssembly analyzes the game entirely client-side. Classifies every move from Best to Blunder, charts centipawn loss per move, and renders a full move-by-move breakdown. No account, no upload, no server.",
+      "image": "",
+      "technologies": [
+        "TypeScript",
+        "React",
+        "WebAssembly",
+        "Stockfish",
+        "Vite"
+      ],
       "liveUrl": "https://vaporjawn.dev/Centipawn-Loss-Calculator/",
       "githubUrl": "https://github.com/Vaporjawn/Centipawn-Loss-Calculator",
       "featured": true,
       "status": "completed",
       "category": "tool"
+    },
+    {
+      "id": "last-fm-scrobbler",
+      "title": "Last.fm Scrobbler",
+      "description": "Native cross-platform Last.fm scrobbler that reads now-playing straight from the OS media session.",
+      "longDescription": "A desktop scrobbler for macOS, Windows and Linux that hooks the operating system's own media session (MPRIS on Linux, SMTC on Windows, MediaRemote on macOS) instead of requiring a plugin per music player. Supports Last.fm and ListenBrainz, offline queueing, and per-player filtering.",
+      "image": "",
+      "technologies": [
+        "TypeScript",
+        "Electron",
+        "React",
+        "MPRIS",
+        "Last.fm API"
+      ],
+      "githubUrl": "https://github.com/Vaporjawn/Last-FM-Scrobbler",
+      "featured": true,
+      "status": "in-progress",
+      "category": "desktop"
+    },
+    {
+      "id": "env-audit",
+      "title": "EnvAudit",
+      "description": "CLI that scans a codebase for every environment variable it actually uses, then documents them.",
+      "longDescription": "A framework-aware environment variable scanner published to npm as envaudit-cli. Walks JavaScript/TypeScript sources, .env files, Docker Compose manifests, GitHub Actions workflows and shell scripts to find every variable a project reads, flags likely secrets, and generates the .env.example nobody remembers to keep current.",
+      "image": "",
+      "technologies": ["TypeScript", "Node.js", "CLI", "Static Analysis"],
+      "githubUrl": "https://github.com/Vaporjawn/env-audit",
+      "featured": true,
+      "status": "completed",
+      "category": "cli"
+    },
+    {
+      "id": "klingon-translator",
+      "title": "Klingon Translator",
+      "description": "English ↔ Klingon translation with text-to-speech and a set of Star Trek themes.",
+      "longDescription": "A React web app that translates between English and tlhIngan Hol, with text-to-speech playback, several Star Trek-inspired themes, and a companion CLI. Built as a language-learning aid for a constructed language with a real, documented grammar.",
+      "image": "",
+      "technologies": ["TypeScript", "React", "NLP", "Web Speech API"],
+      "githubUrl": "https://github.com/Vaporjawn/Klingon-Translator",
+      "featured": true,
+      "status": "completed",
+      "category": "web"
+    },
+    {
+      "id": "snapple-facts",
+      "title": "Snapple Facts",
+      "description": "Every Snapple cap fact, typed and packaged for npm.",
+      "longDescription": "A zero-dependency npm package exposing the complete corpus of Snapple 'Real Facts' with full TypeScript types, random and indexed lookup, and a stable schema. Now at v4 and the most actively maintained of the published packages.",
+      "image": "",
+      "technologies": ["TypeScript", "npm", "Node.js"],
+      "githubUrl": "https://github.com/Vaporjawn/snapple-facts",
+      "featured": false,
+      "status": "completed",
+      "category": "library"
+    },
+    {
+      "id": "universities",
+      "title": "Universities Dataset",
+      "description": "Worldwide universities dataset shipped as a typed, queryable npm package.",
+      "longDescription": "A comprehensive dataset of universities worldwide, published to npm with first-class TypeScript types and helpers for filtering by country, domain and name. Built for anyone who needs institution autocomplete without standing up a service for it.",
+      "image": "",
+      "technologies": ["TypeScript", "npm", "Open Data"],
+      "githubUrl": "https://github.com/Vaporjawn/universities",
+      "featured": false,
+      "status": "completed",
+      "category": "library"
+    },
+    {
+      "id": "regexplay",
+      "title": "RegexPlay",
+      "description": "A command-line regex playground with real-time pattern testing and explanation.",
+      "longDescription": "An interactive terminal playground for building and understanding regular expressions: live match highlighting as you type, capture-group inspection, and a pattern explainer, so a regex can be reasoned about before it reaches production code. Published to npm as regexplay.",
+      "image": "",
+      "technologies": ["TypeScript", "Node.js", "CLI", "Regex"],
+      "githubUrl": "https://github.com/Vaporjawn/RegexPlay",
+      "featured": false,
+      "status": "completed",
+      "category": "cli"
+    },
+    {
+      "id": "esperanto-analyzer",
+      "title": "Esperanto Analyzer",
+      "description": "Morphological analyzer for Esperanto — part-of-speech tagging for a fully regular grammar.",
+      "longDescription": "A TypeScript morphological analyzer for Esperanto that exploits the language's fully regular affix system to identify part of speech, decompose compounds, and tokenize text without a trained model. Published to npm and usable as a library or a CLI.",
+      "image": "",
+      "technologies": ["TypeScript", "NLP", "Linguistics", "npm"],
+      "githubUrl": "https://github.com/Vaporjawn/esperanto-analyzer",
+      "featured": false,
+      "status": "in-progress",
+      "category": "library"
+    },
+    {
+      "id": "esperanto-hangman",
+      "title": "Esperanto Hangman",
+      "description": "Hangman built for Esperanto, diacritics and all.",
+      "longDescription": "An accessible hangman game covering all 28 letters of the Esperanto alphabet, including the ĉ, ĝ, ĥ, ĵ, ŝ and ŭ diacritics that most word games silently drop. Keyboard-navigable and screen-reader friendly.",
+      "image": "",
+      "technologies": ["TypeScript", "React", "Vite", "Accessibility"],
+      "githubUrl": "https://github.com/Vaporjawn/esperanto-hangman",
+      "featured": false,
+      "status": "completed",
+      "category": "game"
+    },
+    {
+      "id": "file-encryptor",
+      "title": "File Encryptor",
+      "description": "Desktop AES-256 file encryption with an interface that does not require a manual.",
+      "longDescription": "A cross-platform desktop application for encrypting and decrypting files with AES-256, built on Electron and React. Keys never leave the machine and the entire operation runs locally — designed so that strong encryption is not gated behind command-line fluency.",
+      "image": "",
+      "technologies": ["TypeScript", "Electron", "React", "Cryptography"],
+      "githubUrl": "https://github.com/Vaporjawn/file-encryptor",
+      "featured": false,
+      "status": "completed",
+      "category": "desktop"
+    },
+    {
+      "id": "fake-checker",
+      "title": "Fake Checker",
+      "description": "Image authenticity detector with real-time analysis and full keyboard/screen-reader support.",
+      "longDescription": "An AI-assisted image authenticity checker that surfaces manipulation signals in real time, built with React, TypeScript and Material-UI, with accessibility treated as a requirement rather than a pass at the end.",
+      "image": "",
+      "technologies": [
+        "TypeScript",
+        "React",
+        "Material-UI",
+        "Machine Learning"
+      ],
+      "githubUrl": "https://github.com/Vaporjawn/Fake-Checker",
+      "featured": false,
+      "status": "completed",
+      "category": "web"
+    },
+    {
+      "id": "screen-recorder",
+      "title": "Screen Recorder",
+      "description": "Screenshot and screen-recording desktop app built on Electron.",
+      "longDescription": "A desktop capture tool for screenshots and screen recording, built with Electron and TypeScript, with region selection, hotkeys and direct-to-disk output.",
+      "image": "",
+      "technologies": ["TypeScript", "Electron", "Node.js"],
+      "githubUrl": "https://github.com/Vaporjawn/Screen-Recorder",
+      "featured": false,
+      "status": "completed",
+      "category": "desktop"
+    },
+    {
+      "id": "password-generator",
+      "title": "Password Generator",
+      "description": "Generate secure passwords against parameters you actually control.",
+      "longDescription": "A password generator that exposes the full parameter surface — length, character classes, exclusions, ambiguity avoidance — and generates entirely in the browser using the Web Crypto API, so nothing generated is ever transmitted.",
+      "image": "",
+      "technologies": ["TypeScript", "React", "Web Crypto API"],
+      "githubUrl": "https://github.com/Vaporjawn/Password-Generator",
+      "featured": false,
+      "status": "completed",
+      "category": "tool"
+    },
+    {
+      "id": "background-sounds",
+      "title": "Background Sounds",
+      "description": "Mix ambient sound layers into the environment you want to work in.",
+      "longDescription": "A browser-based ambient sound mixer: layer rain, static, room tone and other loops at independent volumes, and keep the mix across sessions. Built with React, TypeScript and Vite on the Web Audio API.",
+      "image": "",
+      "technologies": ["TypeScript", "React", "Vite", "Web Audio API"],
+      "githubUrl": "https://github.com/Vaporjawn/Background-Sounds",
+      "featured": false,
+      "status": "completed",
+      "category": "web"
+    },
+    {
+      "id": "download-twitter-video",
+      "title": "Twitter Video Downloader",
+      "description": "Chrome extension that adds a one-click video download button to X/Twitter posts.",
+      "longDescription": "A Manifest V3 Chrome extension that places a download control next to the bookmark button on any post containing video, resolving the highest available bitrate without a third-party service in the loop.",
+      "image": "",
+      "technologies": ["JavaScript", "Chrome Extension", "Manifest V3"],
+      "githubUrl": "https://github.com/Vaporjawn/download-twitter-video",
+      "featured": false,
+      "status": "completed",
+      "category": "extension"
+    },
+    {
+      "id": "better-discord-themes",
+      "title": "BetterDiscord Themes",
+      "description": "A curated compilation of BetterDiscord themes.",
+      "longDescription": "A long-running collection of BetterDiscord themes, kept as a single reference repository rather than scattered gists. The most-starred of the public repositories.",
+      "image": "",
+      "technologies": ["CSS", "BetterDiscord"],
+      "githubUrl": "https://github.com/Vaporjawn/better-discord-themes",
+      "featured": false,
+      "status": "completed",
+      "category": "design"
+    },
+    {
+      "id": "pokemon-showdown-teams",
+      "title": "Pokémon Showdown Teams",
+      "description": "A compilation of competitive Showdown teams for players who don't want to start from a blank import.",
+      "longDescription": "A curated set of importable Pokémon Showdown teams spanning formats, maintained for players who want a working list to learn from rather than a blank team builder.",
+      "image": "",
+      "technologies": ["Pokémon Showdown", "Open Data"],
+      "githubUrl": "https://github.com/Vaporjawn/Pokemon-Showdown-Teams",
+      "featured": false,
+      "status": "completed",
+      "category": "game"
+    },
+    {
+      "id": "pong",
+      "title": "Pong (Rust)",
+      "description": "The classic, rebuilt in Rust on macroquad with a real test suite.",
+      "longDescription": "A feature-complete Pong implementation written in Rust using the macroquad engine, structured deliberately around clean separation of game state, rendering and input so that the game logic is unit-testable independent of the render loop.",
+      "image": "",
+      "technologies": ["Rust", "macroquad", "Game Development"],
+      "githubUrl": "https://github.com/Vaporjawn/pong",
+      "featured": false,
+      "status": "completed",
+      "category": "game"
+    },
+    {
+      "id": "math-24",
+      "title": "Math 24",
+      "description": "The arithmetic puzzle, with a solver that proves every hand is winnable.",
+      "longDescription": "Math 24 asks you to reach exactly 24 from four numbers using each once with +, -, × and ÷. This implementation pairs the playable puzzle with a brute-force solver that enumerates every expression tree, so a generated hand is never unsolvable.",
+      "image": "",
+      "technologies": ["TypeScript", "React", "Algorithms"],
+      "githubUrl": "https://github.com/Vaporjawn/math-24",
+      "featured": false,
+      "status": "completed",
+      "category": "game"
     }
   ],
   "experience": [
@@ -143,7 +560,17 @@
       "startDate": "2024-08",
       "endDate": null,
       "description": "Independently designed and built case management tooling for attorneys supporting active litigation and pro bono casework, developed a firm-wide global events calendar application, and created a business-to-business onboarding platform connecting outside companies with the firm. Partnered directly with attorneys, paralegals, and firm stakeholders to refine each tool against real casework and onboarding needs.",
-      "technologies": ["SharePoint", "C#", ".NET Core", "REST API", "JavaScript", "TypeScript", "React.js", "SQL", "Azure"],
+      "technologies": [
+        "SharePoint",
+        "C#",
+        ".NET Core",
+        "REST API",
+        "JavaScript",
+        "TypeScript",
+        "React.js",
+        "SQL",
+        "Azure"
+      ],
       "current": true
     },
     {
@@ -154,7 +581,16 @@
       "startDate": "2023-12",
       "endDate": "2024-07",
       "description": "Created a marketplace platform connecting customers with discounted, prepaid meal plans from their favorite restaurants. Created and managed database entities and queries, facilitated the integration of a wide range of point-of-sale systems, and developed food testing platforms for the facilities of Fortune 500 companies.",
-      "technologies": ["React.js", "Svelte", "Node.js", "Go", "REST API", ".NET Core", "Ionic", "Capacitor"],
+      "technologies": [
+        "React.js",
+        "Svelte",
+        "Node.js",
+        "Go",
+        "REST API",
+        ".NET Core",
+        "Ionic",
+        "Capacitor"
+      ],
       "current": false
     },
     {
@@ -165,7 +601,16 @@
       "startDate": "2022-01",
       "endDate": "2023-12",
       "description": "Created an application for client-side platform integration, built out banking service features including new fund types, and stood up an automated support system to handle support items. Refined existing system documentation, developed proof of concepts for executive research and development, and resolved longstanding tech debt and support problems.",
-      "technologies": ["TypeScript", "React.js", "Ruby", "Python", "Docker", "Node.js", "Azure", "SQL"],
+      "technologies": [
+        "TypeScript",
+        "React.js",
+        "Ruby",
+        "Python",
+        "Docker",
+        "Node.js",
+        "Azure",
+        "SQL"
+      ],
       "current": false
     },
     {
@@ -176,7 +621,17 @@
       "startDate": "2021-01",
       "endDate": "2022-01",
       "description": "Designed and developed a fully integrated coaching system with automation and a 10-application ecosystem from scratch, including a fully integrated Electron launcher application. Reduced the number of open tickets by 87% by prioritizing all open issues and maintained the company website across full-stack, cloud, and CMS.",
-      "technologies": ["TypeScript", "React.js", "Go", "Electron", "Node.js", "Python", "SQL", "C#", "Kubernetes"],
+      "technologies": [
+        "TypeScript",
+        "React.js",
+        "Go",
+        "Electron",
+        "Node.js",
+        "Python",
+        "SQL",
+        "C#",
+        "Kubernetes"
+      ],
       "current": false
     },
     {
@@ -187,7 +642,17 @@
       "startDate": "2020-06",
       "endDate": "2021-01",
       "description": "Wrote application-level code to interact with web services and managed 2 outsourced tech teams across 2 countries. Deployed and tested features to Azure Cloud, developed and tested a web application through a successful production launch, and created fully automated CI/CD pipelines for code deployment.",
-      "technologies": ["React.js", "Go", "TypeScript", "Node.js", ".NET Core", "Python", "SQL", "Azure", "C#"],
+      "technologies": [
+        "React.js",
+        "Go",
+        "TypeScript",
+        "Node.js",
+        ".NET Core",
+        "Python",
+        "SQL",
+        "Azure",
+        "C#"
+      ],
       "current": false
     },
     {
@@ -198,7 +663,17 @@
       "startDate": "2019-11",
       "endDate": "2020-06",
       "description": "Architected and developed REST services powering a web-based SaaS application, with a hand in both web and mobile development. Refined and improved existing system documentation, worked in a scrum process attending daily stand-up and completing tasks in sprints, and collaborated at large scale with developers based around the globe.",
-      "technologies": [".NET", "Xamarin", "React.js", "Python", "Node.js", "C#", "Azure", "SQL", "Java"],
+      "technologies": [
+        ".NET",
+        "Xamarin",
+        "React.js",
+        "Python",
+        "Node.js",
+        "C#",
+        "Azure",
+        "SQL",
+        "Java"
+      ],
       "current": false
     },
     {
@@ -209,7 +684,17 @@
       "startDate": "2016-12",
       "endDate": "2019-03",
       "description": "Implemented solutions using Agile (Scrum) methodology and developed full-stack web applications that processed and rendered data. Led engineering teams on roadmaps, best practices, and mentoring, and maintained client websites while leading product-planning meetings with end users.",
-      "technologies": ["Azure", "Vue.js", "ASP.NET", "React.js", "Python", "C#", "SQL", "Java", "Node.js"],
+      "technologies": [
+        "Azure",
+        "Vue.js",
+        "ASP.NET",
+        "React.js",
+        "Python",
+        "C#",
+        "SQL",
+        "Java",
+        "Node.js"
+      ],
       "current": false
     }
   ],
@@ -249,8 +734,7 @@
       "url": "https://devpost.com/Vaporjawn?ref_content=user-portfolio&ref_feature=portfolio&ref_medium=global-nav",
       "icon": "devpost",
       "primary": false
-    }
-    ,
+    },
     {
       "platform": "GitLab",
       "url": "https://gitlab.com/vaporjawn",
