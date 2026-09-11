@@ -10,7 +10,6 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import MailOutlineIcon from "@mui/icons-material/MailOutlined";
 import ArticleIcon from "@mui/icons-material/Article";
 import XIcon from "@mui/icons-material/X";
-import YouTubeIcon from "@mui/icons-material/YouTube";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -85,9 +84,6 @@ const iconConfigs: IconConfig = {
     <LinkedInIcon style={{ fontSize: iconSizeRem, color }} />
   ),
   x: (color) => <XIcon style={{ fontSize: iconSizeRem, color }} />,
-  youtube: (color) => (
-    <YouTubeIcon style={{ fontSize: iconSizeRem, color }} />
-  ),
   reddit: (color) => (
     <FontAwesomeIcon
       icon={faReddit}
