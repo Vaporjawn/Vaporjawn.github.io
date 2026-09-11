@@ -41,9 +41,9 @@ export const socialLinks: UnifiedSocialLink[] = [
     primary: true,
   },
   {
-    key: "x",
-    label: "Twitter / X",
-    href: "https://twitter.com/vaporjawn",
+    key: "youtube",
+    label: "YouTube",
+    href: "https://www.youtube.com/channel/UCK6-NQMyD3TREhUFU5Ithlg",
     kind: "external",
   },
   {
