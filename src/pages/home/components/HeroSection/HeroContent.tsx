@@ -61,11 +61,13 @@ export const HeroContent: React.FC<HeroContentProps> = ({
           variant="h1"
           component="h1"
           sx={{
-            fontSize: { xs: "2.4rem", md: "3.4rem" },
+            // clamp() scales continuously with viewport width so a narrow
+            // phone isn't stuck with the same size as a 599px-wide one.
+            fontSize: "clamp(1.9rem, 7vw, 3.4rem)",
             fontWeight: 800,
             letterSpacing: "-1px",
             lineHeight: 1.1,
-            mb: 2,
+            mb: "clamp(0.75rem, 3vw, 1rem)",
             position: "relative",
             zIndex: 10,
             color: theme.palette.primary.main,
@@ -85,9 +87,9 @@ export const HeroContent: React.FC<HeroContentProps> = ({
           variant="h2"
           component="h2"
           sx={{
-            fontSize: { xs: "1.1rem", md: "1.35rem" },
+            fontSize: "clamp(0.95rem, 3.5vw, 1.35rem)",
             fontWeight: 600,
-            mb: 3,
+            mb: "clamp(1rem, 3vw, 1.5rem)",
             letterSpacing: 2,
             position: "relative",
             zIndex: 10,
@@ -106,9 +108,9 @@ export const HeroContent: React.FC<HeroContentProps> = ({
         <Typography
           variant="body1"
           sx={{
-            fontSize: { xs: "1rem", md: "1.15rem" },
+            fontSize: "clamp(0.9rem, 3vw, 1.15rem)",
             lineHeight: 1.55,
-            mb: 4,
+            mb: "clamp(1.25rem, 4vw, 2rem)",
             maxWidth: "640px",
             position: "relative",
             zIndex: 10,
@@ -116,6 +118,19 @@ export const HeroContent: React.FC<HeroContentProps> = ({
               theme.palette.mode === "dark"
                 ? theme.palette.grey[200]
                 : theme.palette.text.secondary,
+            // The full bio runs ~450 characters — plenty of room on desktop,
+            // but on the narrowest phones (≲340px) it wraps to 12-13 lines
+            // and single-handedly pushes the social links below the first
+            // screenful, forcing a scroll just to reach them. Clamping to 5
+            // lines there (full text stays intact everywhere else — the
+            // About page and footer both show it unclamped) keeps the hero
+            // itself compact without cutting the bio anywhere it already fit.
+            "@media (max-width: 340px)": {
+              display: "-webkit-box",
+              WebkitBoxOrient: "vertical",
+              WebkitLineClamp: 5,
+              overflow: "hidden",
+            },
           }}
         >
           {bio}

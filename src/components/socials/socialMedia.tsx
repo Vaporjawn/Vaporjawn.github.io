@@ -127,18 +127,24 @@ const SocialMedia: React.FC<SocialMediaProps> = ({ onlyPrimary }) => {
   return (
     <div
       style={{
-        marginTop: "2rem",
+        // clamp() shrinks this on narrow phones instead of staying a flat
+        // 2rem, freeing up vertical space that otherwise pushed content
+        // (including these icons) further down the page on mobile.
+        marginTop: "clamp(1.25rem, 4vw, 2rem)",
       }}
     >
       {/* Top Row - 6 icons. flexWrap keeps icons from being clipped off the
-          right edge on narrow viewports instead of overflowing the page. */}
+          right edge on narrow viewports instead of overflowing the page.
+          The clamp()'d gap (paired with the icons' own clamp()'d size in
+          iconMapper.tsx) keeps all 6 on one row down to ~320px wide,
+          instead of wrapping into extra rows that add to page height. */}
       <div
         style={{
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "flex-start",
-          gap: "1.1rem",
-          marginBottom: "1.1rem",
+          gap: "clamp(0.6rem, 2.5vw, 1.1rem)",
+          marginBottom: "clamp(0.6rem, 2.5vw, 1.1rem)",
         }}
       >
         {topRowLinks.map((link) => renderLinkElement(link))}
@@ -151,7 +157,7 @@ const SocialMedia: React.FC<SocialMediaProps> = ({ onlyPrimary }) => {
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "flex-start",
-            gap: "1.1rem",
+            gap: "clamp(0.6rem, 2.5vw, 1.1rem)",
           }}
         >
           {bottomRowLinks.map((link) => renderLinkElement(link))}

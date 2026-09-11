@@ -66,8 +66,14 @@ export const HeroProfile: React.FC<HeroProfileProps> = ({ src, alt, srcWebP }) =
           src={src}
           alt={alt}
           srcWebP={srcWebP}
-          width="280px"
-          height="280px"
+          // Was a flat 280px on every screen size, including a 320px-wide
+          // phone — nearly the full viewport width, and (stacked below the
+          // bio/social links on mobile) a big chunk of the extra height
+          // that pushed content below the fold. clamp() scales it down
+          // continuously as the viewport narrows, capping at 280px once
+          // there's room for it.
+          width="clamp(140px, 42vw, 280px)"
+          height="clamp(140px, 42vw, 280px)"
           sx={{
             borderRadius: "50%",
             objectFit: "cover",

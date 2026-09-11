@@ -71,12 +71,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     <Box
       sx={{
         position: "relative",
-        mb: 6,
+        // clamp()-based sizing scales continuously with viewport width
+        // instead of jumping only at the xs/md breakpoint, so a 320px
+        // phone gets noticeably tighter spacing than a 599px one rather
+        // than both getting the same "xs" value.
+        mb: "clamp(2rem, 5vw, 3rem)",
         borderRadius: 4,
         overflow: "hidden",
-        px: { xs: 3, md: 6 },
-        py: { xs: 6, md: 8 },
-        minHeight: { xs: 420, md: 480 },
+        px: "clamp(1rem, 5vw, 3rem)",
+        py: "clamp(1.5rem, 6vw, 4rem)",
+        minHeight: { xs: "clamp(260px, 62vw, 420px)", md: 480 },
         background,
         backgroundSize: "cover, cover, cover",
         backgroundPosition: "center, center, center",

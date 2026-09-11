@@ -5,9 +5,18 @@
 }
 
 html {
+  /* No fixed height here on purpose: `height: 100%` (matching the old
+     `body` rule below) locked <html> to exactly one viewport tall. Any
+     page content beyond that couldn't grow the real document, so the
+     browser's natural "whole page scrolls" behavior stopped applying —
+     instead `body` (below) became its own inner scrollbox once its
+     content overflowed its own fixed height. That nested scrollbox is
+     what forced mobile visitors to specifically grab and drag inside the
+     content area to reveal anything past the first viewport (the social
+     links included), rather than the page just scrolling normally, and
+     it also kept the mobile browser chrome (URL bar) from auto-collapsing
+     on scroll the way it does for a normal single-scrollcontainer page. */
   overflow-x: hidden;
-  overflow-y: auto;
-  height: 100%;
   margin: 0;
   padding: 0;
 }
@@ -38,8 +47,12 @@ body {
   margin: 0;
   padding: 0;
   min-width: 320px;
+  /* min-height (a floor), not height (a fixed ceiling) — lets body grow
+     taller than one viewport so the page scrolls as a single natural
+     document instead of forming its own nested scroll container. See the
+     comment on `html` above for why the old fixed height was the actual
+     cause of mobile's "have to activate scroll" behavior. */
   min-height: 100vh;
-  height: 100%;
   overflow-x: hidden;
 }
 

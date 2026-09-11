@@ -31,15 +31,17 @@ import BlueskyIcon from "../../../assets/logos/Bluesky_Logo.svg";
  * Styled raster/vector image element for imported brand assets
  * Ensures consistent sizing and rendering quality
  */
-const ImgIcon = styled("img")<{ $size?: string }>(({ $size = "2.5rem" }) => ({
-  width: $size,
-  height: $size,
-  display: "block",
-  objectFit: "contain",
-  aspectRatio: "1 / 1",
-  userSelect: "none",
-  imageRendering: "-webkit-optimize-contrast",
-}));
+const ImgIcon = styled("img")<{ $size?: string }>(
+  ({ $size = "clamp(1.75rem, 5.5vw, 2.5rem)" }) => ({
+    width: $size,
+    height: $size,
+    display: "block",
+    objectFit: "contain",
+    aspectRatio: "1 / 1",
+    userSelect: "none",
+    imageRendering: "-webkit-optimize-contrast",
+  })
+);
 
 /**
  * Icon configuration mapping for social media platforms
@@ -53,7 +55,11 @@ interface IconConfig {
   ) => React.ReactNode;
 }
 
-const iconSizeRem = "2.5rem";
+// clamp() scales the icon glyphs continuously with viewport width instead
+// of staying a flat 2.5rem down to the narrowest phones — at ~320-390px
+// wide, 6 icons at a fixed 2.5rem plus gaps no longer fit on one row,
+// forcing extra wrapped rows and adding to the page's total height.
+const iconSizeRem = "clamp(1.75rem, 5.5vw, 2.5rem)";
 
 /**
  * Icon configuration object
