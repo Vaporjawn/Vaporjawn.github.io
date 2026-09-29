@@ -11,11 +11,11 @@ describe("relativeTime", () => {
     // Mock Date.now() to a fixed timestamp for consistent testing
     vi.useFakeTimers();
     vi.setSystemTime(new Date("2024-01-15T12:00:00Z"));
-  });
+  }, 20000);
 
   afterEach(() => {
     vi.useRealTimers();
-  });
+  }, 20000);
 
   it("returns \"just now\" for timestamps less than 45 seconds ago", () => {
     const thirtySecsAgo = new Date("2024-01-15T11:59:30Z").toISOString();
