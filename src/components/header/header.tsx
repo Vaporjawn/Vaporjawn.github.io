@@ -8,7 +8,7 @@ import {
   IconButton,
   Drawer,
   List,
-  ListItem,
+  ListItemButton,
   ListItemText,
   useTheme,
   useMediaQuery,
@@ -43,7 +43,7 @@ const Header = (args: {
   const navigate: NavigateFunction = useNavigate();
   const location = useLocation();
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("xl"));
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const navItems = [
@@ -76,7 +76,9 @@ const Header = (args: {
     <Box
       sx={{
         width: 280,
-        height: "100%",
+        minHeight: "100%",
+        display: "flex",
+        flexDirection: "column",
         background: darkMode
           ? `linear-gradient(135deg, ${VaporwaveBlue}20, ${VaporwavePurple}20)`
           : `linear-gradient(135deg, ${VaporwaveBlue}10, ${VaporwavePurple}10)`,
@@ -115,11 +117,14 @@ const Header = (args: {
       </Box>
       <List sx={{ pt: 3 }}>
         {navItems.map((item) => (
-          <ListItem
+          <ListItemButton
+            component="li"
             key={item.label}
             sx={{
               mb: 1,
               mx: 2,
+              width: "auto",
+              minHeight: 44,
               borderRadius: 3,
               background: isActivePath(item.path)
                 ? `linear-gradient(45deg, ${VaporwavePurple}30, ${VaporwaveBlue}30)`
@@ -149,15 +154,15 @@ const Header = (args: {
                 },
               }}
             />
-          </ListItem>
+          </ListItemButton>
         ))}
       </List>
       <Box
         sx={{
-          position: "absolute",
-          bottom: 20,
-          left: "50%",
-          transform: "translateX(-50%)",
+          mt: "auto",
+          p: 2,
+          display: "flex",
+          justifyContent: "center",
         }}
       >
         <DarkModeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
@@ -181,10 +186,12 @@ const Header = (args: {
           boxShadow: darkMode
             ? `0 8px 32px ${VaporwavePurple}30`
             : `0 8px 32px ${VaporwaveBlue}20`,
-          zIndex: theme.zIndex.drawer + 1,
+          zIndex: theme.zIndex.appBar,
         }}
       >
-        <Toolbar sx={{ minHeight: { xs: 64, md: 70, lg: 80 }, px: { xs: 1, sm: 2, md: 3 } }}>
+        <Toolbar
+          sx={{ minHeight: { xs: 64, md: 70, lg: 80 }, px: { xs: 2, md: 3 } }}
+        >
           {isMobile && (
             <IconButton
               color="inherit"
@@ -218,7 +225,12 @@ const Header = (args: {
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               fontWeight: "bold",
-              fontSize: { xs: "1.3rem", sm: "1.5rem", lg: "1.8rem", xl: "2rem" },
+              fontSize: {
+                xs: "1.3rem",
+                sm: "1.5rem",
+                lg: "1.8rem",
+                xl: "2rem",
+              },
               textShadow: `0 0 20px ${VaporwaveBlueGreen}50`,
               cursor: "pointer",
               transition: "all 0.3s ease",
@@ -238,7 +250,8 @@ const Header = (args: {
                 display: "flex",
                 alignItems: "center",
                 flexGrow: 1,
-                gap: { lg: 0.5, xl: 1 },
+                gap: 0.5,
+                [theme.breakpoints.up(1536)]: { gap: 1 },
                 flexWrap: "nowrap",
                 overflow: "visible",
                 minHeight: { lg: 70, xl: 80 },
@@ -252,8 +265,8 @@ const Header = (args: {
                   onClick={() => handleNavigation(item.path)}
                   sx={{
                     color: "white",
-                    px: { lg: 1.5, xl: 2.5 },
-                    py: { lg: 1, xl: 1.5 },
+                    px: 1.5,
+                    py: 1,
                     borderRadius: 3,
                     minWidth: "auto",
                     whiteSpace: "nowrap",
@@ -268,7 +281,12 @@ const Header = (args: {
                       ? "1px solid rgba(255,255,255,0.3)"
                       : "1px solid transparent",
                     fontWeight: isActivePath(item.path) ? "bold" : "normal",
-                    fontSize: { lg: "0.875rem", xl: "1rem" },
+                    fontSize: "0.875rem",
+                    [theme.breakpoints.up(1536)]: {
+                      px: 2.5,
+                      py: 1.5,
+                      fontSize: "1rem",
+                    },
                     transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                     "&:hover": {
                       background: "rgba(255,255,255,0.15)",
@@ -289,7 +307,7 @@ const Header = (args: {
           )}
 
           {!isMobile && (
-            <Box sx={{ ml: "auto" }}>
+            <Box sx={{ ml: "auto", flexShrink: 0 }}>
               <DarkModeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
             </Box>
           )}
@@ -304,7 +322,7 @@ const Header = (args: {
           keepMounted: true,
         }}
         sx={{
-          display: { xs: "block", lg: "none" },
+          display: { xs: "block", xl: "none" },
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
             width: 280,

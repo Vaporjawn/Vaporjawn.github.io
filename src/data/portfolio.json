@@ -3,7 +3,7 @@
     "name": "Victor Williams",
     "title": "Senior Full Stack Software Engineer",
     "email": "victor.williams.dev@gmail.com",
-    "location": "Philadelphia, PA",
+    "location": "Philadelphia, PA / New York, NY",
     "bio": "Senior Full Stack Software Engineer with 9+ years building and leading full-stack platforms across fintech, legal tech, and marketplace industries — from a 10-application ecosystem built from scratch at Racing Unleashed to case management and B2B onboarding tools now in production at Morgan Lewis. Comfortable operating as engineer, technical lead, or solutions architect across React/TypeScript, Node.js, Go, Python, C#/.NET, and AWS/Azure.",
     "avatar": "/assets/profile.jpg"
   },
@@ -143,7 +143,7 @@
       "startDate": "2024-08",
       "endDate": null,
       "description": "Independently designed and built case management tooling for attorneys supporting active litigation and pro bono casework, developed a firm-wide global events calendar application, and created a business-to-business onboarding platform connecting outside companies with the firm. Partnered directly with attorneys, paralegals, and firm stakeholders to refine each tool against real casework and onboarding needs.",
-      "technologies": ["SharePoint", "C#", ".NET Core", "REST API", "JavaScript", "TypeScript", "React.js", "SQL", "Azure"],
+      "technologies": ["SharePoint", "C#", ".NET Core", "REST API", "JavaScript", "TypeScript", "React.js", "SQL", "Azure", "Claude Code", "Codex", "GitHub Copilot"],
       "current": true
     },
     {

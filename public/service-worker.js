@@ -3,17 +3,10 @@
 // changes, otherwise a browser that already installed this worker keeps
 // serving whatever it cached on day one forever, even after new files are
 // deployed under the same URLs (favicons/icons never change filename).
-const CACHE_NAME = "vaporjawn-v2";
-const urlsToCache = [
-  "/",
-  "/index.html",
-  "/about",
-  "/projects",
-  "/resume",
-  "/contact",
-  "/blog",
-  "/activity",
-];
+const CACHE_NAME = "vaporjawn-v3";
+// GitHub Pages returns 404 for SPA routes before the client redirect runs.
+// Precaching those routes rejects the entire install, leaving the old worker active.
+const urlsToCache = ["/", "/index.html"];
 
 // Install event - cache assets
 self.addEventListener("install", (event) => {

@@ -55,7 +55,10 @@ export const AboutBioSection: React.FC<AboutBioSectionProps> = ({
     <Paper
       elevation={0}
       sx={{
-        p: { xs: 4, md: 6 },
+        width: "100%",
+        minWidth: 0,
+        overflowWrap: "anywhere",
+        p: { xs: 2.5, sm: 4, md: 5 },
         background: (theme) =>
           theme.palette.mode === "dark"
             ? "linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02))"
@@ -74,7 +77,7 @@ export const AboutBioSection: React.FC<AboutBioSectionProps> = ({
           sx={{
             fontWeight: 700,
             mb: 3,
-            fontSize: { xs: "2.4rem", md: "3rem" },
+            fontSize: "clamp(1.75rem, 4vw, 3rem)",
             background: (theme) =>
               `linear-gradient(120deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
             WebkitBackgroundClip: "text",

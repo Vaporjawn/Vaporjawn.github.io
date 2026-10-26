@@ -36,6 +36,12 @@ documentation (including CLAUDE.md) has drifted from the actual code.
 
 ## 🚀 Setup & Configuration Guides
 
+### Resume Updates and Publication
+**File**: [deployment/resume-updates.md](./deployment/resume-updates.md)
+
+Master PDF location, matching career data, headless download verification, GitHub
+Pages publishing, and the dependency-install/cache repairs required for the release.
+
 ### Commit Signing Setup
 **File**: [guides/commit-signing-setup.md](./guides/commit-signing-setup.md)
 
@@ -141,6 +147,12 @@ Overall implementation completion summary and final status report.
 ---
 
 ## 🐛 Bug Fixes & Technical Resolutions
+
+### About Page Centering and Responsive Layout
+**File**: [bug-fixes/about-responsive-centering.md](./bug-fixes/about-responsive-centering.md)
+
+Published centering root cause, mobile overflow repair, responsive navigation, and
+headless regression evidence for vaporjawn.dev (Vaporjawn.github.io).
 
 ### GitHub Contributions Refresh Loop Fix
 **File**: [bug-fixes/refresh-loop-fix.md](./bug-fixes/refresh-loop-fix.md)

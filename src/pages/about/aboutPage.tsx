@@ -21,7 +21,7 @@
  */
 
 import React from "react";
-import { Box, useTheme, Container, Grid, Fade } from "@mui/material";
+import { Box, useTheme, Container, Fade } from "@mui/material";
 import SEO from "../../components/SEO/SEO";
 import { usePortfolio } from "../../hooks/usePortfolioData";
 import { AboutBioSection, AboutContactSection } from "./components";
@@ -53,27 +53,27 @@ const AboutPage: React.FC = () => {
         url="https://vaporjawn.dev/about"
       />
 
-      <Container maxWidth="lg" sx={{ py: 4 }}>
+      <Container maxWidth="md" sx={{ py: { xs: 3, sm: 4, md: 5 } }}>
         <Fade in timeout={1000}>
           <Box
             sx={{
-              minHeight: "80vh",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
+              width: "100%",
+              minWidth: 0,
+              mx: "auto",
               textAlign: "center",
-              py: 6,
+              "& .MuiButton-root": {
+                maxWidth: "100%",
+                overflowWrap: "anywhere",
+              },
+              "& #contact a[aria-label]": {
+                minWidth: 44,
+                minHeight: 44,
+                flexShrink: 0,
+              },
             }}
           >
-            <Grid container justifyContent="center">
-              <Grid size={{ xs: 12, md: 10, lg: 8 }}>
-                <AboutBioSection portfolioData={portfolioData} />
-                <AboutContactSection
-                  darkMode={theme.palette.mode === "dark"}
-                />
-              </Grid>
-            </Grid>
+            <AboutBioSection portfolioData={portfolioData} />
+            <AboutContactSection darkMode={theme.palette.mode === "dark"} />
           </Box>
         </Fade>
       </Container>

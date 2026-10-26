@@ -26,6 +26,9 @@ before (see "Known Drift" below).
 
 ## Essential Commands
 
+Production uses Node 24 LTS and `npm ci` with the committed lockfile. See
+`docs/deployment/resume-updates.md` for PDF updates and the publication checks.
+
 ```bash
 npm start              # Dev server on :5173 (vite --host)
 npm run build           # tsc && vite build → dist/
@@ -58,7 +61,7 @@ cleaned up. Don't reach for Jest APIs or trust those config files.
 | Framework    | React 19, TypeScript 5.9 strict                                                             |
 | Build        | Vite 7 (`@vitejs/plugin-react`, MDX via `@mdx-js/rollup`)                                   |
 | Routing      | React Router **v7** (`react-router-dom@^7`) — not v6                                        |
-| UI           | MUI v7 (**Grid v2**), Emotion, Framer Motion                                                |
+| UI           | MUI v9 (**Grid v2**), Emotion, Framer Motion                                                |
 | Server state | TanStack React Query (`staleTime: 5min`, `retry: 2`)                                        |
 | Forms        | react-hook-form + Yup                                                                       |
 | Backend      | Firebase (Firestore, Analytics, Storage — **no Hosting**)                                   |
@@ -351,8 +354,8 @@ so `content/blog/*.mdx` compiles directly, ahead of `@vitejs/plugin-react`.
 Node 18/20/22 matrices for `build.js.yml`/`install.js.yml`/`tests.js.yml`
 (`lint.js.yml` is 18/20 only), all triggered on push/PR to `main`/`V3`. Production
 deploys happen via **`deploy-pages.yml`** (push to `main` or manual dispatch) — its
-build step uses `rm -rf node_modules package-lock.json && npm install` (regenerating the
-lockfile, not `npm ci`), then `npm run build`, then `actions/deploy-pages`. The
+build uses Node 24 and `npm ci` with the committed lockfile, then `npm run build`,
+then `actions/deploy-pages`. The
 package.json `gh-pages`-based `npm run deploy` script is **not** what production
 actually uses. `contribs.yml` refreshes the contributions-calendar JSON daily via cron
 and commits it back directly. `securityScan.yml` runs `njsscan` weekly + on push/PR.

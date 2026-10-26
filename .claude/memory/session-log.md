@@ -6,6 +6,47 @@ history already covers what changed).
 
 ---
 
+## 2026-10-26 — Refresh and republish the resume
+
+Release source: `Vaporjawn/Professional/Resumes/Resume.pdf` (2026-10-20, two pages,
+SHA-256 `f775e5e25bd3e1c18a155cfe42fc54b72edb65647f376948da35f604f7e90a9e`).
+Copied unchanged to `src/assets/Resume.pdf`; added Claude Code/Codex/GitHub Copilot
+to the Morgan Lewis technology list and synchronized the Philadelphia/New York
+location. Included the pending About/header responsiveness repair in this release.
+
+Latest Pages run failed in npm 10.8.2 with `edgesOut` after deleting the lockfile.
+Changed only the production workflow to Node 24 + `npm ci`; clean Node 24.22.1
+install succeeds without dependency/lockfile changes. The worker also could not
+install because it precached deep SPA routes that GitHub Pages returns as 404;
+precache now includes only `/` and `/index.html`, with a new v3 cache to retire
+cached HTML/PDF URLs. A failing-then-passing worker regression covers this case.
+
+Validation in an isolated checkout excludes the unrelated untracked Gemini blog
+draft/assets: production build, lint (existing Fast Refresh warning), 254 unit
+tests/5 skips, and 33 headless About/resume browser tests. Downloads are verified
+byte for byte at 320/390/768/1440px; About covers 320–2560px in both themes.
+See `docs/deployment/resume-updates.md` for source, root causes, and publishing checks.
+
+## 2026-10-26 — Center the About page across screen sizes
+
+Victor identifies Vaporjawn.github.io and vaporjawn.dev as the same portfolio.
+Published `/about` at 1920px had a 162.67px left offset: the inner Grid computed
+`justify-content: normal`. Local MUI 7.3.11 still honored the removed system prop,
+while package.json declares MUI 9; local mobile reproduced separate 392px card
+overflow at a 320px viewport. Replaced the Grid nesting with a bounded full-width
+column, fluid title/padding, and wrapping. Header now uses the drawer until 1280px,
+keeps desktop controls within bounds, and supports short landscape/keyboard use.
+
+All browser checks were headless/background. New `e2e/about.spec.ts`: 28 passing
+tests on both installed MUI 7 and an isolated MUI 9.2.0 build (320–2560px, both
+themes, keyboard/drawer flows). Final measurements: 0px
+center offset, no clipped About/header controls. Build, lint, and coverage run pass;
+253 unit tests pass/5 skipped with `NODE_OPTIONS=--no-experimental-webstorage` on
+Node 26. Full `npm run check` stops at 113 existing Prettier failures; direct app
+typecheck has existing configuration/source errors. No dependency files changed
+and no deployment performed. See `docs/bug-fixes/about-responsive-centering.md`
+for measurements, commands, coverage, and accessibility limitations.
+
 ## 2026-08-10 — Projects page "Site" links: vaporjawn.github.io → vaporjawn.dev, hide dead ones
 
 Site owner reported project "Site" buttons on `/projects` should point at `vaporjawn.dev`
