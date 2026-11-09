@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-FAUB2vUekh3aN3K527sx7k+Se/kXohC2b4C3wFxxFjE='; base-uri 'none'; form-action 'none'">
+<title>Open a record in Capri</title>
+<main>
+<h1>Open in Capri</h1>
+<p>This link identifies a saved Capri record. Its content stays in Capri and is available only on devices that already have access.</p>
+<p><a id="open" hidden>Open record in Capri</a></p>
+<p>If Capri is not installed, open this link on your iPhone or iPad after installing it. An invalid or unavailable record will remain unavailable.</p>
+</main>
+<script>const query = new URLSearchParams(location.search);
+const kind = query.get('kind');
+const id = query.get('id');
+if ([...query.keys()].length === 2 && ['capture','task','conversation','document'].includes(kind) && id && new TextEncoder().encode(id).length <= 200 && !/[\u0000-\u001f\u007f]/.test(id)) {
+  const target = new URL('capri-mobile://record');
+  target.searchParams.set('kind', kind);
+  target.searchParams.set('id', id);
+  document.getElementById('open').href = target.href;
+  document.getElementById('open').hidden = false;
+}</script>
+</html>

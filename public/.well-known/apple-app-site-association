@@ -1,0 +1,17 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "YPSLDB35D4.dev.vaporjawn.capri.mobile"
+        ],
+        "components": [
+          {
+            "/": "/capri/*",
+            "comment": "Open only saved Capri record identities. Content remains private in the app."
+          }
+        ]
+      }
+    ]
+  }
+}
