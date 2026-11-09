@@ -68,6 +68,8 @@ jobs:
         uses: actions/upload-pages-artifact@v5
         with:
           path: './dist'
+          # Apple's Universal Link association is served from .well-known.
+          include-hidden-files: true
 
   # Deployment job
   deploy:
